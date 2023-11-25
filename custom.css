@@ -1,0 +1,92 @@
+.dataframe {
+    display: inline-block;
+}
+.dataframe td {
+    vertical-align: middle;
+    text-align: right;
+}
+tbody tr:hover {background: rgba(66, 165, 245, 0.2);}
+
+.title {
+    color: #315f30 !important;
+}
+
+.description {
+    color: #315f30 !important;
+}
+
+h1 {
+    color: #315f30;
+}
+
+h2 {
+    color: #4c784e;
+}
+
+h3 {
+    color: #6a926b;
+}
+
+h4 {
+    color: #758b76;
+}
+
+.callout-tip {
+    border: 3px solid #b378b0 !important;
+    background-color: #f0e5f0 !important;
+}
+
+.callout-note {
+    border: 3px solid #dfa665 !important;
+    background-color: #f7ebdd !important;
+}
+
+.callout-tip .callout-header {
+    background-color: #c090bd !important; 
+}
+
+.callout-note .callout-header {
+    background-color: #e2ad71 !important; 
+}
+
+/* 改变Tip框中的标题颜色 */
+.callout-tip .callout-title-container {
+    color: #873991 !important; 
+}
+
+/* 改变Note框中的标题颜色 */
+.callout-note .callout-title-container {
+    color: #766143 !important;
+}
+
+.panel-tabset {
+    background-color: #cfdad0;
+}
+
+.panel-tabset .tab-content {
+    background-color: #e7ede7; 
+}
+
+.panel-tabset {
+    border: 3px solid #b1c1b0;
+}
+
+
+/* Change the color of code inside the note callout */
+.callout-note code {
+    color: #dea76d !important;  /* You can choose any color value you prefer */
+}
+
+/* Change the color of code inside the tip callout */
+.callout-tip code {
+    color: #a767a3 !important;  /* You can choose any color value you prefer */
+}
+
+
+.code-block, .sourceCode {
+    border: 3px solid #b2c1b1;
+    padding: 8px;
+    border-radius: 5px;  
+    background-color: #cad4ca;
+    /* white-space: pre-wrap !important; */
+}
