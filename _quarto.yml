@@ -1,0 +1,43 @@
+project:
+  type: book
+
+book:
+  title: "TransProPyBook"
+  author: "Dongyue Yu"
+  favicon: TransProPy_logo.png
+  description: TransProPy is a Python package that is part of the TransPro series under the SuperOmics framework.
+  keyword: TransProPy, DL, data science, data engineering
+  url: https://sssydysss.github.io/TransProPyBook/
+  date: "2023/11/15"
+  sidebar: 
+    background: "#90c7dd"
+    logo: TransProPy_logo.png
+    search: true
+  repo-url: https://github.com/SSSYDYSSS/TransProPyBook
+  repo-branch: main
+  repo-actions: [edit, issue, source]
+  sharing: [twitter, facebook, linkedin]
+  image: TransProPy_logo.png
+  comments:
+    giscus:
+      repo: SSSYDYSSS/TransProPyBook
+  open-graph:
+    image: https://github.com/SSSYDYSSS/TransProPyBook/blob/main/TransProPy_logo.png
+    description: Python package TransProPy.
+
+  
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    code-fold: false
+    css: custom.css
+    backgroundcolor: "#eff7f8"
+
