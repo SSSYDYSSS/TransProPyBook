@@ -10,7 +10,7 @@ book:
   url: https://sssydysss.github.io/TransProPyBook/
   date: "2023/11/15"
   sidebar: 
-    background: "#90c7dd"
+    background: "#a6cedb"
     logo: TransProPy_logo.png
     search: true
   repo-url: https://github.com/SSSYDYSSS/TransProPyBook
@@ -28,7 +28,11 @@ book:
   
   chapters:
     - index.qmd
-    - intro.qmd
+    - UtilsFunction1.qmd
+    - UtilsFunction2.qmd
+    - MACFCmain.qmd
+    - AutogluonTimeLimit.qmd
+    - AutoGluonSelectML.qmd
     - summary.qmd
     - references.qmd
 

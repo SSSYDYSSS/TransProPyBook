@@ -1,0 +1,46 @@
+# UtilsFunction2
+This section serves as the helper function for the AutogluonSelectML and AutogluonTimeLimit function.
+
+## splitdata.py
+Reads the gene expression and class data, processes it, and splits it into training and testing sets.
+
+### Parameters
+>- <b style="color: #43799a;">gene_data_path (str)</b>:
+>   - Path to the CSV file containing the gene expression data. 
+>   - <b style="color: #54467d;">For example</b>: '../data/gene_tpm.csv'
+>- <b style="color: #43799a;">class_data_path (str)</b>: 
+>   - Path to the CSV file containing the class data. 
+>   - <b style="color: #54467d;">For example</b>: '../data/tumor_class.csv'
+>- <b style="color: #43799a;">class_name (str)</b>: 
+>   - The name of the class column in the class data.
+>- <b style="color: #43799a;">test_size</b> (float, <b style="color: #406e1a;">optional</b>): 
+>   - The proportion of the data to be used as the testing set.
+>   - <b style="color: #406e1a;">Default is 0.2</b>.
+>- <b style="color: #43799a;">random_state</b> (int, <b style="color: #406e1a;">optional</b>): 
+>   - The seed used by the random number generator. 
+>   - <b style="color: #406e1a;">Default is 42</b>.
+>- <b style="color: #43799a;">threshold</b> (float, <b style="color: #406e1a;">optional</b>): 
+>   - The threshold used to filter out rows based on the proportion of non-zero values. 
+>   - <b style="color: #406e1a;">Default is 0.9</b>.
+>- <b style="color: #43799a;">random_feature</b> (int, <b style="color: #406e1a;">optional</b>): 
+>   - The number of random feature to select. If None, no random feature selection is performed. 
+>   - <b style="color: #406e1a;">Default is None</b>.
+
+### Returns
+>- <b style="color: #43799a;">train_data</b> (pd.DataFrame): 
+>   - The training data.
+>- <b style="color: #43799a;">test_data</b> (pd.DataFrame): 
+>   - The testing data.
+
+### Usage
+```python
+split_data(
+    gene_data_path='../data/gene_tpm.csv', 
+    class_data_path='../data/tumor_class.csv', 
+    class_name, 
+    test_size=0.2, 
+    random_state=42, 
+    threshold=0.9, 
+    random_feature=None
+    )
+```

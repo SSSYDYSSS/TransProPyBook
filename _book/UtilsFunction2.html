@@ -8,7 +8,7 @@
 
 <meta name="description" content="TransProPy is a Python package that is part of the TransPro series under the SuperOmics framework.">
 
-<title>TransProPyBook - 4&nbsp; Summary</title>
+<title>TransProPyBook - 2&nbsp; UtilsFunction2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
-<link href="./MACFCmain.html" rel="prev">
+<link href="./MACFCmain.html" rel="next">
+<link href="./UtilsFunction1.html" rel="prev">
 <link href="./TransProPy_logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -66,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="custom.css">
-<meta property="og:title" content="TransProPyBook - 4&nbsp; Summary">
+<meta property="og:title" content="TransProPyBook - 2&nbsp; UtilsFunction2">
 <meta property="og:description" content="Python package TransProPy.">
 <meta property="og:image" content="https://github.com/SSSYDYSSS/TransProPyBook/blob/main/TransProPy_logo.png">
 <meta property="og:site-name" content="TransProPyBook">
@@ -81,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./summary.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./UtilsFunction2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">UtilsFunction2</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -149,7 +183,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./UtilsFunction2.html" class="sidebar-item-text sidebar-link">
+  <a href="./UtilsFunction2.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">UtilsFunction2</span></span></a>
   </div>
 </li>
@@ -161,8 +195,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  <a href="./AutogluonTimeLimit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">AutogluonTimeLimit.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AutoGluonSelectML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">AutoGluonSelectML.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -177,14 +223,25 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#splitdata.py" id="toc-splitdata.py" class="nav-link active" data-scroll-target="#splitdata.py"><span class="header-section-number">2.1</span> splitdata.py</a>
+  <ul class="collapse">
+  <li><a href="#parameters" id="toc-parameters" class="nav-link" data-scroll-target="#parameters"><span class="header-section-number">2.1.1</span> Parameters</a></li>
+  <li><a href="#returns" id="toc-returns" class="nav-link" data-scroll-target="#returns"><span class="header-section-number">2.1.2</span> Returns</a></li>
+  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage"><span class="header-section-number">2.1.3</span> Usage</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/edit/main/UtilsFunction2.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/blob/main/UtilsFunction2.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">UtilsFunction2</span></h1>
 </div>
 
 
@@ -199,46 +256,81 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>In summary, this book has no content whatsoever.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Polars works fine with Matplotlib, Plotly, and Altair, but it doesn’t work with Seaborn, nor does it have its own <code>.plot</code> method. The latter two are very convenient for exploratory data analysis, so for these examples we’ll just use <code>to_pandas</code> followed by <code>plot</code> or a Seaborn function after doing all the data manipulation in Polars.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Polars works fine with Matplotlib, Plotly, and Altair, but it doesn’t work with Seaborn, nor does it have its own <code>.plot</code> method. The latter two are very convenient for exploratory data analysis, so for these examples we’ll just use <code>to_pandas</code> followed by <code>plot</code> or a Seaborn function after doing all the data manipulation in Polars.</p>
-</div>
-</div>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Tab 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Tab 2</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>Content for the first tab.</p>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>Content for the second tab.</p>
-</div>
-</div>
-</div>
+<p>This section serves as the helper function for the AutogluonSelectML and AutogluonTimeLimit function.</p>
+<section id="splitdata.py" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="splitdata.py"><span class="header-section-number">2.1</span> splitdata.py</h2>
+<p>Reads the gene expression and class data, processes it, and splits it into training and testing sets.</p>
+<section id="parameters" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="parameters"><span class="header-section-number">2.1.1</span> Parameters</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">gene_data_path (str)</b>:
+<ul>
+<li>Path to the CSV file containing the gene expression data.</li>
+<li><b style="color: #54467d;">For example</b>: ‘../data/gene_tpm.csv’</li>
+</ul></li>
+<li><b style="color: #43799a;">class_data_path (str)</b>:
+<ul>
+<li>Path to the CSV file containing the class data.</li>
+<li><b style="color: #54467d;">For example</b>: ‘../data/tumor_class.csv’</li>
+</ul></li>
+<li><b style="color: #43799a;">class_name (str)</b>:
+<ul>
+<li>The name of the class column in the class data.</li>
+</ul></li>
+<li><b style="color: #43799a;">test_size</b> (float, <b style="color: #406e1a;">optional</b>):
+<ul>
+<li>The proportion of the data to be used as the testing set.</li>
+<li><b style="color: #406e1a;">Default is 0.2</b>.</li>
+</ul></li>
+<li><b style="color: #43799a;">random_state</b> (int, <b style="color: #406e1a;">optional</b>):
+<ul>
+<li>The seed used by the random number generator.</li>
+<li><b style="color: #406e1a;">Default is 42</b>.</li>
+</ul></li>
+<li><b style="color: #43799a;">threshold</b> (float, <b style="color: #406e1a;">optional</b>):
+<ul>
+<li>The threshold used to filter out rows based on the proportion of non-zero values.</li>
+<li><b style="color: #406e1a;">Default is 0.9</b>.</li>
+</ul></li>
+<li><b style="color: #43799a;">random_feature</b> (int, <b style="color: #406e1a;">optional</b>):
+<ul>
+<li>The number of random feature to select. If None, no random feature selection is performed.</li>
+<li><b style="color: #406e1a;">Default is None</b>.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="returns" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="returns"><span class="header-section-number">2.1.2</span> Returns</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">train_data</b> (pd.DataFrame):
+<ul>
+<li>The training data.</li>
+</ul></li>
+<li><b style="color: #43799a;">test_data</b> (pd.DataFrame):
+<ul>
+<li>The testing data.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="usage" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="usage"><span class="header-section-number">2.1.3</span> Usage</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>split_data(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    gene_data_path<span class="op">=</span><span class="st">'../data/gene_tpm.csv'</span>, </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    class_data_path<span class="op">=</span><span class="st">'../data/tumor_class.csv'</span>, </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    class_name, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.2</span>, </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span>, </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    threshold<span class="op">=</span><span class="fl">0.9</span>, </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    random_feature<span class="op">=</span><span class="va">None</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -478,13 +570,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./MACFCmain.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">MACFCmain.py</span></span>
+      <a href="./UtilsFunction1.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">UtilsFunction1</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./MACFCmain.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">MACFCmain.py</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -492,4 +584,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/edit/main/summary.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/blob/main/summary.qmd" class="toc-action">View source</a></p></div></div></div></div></footer></body></html>
+</body></html>

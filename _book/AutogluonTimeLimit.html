@@ -8,7 +8,7 @@
 
 <meta name="description" content="TransProPy is a Python package that is part of the TransPro series under the SuperOmics framework.">
 
-<title>TransProPyBook - 4&nbsp; Summary</title>
+<title>TransProPyBook - 4&nbsp; AutogluonTimeLimit.py</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./AutoGluonSelectML.html" rel="next">
 <link href="./MACFCmain.html" rel="prev">
 <link href="./TransProPy_logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -66,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="custom.css">
-<meta property="og:title" content="TransProPyBook - 4&nbsp; Summary">
+<meta property="og:title" content="TransProPyBook - 4&nbsp; AutogluonTimeLimit.py">
 <meta property="og:description" content="Python package TransProPy.">
 <meta property="og:image" content="https://github.com/SSSYDYSSS/TransProPyBook/blob/main/TransProPy_logo.png">
 <meta property="og:site-name" content="TransProPyBook">
@@ -81,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./summary.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AutogluonTimeLimit.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">AutogluonTimeLimit.py</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -161,8 +195,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  <a href="./AutogluonTimeLimit.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">AutogluonTimeLimit.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AutoGluonSelectML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">AutoGluonSelectML.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -177,14 +223,28 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#parameters" id="toc-parameters" class="nav-link active" data-scroll-target="#parameters"><span class="header-section-number">4.1</span> Parameters</a></li>
+  <li><a href="#returns" id="toc-returns" class="nav-link" data-scroll-target="#returns"><span class="header-section-number">4.2</span> Returns</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">4.3</span> References</a>
+  <ul class="collapse">
+  <li><a href="#scientific-publications" id="toc-scientific-publications" class="nav-link" data-scroll-target="#scientific-publications"><span class="header-section-number">4.3.1</span> Scientific Publications</a></li>
+  <li><a href="#articles" id="toc-articles" class="nav-link" data-scroll-target="#articles"><span class="header-section-number">4.3.2</span> Articles</a></li>
+  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation"><span class="header-section-number">4.3.3</span> Documentation</a></li>
+  </ul></li>
+  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage"><span class="header-section-number">4.4</span> Usage</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/edit/main/AutogluonTimeLimit.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/blob/main/AutogluonTimeLimit.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">AutogluonTimeLimit.py</span></h1>
 </div>
 
 
@@ -199,46 +259,126 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>In summary, this book has no content whatsoever.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Polars works fine with Matplotlib, Plotly, and Altair, but it doesn’t work with Seaborn, nor does it have its own <code>.plot</code> method. The latter two are very convenient for exploratory data analysis, so for these examples we’ll just use <code>to_pandas</code> followed by <code>plot</code> or a Seaborn function after doing all the data manipulation in Polars.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Polars works fine with Matplotlib, Plotly, and Altair, but it doesn’t work with Seaborn, nor does it have its own <code>.plot</code> method. The latter two are very convenient for exploratory data analysis, so for these examples we’ll just use <code>to_pandas</code> followed by <code>plot</code> or a Seaborn function after doing all the data manipulation in Polars.</p>
-</div>
-</div>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Tab 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Tab 2</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>Content for the first tab.</p>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>Content for the second tab.</p>
-</div>
-</div>
-</div>
+<p>Trains a model using AutoGluon on provided data path and returns feature importance and model leaderboard.</p>
+<section id="parameters" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="parameters"><span class="header-section-number">4.1</span> Parameters</h2>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">gene_data_path</b> (str):
+<ul>
+<li>Path to the gene expression data CSV file.</li>
+<li><b style="color: #54467d;">For example</b>: ‘../data/gene_tpm.csv’</li>
+</ul></li>
+<li><b style="color: #43799a;">class_data_path</b> (str):
+<ul>
+<li>Path to the class data CSV file.</li>
+<li><b style="color: #54467d;">For example</b>: ‘../data/tumor_class.csv’</li>
+</ul></li>
+<li><b style="color: #43799a;">label_column</b> (str):
+<ul>
+<li>Name of the column in the dataset that is the target label for prediction.</li>
+</ul></li>
+<li><b style="color: #43799a;">test_size</b> (float):
+<ul>
+<li>Proportion of the data to be used as the test set.</li>
+</ul></li>
+<li><b style="color: #43799a;">threshold</b> (float):
+<ul>
+<li>The threshold used to filter out rows based on the proportion of non-zero values.</li>
+</ul></li>
+<li><b style="color: #43799a;">random_feature</b> (int, <b style="color: #406e1a;">optional</b>):
+<ul>
+<li>The number of random feature to select. If None, no random feature selection is performed.</li>
+<li><b style="color: #406e1a;">Default is None</b>.</li>
+</ul></li>
+<li><b style="color: #43799a;">num_bag_folds</b> (int, <b style="color: #406e1a;">optional</b>):
+<ul>
+<li><b style="color: #54467d;">Please note</b>: This parameter annotation source can be referred to the documentation link in References.</li>
+<li>Number of folds used for bagging of models. When <code>num_bag_folds = k</code>, training time is roughly increased by a factor of <code>k</code> (set = 0 to disable bagging). Disabled by default (0), but we recommend values between 5-10 to maximize predictive performance. Increasing num_bag_folds will result in models with lower bias but that are more prone to overfitting. <code>num_bag_folds = 1</code> is an invalid value, and will raise a ValueError. Values &gt; 10 may produce diminishing returns, and can even harm overall results due to overfitting. To further improve predictions, avoid increasing <code>num_bag_folds</code> much beyond 10 and instead increase <code>num_bag_sets</code>.</li>
+<li><b style="color: #406e1a;">default = None</b></li>
+</ul></li>
+<li><b style="color: #43799a;">num_stack_levels</b> (int, <b style="color: #406e1a;">optional</b>):
+<ul>
+<li><b style="color: #54467d;">Please note</b>: This parameter annotation source can be referred to the documentation link in References.</li>
+<li>Number of stacking levels to use in stack ensemble. Roughly increases model training time by factor of <code>num_stack_levels+1</code> (set = 0 to disable stack ensembling). Disabled by default (0), but we recommend values between 1-3 to maximize predictive performance. To prevent overfitting, <code>num_bag_folds &gt;= 2</code> must also be set or else a ValueError will be raised.</li>
+<li><b style="color: #406e1a;">default = None</b></li>
+</ul></li>
+<li><b style="color: #43799a;">time_limit</b> (int, <b style="color: #406e1a;">optional</b>):
+<ul>
+<li>Time limit for training in seconds.</li>
+<li>Default is 120.</li>
+</ul></li>
+<li><b style="color: #43799a;">random_state</b> (int, <b style="color: #406e1a;">optional</b>):
+<ul>
+<li>The seed used by the random number generator.</li>
+<li><b style="color: #406e1a;">Default is 42</b>.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="returns" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="returns"><span class="header-section-number">4.2</span> Returns</h2>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">importance</b> (DataFrame):
+<ul>
+<li>DataFrame containing feature importance.</li>
+</ul></li>
+<li><b style="color: #43799a;">leaderboard</b> (DataFrame):
+<ul>
+<li>DataFrame containing model performance on the test data.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="references" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="references"><span class="header-section-number">4.3</span> References</h2>
+<section id="scientific-publications" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="scientific-publications"><span class="header-section-number">4.3.1</span> Scientific Publications</h3>
+<blockquote class="blockquote">
+<ul>
+<li><p><a href="https://arxiv.org/abs/2003.06505" style="color: #43799a; font-weight: bold;">Erickson, N., Mueller, J., Shirkov, A., Zhang, H., Larroy, P., Li, M., &amp; Smola, A. (2020). AutoGluon-Tabular: Robust and Accurate AutoML for Structured Data. arXiv preprint arXiv:2003.06505.</a></p></li>
+<li><p><a href="https://arxiv.org/abs/2006.14284" style="color: #43799a; font-weight: bold;">Fakoor, R., Mueller, J., Erickson, N., Chaudhari, P., &amp; Smola, A. J. (2020). Fast, Accurate, and Simple Models for Tabular Data via Augmented Distillation. arXiv preprint arXiv:2006.14284. </a></p></li>
+<li><p><a href="https://openreview.net/forum?id=OHAIVOOl7Vl" style="color: #43799a; font-weight: bold;">Shi, X., Mueller, J., Erickson, N., Li, M., &amp; Smola, A. (2021). Multimodal AutoML on Structured Tables with Text Fields. In AutoML@ICML 2021. </a></p></li>
+</ul>
+</blockquote>
+</section>
+<section id="articles" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="articles"><span class="header-section-number">4.3.2</span> Articles</h3>
+<blockquote class="blockquote">
+<ul>
+<li><p><a href="https://aws.amazon.com/blogs/opensource/machine-learning-with-autogluon-an-open-source-automl-library/" style="color: #43799a; font-weight: bold;">Prasanna, S. (2020, March 31). Machine learning with AutoGluon, an open source AutoML library. AWS Open Source Blog. </a></p></li>
+<li><p><a href="https://medium.com/@zhanghang0704/image-classification-on-kaggle-using-autogluon-fc896e74d7e8" style="color: #43799a; font-weight: bold;">Sun, Y., Wu, C., Zhang, Z., He, T., Mueller, J., &amp; Zhang, H. (n.d.). (2020). Image classification on Kaggle using AutoGluon. Medium.</a></p></li>
+<li><p><a href="https://towardsdatascience.com/autogluon-deep-learning-automl-5cdb4e2388ec" style="color: #43799a; font-weight: bold;">Erickson, N., Mueller, J., Zhang, H., &amp; Kamakoti, B. (2019). AutoGluon: Deep Learning AutoML. Medium.</a></p></li>
+</ul>
+</blockquote>
+</section>
+<section id="documentation" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="documentation"><span class="header-section-number">4.3.3</span> Documentation</h3>
+<blockquote class="blockquote">
+<ul>
+<li><a href="https://auto.gluon.ai/0.1.0/api/autogluon.predictor.html?highlight=num_bag_folds" style="color: #43799a; font-weight: bold;">AutoGluon Predictors – AutoGluon Documentation 0.1.0 documentation</a></li>
+</ul>
+</blockquote>
+</section>
+</section>
+<section id="usage" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="usage"><span class="header-section-number">4.4</span> Usage</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Autogluon_TimeLimit(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    gene_data_path<span class="op">=</span><span class="st">'../data/gene_tpm.csv'</span>, </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    class_data_path<span class="op">=</span><span class="st">'../data/tumor_class.csv'</span>, </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    label_column<span class="op">=</span><span class="st">'sex'</span>, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.3</span>, </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    threshold<span class="op">=</span><span class="fl">0.9</span>, </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    random_feature<span class="op">=</span><span class="va">None</span>, </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    num_bag_folds<span class="op">=</span><span class="va">None</span>, </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    num_stack_levels<span class="op">=</span><span class="va">None</span>, </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    time_limit<span class="op">=</span><span class="dv">120</span>, </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -483,8 +623,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./AutoGluonSelectML.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">AutoGluonSelectML.py</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -492,4 +632,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/edit/main/summary.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/blob/main/summary.qmd" class="toc-action">View source</a></p></div></div></div></div></footer></body></html>
+</body></html>

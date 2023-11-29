@@ -1,0 +1,175 @@
+# UtilsFunction1
+
+This section serves as the helper function for the MACFCmain function.
+
+## Auc.py
+Assists the MACFCmain function in calculating AUC, obtaining Feature Frequency, and performing sorting.
+
+### Introduction
+
+>- In this function, features that appear with high frequency indicate their presence in multiple optimal feature sets. 
+>- Each optimal feature set is determined by calculating its Area Under the Receiver Operating Characteristic (ROC) Curve (AUC), which is a common measure for evaluating classifier performance. 
+>- During each iteration of the loop, an optimal feature set with the highest average AUC value is selected. 
+>- Features from this set are then added to a rank list, known as 'ranklist,' and when necessary, also to a set named 'rankset'.
+
+### Usage
+
+```python
+auc(tlofe, ne, n0, n1)
+```
+
+## AutoNorm.py
+Normalization Function
+The auto_norm function is designed to normalize a two-dimensional array (matrix). The purpose of normalization is generally to bring all features into the same numerical range, facilitating subsequent analysis or model training.
+
+### Parameters
+>- <b style="color: #43799a;">data</b>: ndarray
+>   - Order Requirements for Input Data： 
+>   - 1.This function does indeed have specific requirements for the row and column order of the input matrix data. Rows should represent individual samples, and columns should represent different features. In other words, each row vector represents a sample containing multiple features. 
+>   - 2.Each column of the matrix will be independently normalized, so different features should be placed in separate columns.
+
+### Returns
+>- <b style="color: #43799a;">norm_data</b>: ndarray
+>    - It is the normalized data.
+
+### Usage
+
+```python
+auto_norm(data)
+```
+## FeatureRanking.py
+
+### Introduction
+
+>- <b style="color: #54467d;">High-Frequency Features and Performance</b>: Because features in each set are chosen based on their contribution to classifier performance, high-frequency features are likely to perform well. In other words, if a feature appears in multiple optimal feature sets, it may have a significant impact on the performance of the classifier.
+>- <b style="color: #54467d;">Note on Low-Frequency Features</b>: However, it's important to note that a low frequency of a feature does not necessarily mean it is unimportant. The importance of a feature may depend on how it combines with other features. Additionally, the outcome of feature selection may be influenced by the characteristics of the dataset and random factors. Therefore, the frequency provided by this function should only be used as a reference and is not an absolute indicator of feature performance.
+
+### Usage
+
+```python
+feature_ranking(f, c, max_rank, pos, neg, n0, n1)
+```
+
+## LoadData.py
+Data Reading and Transformation.
+
+### Introduction
+
+>- Data normalization for constant value.
+>- Extract matrix data and categorical data.
+
+### Parameters
+
+>- <b style="color: #43799a;">lable_name</b>: string
+>   - <b style="color: #54467d;">For example</b>: gender, age, altitude, temperature, quality, and other categorical variable names.
+>- <b style="color: #43799a;">data_path</b>: string
+>   - <b style="color: #54467d;">For example</b>: '../data/gene_tpm.csv'
+>   - <b style="color: #54467d;">Please note</b>: Preprocess the input data in advance to remove samples that contain too many missing values or zeros.
+>   - The input data matrix should have genes as rows and samples as columns.
+>- <b style="color: #43799a;">label_path</b>: string
+>   - <b style="color: #54467d;">For example</b>: '../data/tumor_class.csv'
+>   - <b style="color: #54467d;">Please note</b>: The input CSV data should have rows representing sample names and columns representing class names.
+>   - The input sample categories must be in a numerical binary format, such as: 1,2,1,1,2,2,1.
+>   - In this case, the numerical values represent the following classifications: 1: male; 2: female.
+>- <b style="color: #43799a;">threshold</b>: float 
+>   - <b style="color: #54467d;">For example</b>: 0.9 
+>   - The set threshold indicates the proportion of non-zero value samples to all samples in each feature.
+
+### Returns
+>- <b style="color: #43799a;">transpose(f)</b>: ndarray
+>   - A transposed feature-sample matrix.
+>- <b style="color: #43799a;">c</b>: ndarray
+>   - A NumPy array containing classification labels.
+
+### Usage
+```python
+load_data(
+    lable_name, 
+    threshold, 
+    data_path='../data/gene_tpm.csv', 
+    label_path='../data/tumor_class.csv'
+    )
+```
+
+## PrintResults.py
+
+### Returns
+>- <b style="color: #43799a;">fr</b>: list of strings
+>   - Representing ranked features.
+>- <b style="color: #43799a;">fre1</b>: dictionary
+>   - Feature names as keys and their frequencies as values.
+>- <b style="color: #43799a;">frequency</b>: list of tuples
+>   - Feature names and their frequencies.
+>- <b style="color: #43799a;">len(FName)</b>: integer
+>   - Count of AUC values greater than 0.5.
+>- <b style="color: #43799a;">FName</b>: array of strings
+>   - Feature names after ranking with AUC > 0.5.
+>- <b style="color: #43799a;">Fauc</b>: array of floats
+>   - AUC values corresponding to the ranked feature names.
+
+### Usage
+```python
+ print_results(fr, fre1, frequency, len_FName, FName, Fauc)
+```
+
+## FilterSamples.py
+Remove samples with high zero expression.
+
+### Parameters
+
+>- <b style="color: #43799a;">data_path</b>: string
+>   - <b style="color: #54467d;">For example</b>: '../data/gene_tpm.csv'
+>   - <b style="color: #54467d;">Please note</b>: The input data matrix should have genes as rows and samples as columns.
+>- <b style="color: #43799a;">threshold</b>: float
+>   - <b style="color: #54467d;">For example</b>: 0.9
+>   - The set threshold indicates the proportion of non-zero value samples to all samples in each feature.
+
+### Return
+>- <b style="color: #43799a;">X</b>: pandas.core.frame.DataFrame
+
+### Usage
+```python
+filter_samples(threshold, data_path='../data/gene_tpm.csv')
+```
+
+## GeneNames.py
+Extract gene_names data.
+
+### Parameters
+
+>- <b style="color: #43799a;">data_path</b>: string
+>   - <b style="color: #54467d;">For example</b>: '../data/gene_tpm.csv' 
+>   - <b style="color: #54467d;">Please note</b>: Preprocess the input data in advance to remove samples that contain too many missing values or zeros. 
+>   - The input data matrix should have genes as rows and samples as columns.
+
+### Return
+
+>- <b style="color: #43799a;">gene_names</b>: list
+
+### Usage
+```python
+gene_name(data_path='../data/gene_tpm.csv')
+```
+
+## GeneToFeatureMapping.py
+gene map feature.
+
+### Parameters
+>- <b style="color: #43799a;">gene_names</b>: list
+>   - <b style="color: #54467d;">For example</b>: ['GeneA', 'GeneB', 'GeneC', 'GeneD', 'GeneE'] 
+>   - containing strings
+>- <b style="color: #43799a;">ranked_features</b>: list
+>   - <b style="color: #54467d;">For example</b>: [2, 0, 1]
+>   - containing integers
+
+### Return
+>- <b style="color: #43799a;">gene_to_feature_mapping</b>: dictionary
+>   - gene_to_feature_mapping is a Python dictionary type. It is used to map gene names to their corresponding feature (or ranked feature) names.
+
+### Usage
+```python
+gene_map_feature(gene_names, ranked_features)
+```
+
+## References
+>- <a href="https://academic.oup.com/bib/article-abstract/23/2/bbac029/6536295?redirectedFrom=fulltext&login=false" style="color: #43799a; font-weight: bold;">Su,Y., Du,K., Wang,J., Wei,J. and Liu,J. (2022) Multi-variable AUC for sifting complementary features and its biomedical application. Briefings in Bioinformatics, 23, bbac029.</a>

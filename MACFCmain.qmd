@@ -1,0 +1,59 @@
+# MACFCmain.py
+Applying the MACFC selection for relevant feature genes in classification.
+
+## Parameters
+>- <b style="color: #43799a;">max_rank</b>: int 
+>   - The total number of gene combinations you want to obtain.
+>- <b style="color: #43799a;">lable_name</b>: string
+>   - <b style="color: #54467d;">For example</b>: gender, age, altitude, temperature, quality, and other categorical variable names.
+>- <b style="color: #43799a;">data_path</b>: string
+>   - <b style="color: #54467d;">For example</b>: '../data/gene_tpm.csv' 
+>   - <b style="color: #54467d;">Please note</b>: Preprocess the input data in advance to remove samples that contain too many missing values or zeros.
+>   - The input data matrix should have genes as rows and samples as columns.
+>- <b style="color: #43799a;">label_path</b>: string
+>   - <b style="color: #54467d;">For example</b>: '../data/tumor_class.csv' 
+>   - <b style="color: #54467d;">Please note</b>: The input sample categories must be in a numerical binary format, such as: 1,2,1,1,2,2,1. 
+>   - In this case, the numerical values represent the following classifications: 1: male; 2: female.
+>- <b style="color: #43799a;">threshold</b>: float 
+>   - <b style="color: #54467d;">For example</b>: 0.9 
+>   - The set threshold indicates the proportion of non-zero value samples to all samples in each feature.
+
+## Returns
+>- <b style="color: #43799a;">fr</b>: list of strings 
+>   - Representing ranked features.
+>- <b style="color: #43799a;">fre1</b>: dictionary
+>   - Feature names as keys and their frequencies as values.
+>- <b style="color: #43799a;">frequency</b>: list of tuples
+>   - Feature names and their frequencies.
+>- <b style="color: #43799a;">len(FName)</b>: integer
+>   - Count of AUC values greater than 0.5.
+>- <b style="color: #43799a;">FName</b>: array of strings
+>   - Feature names after ranking with AUC > 0.5.
+>- <b style="color: #43799a;">Fauc</b>: array of floats
+>   - AUC values corresponding to the ranked feature names.
+
+## Function Principle Explanation
+1. <b style="color: #54467d;">Feature Frequency and AUC</b>: In this function, features that appear with high frequency indicate their presence in multiple optimal feature sets. Each optimal feature set is determined by calculating its Area Under the Receiver Operating Characteristic (ROC) Curve (AUC), which is a common measure for evaluating classifier performance. During each iteration of the loop, an optimal feature set with the highest average AUC value is selected. Features from this set are then added to a rank list, known as 'ranklist,' and when necessary, also to a set named 'rankset'.
+2. <b style="color: #54467d;">High-Frequency Features and Performance</b>: Because features in each set are chosen based on their contribution to classifier performance, high-frequency features are likely to perform well. In other words, if a feature appears in multiple optimal feature sets, it may have a significant impact on the performance of the classifier.
+3. <b style="color: #54467d;">Note on Low-Frequency Features</b>: However, it's important to note that a low frequency of a feature does not necessarily mean it is unimportant. The importance of a feature may depend on how it combines with other features. Additionally, the outcome of feature selection may be influenced by the characteristics of the dataset and random factors. Therefore, the frequency provided by this function should only be used as a reference and is not an absolute indicator of feature performance.
+4. <b style="color: #54467d;">Further Evaluation Methods</b>: If you wish to explore feature performance more deeply, you may need to employ other methods for assessing feature importance. This could include model-based importance metrics or statistical tests to evaluate the relationship between features and the target variable.
+
+## Usage Workflow
+>- `FName` is a list of feature names sorted based on their AUC (Area Under the Curve) values. In this sorting method, the primary consideration is the AUC value, followed by the feature name. All features included in `FName` have an AUC value greater than 0.5.
+>- `fr` is the result of another sorting method. In this method, the primary consideration is the "combined" AUC of the features, followed by their individual AUC values. This means that some features, despite having lower individual AUC values, may produce a higher combined AUC when paired with other features. Therefore, their position in the `fr` list may be higher than in the `FName` list.
+>- The code for `fr` employs a more complex logic to select and combine features to optimize their combined AUC values. In this process, features are not solely selected and sorted based on their individual AUC values; the effect of their combination with other features is also considered. Consequently, the sorting logic for `fr` (or `rankset`) differs from that of `FName`.
+>- <b style="color: #54467d;">Please note</b>: While the code takes into account both individual AUC values and combined AUC values, the sorting of the `fr` list (i.e., `rankset`) initially starts based on individual AUC values. This is because at the beginning of each external loop iteration, the first element of `fs` is the next feature sorted by its individual AUC value. The list is then further optimized by evaluating the combination effects with other features.
+
+## Usage
+```python
+MACFCmain(
+    max_rank, 
+    lable_name, 
+    threshold, 
+    data_path='../data/gene_tpm.csv', 
+    label_path='../data/tumor_class.csv'
+    )
+```
+
+## References
+>- <a href="https://academic.oup.com/bib/article-abstract/23/2/bbac029/6536295?redirectedFrom=fulltext&login=false" style="color: #43799a; font-weight: bold;">Su,Y., Du,K., Wang,J., Wei,J. and Liu,J. (2022) Multi-variable AUC for sifting complementary features and its biomedical application. Briefings in Bioinformatics, 23, bbac029.</a>
