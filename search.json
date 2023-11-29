@@ -4,21 +4,21 @@
     "href": "index.html",
     "title": "TransProPyBook",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books."
+    "text": "Preface\nTo learn more about TransProPy visit https://github.com/SSSYDYSSS/TransProPy."
   },
   {
     "objectID": "intro.html",
     "href": "intro.html",
-    "title": "1  Introduction",
+    "title": "1  UtilsFunction1",
     "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
+    "text": "This section serves as the helper function for the MACFCmain function."
   },
   {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "2  Summary",
+    "title": "4  Summary",
     "section": "",
-    "text": "In summary, this book has no content whatsoever."
+    "text": "In summary, this book has no content whatsoever.\n\n\n\n\n\n\nNote\n\n\n\nPolars works fine with Matplotlib, Plotly, and Altair, but it doesn’t work with Seaborn, nor does it have its own .plot method. The latter two are very convenient for exploratory data analysis, so for these examples we’ll just use to_pandas followed by plot or a Seaborn function after doing all the data manipulation in Polars.\n\n\n\n\n\n\n\n\nTip\n\n\n\nPolars works fine with Matplotlib, Plotly, and Altair, but it doesn’t work with Seaborn, nor does it have its own .plot method. The latter two are very convenient for exploratory data analysis, so for these examples we’ll just use to_pandas followed by plot or a Seaborn function after doing all the data manipulation in Polars.\n\n\n\nTab 1Tab 2\n\n\nContent for the first tab.\n\n\nContent for the second tab."
   },
   {
     "objectID": "references.html",
@@ -26,5 +26,215 @@
     "title": "References",
     "section": "",
     "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
+  },
+  {
+    "objectID": "index.html#utils-functions",
+    "href": "index.html#utils-functions",
+    "title": "TransProPyBook",
+    "section": "Utils Functions",
+    "text": "Utils Functions\n\nThese functions usually contain various utilities and helper functions, which can sometimes be considered as low-level functionalities."
+  },
+  {
+    "objectID": "index.html#main-function",
+    "href": "index.html#main-function",
+    "title": "TransProPyBook",
+    "section": "Main Function",
+    "text": "Main Function\n\nThe main function constructed with the help of auxiliary functions."
+  },
+  {
+    "objectID": "index.html#pipeline",
+    "href": "index.html#pipeline",
+    "title": "TransProPyBook",
+    "section": "Pipeline",
+    "text": "Pipeline\n\nA complete set of analysis workflow."
+  },
+  {
+    "objectID": "UtilsFunction1.html#auc.py",
+    "href": "UtilsFunction1.html#auc.py",
+    "title": "1  UtilsFunction1",
+    "section": "1.1 Auc.py",
+    "text": "1.1 Auc.py\nAssists the MACFCmain function in calculating AUC, obtaining Feature Frequency, and performing sorting.\n\n1.1.1 Introduction\n\n\nIn this function, features that appear with high frequency indicate their presence in multiple optimal feature sets.\nEach optimal feature set is determined by calculating its Area Under the Receiver Operating Characteristic (ROC) Curve (AUC), which is a common measure for evaluating classifier performance.\nDuring each iteration of the loop, an optimal feature set with the highest average AUC value is selected.\nFeatures from this set are then added to a rank list, known as ‘ranklist,’ and when necessary, also to a set named ‘rankset’.\n\n\n\n\n1.1.2 Usage\nauc(tlofe, ne, n0, n1)"
+  },
+  {
+    "objectID": "UtilsFunction1.html#autonorm.py",
+    "href": "UtilsFunction1.html#autonorm.py",
+    "title": "1  UtilsFunction1",
+    "section": "1.2 AutoNorm.py",
+    "text": "1.2 AutoNorm.py\nNormalization Function The auto_norm function is designed to normalize a two-dimensional array (matrix). The purpose of normalization is generally to bring all features into the same numerical range, facilitating subsequent analysis or model training.\n\n1.2.1 Parameters\n\n\ndata: ndarray\n\nOrder Requirements for Input Data：\n1.This function does indeed have specific requirements for the row and column order of the input matrix data. Rows should represent individual samples, and columns should represent different features. In other words, each row vector represents a sample containing multiple features.\n2.Each column of the matrix will be independently normalized, so different features should be placed in separate columns.\n\n\n\n\n\n1.2.2 Returns\n\n\nnorm_data: ndarray\n\nIt is the normalized data.\n\n\n\n\n\n1.2.3 Usage\nauto_norm(data)"
+  },
+  {
+    "objectID": "UtilsFunction1.html#featureranking.py",
+    "href": "UtilsFunction1.html#featureranking.py",
+    "title": "1  UtilsFunction1",
+    "section": "1.3 FeatureRanking.py",
+    "text": "1.3 FeatureRanking.py\n\n1.3.1 Introduction\n\n\nHigh-Frequency Features and Performance: Because features in each set are chosen based on their contribution to classifier performance, high-frequency features are likely to perform well. In other words, if a feature appears in multiple optimal feature sets, it may have a significant impact on the performance of the classifier.\nNote on Low-Frequency Features: However, it’s important to note that a low frequency of a feature does not necessarily mean it is unimportant. The importance of a feature may depend on how it combines with other features. Additionally, the outcome of feature selection may be influenced by the characteristics of the dataset and random factors. Therefore, the frequency provided by this function should only be used as a reference and is not an absolute indicator of feature performance.\n\n\n\n\n1.3.2 Usage\nfeature_ranking(f, c, max_rank, pos, neg, n0, n1)"
+  },
+  {
+    "objectID": "UtilsFunction1.html#loaddata.py",
+    "href": "UtilsFunction1.html#loaddata.py",
+    "title": "1  UtilsFunction1",
+    "section": "1.4 LoadData.py",
+    "text": "1.4 LoadData.py\nData Reading and Transformation.\n\n1.4.1 Introduction\n\n\nData normalization for constant value.\nExtract matrix data and categorical data.\n\n\n\n\n1.4.2 Parameters\n\n\nlable_name: string\n\nFor example: gender, age, altitude, temperature, quality, and other categorical variable names.\n\ndata_path: string\n\nFor example: ‘../data/gene_tpm.csv’\nPlease note: Preprocess the input data in advance to remove samples that contain too many missing values or zeros.\nThe input data matrix should have genes as rows and samples as columns.\n\nlabel_path: string\n\nFor example: ‘../data/tumor_class.csv’\nPlease note: The input CSV data should have rows representing sample names and columns representing class names.\nThe input sample categories must be in a numerical binary format, such as: 1,2,1,1,2,2,1.\nIn this case, the numerical values represent the following classifications: 1: male; 2: female.\n\nthreshold: float\n\nFor example: 0.9\nThe set threshold indicates the proportion of non-zero value samples to all samples in each feature.\n\n\n\n\n\n1.4.3 Returns\n\n\ntranspose(f): ndarray\n\nA transposed feature-sample matrix.\n\nc: ndarray\n\nA NumPy array containing classification labels.\n\n\n\n\n\n1.4.4 Usage\nload_data(\n    lable_name, \n    threshold, \n    data_path='../data/gene_tpm.csv', \n    label_path='../data/tumor_class.csv'\n    )"
+  },
+  {
+    "objectID": "UtilsFunction1.html#printresults.py",
+    "href": "UtilsFunction1.html#printresults.py",
+    "title": "1  UtilsFunction1",
+    "section": "1.5 PrintResults.py",
+    "text": "1.5 PrintResults.py\n\n1.5.1 Returns\n\n\nfr: list of strings\n\nRepresenting ranked features.\n\nfre1: dictionary\n\nFeature names as keys and their frequencies as values.\n\nfrequency: list of tuples\n\nFeature names and their frequencies.\n\nlen(FName): integer\n\nCount of AUC values greater than 0.5.\n\nFName: array of strings\n\nFeature names after ranking with AUC &gt; 0.5.\n\nFauc: array of floats\n\nAUC values corresponding to the ranked feature names.\n\n\n\n\n\n1.5.2 Usage\n print_results(fr, fre1, frequency, len_FName, FName, Fauc)"
+  },
+  {
+    "objectID": "UtilsFunction1.html#filtersamples.py",
+    "href": "UtilsFunction1.html#filtersamples.py",
+    "title": "1  UtilsFunction1",
+    "section": "1.6 FilterSamples.py",
+    "text": "1.6 FilterSamples.py\nRemove samples with high zero expression.\n\n1.6.1 Parameters\n\n\ndata_path: string\n\nFor example: ‘../data/gene_tpm.csv’\nPlease note: The input data matrix should have genes as rows and samples as columns.\n\nthreshold: float\n\nFor example: 0.9\nThe set threshold indicates the proportion of non-zero value samples to all samples in each feature.\n\n\n\n\n\n1.6.2 Return\n\n\nX: pandas.core.frame.DataFrame\n\n\n\n\n1.6.3 Usage\nfilter_samples(threshold, data_path='../data/gene_tpm.csv')"
+  },
+  {
+    "objectID": "UtilsFunction1.html#genenames.py",
+    "href": "UtilsFunction1.html#genenames.py",
+    "title": "1  UtilsFunction1",
+    "section": "1.7 GeneNames.py",
+    "text": "1.7 GeneNames.py\nExtract gene_names data.\n\n1.7.1 Parameters\n\n\ndata_path: string\n\nFor example: ‘../data/gene_tpm.csv’\nPlease note: Preprocess the input data in advance to remove samples that contain too many missing values or zeros.\nThe input data matrix should have genes as rows and samples as columns.\n\n\n\n\n\n1.7.2 Return\n\n\ngene_names: list\n\n\n\n\n1.7.3 Usage\ngene_name(data_path='../data/gene_tpm.csv')"
+  },
+  {
+    "objectID": "UtilsFunction1.html#genetofeaturemapping.py",
+    "href": "UtilsFunction1.html#genetofeaturemapping.py",
+    "title": "1  UtilsFunction1",
+    "section": "1.8 GeneToFeatureMapping.py",
+    "text": "1.8 GeneToFeatureMapping.py\ngene map feature.\n\n1.8.1 Parameters\n\n\ngene_names: list\n\nFor example: [‘GeneA’, ‘GeneB’, ‘GeneC’, ‘GeneD’, ‘GeneE’]\ncontaining strings\n\nranked_features: list\n\nFor example: [2, 0, 1]\ncontaining integers\n\n\n\n\n\n1.8.2 Return\n\n\ngene_to_feature_mapping: dictionary\n\ngene_to_feature_mapping is a Python dictionary type. It is used to map gene names to their corresponding feature (or ranked feature) names.\n\n\n\n\n\n1.8.3 Usage\ngene_map_feature(gene_names, ranked_features)"
+  },
+  {
+    "objectID": "UtilsFunction1.html#return-2",
+    "href": "UtilsFunction1.html#return-2",
+    "title": "1  UtilsFunction1",
+    "section": "1.9 Return",
+    "text": "1.9 Return\n\n\ngene_to_feature_mapping: dictionary\n\ngene_to_feature_mapping is a Python dictionary type. It is used to map gene names to their corresponding feature (or ranked feature) names."
+  },
+  {
+    "objectID": "UtilsFunction1.html#usage-7",
+    "href": "UtilsFunction1.html#usage-7",
+    "title": "1  UtilsFunction1",
+    "section": "1.10 Usage",
+    "text": "1.10 Usage\ngene_map_feature(gene_names, ranked_features)"
+  },
+  {
+    "objectID": "UtilsFunction2.html#splitdata.py",
+    "href": "UtilsFunction2.html#splitdata.py",
+    "title": "2  UtilsFunction2",
+    "section": "2.1 splitdata.py",
+    "text": "2.1 splitdata.py\nReads the gene expression and class data, processes it, and splits it into training and testing sets.\n\n2.1.1 Parameters\n\n\ngene_data_path (str):\n\nPath to the CSV file containing the gene expression data.\nFor example: ‘../data/gene_tpm.csv’\n\nclass_data_path (str):\n\nPath to the CSV file containing the class data.\nFor example: ‘../data/tumor_class.csv’\n\nclass_name (str):\n\nThe name of the class column in the class data.\n\ntest_size (float, optional):\n\nThe proportion of the data to be used as the testing set.\nDefault is 0.2.\n\nrandom_state (int, optional):\n\nThe seed used by the random number generator.\nDefault is 42.\n\nthreshold (float, optional):\n\nThe threshold used to filter out rows based on the proportion of non-zero values.\nDefault is 0.9.\n\nrandom_feature (int, optional):\n\nThe number of random feature to select. If None, no random feature selection is performed.\nDefault is None.\n\n\n\n\n\n2.1.2 Returns\n\n\ntrain_data (pd.DataFrame):\n\nThe training data.\n\ntest_data (pd.DataFrame):\n\nThe testing data.\n\n\n\n\n\n2.1.3 Usage\nsplit_data(\n    gene_data_path='../data/gene_tpm.csv', \n    class_data_path='../data/tumor_class.csv', \n    class_name, \n    test_size=0.2, \n    random_state=42, \n    threshold=0.9, \n    random_feature=None\n    )"
+  },
+  {
+    "objectID": "MACFCmain.html",
+    "href": "MACFCmain.html",
+    "title": "3  MACFCmain.py",
+    "section": "",
+    "text": "Applying the MACFC selection for relevant feature genes in classification."
+  },
+  {
+    "objectID": "MACFCmain.html#parameters",
+    "href": "MACFCmain.html#parameters",
+    "title": "3  MACFCmain.py",
+    "section": "3.1 Parameters",
+    "text": "3.1 Parameters\n\n\nmax_rank: int\n\nThe total number of gene combinations you want to obtain.\n\nlable_name: string\n\nFor example: gender, age, altitude, temperature, quality, and other categorical variable names.\n\ndata_path: string\n\nFor example: ‘../data/gene_tpm.csv’\nPlease note: Preprocess the input data in advance to remove samples that contain too many missing values or zeros.\nThe input data matrix should have genes as rows and samples as columns.\n\nlabel_path: string\n\nFor example: ‘../data/tumor_class.csv’\nPlease note: The input sample categories must be in a numerical binary format, such as: 1,2,1,1,2,2,1.\nIn this case, the numerical values represent the following classifications: 1: male; 2: female.\n\nthreshold: float\n\nFor example: 0.9\nThe set threshold indicates the proportion of non-zero value samples to all samples in each feature."
+  },
+  {
+    "objectID": "MACFCmain.html#returns",
+    "href": "MACFCmain.html#returns",
+    "title": "3  MACFCmain.py",
+    "section": "3.2 Returns",
+    "text": "3.2 Returns\n\n\nfr: list of strings\n\nRepresenting ranked features.\n\nfre1: dictionary\n\nFeature names as keys and their frequencies as values.\n\nfrequency: list of tuples\n\nFeature names and their frequencies.\n\nlen(FName): integer\n\nCount of AUC values greater than 0.5.\n\nFName: array of strings\n\nFeature names after ranking with AUC &gt; 0.5.\n\nFauc: array of floats\n\nAUC values corresponding to the ranked feature names."
+  },
+  {
+    "objectID": "MACFCmain.html#function-principle-explanation",
+    "href": "MACFCmain.html#function-principle-explanation",
+    "title": "3  MACFCmain.py",
+    "section": "3.3 Function Principle Explanation",
+    "text": "3.3 Function Principle Explanation\n\nFeature Frequency and AUC: In this function, features that appear with high frequency indicate their presence in multiple optimal feature sets. Each optimal feature set is determined by calculating its Area Under the Receiver Operating Characteristic (ROC) Curve (AUC), which is a common measure for evaluating classifier performance. During each iteration of the loop, an optimal feature set with the highest average AUC value is selected. Features from this set are then added to a rank list, known as ‘ranklist,’ and when necessary, also to a set named ‘rankset’.\nHigh-Frequency Features and Performance: Because features in each set are chosen based on their contribution to classifier performance, high-frequency features are likely to perform well. In other words, if a feature appears in multiple optimal feature sets, it may have a significant impact on the performance of the classifier.\nNote on Low-Frequency Features: However, it’s important to note that a low frequency of a feature does not necessarily mean it is unimportant. The importance of a feature may depend on how it combines with other features. Additionally, the outcome of feature selection may be influenced by the characteristics of the dataset and random factors. Therefore, the frequency provided by this function should only be used as a reference and is not an absolute indicator of feature performance.\nFurther Evaluation Methods: If you wish to explore feature performance more deeply, you may need to employ other methods for assessing feature importance. This could include model-based importance metrics or statistical tests to evaluate the relationship between features and the target variable."
+  },
+  {
+    "objectID": "MACFCmain.html#usage-workflow",
+    "href": "MACFCmain.html#usage-workflow",
+    "title": "3  MACFCmain.py",
+    "section": "3.4 Usage Workflow",
+    "text": "3.4 Usage Workflow\n\n\nFName is a list of feature names sorted based on their AUC (Area Under the Curve) values. In this sorting method, the primary consideration is the AUC value, followed by the feature name. All features included in FName have an AUC value greater than 0.5.\nfr is the result of another sorting method. In this method, the primary consideration is the “combined” AUC of the features, followed by their individual AUC values. This means that some features, despite having lower individual AUC values, may produce a higher combined AUC when paired with other features. Therefore, their position in the fr list may be higher than in the FName list.\nThe code for fr employs a more complex logic to select and combine features to optimize their combined AUC values. In this process, features are not solely selected and sorted based on their individual AUC values; the effect of their combination with other features is also considered. Consequently, the sorting logic for fr (or rankset) differs from that of FName.\nPlease note: While the code takes into account both individual AUC values and combined AUC values, the sorting of the fr list (i.e., rankset) initially starts based on individual AUC values. This is because at the beginning of each external loop iteration, the first element of fs is the next feature sorted by its individual AUC value. The list is then further optimized by evaluating the combination effects with other features."
+  },
+  {
+    "objectID": "MACFCmain.html#usage",
+    "href": "MACFCmain.html#usage",
+    "title": "3  MACFCmain.py",
+    "section": "3.5 Usage",
+    "text": "3.5 Usage\nMACFCmain(\n    max_rank, \n    lable_name, \n    threshold, \n    data_path='../data/gene_tpm.csv', \n    label_path='../data/tumor_class.csv'\n    )"
+  },
+  {
+    "objectID": "MACFCmain.html#references",
+    "href": "MACFCmain.html#references",
+    "title": "3  MACFCmain.py",
+    "section": "3.6 References",
+    "text": "3.6 References\n\n\nSu,Y., Du,K., Wang,J., Wei,J. and Liu,J. (2022) Multi-variable AUC for sifting complementary features and its biomedical application. Briefings in Bioinformatics, 23, bbac029."
+  },
+  {
+    "objectID": "UtilsFunction1.html#references",
+    "href": "UtilsFunction1.html#references",
+    "title": "1  UtilsFunction1",
+    "section": "1.9 References",
+    "text": "1.9 References\n\n\nSu,Y., Du,K., Wang,J., Wei,J. and Liu,J. (2022) Multi-variable AUC for sifting complementary features and its biomedical application. Briefings in Bioinformatics, 23, bbac029."
+  },
+  {
+    "objectID": "AutogluonTimeLimit.html#parameters",
+    "href": "AutogluonTimeLimit.html#parameters",
+    "title": "4  AutogluonTimeLimit.py",
+    "section": "4.1 Parameters",
+    "text": "4.1 Parameters\n\n\ngene_data_path (str):\n\nPath to the gene expression data CSV file.\nFor example: ‘../data/gene_tpm.csv’\n\nclass_data_path (str):\n\nPath to the class data CSV file.\nFor example: ‘../data/tumor_class.csv’\n\nlabel_column (str):\n\nName of the column in the dataset that is the target label for prediction.\n\ntest_size (float):\n\nProportion of the data to be used as the test set.\n\nthreshold (float):\n\nThe threshold used to filter out rows based on the proportion of non-zero values.\n\nrandom_feature (int, optional):\n\nThe number of random feature to select. If None, no random feature selection is performed.\nDefault is None.\n\nnum_bag_folds (int, optional):\n\nPlease note: This parameter annotation source can be referred to the documentation link in References.\nNumber of folds used for bagging of models. When num_bag_folds = k, training time is roughly increased by a factor of k (set = 0 to disable bagging). Disabled by default (0), but we recommend values between 5-10 to maximize predictive performance. Increasing num_bag_folds will result in models with lower bias but that are more prone to overfitting. num_bag_folds = 1 is an invalid value, and will raise a ValueError. Values &gt; 10 may produce diminishing returns, and can even harm overall results due to overfitting. To further improve predictions, avoid increasing num_bag_folds much beyond 10 and instead increase num_bag_sets.\ndefault = None\n\nnum_stack_levels (int, optional):\n\nPlease note: This parameter annotation source can be referred to the documentation link in References.\nNumber of stacking levels to use in stack ensemble. Roughly increases model training time by factor of num_stack_levels+1 (set = 0 to disable stack ensembling). Disabled by default (0), but we recommend values between 1-3 to maximize predictive performance. To prevent overfitting, num_bag_folds &gt;= 2 must also be set or else a ValueError will be raised.\ndefault = None\n\ntime_limit (int, optional):\n\nTime limit for training in seconds.\nDefault is 120.\n\nrandom_state (int, optional):\n\nThe seed used by the random number generator.\nDefault is 42."
+  },
+  {
+    "objectID": "AutogluonTimeLimit.html#returns",
+    "href": "AutogluonTimeLimit.html#returns",
+    "title": "4  AutogluonTimeLimit.py",
+    "section": "4.2 Returns",
+    "text": "4.2 Returns\n\n\nimportance (DataFrame):\n\nDataFrame containing feature importance.\n\nleaderboard (DataFrame):\n\nDataFrame containing model performance on the test data."
+  },
+  {
+    "objectID": "AutogluonTimeLimit.html#references",
+    "href": "AutogluonTimeLimit.html#references",
+    "title": "4  AutogluonTimeLimit.py",
+    "section": "4.3 References",
+    "text": "4.3 References\n\n4.3.1 Scientific Publications\n\n\nErickson, N., Mueller, J., Shirkov, A., Zhang, H., Larroy, P., Li, M., & Smola, A. (2020). AutoGluon-Tabular: Robust and Accurate AutoML for Structured Data. arXiv preprint arXiv:2003.06505.\nFakoor, R., Mueller, J., Erickson, N., Chaudhari, P., & Smola, A. J. (2020). Fast, Accurate, and Simple Models for Tabular Data via Augmented Distillation. arXiv preprint arXiv:2006.14284. \nShi, X., Mueller, J., Erickson, N., Li, M., & Smola, A. (2021). Multimodal AutoML on Structured Tables with Text Fields. In AutoML@ICML 2021. \n\n\n\n\n4.3.2 Articles\n\n\nPrasanna, S. (2020, March 31). Machine learning with AutoGluon, an open source AutoML library. AWS Open Source Blog. \nSun, Y., Wu, C., Zhang, Z., He, T., Mueller, J., & Zhang, H. (n.d.). (2020). Image classification on Kaggle using AutoGluon. Medium.\nErickson, N., Mueller, J., Zhang, H., & Kamakoti, B. (2019). AutoGluon: Deep Learning AutoML. Medium.\n\n\n\n\n4.3.3 Documentation\n\n\nAutoGluon Predictors – AutoGluon Documentation 0.1.0 documentation"
+  },
+  {
+    "objectID": "AutogluonTimeLimit.html#usage",
+    "href": "AutogluonTimeLimit.html#usage",
+    "title": "4  AutogluonTimeLimit.py",
+    "section": "4.4 Usage",
+    "text": "4.4 Usage\nAutogluon_TimeLimit(\n    gene_data_path='../data/gene_tpm.csv', \n    class_data_path='../data/tumor_class.csv', \n    label_column='sex', \n    test_size=0.3, \n    threshold=0.9, \n    random_feature=None, \n    num_bag_folds=None, \n    num_stack_levels=None, \n    time_limit=120, \n    random_state=42\n    )"
+  },
+  {
+    "objectID": "AutoGluonSelectML.html#references",
+    "href": "AutoGluonSelectML.html#references",
+    "title": "5  AutoGluonSelectML.py",
+    "section": "5.3 References",
+    "text": "5.3 References\n\n5.3.1 Scientific Publications\n\n\nErickson, N., Mueller, J., Shirkov, A., Zhang, H., Larroy, P., Li, M., & Smola, A. (2020). AutoGluon-Tabular: Robust and Accurate AutoML for Structured Data. arXiv preprint arXiv:2003.06505.\nFakoor, R., Mueller, J., Erickson, N., Chaudhari, P., & Smola, A. J. (2020). Fast, Accurate, and Simple Models for Tabular Data via Augmented Distillation. arXiv preprint arXiv:2006.14284. \nShi, X., Mueller, J., Erickson, N., Li, M., & Smola, A. (2021). Multimodal AutoML on Structured Tables with Text Fields. In AutoML@ICML 2021. \n\n\n\n\n5.3.2 Articles\n\n\nPrasanna, S. (2020, March 31). Machine learning with AutoGluon, an open source AutoML library. AWS Open Source Blog. \nSun, Y., Wu, C., Zhang, Z., He, T., Mueller, J., & Zhang, H. (n.d.). (2020). Image classification on Kaggle using AutoGluon. Medium.\nErickson, N., Mueller, J., Zhang, H., & Kamakoti, B. (2019). AutoGluon: Deep Learning AutoML. Medium.\n\n\n\n\n5.3.3 Documentation\n\n\nAutoGluon Predictors –AutoGluon Documentation 0.1.0 documentation"
+  },
+  {
+    "objectID": "AutoGluonSelectML.html#usage",
+    "href": "AutoGluonSelectML.html#usage",
+    "title": "5  AutoGluonSelectML.py",
+    "section": "5.4 Usage",
+    "text": "5.4 Usage\nAutogluon_SelectML(\n    gene_data_path='../data/gene_tpm.csv', \n    class_data_path='../data/tumor_class.csv', \n    label_column='sex', \n    test_size=0.3, \n    threshold=0.9, \n    hyperparameters=None, \n    random_feature=None, \n    num_bag_folds=None, \n    num_stack_levels=None, \n    time_limit=120, \n    random_state=42\n    )"
+  },
+  {
+    "objectID": "AutoGluonSelectML.html#parameters",
+    "href": "AutoGluonSelectML.html#parameters",
+    "title": "5  AutoGluonSelectML.py",
+    "section": "5.1 Parameters",
+    "text": "5.1 Parameters\n\n\ngene_data_path (str):\n\nPath to the gene expression data CSV file.\nFor example: ‘../data/gene_tpm.csv’\n\nclass_data_path (str):\n\nPath to the class data CSV file.\nFor example: ‘../data/tumor_class.csv’\n\nlabel_column (str):\n\nName of the column in the dataset that is the target label for prediction.\n\ntest_size (float):\n\nProportion of the data to be used as the test set.\n\nthreshold (float):\n\nThe threshold used to filter out rows based on the proportion of non-zero values.\n\nhyperparameters (dict, optional):\n\nDictionary of hyperparameters for the models.\nFor example: {‘GBM’: {}, ‘RF’: {}}\n\nrandom_feature (int, optional):\n\nThe number of random feature to select. If None, no random feature selection is performed.\nDefault is None.\n\nnum_bag_folds (int, optional)\n\nPlease note: This parameter annotation source can be referred to the documentation link in References.\nNumber of folds used for bagging of models. When num_bag_folds = k, training time is roughly increased by a factor of k (set = 0 to disable bagging). Disabled by default (0), but we recommend values between 5-10 to maximize predictive performance. Increasing num_bag_folds will result in models with lower bias but that are more prone to overfitting. num_bag_folds = 1 is an invalid value, and will raise a ValueError. Values &gt; 10 may produce diminishing returns, and can even harm overall results due to overfitting. To further improve predictions, avoid increasing num_bag_folds much beyond 10 and instead increase num_bag_sets.\ndefault = None\n\nnum_stack_levels (int, optional)\n\nPlease note: This parameter annotation source can be referred to the documentation link in References.\nNumber of stacking levels to use in stack ensemble. Roughly increases model training time by factor of num_stack_levels+1 (set = 0 to disable stack ensembling). Disabled by default (0), but we recommend values between 1-3 to maximize predictive performance. To prevent overfitting, num_bag_folds &gt;= 2 must also be set or else a ValueError will be raised.\ndefault = None\n\ntime_limit (int, optional):\n\nTime limit for training in seconds.\ndefault is 120.\n\nrandom_state (int, optional):\n\nThe seed used by the random number generator.\ndefault is 42."
+  },
+  {
+    "objectID": "AutoGluonSelectML.html#return",
+    "href": "AutoGluonSelectML.html#return",
+    "title": "5  AutoGluonSelectML.py",
+    "section": "5.2 Return",
+    "text": "5.2 Return\n\n\nimportance (DataFrame):\n\nDataFrame containing feature importance.\n\nleaderboard (DataFrame):\n\nDataFrame containing model performance on the test data."
   }
 ]

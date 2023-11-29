@@ -8,85 +8,94 @@
 tbody tr:hover {background: rgba(66, 165, 245, 0.2);}
 
 .title {
-    color: #315f30 !important;
+    color: #002f4c !important;
 }
 
 .description {
-    color: #315f30 !important;
+    color: #002f4c !important;
 }
 
 h1 {
-    color: #315f30;
+    color: #053858;
 }
 
 h2 {
-    color: #4c784e;
+    color: #0d4466;
 }
 
 h3 {
-    color: #6a926b;
+    color: #1f5679;
 }
 
 h4 {
-    color: #758b76;
+    color: #43799a;
 }
 
 .callout-tip {
-    border: 3px solid #b378b0 !important;
-    background-color: #f0e5f0 !important;
+    border: 3px solid #544680 !important;
+    background-color: #d5caf7 !important;
 }
 
 .callout-note {
-    border: 3px solid #dfa665 !important;
-    background-color: #f7ebdd !important;
+    border: 3px solid #6ca83f !important;
+    background-color: #d7f5c1 !important;
 }
 
 .callout-tip .callout-header {
-    background-color: #c090bd !important; 
+    background-color: #8271ba !important; 
 }
 
 .callout-note .callout-header {
-    background-color: #e2ad71 !important; 
+    background-color: #70ad41 !important; 
 }
 
 /* 改变Tip框中的标题颜色 */
 .callout-tip .callout-title-container {
-    color: #873991 !important; 
+    color: #544680 !important; 
 }
 
 /* 改变Note框中的标题颜色 */
 .callout-note .callout-title-container {
-    color: #766143 !important;
+    color: #406e1a !important;
 }
 
 .panel-tabset {
-    background-color: #cfdad0;
+    background-color: #a6cedb;
 }
 
 .panel-tabset .tab-content {
-    background-color: #e7ede7; 
+    background-color: #d5ecf6; 
 }
 
 .panel-tabset {
-    border: 3px solid #b1c1b0;
+    border: 3px solid #6399ad;
 }
 
 
 /* Change the color of code inside the note callout */
 .callout-note code {
-    color: #dea76d !important;  /* You can choose any color value you prefer */
+    color: #5c8d36 !important;  /* You can choose any color value you prefer */
 }
 
 /* Change the color of code inside the tip callout */
 .callout-tip code {
-    color: #a767a3 !important;  /* You can choose any color value you prefer */
+    color: #544680 !important;  /* You can choose any color value you prefer */
 }
 
 
 .code-block, .sourceCode {
-    border: 3px solid #b2c1b1;
+    border: 3px solid #6399ad;
     padding: 8px;
     border-radius: 5px;  
-    background-color: #cad4ca;
+    background-color: #a6cedb;
     /* white-space: pre-wrap !important; */
 }
+
+/* custom-style.css */
+code {
+    font-weight: bold;
+    color: #267850;
+    background-color:#a7ceda !important; 
+    border-radius: 4px
+}
+
