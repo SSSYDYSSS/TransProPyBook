@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./AutogluonTimeLimit.html" rel="next">
+<link href="./NewMACFCmain.html" rel="next">
 <link href="./UtilsFunction2.html" rel="prev">
 <link href="./TransProPy_logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -195,20 +195,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./NewMACFCmain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NewMACFCmain.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./AutogluonTimeLimit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">AutogluonTimeLimit.py</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">AutogluonTimeLimit.py</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AutoGluonSelectML.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">AutoGluonSelectML.py</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">AutoGluonSelectML.py</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -231,8 +237,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#returns" id="toc-returns" class="nav-link" data-scroll-target="#returns"><span class="header-section-number">3.2</span> Returns</a></li>
   <li><a href="#function-principle-explanation" id="toc-function-principle-explanation" class="nav-link" data-scroll-target="#function-principle-explanation"><span class="header-section-number">3.3</span> Function Principle Explanation</a></li>
   <li><a href="#usage-workflow" id="toc-usage-workflow" class="nav-link" data-scroll-target="#usage-workflow"><span class="header-section-number">3.4</span> Usage Workflow</a></li>
-  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage"><span class="header-section-number">3.5</span> Usage</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">3.6</span> References</a></li>
+  <li><a href="#usage-of-macfcmain-significant-correlation" id="toc-usage-of-macfcmain-significant-correlation" class="nav-link" data-scroll-target="#usage-of-macfcmain-significant-correlation"><span class="header-section-number">3.5</span> Usage of MACFCmain (Significant correlation)</a>
+  <ul class="collapse">
+  <li><a href="#import-the-corresponding-module" id="toc-import-the-corresponding-module" class="nav-link" data-scroll-target="#import-the-corresponding-module"><span class="header-section-number">3.5.1</span> Import the corresponding module</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">3.5.2</span> Data</a></li>
+  <li><a href="#macfcmain" id="toc-macfcmain" class="nav-link" data-scroll-target="#macfcmain"><span class="header-section-number">3.5.3</span> MACFCmain</a></li>
+  <li><a href="#result" id="toc-result" class="nav-link" data-scroll-target="#result"><span class="header-section-number">3.5.4</span> Result</a></li>
+  <li><a href="#gene_name" id="toc-gene_name" class="nav-link" data-scroll-target="#gene_name"><span class="header-section-number">3.5.5</span> gene_name</a></li>
+  <li><a href="#gene_map_feature" id="toc-gene_map_feature" class="nav-link" data-scroll-target="#gene_map_feature"><span class="header-section-number">3.5.6</span> gene_map_feature</a></li>
+  </ul></li>
+  <li><a href="#usage-of-macfcmain-insignificant-correlation" id="toc-usage-of-macfcmain-insignificant-correlation" class="nav-link" data-scroll-target="#usage-of-macfcmain-insignificant-correlation"><span class="header-section-number">3.6</span> Usage of MACFCmain (Insignificant correlation)</a>
+  <ul class="collapse">
+  <li><a href="#data-1" id="toc-data-1" class="nav-link" data-scroll-target="#data-1"><span class="header-section-number">3.6.1</span> Data</a></li>
+  <li><a href="#macfcmain-1" id="toc-macfcmain-1" class="nav-link" data-scroll-target="#macfcmain-1"><span class="header-section-number">3.6.2</span> MACFCmain</a></li>
+  <li><a href="#result-1" id="toc-result-1" class="nav-link" data-scroll-target="#result-1"><span class="header-section-number">3.6.3</span> Result</a></li>
+  <li><a href="#gene_name-1" id="toc-gene_name-1" class="nav-link" data-scroll-target="#gene_name-1"><span class="header-section-number">3.6.4</span> gene_name</a></li>
+  <li><a href="#gene_map_feature-1" id="toc-gene_map_feature-1" class="nav-link" data-scroll-target="#gene_map_feature-1"><span class="header-section-number">3.6.5</span> gene_map_feature</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">3.7</span> References</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/edit/main/MACFCmain.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/blob/main/MACFCmain.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
@@ -304,6 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><b style="color: #43799a;">frequency</b>: list of tuples
 <ul>
 <li>Feature names and their frequencies.</li>
+<li>The frequency outputs a list sorted by occurrence frequency (in descending order). This list includes only those elements from the dictionary fre1 (which represents the counted frequencies of elements in the original data) that have an occurrence frequency greater than once, along with their frequencies.</li>
 </ul></li>
 <li><b style="color: #43799a;">len(FName)</b>: integer
 <ul>
@@ -340,18 +363,616 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </blockquote>
 </section>
-<section id="usage" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="usage"><span class="header-section-number">3.5</span> Usage</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>MACFCmain(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    max_rank, </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    lable_name, </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    threshold, </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    data_path<span class="op">=</span><span class="st">'../data/gene_tpm.csv'</span>, </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    label_path<span class="op">=</span><span class="st">'../data/tumor_class.csv'</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="usage-of-macfcmain-significant-correlation" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="usage-of-macfcmain-significant-correlation"><span class="header-section-number">3.5</span> Usage of MACFCmain (Significant correlation)</h2>
+<p>This function uses the MACFC method to select feature genes relevant to classification and ranks them based on their corresponding weights.</p>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #54467d;">Please note</b>:Data characteristics: Features have strong correlation with the classification.</li>
+</ul>
+</blockquote>
+<section id="import-the-corresponding-module" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="import-the-corresponding-module"><span class="header-section-number">3.5.1</span> Import the corresponding module</h3>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> TransProPy.MACFCmain <span class="im">as</span> Tr</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> TransProPy.UtilsFunction1.GeneNames <span class="im">as</span> TUG</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> TransProPy.UtilsFunction1.GeneToFeatureMapping <span class="im">as</span> TUGM</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
 </section>
-<section id="references" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="references"><span class="header-section-number">3.6</span> References</h2>
+<section id="data" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="data"><span class="header-section-number">3.5.2</span> Data</h3>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data_path <span class="op">=</span> <span class="st">'../test_TransProPy/data/all_degs_count_exp.csv'</span>  </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(data_path)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.iloc[:<span class="dv">10</span>, :<span class="dv">10</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Unnamed: 0  TCGA-D9-A4Z2-01A  TCGA-ER-A2NH-06A  TCGA-BF-A5EO-01A  \
+0                 A1BG          6.754888          4.000000          5.044394   
+1                  A2M         16.808499         16.506184         17.143433   
+2                A2ML1          1.584963          9.517669          7.434628   
+3                AADAC          4.000000          2.584963          1.584963   
+4              AADACL2          1.000000          1.000000          0.000000   
+5              AADACL3          0.000000          0.000000          0.000000   
+6              AADACL4          0.000000          0.000000          0.000000   
+7          AB019440.50          0.000000          0.000000          0.000000   
+8          AB019441.29          6.392317          4.954196          6.629357   
+9  ABC12-47964100C23.1          0.000000          0.000000          0.000000   
+
+   TCGA-D9-A6EA-06A  TCGA-D9-A4Z3-01A  TCGA-GN-A26A-06A  TCGA-D3-A3BZ-06A  \
+0          5.247928          5.977280          5.044394          5.491853   
+1         17.760739         14.766839         16.263691         16.035207   
+2          2.584963          1.584963          2.584963          5.285402   
+3          0.000000          0.000000          0.000000          3.321928   
+4          0.000000          1.000000          0.000000          0.000000   
+5          0.000000          1.000000          0.000000          0.000000   
+6          0.000000          0.000000          0.000000          0.000000   
+7          0.000000          0.000000          0.000000          0.000000   
+8          6.988685          8.625709          6.614710          6.845490   
+9          0.000000          0.000000          0.000000          0.000000   
+
+   TCGA-D3-A51G-06A  TCGA-EE-A29R-06A  
+0          5.754888          6.357552  
+1         18.355114         16.959379  
+2          2.584963          3.584963  
+3          1.000000          4.584963  
+4          0.000000          1.000000  
+5          4.169925          0.000000  
+6          0.000000          0.000000  
+7          0.000000          0.000000  
+8          7.845490          6.507795  
+9          1.584963          0.000000  </code></pre>
+</div>
+</div>
+<hr>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data_path <span class="op">=</span> <span class="st">'../test_TransProPy/data/class.csv'</span>  </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(data_path)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.iloc[:<span class="dv">10</span>, :<span class="dv">10</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         Unnamed: 0  class
+0  TCGA-D9-A4Z2-01A      2
+1  TCGA-ER-A2NH-06A      2
+2  TCGA-BF-A5EO-01A      2
+3  TCGA-D9-A6EA-06A      2
+4  TCGA-D9-A4Z3-01A      2
+5  TCGA-GN-A26A-06A      2
+6  TCGA-D3-A3BZ-06A      2
+7  TCGA-D3-A51G-06A      2
+8  TCGA-EE-A29R-06A      2
+9  TCGA-D3-A2JE-06A      2</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="macfcmain" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="macfcmain"><span class="header-section-number">3.5.3</span> MACFCmain</h3>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ranked_features, fre1, frequency, len_FName, FName, Fauc <span class="op">=</span> Tr.MACFCmain(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span>, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"class"</span>, </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.95</span>, </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    data_path<span class="op">=</span><span class="st">'../test_TransProPy/data/all_degs_count_exp.csv'</span>, </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    label_path<span class="op">=</span><span class="st">'../test_TransProPy/data/class.csv'</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="result" class="level3" data-number="3.5.4">
+<h3 data-number="3.5.4" class="anchored" data-anchor-id="result"><span class="header-section-number">3.5.4</span> Result</h3>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the first 20 Ranked Features</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First 20 Ranked Features:"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, feature <span class="kw">in</span> <span class="bu">enumerate</span>(ranked_features[:<span class="dv">20</span>], <span class="dv">1</span>):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. </span><span class="sc">{</span>feature<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+First 20 Ranked Features:
+1. 1887
+2. 393
+3. 820
+4. 549
+5. 1750
+6. 1328
+7. 569
+8. 2030
+9. 1975
+10. 1400
+11. 261
+12. 376
+13. 171
+14. 885
+15. 1378
+16. 47
+17. 132
+18. 1334
+19. 2091
+20. 135</code></pre>
+</div>
+</div>
+<hr>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the first 20 Feature Frequencies (fre1)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First 20 Feature Frequencies:"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (feature, freq) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">list</span>(fre1.items())[:<span class="dv">20</span>], <span class="dv">1</span>):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. Feature: </span><span class="sc">{</span>feature<span class="sc">}</span><span class="ss">, Frequency: </span><span class="sc">{</span>freq<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+First 20 Feature Frequencies:
+1. Feature: 1887, Frequency: 1
+2. Feature: 393, Frequency: 1
+3. Feature: 820, Frequency: 1
+4. Feature: 549, Frequency: 1
+5. Feature: 1750, Frequency: 1
+6. Feature: 1328, Frequency: 1
+7. Feature: 569, Frequency: 1
+8. Feature: 2030, Frequency: 1
+9. Feature: 1975, Frequency: 1
+10. Feature: 1400, Frequency: 1
+11. Feature: 261, Frequency: 1
+12. Feature: 376, Frequency: 1
+13. Feature: 171, Frequency: 1
+14. Feature: 885, Frequency: 1
+15. Feature: 1378, Frequency: 1
+16. Feature: 47, Frequency: 1
+17. Feature: 132, Frequency: 1
+18. Feature: 1334, Frequency: 1
+19. Feature: 2091, Frequency: 1
+20. Feature: 135, Frequency: 1</code></pre>
+</div>
+</div>
+<hr>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the Features with a frequency greater than 1 </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Features with a frequency greater than 1 :"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (feature, freq) <span class="kw">in</span> <span class="bu">enumerate</span>(frequency[:<span class="dv">20</span>], <span class="dv">1</span>):</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. Feature: </span><span class="sc">{</span>feature<span class="sc">}</span><span class="ss">, Frequency: </span><span class="sc">{</span>freq<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Features with a frequency greater than 1 :</code></pre>
+</div>
+</div>
+<hr>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the length of FName (len_FName)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Count of Features with AUC &gt; 0.5 (len_FName):"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(len_FName)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Count of Features with AUC &gt; 0.5 (len_FName):
+1</code></pre>
+</div>
+</div>
+<hr>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the first 10 Features with AUC &gt; 0.5 (FName)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First few Features with AUC &gt; 0.5:"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, feature <span class="kw">in</span> <span class="bu">enumerate</span>(FName[:<span class="dv">20</span>], <span class="dv">1</span>):</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. </span><span class="sc">{</span>feature<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+First few Features with AUC &gt; 0.5:
+1. 1887</code></pre>
+</div>
+</div>
+<hr>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the first 10 AUC Values for Ranked Features (Fauc)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First few AUC Values for Ranked Features:"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, auc <span class="kw">in</span> <span class="bu">enumerate</span>(Fauc[:<span class="dv">20</span>], <span class="dv">1</span>):</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. AUC: </span><span class="sc">{</span>auc<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+First few AUC Values for Ranked Features:
+1. AUC: 1.0</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="gene_name" class="level3" data-number="3.5.5">
+<h3 data-number="3.5.5" class="anchored" data-anchor-id="gene_name"><span class="header-section-number">3.5.5</span> gene_name</h3>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>gene_names <span class="op">=</span> TUG.gene_name(data_path<span class="op">=</span><span class="st">'../test_TransProPy/data/all_degs_count_exp.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the first 20 gene names</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"First 20 Gene Names:"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, gene_name <span class="kw">in</span> <span class="bu">enumerate</span>(gene_names[:<span class="dv">20</span>], <span class="dv">1</span>):</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. </span><span class="sc">{</span>gene_name<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>First 20 Gene Names:
+1. A1BG
+2. A2M
+3. A2ML1
+4. AADAC
+5. AADACL2
+6. AADACL3
+7. AADACL4
+8. AB019440.50
+9. AB019441.29
+10. ABC12-47964100C23.1
+11. ABC12-49244600F4.4
+12. ABCA10
+13. ABCA12
+14. ABCA17P
+15. ABCA6
+16. ABCA8
+17. ABCA9
+18. ABCB11
+19. ABCB4
+20. ABCB5</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="gene_map_feature" class="level3" data-number="3.5.6">
+<h3 data-number="3.5.6" class="anchored" data-anchor-id="gene_map_feature"><span class="header-section-number">3.5.6</span> gene_map_feature</h3>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>gene_to_feature_mapping <span class="op">=</span> TUGM.gene_map_feature(gene_names, ranked_features)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<section id="auc0.5" class="level4" data-number="3.5.6.1">
+<h4 data-number="3.5.6.1" class="anchored" data-anchor-id="auc0.5"><span class="header-section-number">3.5.6.1</span> AUC&gt;0.5</h4>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Generating gene_to_feature_mapping</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>gene_to_feature_mapping <span class="op">=</span> {}</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> gene, feature <span class="kw">in</span> <span class="bu">zip</span>(gene_names, FName):</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find the index of the feature in FName</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    index <span class="op">=</span> np.where(FName <span class="op">==</span> feature)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find the corresponding AUC value using the index</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    auc_value <span class="op">=</span> Fauc[index]</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store the gene name, feature name, and AUC value in the mapping</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    gene_to_feature_mapping[gene] <span class="op">=</span> (feature, auc_value)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the first 20 mappings</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First 20 Gene to Feature Mappings with AUC Values:"</span>)</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (gene, (feature, auc)) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">list</span>(gene_to_feature_mapping.items())[:<span class="dv">20</span>], <span class="dv">1</span>):</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. Gene: </span><span class="sc">{</span>gene<span class="sc">}</span><span class="ss">, Feature: </span><span class="sc">{</span>feature<span class="sc">}</span><span class="ss">, AUC: </span><span class="sc">{</span>auc<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+First 20 Gene to Feature Mappings with AUC Values:
+1. Gene: A1BG, Feature: 1887, AUC: 1.0</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="usage-of-macfcmain-insignificant-correlation" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="usage-of-macfcmain-insignificant-correlation"><span class="header-section-number">3.6</span> Usage of MACFCmain (Insignificant correlation)</h2>
+<p>This function uses the MACFC method to select feature genes relevant to classification and ranks them based on their corresponding weights.</p>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #54467d;">Please note</b>:Data characteristics: Features have weak correlation with the classification.</li>
+<li>Randomly shuffling the class labels to a certain extent simulates reducing the correlation.</li>
+</ul>
+</blockquote>
+<hr>
+<section id="data-1" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="data-1"><span class="header-section-number">3.6.1</span> Data</h3>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>data_path <span class="op">=</span> <span class="st">'../test_TransProPy/data/all_degs_count_exp.csv'</span>  </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(data_path)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.iloc[:<span class="dv">10</span>, :<span class="dv">10</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Unnamed: 0  TCGA-D9-A4Z2-01A  TCGA-ER-A2NH-06A  TCGA-BF-A5EO-01A  \
+0                 A1BG          6.754888          4.000000          5.044394   
+1                  A2M         16.808499         16.506184         17.143433   
+2                A2ML1          1.584963          9.517669          7.434628   
+3                AADAC          4.000000          2.584963          1.584963   
+4              AADACL2          1.000000          1.000000          0.000000   
+5              AADACL3          0.000000          0.000000          0.000000   
+6              AADACL4          0.000000          0.000000          0.000000   
+7          AB019440.50          0.000000          0.000000          0.000000   
+8          AB019441.29          6.392317          4.954196          6.629357   
+9  ABC12-47964100C23.1          0.000000          0.000000          0.000000   
+
+   TCGA-D9-A6EA-06A  TCGA-D9-A4Z3-01A  TCGA-GN-A26A-06A  TCGA-D3-A3BZ-06A  \
+0          5.247928          5.977280          5.044394          5.491853   
+1         17.760739         14.766839         16.263691         16.035207   
+2          2.584963          1.584963          2.584963          5.285402   
+3          0.000000          0.000000          0.000000          3.321928   
+4          0.000000          1.000000          0.000000          0.000000   
+5          0.000000          1.000000          0.000000          0.000000   
+6          0.000000          0.000000          0.000000          0.000000   
+7          0.000000          0.000000          0.000000          0.000000   
+8          6.988685          8.625709          6.614710          6.845490   
+9          0.000000          0.000000          0.000000          0.000000   
+
+   TCGA-D3-A51G-06A  TCGA-EE-A29R-06A  
+0          5.754888          6.357552  
+1         18.355114         16.959379  
+2          2.584963          3.584963  
+3          1.000000          4.584963  
+4          0.000000          1.000000  
+5          4.169925          0.000000  
+6          0.000000          0.000000  
+7          0.000000          0.000000  
+8          7.845490          6.507795  
+9          1.584963          0.000000  </code></pre>
+</div>
+</div>
+<hr>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>data_path <span class="op">=</span> <span class="st">'../test_TransProPy/data/random_classification_class.csv'</span>  </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(data_path)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.iloc[:<span class="dv">10</span>, :<span class="dv">10</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         Unnamed: 0  class
+0  TCGA-D9-A4Z2-01A      2
+1  TCGA-ER-A2NH-06A      2
+2  TCGA-BF-A5EO-01A      2
+3  TCGA-D9-A6EA-06A      2
+4  TCGA-D9-A4Z3-01A      1
+5  TCGA-GN-A26A-06A      1
+6  TCGA-D3-A3BZ-06A      1
+7  TCGA-D3-A51G-06A      1
+8  TCGA-EE-A29R-06A      1
+9  TCGA-D3-A2JE-06A      1</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="macfcmain-1" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="macfcmain-1"><span class="header-section-number">3.6.2</span> MACFCmain</h3>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ranked_features, fre1, frequency, len_FName, FName, Fauc <span class="op">=</span> Tr.MACFCmain(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span>, </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"class"</span>, </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.95</span>, </span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    data_path<span class="op">=</span><span class="st">'../test_TransProPy/data/all_degs_count_exp.csv'</span>, </span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    label_path<span class="op">=</span><span class="st">'../test_TransProPy/data/random_classification_class.csv'</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="result-1" class="level3" data-number="3.6.3">
+<h3 data-number="3.6.3" class="anchored" data-anchor-id="result-1"><span class="header-section-number">3.6.3</span> Result</h3>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the first 20 Ranked Features</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First 20 Ranked Features:"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, feature <span class="kw">in</span> <span class="bu">enumerate</span>(ranked_features[:<span class="dv">20</span>], <span class="dv">1</span>):</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. </span><span class="sc">{</span>feature<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+First 20 Ranked Features:
+1. 1922
+2. 977
+3. 1379
+4. 850
+5. 868
+6. 513
+7. 717
+8. 319
+9. 2031
+10. 971
+11. 1447
+12. 1066
+13. 49
+14. 1215
+15. 401
+16. 1145
+17. 1199
+18. 1775
+19. 644
+20. 454</code></pre>
+</div>
+</div>
+<hr>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the first 20 Feature Frequencies (fre1)</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First 20 Feature Frequencies:"</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (feature, freq) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">list</span>(fre1.items())[:<span class="dv">20</span>], <span class="dv">1</span>):</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. Feature: </span><span class="sc">{</span>feature<span class="sc">}</span><span class="ss">, Frequency: </span><span class="sc">{</span>freq<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+First 20 Feature Frequencies:
+1. Feature: 1922, Frequency: 1
+2. Feature: 977, Frequency: 1
+3. Feature: 1379, Frequency: 1
+4. Feature: 850, Frequency: 1
+5. Feature: 868, Frequency: 1
+6. Feature: 513, Frequency: 1
+7. Feature: 717, Frequency: 1
+8. Feature: 319, Frequency: 1
+9. Feature: 2031, Frequency: 1
+10. Feature: 971, Frequency: 1
+11. Feature: 1447, Frequency: 1
+12. Feature: 1066, Frequency: 1
+13. Feature: 49, Frequency: 1
+14. Feature: 1215, Frequency: 1
+15. Feature: 401, Frequency: 1
+16. Feature: 1145, Frequency: 1
+17. Feature: 1199, Frequency: 1
+18. Feature: 1775, Frequency: 1
+19. Feature: 644, Frequency: 1
+20. Feature: 454, Frequency: 1</code></pre>
+</div>
+</div>
+<hr>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the Features with a frequency greater than 1 </span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Features with a frequency greater than 1 :"</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (feature, freq) <span class="kw">in</span> <span class="bu">enumerate</span>(frequency[:<span class="dv">20</span>], <span class="dv">1</span>):</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. Feature: </span><span class="sc">{</span>feature<span class="sc">}</span><span class="ss">, Frequency: </span><span class="sc">{</span>freq<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Features with a frequency greater than 1 :</code></pre>
+</div>
+</div>
+<hr>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the length of FName (len_FName)</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Count of Features with AUC &gt; 0.5 (len_FName):"</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(len_FName)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Count of Features with AUC &gt; 0.5 (len_FName):
+1273</code></pre>
+</div>
+</div>
+<hr>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the first 10 Features with AUC &gt; 0.5 (FName)</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First few Features with AUC &gt; 0.5:"</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, feature <span class="kw">in</span> <span class="bu">enumerate</span>(FName[:<span class="dv">20</span>], <span class="dv">1</span>):</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. </span><span class="sc">{</span>feature<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+First few Features with AUC &gt; 0.5:
+1. 1922
+2. 977
+3. 1797
+4. 1512
+5. 461
+6. 850
+7. 502
+8. 885
+9. 1349
+10. 1120
+11. 2162
+12. 1573
+13. 2103
+14. 1
+15. 1234
+16. 1809
+17. 326
+18. 1376
+19. 583
+20. 2024</code></pre>
+</div>
+</div>
+<hr>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the first 10 AUC Values for Ranked Features (Fauc)</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First few AUC Values for Ranked Features:"</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, auc <span class="kw">in</span> <span class="bu">enumerate</span>(Fauc[:<span class="dv">20</span>], <span class="dv">1</span>):</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. AUC: </span><span class="sc">{</span>auc<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+First few AUC Values for Ranked Features:
+1. AUC: 0.6462149635841977
+2. AUC: 0.6447607837367272
+3. AUC: 0.6423551337698326
+4. AUC: 0.6423232546163467
+5. AUC: 0.6420535079330048
+6. AUC: 0.6418009269476936
+7. AUC: 0.6417690477942078
+8. AUC: 0.641631722209961
+9. AUC: 0.6410456362343363
+10. AUC: 0.6398661075553593
+11. AUC: 0.6396233355403517
+12. AUC: 0.6392040020598838
+13. AUC: 0.6386375340248658
+14. AUC: 0.6381740601780328
+15. AUC: 0.6379778807719659
+16. AUC: 0.6375045979548297
+17. AUC: 0.6372323990289119
+18. AUC: 0.6372323990289119
+19. AUC: 0.6371661884793645
+20. AUC: 0.6368032565781407</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="gene_name-1" class="level3" data-number="3.6.4">
+<h3 data-number="3.6.4" class="anchored" data-anchor-id="gene_name-1"><span class="header-section-number">3.6.4</span> gene_name</h3>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>gene_names <span class="op">=</span> TUG.gene_name(data_path<span class="op">=</span><span class="st">'../test_TransProPy/data/all_degs_count_exp.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the first 20 gene names</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"First 20 Gene Names:"</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, gene_name <span class="kw">in</span> <span class="bu">enumerate</span>(gene_names[:<span class="dv">20</span>], <span class="dv">1</span>):</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. </span><span class="sc">{</span>gene_name<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>First 20 Gene Names:
+1. A1BG
+2. A2M
+3. A2ML1
+4. AADAC
+5. AADACL2
+6. AADACL3
+7. AADACL4
+8. AB019440.50
+9. AB019441.29
+10. ABC12-47964100C23.1
+11. ABC12-49244600F4.4
+12. ABCA10
+13. ABCA12
+14. ABCA17P
+15. ABCA6
+16. ABCA8
+17. ABCA9
+18. ABCB11
+19. ABCB4
+20. ABCB5</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="gene_map_feature-1" class="level3" data-number="3.6.5">
+<h3 data-number="3.6.5" class="anchored" data-anchor-id="gene_map_feature-1"><span class="header-section-number">3.6.5</span> gene_map_feature</h3>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>gene_to_feature_mapping <span class="op">=</span> TUGM.gene_map_feature(gene_names, ranked_features)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<section id="auc0.5-1" class="level4" data-number="3.6.5.1">
+<h4 data-number="3.6.5.1" class="anchored" data-anchor-id="auc0.5-1"><span class="header-section-number">3.6.5.1</span> AUC&gt;0.5</h4>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Generating gene_to_feature_mapping</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>gene_to_feature_mapping <span class="op">=</span> {}</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> gene, feature <span class="kw">in</span> <span class="bu">zip</span>(gene_names, FName):</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find the index of the feature in FName</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    index <span class="op">=</span> np.where(FName <span class="op">==</span> feature)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find the corresponding AUC value using the index</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    auc_value <span class="op">=</span> Fauc[index]</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store the gene name, feature name, and AUC value in the mapping</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    gene_to_feature_mapping[gene] <span class="op">=</span> (feature, auc_value)</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the first 20 mappings</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First 20 Gene to Feature Mappings with AUC Values:"</span>)</span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (gene, (feature, auc)) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">list</span>(gene_to_feature_mapping.items())[:<span class="dv">20</span>], <span class="dv">1</span>):</span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. Gene: </span><span class="sc">{</span>gene<span class="sc">}</span><span class="ss">, Feature: </span><span class="sc">{</span>feature<span class="sc">}</span><span class="ss">, AUC: </span><span class="sc">{</span>auc<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+First 20 Gene to Feature Mappings with AUC Values:
+1. Gene: A1BG, Feature: 1922, AUC: 0.6462149635841977
+2. Gene: A2M, Feature: 977, AUC: 0.6447607837367272
+3. Gene: A2ML1, Feature: 1797, AUC: 0.6423551337698326
+4. Gene: AADAC, Feature: 1512, AUC: 0.6423232546163467
+5. Gene: AADACL2, Feature: 461, AUC: 0.6420535079330048
+6. Gene: AADACL3, Feature: 850, AUC: 0.6418009269476936
+7. Gene: AADACL4, Feature: 502, AUC: 0.6417690477942078
+8. Gene: AB019440.50, Feature: 885, AUC: 0.641631722209961
+9. Gene: AB019441.29, Feature: 1349, AUC: 0.6410456362343363
+10. Gene: ABC12-47964100C23.1, Feature: 1120, AUC: 0.6398661075553593
+11. Gene: ABC12-49244600F4.4, Feature: 2162, AUC: 0.6396233355403517
+12. Gene: ABCA10, Feature: 1573, AUC: 0.6392040020598838
+13. Gene: ABCA12, Feature: 2103, AUC: 0.6386375340248658
+14. Gene: ABCA17P, Feature: 1, AUC: 0.6381740601780328
+15. Gene: ABCA6, Feature: 1234, AUC: 0.6379778807719659
+16. Gene: ABCA8, Feature: 1809, AUC: 0.6375045979548297
+17. Gene: ABCA9, Feature: 326, AUC: 0.6372323990289119
+18. Gene: ABCB11, Feature: 1376, AUC: 0.6372323990289119
+19. Gene: ABCB4, Feature: 583, AUC: 0.6371661884793645
+20. Gene: ABCB5, Feature: 2024, AUC: 0.6368032565781407</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="references" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="references"><span class="header-section-number">3.7</span> References</h2>
 <blockquote class="blockquote">
 <ul>
 <li><a href="https://academic.oup.com/bib/article-abstract/23/2/bbac029/6536295?redirectedFrom=fulltext&amp;login=false" style="color: #43799a; font-weight: bold;">Su,Y., Du,K., Wang,J., Wei,J. and Liu,J. (2022) Multi-variable AUC for sifting complementary features and its biomedical application. Briefings in Bioinformatics, 23, bbac029.</a></li>
@@ -604,8 +1225,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./AutogluonTimeLimit.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">AutogluonTimeLimit.py</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./NewMACFCmain.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NewMACFCmain.py</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
