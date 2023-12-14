@@ -31,6 +31,7 @@ book:
     - UtilsFunction1.qmd
     - UtilsFunction2.qmd
     - MACFCmain.qmd
+    - NewMACFCmain.qmd
     - AutogluonTimeLimit.qmd
     - AutoGluonSelectML.qmd
     - summary.qmd

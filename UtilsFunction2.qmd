@@ -44,3 +44,22 @@ split_data(
     random_feature=None
     )
 ```
+
+## LogTransform.py
+Evaluate and potentially apply log2 transformation to data.
+- This function checks data against a set of criteria to determine if a log2 transformation is needed, applying the transformation if necessary.
+
+### Parameters
+>- <b style="color: #43799a;">data (np.ndarray)</b>:
+>   - A numerical numpy array.
+
+### Returns
+>- <b style="color: #43799a;">result</b> np.ndarray
+>   - The original data or the data transformed with log2.
+
+### Usage
+```python
+log_transform(
+    data
+    )
+```

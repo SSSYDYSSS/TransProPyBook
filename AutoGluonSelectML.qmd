@@ -43,6 +43,249 @@ Trains a model using AutoGluon on provided data path and returns feature importa
 >- <b style="color: #43799a;">leaderboard</b> (DataFrame):
 >   - DataFrame containing model performance on the test data. 
 
+## Usage of Autogluon_SelectML
+
+Performing training and prediction tasks on tabular data using Autogluon.
+
+### Objectives
+
+#### Model Training and Selection
+
+>Autogluon will attempt various models and hyperparameter combinations within a given time limit to find the best-performing model on the test data. During training, Autogluon may output training logs displaying performance metrics and progress information for different models. 
+>The goal is to select the best-performing model for use in subsequent prediction tasks.
+
+#### Leaderboard
+
+>The leaderboard displays performance scores of different models on the test data, typically including metrics like accuracy, precision, recall, and more. 
+>The purpose is to assist users in understanding the performance of different models to choose the most suitable model for predictions.
+
+#### Importance
+
+>Feature importance indicates which features are most critical for the model's prediction performance. 
+>The purpose is to help users understand the importance of specific features in the data, which can be used for feature selection or further data analysis.
+
+### Note
+
+>Please note that Autogluon's output results may vary depending on your data and task. You can review the generated model leaderboard and feature importance to understand model performance and the significance of specific features in the data. These results can aid you in making better predictions and decisions.
+
+## Insignificant Correlation
+
+>- <b style="color: #54467d;">Please note</b>:Data characteristics: Features have weak correlation with the classification.
+>- Randomly shuffling the class labels to a certain extent simulates reducing the correlation.
+
+### Import the corresponding module
+
+```{python}
+from TransProPy.AutogluonSelectML import AutoGluon_SelectML
+```
+
+---
+
+### Data
+```{python}
+import pandas as pd
+data_path = '../test_TransProPy/data/all_degs_count_exp.csv'  
+data = pd.read_csv(data_path)
+print(data.iloc[:10, :10]) 
+
+```
+
+----
+
+```{python}
+import pandas as pd
+data_path = '../test_TransProPy/data/random_classification_class.csv'  
+data = pd.read_csv(data_path)
+print(data.iloc[:10, :10]) 
+
+```
+
+----
+
+### Autogluon_SelectML
+>- The core purpose of choosing Autogluon_SelectML — to select a larger feature set in AutoGluon that includes both important and secondary features — is reflected in the following custom hyperparameters configuration. This setup is designed to utilize multiple model types so that the models can consider a broader range of features.
+>- This configuration encompasses neural networks (using PyTorch and FastAI), gradient boosting machines (LightGBM, XGBoost, and CatBoost), random forests (RF), extremely randomized trees (XT), K-nearest neighbors (KNN), and linear regression (LR).
+
+
+```{python}
+importance, leaderboard = AutoGluon_SelectML(
+    gene_data_path='../test_TransProPy/data/all_degs_count_exp.csv', 
+    class_data_path='../test_TransProPy/data/random_classification_class.csv', 
+    label_column='class', 
+    test_size=0.3, 
+    threshold=0.9, 
+    hyperparameters={
+        'GBM': {}, 
+        'RF': {},
+        'CAT': {}, 
+        'XGB' : {},
+        # 'NN_TORCH': {}, 
+        # 'FASTAI': {},
+        'XT': {}, 
+        'KNN': {},
+        'LR': {}
+        },
+    random_feature=None, 
+    num_bag_folds=None, 
+    num_stack_levels=None, 
+    time_limit=1000, 
+    random_state=42
+    )
+```
+
+----
+
+### Return
+
+```{python}
+# Filtering the DataFrame to get features where importance > 0 and p_value < 0.05
+filtered_importance = importance[(importance['importance'] > 0) & (importance['p_value'] < 0.05)]
+# Counting the number of such features
+number_of_features = filtered_importance.shape[0]
+# Printing the result
+print(f"Number of features with importance > 0 and p_value < 0.05: {number_of_features}")
+```
+
+----
+
+```{python}
+# Display the top 20 rows of the Importance DataFrame
+print("Top 20 rows of Importance DataFrame:")
+print(importance.head(20))
+```
+
+----
+
+```{python}
+# Display the top 20 rows of the Leaderboard DataFrame
+print("\nTop 20 rows of Leaderboard DataFrame:")
+print(leaderboard.head(20))
+```
+
+----
+
+### Save Data
+
+```{python}
+# Save the Importance DataFrame to a CSV file
+importance.to_csv('../test_TransProPy/data/Insignificant_correlation_Autogluon_SelectML_importance.csv', index=False)
+
+# Save the Leaderboard DataFrame to a CSV file
+leaderboard.to_csv('../test_TransProPy/data/Insignificant_correlation_Autogluon_SelectML_leaderboard.csv', index=False)
+
+```
+
+----
+
+## Significant Correlation
+
+>- <b style="color: #54467d;">Please note</b>:Data characteristics: Features have strong correlation with the classification.
+
+### Import the corresponding module
+
+```{python}
+from TransProPy.AutogluonSelectML import AutoGluon_SelectML
+```
+
+---
+
+### Data
+```{python}
+import pandas as pd
+data_path = '../test_TransProPy/data/all_degs_count_exp.csv'  
+data = pd.read_csv(data_path)
+print(data.iloc[:10, :10]) 
+
+```
+
+----
+
+```{python}
+import pandas as pd
+data_path = '../test_TransProPy/data/class.csv'  
+data = pd.read_csv(data_path)
+print(data.iloc[:10, :10]) 
+
+```
+
+----
+
+### Autogluon_SelectML
+
+>- The core purpose of choosing Autogluon_SelectML — to select a larger feature set in AutoGluon that includes both important and secondary features — is reflected in the following custom hyperparameters configuration. This setup is designed to utilize multiple model types so that the models can consider a broader range of features.
+>- This configuration encompasses neural networks (using PyTorch and FastAI), gradient boosting machines (LightGBM, XGBoost, and CatBoost), random forests (RF), extremely randomized trees (XT), K-nearest neighbors (KNN), and linear regression (LR).
+
+
+```{python}
+importance, leaderboard = AutoGluon_SelectML(
+    gene_data_path='../test_TransProPy/data/all_degs_count_exp.csv', 
+    class_data_path='../test_TransProPy/data/class.csv', 
+    label_column='class', 
+    test_size=0.3, 
+    threshold=0.9, 
+    hyperparameters={
+        'GBM': {}, 
+        'RF': {},
+        'CAT': {}, 
+        'XGB' : {},
+        # 'NN_TORCH': {}, 
+        # 'FASTAI': {},
+        'XT': {}, 
+        'KNN': {},
+        'LR': {}
+        },
+    random_feature=None, 
+    num_bag_folds=None, 
+    num_stack_levels=None, 
+    time_limit=1000, 
+    random_state=42
+    )
+```
+
+----
+
+### Return
+
+```{python}
+# Filtering the DataFrame to get features where importance > 0 and p_value < 0.05
+filtered_importance = importance[(importance['importance'] > 0) & (importance['p_value'] < 0.05)]
+# Counting the number of such features
+number_of_features = filtered_importance.shape[0]
+# Printing the result
+print(f"Number of features with importance > 0 and p_value < 0.05: {number_of_features}")
+```
+
+----
+
+```{python}
+# Display the top 20 rows of the Importance DataFrame
+print("Top 20 rows of Importance DataFrame:")
+print(importance.head(20))
+```
+
+----
+
+```{python}
+# Display the top 20 rows of the Leaderboard DataFrame
+print("\nTop 20 rows of Leaderboard DataFrame:")
+print(leaderboard.head(20))
+```
+
+----
+
+### Save Data
+
+```{python}
+# Save the Importance DataFrame to a CSV file
+importance.to_csv('../test_TransProPy/data/significant_correlation_Autogluon_SelectML_importance.csv', index=False)
+
+# Save the Leaderboard DataFrame to a CSV file
+leaderboard.to_csv('../test_TransProPy/data/significant_correlation_Autogluon_SelectML_leaderboard.csv', index=False)
+
+```
+
+----
+
 ## References
 
 ### Scientific Publications
@@ -65,19 +308,3 @@ Trains a model using AutoGluon on provided data path and returns feature importa
 
 >- <a href="https://auto.gluon.ai/0.1.0/api/autogluon.predictor.html?highlight=num_bag_folds" style="color: #43799a; font-weight: bold;">AutoGluon Predictors --AutoGluon Documentation 0.1.0 documentation</a>
 
-## Usage
-```python
-Autogluon_SelectML(
-    gene_data_path='../data/gene_tpm.csv', 
-    class_data_path='../data/tumor_class.csv', 
-    label_column='sex', 
-    test_size=0.3, 
-    threshold=0.9, 
-    hyperparameters=None, 
-    random_feature=None, 
-    num_bag_folds=None, 
-    num_stack_levels=None, 
-    time_limit=120, 
-    random_state=42
-    )
-```

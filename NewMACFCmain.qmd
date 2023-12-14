@@ -1,11 +1,20 @@
-# MACFCmain.py
-Applying the MACFC selection for relevant feature genes in classification.
+# NewMACFCmain.py
+> Applying the MACFC selection for relevant feature genes in classification.
+> 
+> <b style="color: #43799a;">Change Focus</b>: In practical situations, when a feature has already achieved an AUC of 1, adding more features may not improve the AUC value, but it can help with the interpretability or robustness of the model. Although features with an AUC of 1 demonstrate perfect classification performance, other features may be more important in different data subsets or under different conditions. Therefore, exploring combinations of these features still holds value.
+> 
+> <b style="color: #43799a;">Selection Guideline</b>: If the data has a weaker association between features and classification, the MACFCmain function can be chosen. For data with a strong association between features and classification, or data that has been processed to enhance this association, New_MACFCmain should be selected.
 
 ## Parameters
+>- <b style="color: #43799a;">AUC_threshold</b>: float 
+>   - AUC threshold for feature selection. Features with AUC values higher than this threshold are recorded but not used in subsequent calculations.
 >- <b style="color: #43799a;">max_rank</b>: int 
 >   - The total number of gene combinations you want to obtain.
 >- <b style="color: #43799a;">lable_name</b>: string
 >   - <b style="color: #54467d;">For example</b>: gender, age, altitude, temperature, quality, and other categorical variable names.
+>- <b style="color: #43799a;">threshold</b>: float 
+>   - <b style="color: #54467d;">For example</b>: 0.9 
+>   - The set threshold indicates the proportion of non-zero value samples to all samples in each feature.
 >- <b style="color: #43799a;">data_path</b>: string
 >   - <b style="color: #54467d;">For example</b>: '../data/gene_tpm.csv' 
 >   - <b style="color: #54467d;">Please note</b>: Preprocess the input data in advance to remove samples that contain too many missing values or zeros.
@@ -14,11 +23,11 @@ Applying the MACFC selection for relevant feature genes in classification.
 >   - <b style="color: #54467d;">For example</b>: '../data/tumor_class.csv' 
 >   - <b style="color: #54467d;">Please note</b>: The input sample categories must be in a numerical binary format, such as: 1,2,1,1,2,2,1. 
 >   - In this case, the numerical values represent the following classifications: 1: male; 2: female.
->- <b style="color: #43799a;">threshold</b>: float 
->   - <b style="color: #54467d;">For example</b>: 0.9 
->   - The set threshold indicates the proportion of non-zero value samples to all samples in each feature.
+
 
 ## Returns
+>- <b style="color: #43799a;">high_auc_features</b>: list of tuples
+>   - This list contains tuples of feature indices and their corresponding AUC values, where the AUC value is greater than `AUC_threshold`. Each tuple consists of the feature's index in string format and its AUC value as a float. This signifies that these features are highly predictive, with a strong ability to distinguish between different classes in the classification task.
 >- <b style="color: #43799a;">fr</b>: list of strings 
 >   - Representing ranked features.
 >- <b style="color: #43799a;">fre1</b>: dictionary
@@ -45,15 +54,13 @@ Applying the MACFC selection for relevant feature genes in classification.
 >- The code for `fr` employs a more complex logic to select and combine features to optimize their combined AUC values. In this process, features are not solely selected and sorted based on their individual AUC values; the effect of their combination with other features is also considered. Consequently, the sorting logic for `fr` (or `rankset`) differs from that of `FName`.
 >- <b style="color: #54467d;">Please note</b>: While the code takes into account both individual AUC values and combined AUC values, the sorting of the `fr` list (i.e., `rankset`) initially starts based on individual AUC values. This is because at the beginning of each external loop iteration, the first element of `fs` is the next feature sorted by its individual AUC value. The list is then further optimized by evaluating the combination effects with other features.
 
-## Usage of MACFCmain (Significant correlation)
+## Usage of New_MACFCmain (all_degs_count_exp)
 This function uses the MACFC method to select feature genes relevant to classification and ranks them based on their corresponding weights.
-
->- <b style="color: #54467d;">Please note</b>:Data characteristics: Features have strong correlation with the classification.
 
 ### Import the corresponding module
 
 ```{python}
-import TransProPy.MACFCmain as Tr
+import TransProPy.NewMACFCmain as TN
 import TransProPy.UtilsFunction1.GeneNames as TUG
 import TransProPy.UtilsFunction1.GeneToFeatureMapping as TUGM
 ```
@@ -66,6 +73,7 @@ import pandas as pd
 data_path = '../test_TransProPy/data/all_degs_count_exp.csv'  
 data = pd.read_csv(data_path)
 print(data.iloc[:10, :10]) 
+
 ```
 
 ----
@@ -79,12 +87,14 @@ print(data.iloc[:10, :10])
 
 ----
 
-### MACFCmain
+### New_MACFCmain
+
 ```{python}
-ranked_features, fre1, frequency, len_FName, FName, Fauc = Tr.MACFCmain(
+high_auc_features, ranked_features, fre1, frequency, len_FName, FName, Fauc = TN.New_MACFCmain(
+    0.9,
     100, 
     "class", 
-    0.95, 
+    0.9, 
     data_path='../test_TransProPy/data/all_degs_count_exp.csv', 
     label_path='../test_TransProPy/data/class.csv'
     )
@@ -93,6 +103,25 @@ ranked_features, fre1, frequency, len_FName, FName, Fauc = Tr.MACFCmain(
 ----
 
 ### Result
+
+#### AUC greater than 0.9 and their AUC values
+```{python}
+# Print features with AUC greater than 0.9 and their AUC values
+print('\nFeatures with AUC greater than 0.9:')
+total_features = len(high_auc_features)
+print(f"Total features: {total_features}")
+
+# Determine the number of features to display
+num_to_display = min(total_features, 20)
+
+for i in range(num_to_display):
+    feature, auc_value = high_auc_features[i]
+    print(f"Feature: {feature}, AUC: {auc_value}")
+```
+
+----
+
+#### New_MACFCmain
 ```{python}
 # Print the first 20 Ranked Features
 print("\nFirst 20 Ranked Features:")
@@ -165,13 +194,34 @@ for i, gene_name in enumerate(gene_names[:20], 1):
 
 ### gene_map_feature
 
+#### high_auc_features_result(AUC>0.9)
 ```{python}
-gene_to_feature_mapping = TUGM.gene_map_feature(gene_names, ranked_features)
+# Extract feature indices from high_auc_features
+high_ranked_features = [feature for feature, auc_value in high_auc_features]
+
+# Utilize the TUGM.gene_map_feature function
+gene_to_feature_mapping_0_9 = TUGM.gene_map_feature(gene_names, high_ranked_features)
+
+# Creating a dictionary to store gene, feature, and AUC mapping
+gene_feature_auc_mapping = {}
+
+# Iterate over each gene and its corresponding feature
+for gene, feature in gene_to_feature_mapping_0_9.items():
+    feature = str(feature)  # Adjust this based on your data format
+    # Find the corresponding AUC value for the feature
+    auc_value = next((auc for feat, auc in high_auc_features if str(feat) == feature), None)
+    # Store the gene, feature, and AUC in the mapping
+    gene_feature_auc_mapping[gene] = (feature, auc_value)
+
+# Print the first 20 gene to feature mappings along with AUC values
+print("\nFirst 20 Gene to Feature Mappings with AUC Values:")
+for i, (gene, (feature, auc)) in enumerate(list(gene_feature_auc_mapping.items())[:20], 1):
+    print(f"{i}. Gene: {gene}, Feature: {feature}, AUC: {auc}")
 ```
 
 ----
 
-#### AUC>0.5
+#### NewMACFCmain_result(0.9>AUC>0.5)
 ```{python}
 import numpy as np
 # Generating gene_to_feature_mapping
@@ -192,47 +242,111 @@ for i, (gene, (feature, auc)) in enumerate(list(gene_to_feature_mapping.items())
 
 ----
 
-## Usage of MACFCmain (Insignificant correlation)
+### Save Data
+
+#### high_auc_features_result (AUC>0.9)
+
+```{python}
+import pandas as pd
+# Convert gene_feature_auc_mapping to a DataFrame
+gene_feature_auc_df = pd.DataFrame.from_dict(gene_feature_auc_mapping, orient='index', columns=['Feature', 'AUC'])
+
+# Reset the index to make gene names a separate column
+gene_feature_auc_df.reset_index(inplace=True)
+gene_feature_auc_df.rename(columns={'index': 'Gene'}, inplace=True)
+
+# Save the DataFrame to a CSV file
+gene_feature_auc_df.to_csv('../test_TransProPy/data/all_degs_count_exp_gene_feature_auc_mapping_0.9.csv', index=False)
+
+```
+
+----
+
+#### NewMACFCmain_result (0.9>AUC>0.5)
+
+```{python}
+import pandas as pd
+# Convert gene_to_feature_mapping to a DataFrame
+gene_to_feature_df = pd.DataFrame.from_dict(gene_to_feature_mapping, orient='index', columns=['Feature', 'AUC'])
+
+# Reset the index to make gene names a separate column
+gene_to_feature_df.reset_index(inplace=True)
+gene_to_feature_df.rename(columns={'index': 'Gene'}, inplace=True)
+
+# Save the DataFrame to a CSV file
+gene_to_feature_df.to_csv('../test_TransProPy/data/all_degs_count_exp_gene_feature_auc_mapping_0.5.csv', index=False)
+```
+
+----
+
+## Usage of New_MACFCmain (all_count_exp)
 This function uses the MACFC method to select feature genes relevant to classification and ranks them based on their corresponding weights.
 
->- <b style="color: #54467d;">Please note</b>:Data characteristics: Features have weak correlation with the classification.
->- Randomly shuffling the class labels to a certain extent simulates reducing the correlation.
+### Import the corresponding module
+
+```{python}
+import TransProPy.NewMACFCmain as TN
+import TransProPy.UtilsFunction1.GeneNames as TUG
+import TransProPy.UtilsFunction1.GeneToFeatureMapping as TUGM
+```
 
 ----
 
 ### Data
 ```{python}
 import pandas as pd
-data_path = '../test_TransProPy/data/all_degs_count_exp.csv'  
+data_path = '../test_TransProPy/data/all_count_exp.csv'  
 data = pd.read_csv(data_path)
 print(data.iloc[:10, :10]) 
+
 ```
 
 ----
 
 ```{python}
 import pandas as pd
-data_path = '../test_TransProPy/data/random_classification_class.csv'  
+data_path = '../test_TransProPy/data/class.csv'  
 data = pd.read_csv(data_path)
 print(data.iloc[:10, :10]) 
 ```
 
 ----
 
-### MACFCmain
+### New_MACFCmain
+
 ```{python}
-ranked_features, fre1, frequency, len_FName, FName, Fauc = Tr.MACFCmain(
+high_auc_features, ranked_features, fre1, frequency, len_FName, FName, Fauc = TN.New_MACFCmain(
+    0.9,
     100, 
     "class", 
-    0.95, 
-    data_path='../test_TransProPy/data/all_degs_count_exp.csv', 
-    label_path='../test_TransProPy/data/random_classification_class.csv'
+    0.9, 
+    data_path='../test_TransProPy/data/all_count_exp.csv', 
+    label_path='../test_TransProPy/data/class.csv'
     )
 ```
 
 ----
 
 ### Result
+
+#### AUC greater than 0.9 and their AUC values
+```{python}
+# Print features with AUC greater than 0.9 and their AUC values
+print('\nFeatures with AUC greater than 0.9:')
+total_features = len(high_auc_features)
+print(f"Total features: {total_features}")
+
+# Determine the number of features to display
+num_to_display = min(total_features, 20)
+
+for i in range(num_to_display):
+    feature, auc_value = high_auc_features[i]
+    print(f"Feature: {feature}, AUC: {auc_value}")
+```
+
+----
+
+#### New_MACFCmain
 ```{python}
 # Print the first 20 Ranked Features
 print("\nFirst 20 Ranked Features:")
@@ -289,7 +403,7 @@ for i, auc in enumerate(Fauc[:20], 1):
 ### gene_name
 
 ```{python}
-gene_names = TUG.gene_name(data_path='../test_TransProPy/data/all_degs_count_exp.csv')
+gene_names = TUG.gene_name(data_path='../test_TransProPy/data/all_count_exp.csv')
 ```
 
 ----
@@ -305,13 +419,34 @@ for i, gene_name in enumerate(gene_names[:20], 1):
 
 ### gene_map_feature
 
+#### high_auc_features_result (AUC>0.9)
 ```{python}
-gene_to_feature_mapping = TUGM.gene_map_feature(gene_names, ranked_features)
+# Extract feature indices from high_auc_features
+high_ranked_features = [feature for feature, auc_value in high_auc_features]
+
+# Utilize the TUGM.gene_map_feature function
+gene_to_feature_mapping_0_9 = TUGM.gene_map_feature(gene_names, high_ranked_features)
+
+# Creating a dictionary to store gene, feature, and AUC mapping
+gene_feature_auc_mapping = {}
+
+# Iterate over each gene and its corresponding feature
+for gene, feature in gene_to_feature_mapping_0_9.items():
+    feature = str(feature)  # Adjust this based on your data format
+    # Find the corresponding AUC value for the feature
+    auc_value = next((auc for feat, auc in high_auc_features if str(feat) == feature), None)
+    # Store the gene, feature, and AUC in the mapping
+    gene_feature_auc_mapping[gene] = (feature, auc_value)
+
+# Print the first 20 gene to feature mappings along with AUC values
+print("\nFirst 20 Gene to Feature Mappings with AUC Values:")
+for i, (gene, (feature, auc)) in enumerate(list(gene_feature_auc_mapping.items())[:20], 1):
+    print(f"{i}. Gene: {gene}, Feature: {feature}, AUC: {auc}")
 ```
 
 ----
 
-#### AUC>0.5
+#### NewMACFCmain_result (0.9>AUC>0.5)
 ```{python}
 import numpy as np
 # Generating gene_to_feature_mapping
@@ -332,6 +467,47 @@ for i, (gene, (feature, auc)) in enumerate(list(gene_to_feature_mapping.items())
 
 ----
 
+### Save Data
+
+#### high_auc_features_result (AUC>0.9)
+
+```{python}
+import pandas as pd
+# Convert gene_feature_auc_mapping to a DataFrame
+gene_feature_auc_df = pd.DataFrame.from_dict(gene_feature_auc_mapping, orient='index', columns=['Feature', 'AUC'])
+
+# Reset the index to make gene names a separate column
+gene_feature_auc_df.reset_index(inplace=True)
+gene_feature_auc_df.rename(columns={'index': 'Gene'}, inplace=True)
+
+# Save the DataFrame to a CSV file
+gene_feature_auc_df.to_csv('../test_TransProPy/data/all_count_exp_gene_feature_auc_mapping_0.9.csv', index=False)
+
+```
+
+----
+
+#### NewMACFCmain_result (0.9>AUC>0.5)
+
+```{python}
+import pandas as pd
+# Convert gene_to_feature_mapping to a DataFrame
+gene_to_feature_df = pd.DataFrame.from_dict(gene_to_feature_mapping, orient='index', columns=['Feature', 'AUC'])
+
+# Reset the index to make gene names a separate column
+gene_to_feature_df.reset_index(inplace=True)
+gene_to_feature_df.rename(columns={'index': 'Gene'}, inplace=True)
+
+# Save the DataFrame to a CSV file
+gene_to_feature_df.to_csv('../test_TransProPy/data/all_count_exp_gene_feature_auc_mapping_0.5.csv', index=False)
+```
+
+----
+
 ## References
 >- <a href="https://academic.oup.com/bib/article-abstract/23/2/bbac029/6536295?redirectedFrom=fulltext&login=false" style="color: #43799a; font-weight: bold;">Su,Y., Du,K., Wang,J., Wei,J. and Liu,J. (2022) Multi-variable AUC for sifting complementary features and its biomedical application. Briefings in Bioinformatics, 23, bbac029.</a>
+
+
+
+
 

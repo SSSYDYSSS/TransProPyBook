@@ -6,11 +6,18 @@ To learn more about TransProPy visit <https://github.com/SSSYDYSSS/TransProPy>.
 
 # Table of Contents
 
-## Utils Functions
+## UtilsFunction*
 >These functions usually contain various utilities and helper functions, which can sometimes be considered as low-level functionalities.
+>
+>>* [UtilsFunction1](UtilsFunction1.html) 
+>>* [UtilsFunction2](UtilsFunction2.html) 
+>
 
-## Main Function
+## *main Function
 >The main function constructed with the help of auxiliary functions.
-
-## Pipeline
-> A complete set of analysis workflow.
+>
+>>* [MACFCmain](MACFCmain.html) 
+>>* [NewMACFCmain](NewMACFCmain.html) 
+>>* [AutogluonTimeLimit](AutogluonTimeLimit.html) 
+>>* [AutoGluonSelectML](AutoGluonSelectML.html) 
+>

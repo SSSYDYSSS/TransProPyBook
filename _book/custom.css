@@ -75,11 +75,13 @@ h4 {
 /* Change the color of code inside the note callout */
 .callout-note code {
     color: #5c8d36 !important;  /* You can choose any color value you prefer */
+    background-color:#f6fff1 !important
 }
 
 /* Change the color of code inside the tip callout */
 .callout-tip code {
     color: #544680 !important;  /* You can choose any color value you prefer */
+    background-color:#f0ebfe !important
 }
 
 
@@ -93,9 +95,9 @@ h4 {
 
 /* custom-style.css */
 code {
-    font-weight: bold;
+    /*font-weight: bold;*/
     color: #267850;
-    background-color:#a7ceda !important; 
+    background-color:#a6cedb; 
     border-radius: 4px
 }
 
