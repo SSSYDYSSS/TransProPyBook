@@ -44,10 +44,38 @@ auto_norm(data)
 >- <b style="color: #54467d;">High-Frequency Features and Performance</b>: Because features in each set are chosen based on their contribution to classifier performance, high-frequency features are likely to perform well. In other words, if a feature appears in multiple optimal feature sets, it may have a significant impact on the performance of the classifier.
 >- <b style="color: #54467d;">Note on Low-Frequency Features</b>: However, it's important to note that a low frequency of a feature does not necessarily mean it is unimportant. The importance of a feature may depend on how it combines with other features. Additionally, the outcome of feature selection may be influenced by the characteristics of the dataset and random factors. Therefore, the frequency provided by this function should only be used as a reference and is not an absolute indicator of feature performance.
 
+### Returns
+
+>- <b style="color: #43799a;">FName</b>
+>- <b style="color: #43799a;">Fauc</b>
+>- <b style="color: #43799a;">rankset</b>
+>- <b style="color: #43799a;">ranklist</b>
+
 ### Usage
 
 ```python
 feature_ranking(f, c, max_rank, pos, neg, n0, n1)
+```
+
+## NewFeatureRanking.py
+
+### Change Summary
+
+>- <b style="color: #568333;">To store features with AUC greater than AUC_threshold and their AUC values</b>
+>- <b style="color: #54467d;">Exclude features with AUC greater than AUC_threshold from the original set.</b>
+>- <b style="color: #568333;"> Sort and process the remaining features</b>
+
+### Returns
+>- <b style="color: #43799a;">high_auc_features</b>
+>- <b style="color: #43799a;">FName</b>
+>- <b style="color: #43799a;">Fauc</b>
+>- <b style="color: #43799a;">rankset</b>
+>- <b style="color: #43799a;">ranklist</b>
+
+### Usage
+
+```python
+feature_ranking(f, c, AUC_threshold, max_rank, pos, neg, n0, n1)
 ```
 
 ## LoadData.py

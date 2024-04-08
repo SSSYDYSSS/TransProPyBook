@@ -1,7 +1,7 @@
 # AutoGluonSelectML.py
 Trains a model using AutoGluon on provided data path and returns feature importance and model leaderboard.
 
-## Parameters
+## Parameters {#parameters-d}
 
 >- <b style="color: #43799a;">gene_data_path</b> (str): 
 >   - Path to the gene expression data CSV file. 
@@ -36,7 +36,7 @@ Trains a model using AutoGluon on provided data path and returns feature importa
 >   - The seed used by the random number generator. 
 >   - <b style="color: #406e1a;">default is 42</b>.
 
-## Return
+## Return {#returns-d}
 
 >- <b style="color: #43799a;">importance</b> (DataFrame): 
 >   - DataFrame containing feature importance.
@@ -68,7 +68,7 @@ Performing training and prediction tasks on tabular data using Autogluon.
 
 >Please note that Autogluon's output results may vary depending on your data and task. You can review the generated model leaderboard and feature importance to understand model performance and the significance of specific features in the data. These results can aid you in making better predictions and decisions.
 
-## Insignificant Correlation
+## Insignificant Correlation {#insignificant-correlation-d}
 
 >- <b style="color: #54467d;">Please note</b>:Data characteristics: Features have weak correlation with the classification.
 >- Randomly shuffling the class labels to a certain extent simulates reducing the correlation.
@@ -84,7 +84,7 @@ from TransProPy.AutogluonSelectML import AutoGluon_SelectML
 ### Data
 ```{python}
 import pandas as pd
-data_path = '../test_TransProPy/data/all_degs_count_exp.csv'  
+data_path = '../test_TransProPy/data/four_methods_degs_intersection.csv'  
 data = pd.read_csv(data_path)
 print(data.iloc[:10, :10]) 
 
@@ -109,7 +109,7 @@ print(data.iloc[:10, :10])
 
 ```{python}
 importance, leaderboard = AutoGluon_SelectML(
-    gene_data_path='../test_TransProPy/data/all_degs_count_exp.csv', 
+    gene_data_path='../test_TransProPy/data/four_methods_degs_intersection.csv', 
     class_data_path='../test_TransProPy/data/random_classification_class.csv', 
     label_column='class', 
     test_size=0.3, 
@@ -177,7 +177,7 @@ leaderboard.to_csv('../test_TransProPy/data/Insignificant_correlation_Autogluon_
 
 ----
 
-## Significant Correlation
+## Significant Correlation {#significant-correlation-d}
 
 >- <b style="color: #54467d;">Please note</b>:Data characteristics: Features have strong correlation with the classification.
 
@@ -192,7 +192,7 @@ from TransProPy.AutogluonSelectML import AutoGluon_SelectML
 ### Data
 ```{python}
 import pandas as pd
-data_path = '../test_TransProPy/data/all_degs_count_exp.csv'  
+data_path = '../test_TransProPy/data/four_methods_degs_intersection.csv'  
 data = pd.read_csv(data_path)
 print(data.iloc[:10, :10]) 
 
@@ -218,7 +218,7 @@ print(data.iloc[:10, :10])
 
 ```{python}
 importance, leaderboard = AutoGluon_SelectML(
-    gene_data_path='../test_TransProPy/data/all_degs_count_exp.csv', 
+    gene_data_path='../test_TransProPy/data/four_methods_degs_intersection.csv', 
     class_data_path='../test_TransProPy/data/class.csv', 
     label_column='class', 
     test_size=0.3, 
@@ -286,7 +286,7 @@ leaderboard.to_csv('../test_TransProPy/data/significant_correlation_Autogluon_Se
 
 ----
 
-## References
+## References {#references-d}
 
 ### Scientific Publications
 

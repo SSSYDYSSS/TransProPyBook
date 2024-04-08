@@ -1,7 +1,7 @@
 # MACFCmain.py
 Applying the MACFC selection for relevant feature genes in classification.
 
-## Parameters
+## Parameters {#parameters-a}
 >- <b style="color: #43799a;">max_rank</b>: int 
 >   - The total number of gene combinations you want to obtain.
 >- <b style="color: #43799a;">lable_name</b>: string
@@ -18,7 +18,7 @@ Applying the MACFC selection for relevant feature genes in classification.
 >   - <b style="color: #54467d;">For example</b>: 0.9 
 >   - The set threshold indicates the proportion of non-zero value samples to all samples in each feature.
 
-## Returns
+## Returns {#returns-a}
 >- <b style="color: #43799a;">fr</b>: list of strings 
 >   - Representing ranked features.
 >- <b style="color: #43799a;">fre1</b>: dictionary
@@ -33,19 +33,19 @@ Applying the MACFC selection for relevant feature genes in classification.
 >- <b style="color: #43799a;">Fauc</b>: array of floats
 >   - AUC values corresponding to the ranked feature names.
 
-## Function Principle Explanation
+## Function Principle Explanation {#function-principle-explanation-a}
 1. <b style="color: #54467d;">Feature Frequency and AUC</b>: In this function, features that appear with high frequency indicate their presence in multiple optimal feature sets. Each optimal feature set is determined by calculating its Area Under the Receiver Operating Characteristic (ROC) Curve (AUC), which is a common measure for evaluating classifier performance. During each iteration of the loop, an optimal feature set with the highest average AUC value is selected. Features from this set are then added to a rank list, known as 'ranklist,' and when necessary, also to a set named 'rankset'.
 2. <b style="color: #54467d;">High-Frequency Features and Performance</b>: Because features in each set are chosen based on their contribution to classifier performance, high-frequency features are likely to perform well. In other words, if a feature appears in multiple optimal feature sets, it may have a significant impact on the performance of the classifier.
 3. <b style="color: #54467d;">Note on Low-Frequency Features</b>: However, it's important to note that a low frequency of a feature does not necessarily mean it is unimportant. The importance of a feature may depend on how it combines with other features. Additionally, the outcome of feature selection may be influenced by the characteristics of the dataset and random factors. Therefore, the frequency provided by this function should only be used as a reference and is not an absolute indicator of feature performance.
 4. <b style="color: #54467d;">Further Evaluation Methods</b>: If you wish to explore feature performance more deeply, you may need to employ other methods for assessing feature importance. This could include model-based importance metrics or statistical tests to evaluate the relationship between features and the target variable.
 
-## Usage Workflow
+## Usage Workflow {#usage-workflow-a}
 >- `FName` is a list of feature names sorted based on their AUC (Area Under the Curve) values. In this sorting method, the primary consideration is the AUC value, followed by the feature name. All features included in `FName` have an AUC value greater than 0.5.
 >- `fr` is the result of another sorting method. In this method, the primary consideration is the "combined" AUC of the features, followed by their individual AUC values. This means that some features, despite having lower individual AUC values, may produce a higher combined AUC when paired with other features. Therefore, their position in the `fr` list may be higher than in the `FName` list.
 >- The code for `fr` employs a more complex logic to select and combine features to optimize their combined AUC values. In this process, features are not solely selected and sorted based on their individual AUC values; the effect of their combination with other features is also considered. Consequently, the sorting logic for `fr` (or `rankset`) differs from that of `FName`.
 >- <b style="color: #54467d;">Please note</b>: While the code takes into account both individual AUC values and combined AUC values, the sorting of the `fr` list (i.e., `rankset`) initially starts based on individual AUC values. This is because at the beginning of each external loop iteration, the first element of `fs` is the next feature sorted by its individual AUC value. The list is then further optimized by evaluating the combination effects with other features.
 
-## Usage of MACFCmain (Significant correlation)
+## Usage of MACFCmain (Significant correlation) {#usage-of-macfmain-significant-correlation}
 This function uses the MACFC method to select feature genes relevant to classification and ranks them based on their corresponding weights.
 
 >- <b style="color: #54467d;">Please note</b>:Data characteristics: Features have strong correlation with the classification.
@@ -63,7 +63,7 @@ import TransProPy.UtilsFunction1.GeneToFeatureMapping as TUGM
 ### Data
 ```{python}
 import pandas as pd
-data_path = '../test_TransProPy/data/all_degs_count_exp.csv'  
+data_path = '../test_TransProPy/data/four_methods_degs_intersection.csv'  
 data = pd.read_csv(data_path)
 print(data.iloc[:10, :10]) 
 ```
@@ -85,7 +85,7 @@ ranked_features, fre1, frequency, len_FName, FName, Fauc = Tr.MACFCmain(
     100, 
     "class", 
     0.95, 
-    data_path='../test_TransProPy/data/all_degs_count_exp.csv', 
+    data_path='../test_TransProPy/data/four_methods_degs_intersection.csv', 
     label_path='../test_TransProPy/data/class.csv'
     )
 ```
@@ -149,7 +149,7 @@ for i, auc in enumerate(Fauc[:20], 1):
 ### gene_name
 
 ```{python}
-gene_names = TUG.gene_name(data_path='../test_TransProPy/data/all_degs_count_exp.csv')
+gene_names = TUG.gene_name(data_path='../test_TransProPy/data/four_methods_degs_intersection.csv')
 ```
 
 ----
@@ -192,7 +192,7 @@ for i, (gene, (feature, auc)) in enumerate(list(gene_to_feature_mapping.items())
 
 ----
 
-## Usage of MACFCmain (Insignificant correlation)
+## Usage of MACFCmain (Insignificant correlation) {#usage-of-macfmain-insignificant-correlation}
 This function uses the MACFC method to select feature genes relevant to classification and ranks them based on their corresponding weights.
 
 >- <b style="color: #54467d;">Please note</b>:Data characteristics: Features have weak correlation with the classification.
@@ -203,7 +203,7 @@ This function uses the MACFC method to select feature genes relevant to classifi
 ### Data
 ```{python}
 import pandas as pd
-data_path = '../test_TransProPy/data/all_degs_count_exp.csv'  
+data_path = '../test_TransProPy/data/four_methods_degs_intersection.csv'  
 data = pd.read_csv(data_path)
 print(data.iloc[:10, :10]) 
 ```
@@ -225,7 +225,7 @@ ranked_features, fre1, frequency, len_FName, FName, Fauc = Tr.MACFCmain(
     100, 
     "class", 
     0.95, 
-    data_path='../test_TransProPy/data/all_degs_count_exp.csv', 
+    data_path='../test_TransProPy/data/four_methods_degs_intersection.csv', 
     label_path='../test_TransProPy/data/random_classification_class.csv'
     )
 ```
@@ -289,7 +289,7 @@ for i, auc in enumerate(Fauc[:20], 1):
 ### gene_name
 
 ```{python}
-gene_names = TUG.gene_name(data_path='../test_TransProPy/data/all_degs_count_exp.csv')
+gene_names = TUG.gene_name(data_path='../test_TransProPy/data/four_methods_degs_intersection.csv')
 ```
 
 ----
@@ -332,6 +332,6 @@ for i, (gene, (feature, auc)) in enumerate(list(gene_to_feature_mapping.items())
 
 ----
 
-## References
+## References {#references-a}
 >- <a href="https://academic.oup.com/bib/article-abstract/23/2/bbac029/6536295?redirectedFrom=fulltext&login=false" style="color: #43799a; font-weight: bold;">Su,Y., Du,K., Wang,J., Wei,J. and Liu,J. (2022) Multi-variable AUC for sifting complementary features and its biomedical application. Briefings in Bioinformatics, 23, bbac029.</a>
 

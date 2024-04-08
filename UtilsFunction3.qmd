@@ -1,0 +1,312 @@
+# UtilsFunction3
+
+This section serves as the helper function for the AutoFeatureSelection.py function.
+
+## LoadFilterTranspose.py
+Remove samples with high zero expression.
+
+### Parameters
+>- <b style="color: #43799a;">data_path: string</b>:
+>   - <b style="color: #54467d;">For example</b>: '../data/gene_tpm.csv'
+>   - <b style="color: #54467d;">Please note</b>: The input data matrix should have genes as rows and samples as columns.
+>- <b style="color: #43799a;">threshold: float</b>: 
+>   - <b style="color: #54467d;">For example</b>: 0.9
+>   - The set threshold indicates the proportion of non-zero value samples to all samples in each feature.
+
+### Returns
+>- <b style="color: #43799a;">X</b> (pandas.core.frame.DataFrame): 
+
+### Usage
+```python
+load_filter_transpose(
+    threshold=0.9, 
+    data_path='../data/gene_tpm.csv'
+    )
+```
+
+## LoadEncodeLabels.py
+Reads a CSV file containing labels and encodes categorical labels in the specified column to numeric labels.
+
+### Parameters
+>- <b style="color: #43799a;">file_path (str)</b>:
+>   - Path to the CSV file containing labels.
+>- <b style="color: #43799a;">column_name (str)</b>: 
+>   - Name of the column to be encoded.
+
+### Returns
+>- <b style="color: #43799a;">Y</b> (pd.DataFrame): 
+>   - A DataFrame containing the encoded numeric labels.
+
+### Usage
+```python
+load_encode_labels(
+    file_path='../data/class.csv', 
+    column_name='class'
+    )
+```
+
+## ExtractCommonSamples.py
+Extracts common samples (rows) from two DataFrames based on their indices.
+
+### Parameters
+>- <b style="color: #43799a;">X (pd.DataFrame)</b>:
+>   - First DataFrame.
+>- <b style="color: #43799a;">Y (pd.DataFrame)</b>: 
+>   - Second DataFrame.
+
+### Returns
+>- <b style="color: #43799a;">X_common, Y_common</b> (pd.DataFrame): 
+>   - Two DataFrames containing only the rows that are common in both.
+
+### Usage
+```python
+extract_common_samples(
+    X, 
+    Y
+    )
+```
+
+## LoadAndPreprocessData.py
+Load and preprocess the data.
+
+### Parameters
+>- <b style="color: #43799a;">feature_file: str</b>:
+>   - Path to the feature data file.
+>- <b style="color: #43799a;">label_file: str</b>: 
+>   - Path to the label data file.
+>- <b style="color: #43799a;">label_column: str</b>:
+>   - Column name of the labels in the label file.
+>- <b style="color: #43799a;">threshold: float</b>: 
+>   - Threshold for filtering in load_filter_transpose function.
+
+### Returns
+>- <b style="color: #43799a;">X</b> (DataFrame): 
+>   - Preprocessed feature data.
+>- <b style="color: #43799a;">Y</b> (ndarray): 
+>   - Preprocessed label data.
+
+### Usage
+```python
+load_and_preprocess_data(
+    feature_file, 
+    label_file, 
+    label_column, 
+    threshold
+    )
+```
+
+## SetupLoggingAndProgressBar.py
+Set up logging and initialize a tqdm progress bar.
+
+### Parameters
+>- <b style="color: #43799a;">n_iter (int)</b>:
+>   - Number of iterations for RandomizedSearchCV.
+>- <b style="color: #43799a;">n_cv (int)</b>: 
+>   - Number of cross-validation folds.
+
+### Returns
+>- <b style="color: #43799a;">tqdm object</b>
+>   - An initialized tqdm progress bar.
+
+### Usage
+```python
+setup_logging_and_progress_bar(
+    n_iter, 
+    n_cv
+    )
+```
+
+## UpdateProgressBar.py
+Read the number of log entries in the log file and update the tqdm progress bar.
+
+### Parameters
+>- <b style="color: #43799a;">pbar (tqdm)</b>:
+>   - The tqdm progress bar object.
+>- <b style="color: #43799a;">log_file (str)</b>: 
+>   - Path to the log file, default is 'progress.log'.
+
+### Usage
+```python
+update_progress_bar(
+    pbar, 
+    log_file='progress.log'
+    )
+```
+
+## LoggingCustomScorer.py
+Creates a custom scorer function for use in model evaluation processes.
+This scorer logs both the accuracy score and the time taken for each call.
+
+### Parameters
+>- <b style="color: #43799a;">n_iter (int)</b>:
+>   - Number of iterations for the search process. Default is 10.
+>- <b style="color: #43799a;">n_cv (int)</b>: 
+>   - Number of cross-validation splits. Default is 5.
+
+### Returns
+>- <b style="color: #43799a;">custom_scorer(function)</b>
+>   - A custom scorer function that logs the accuracy score and time taken for each call.
+
+### Usage
+```python
+logging_custom_scorer(
+    n_iter=10, 
+    n_cv=5
+    )
+```
+
+## TqdmCustomScorer.py
+> Creates a custom scorer for model evaluation, integrating a progress bar with `tqdm`.
+
+### Parameters
+>- <b style="color: #43799a;">n_iter: int</b> (optional):
+>   - Number of iterations for the search process. Default is 10.
+>- <b style="color: #43799a;">n_cv: int</b> (optional):
+>   - Number of cross-validation splits. Default is 5.
+
+### Returns
+>- <b style="color: #43799a;">function</b>:
+>   - A custom scorer function that can be used with model evaluation methods like `RandomizedSearchCV`.
+
+### Description
+> The `tqdm_custom_scorer` function creates a scorer for model evaluation, incorporating a `tqdm` progress bar to monitor the evaluation process. This scorer is especially useful in processes like `RandomizedSearchCV`, where it provides real-time feedback on the number of iterations and cross-validation steps completed.
+
+### Usage
+```python
+custom_scorer = tqdm_custom_scorer(n_iter=10, n_cv=5)
+# Use this scorer in RandomizedSearchCV or similar methods
+```
+
+
+## TrainModel.py
+Set up and run the model training process.
+
+### Parameters
+>- <b style="color: #43799a;">X: DataFrame</b>:
+>   - feature data.
+>- <b style="color: #43799a;">Y: ndarray</b>: 
+>   - label data.
+>- <b style="color: #43799a;">feature_selection</b>:
+>   - FeatureUnion, the feature selection process.
+>- <b style="color: #43799a;">parameters: dict</b>: 
+>   - parameters for RandomizedSearchCV.
+>- <b style="color: #43799a;">n_iter: int</b>:
+>   - number of iterations for RandomizedSearchCV.
+>- <b style="color: #43799a;">n_cv: int</b>: 
+>   - number of cross-validation folds.
+>- <b style="color: #43799a;">n_jobs: int</b>:
+>   - number of jobs to run in parallel (default is 9).
+
+### Returns
+>- <b style="color: #43799a;">clf</b>
+>   - RandomizedSearchCV object after fitting.
+
+### Usage
+```python
+train_model(
+    X, 
+    Y, 
+    feature_selection, 
+    parameters, 
+    n_iter, 
+    n_cv, 
+    n_jobs=9
+    )
+```
+
+## EnsembleForRFE.py
+Set up and run the Ensemble model for Recursive Feature Elimination.
+
+### Parameters
+>- <b style="color: #43799a;">svm_C: float</b>:
+>  - Regularization parameter for SVM.
+>- <b style="color: #43799a;">tree_max_depth: int</b>:
+>  - Maximum depth of the decision tree.
+>- <b style="color: #43799a;">tree_min_samples_split: int</b>:
+>  - Minimum number of samples required to split an internal node.
+>- <b style="color: #43799a;">gbm_learning_rate: float</b>:
+>  - Learning rate for gradient boosting.
+>- <b style="color: #43799a;">gbm_n_estimators: int</b>:
+>  - Number of boosting stages for gradient boosting.
+
+### Attributes
+>- <b style="color: #43799a;">feature_importances_</b>:
+>  - Array of feature importances after fitting the model.
+
+### Methods
+>- <b style="color: #43799a;">fit(X, y)</b>:
+>  - Fit the model to data matrix X and target(s) y.
+>- <b style="color: #43799a;">predict(X)</b>:
+>  - Predict class labels for samples in X.
+>- <b style="color: #43799a;">set_params(**params)</b>:
+>  - Set parameters for the ensemble estimator.
+
+
+## SetupFeatureSelection.py
+> Set up the feature selection process in `TransProPy.UtilsFunction3`.
+> This function is particularly useful for setting up a feature selection pipeline, especially in models that benefit from ensemble methods and mutual information-based feature selection.
+
+### Returns
+> - <b style="color: #43799a;">feature_selection: FeatureUnion</b>:
+>   - A combined feature selection process.
+
+### Description
+> The `setup_feature_selection` function initializes and returns a `FeatureUnion` object for feature selection. This union includes:
+> - `RFECV`: Utilizes an `EnsembleForRFE` estimator with `StratifiedKFold(5)` for cross-validation, focusing on accuracy.
+> - `SelectKBest`: Applies `mutual_info_classif` for feature scoring.
+> The combination of these techniques provides a robust approach to feature selection in machine learning models.
+
+### Usage
+> ```python
+> feature_selection = setup_feature_selection()
+> ```
+
+
+## PrintBoxedText.py
+> Prints a title in a boxed format in the console output.
+
+### Parameters
+> - <b style="color: #43799a;">title: str</b>:
+>   - The text to be displayed inside the box.
+
+### Returns
+> - None. This function directly prints the formatted title to the console.
+
+### Description
+> This function creates a box around the given title text using hash (#) and equals (=) symbols. It prints the title with a border on the top and bottom, making it stand out in the console output. The border line consists of a hash symbol, followed by equals symbols the length of the title plus two (for padding), and then another hash symbol.
+
+### Usage Example
+> ```python
+> print_boxed_text("Example Title")
+> ```
+
+
+## ExtractAndSaveResults.py
+> The function uses matplotlib for plotting, pandas for data handling, and a custom `print_boxed_text` function for formatted output.
+
+### Parameters
+> - <b style="color: #43799a;">clf: trained model (RandomizedSearchCV object)</b>:
+>   - The classifier object after training.
+> - <b style="color: #43799a;">X: DataFrame</b>:
+>   - Feature data used for training.
+> - <b style="color: #43799a;">save_path: str</b>:
+>   - Base path for saving results.
+> - <b style="color: #43799a;">show_plot: bool</b> (optional):
+>   - Whether to display the plot. Default is False.
+> - <b style="color: #43799a;">use_tkagg: bool</b> (optional):
+>   - Whether to use 'TkAgg' backend for matplotlib. Generally, choose False when using in PyCharm IDE, and choose True when rendering file.qmd to an HTML file.
+
+### Description
+> This function performs a comprehensive analysis and extraction of results from a trained model. It includes:
+> - Extracting and plotting cross-validation results.
+> - Identifying and printing features selected by RFECV and SelectKBest.
+> - Combining and saving selected features in a CSV file.
+> - Extracting and saving feature importances from EnsembleForRFE.
+> - Extracting and saving scores from SelectKBest.
+
+### Usage
+> ```python
+> extract_and_save_results(clf, X, "path/to/save/", show_plot=True)
+> ```
+
+

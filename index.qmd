@@ -1,23 +1,110 @@
 # Preface {.unnumbered}
 
-><b style="color: #1f5679;">TransProPy</b>：A collection of deep learning models that integrate algorithms and various machine learning approaches to extract features (genes) effective for classification and attribute them accordingly.
+><b style="color: #1f5679;">TransProPy</b>：A python package that integrate algorithms and various machine learning approaches to extract features (genes) effective for classification and attribute them accordingly.
 
 To learn more about TransProPy visit <https://github.com/SSSYDYSSS/TransProPy>.
 
-# Table of Contents
+# Table of Contents 
 
 ## UtilsFunction*
+
+::: {.callout-note}
 >These functions usually contain various utilities and helper functions, which can sometimes be considered as low-level functionalities.
+:::
+
 >
->>* [UtilsFunction1](UtilsFunction1.html) 
->>* [UtilsFunction2](UtilsFunction2.html) 
+>* [UtilsFunction1](UtilsFunction1.html)
+> 
+>>* [Auc.py](#auc.py)
+>>* [AutoNorm.py](#autonorm.py)
+>>* [FeatureRanking.py](#featureranking.py)
+>>* [NewFeatureRanking.py](#newfeatureranking.py)
+>>* [LoadData.py](#loaddata.py)
+>>* [PrintResults.py](#printresults.py)
+>>* [FilterSamples.py](#filtersamples.py)
+>>* [GeneNames.py](#genenames.py)
+>>* [GeneToFeatureMapping.py](#genetofeaturemapping.py)
+>
+>* [UtilsFunction2](UtilsFunction2.html)
+> 
+>>* [splitdata.py](#splitdata.py)
+>>* [LogTransform.py](#logtransform.py)
+>
+>* [UtilsFunction3](UtilsFunction3.html)
+>
+>>* [LoadFilterTranspose.py](#loadfiltertranspose.py)
+>>* [LoadEncodeLabels.py](#loadencodelabels.py)
+>>* [ExtractCommonSamples.py](#extractcommonsamples.py)
+>>* [LoadAndPreprocessData.py](#loadandpreprocessdata.py)
+>>* [SetupLoggingAndProgressBar.py](#setuploggingandprogressbar.py)
+>>* [UpdateProgressBar.py](#updateprogressbar.py)
+>>* [LoggingCustomScorer.py](#loggingcustomscorer.py)
+>>* [TqdmCustomScorer.py](#tqdmcustomscorer.py)
+>>* [TrainModel.py](#trainmodel.py)
+>>* [EnsembleForRFE.py](#ensembleforrfe.py)
+>>* [SetupFeatureSelection.py](#setupfeatureselection.py)
+>>* [PrintBoxedText.py](#printboxedtext.py)
+>>* [ExtractAndSaveResults.py](#extractandsaveresults.py)
 >
 
+
 ## *main Function
+
+::: {.callout-tip}
 >The main function constructed with the help of auxiliary functions.
+:::
+
 >
->>* [MACFCmain](MACFCmain.html) 
->>* [NewMACFCmain](NewMACFCmain.html) 
->>* [AutogluonTimeLimit](AutogluonTimeLimit.html) 
->>* [AutoGluonSelectML](AutoGluonSelectML.html) 
+>* [MACFCmain](MACFCmain.html)
 >
+>>* [Parameters](#parameters-a)
+>>* [Returns](#returns-a)
+>>* [Function Principle Explanation](#function-principle-explanation-a)
+>>* [Usage Workflow](#usage-workflow-a)
+>>* [Usage of MACFCmain (Significant correlation)](#usage-of-macfmain-significant-correlation)
+>>* [Usage of MACFCmain (Insignificant correlation)](#usage-of-macfmain-insignificant-correlation)
+>>* [References](#references-a)
+>
+>* [NewMACFCmain](NewMACFCmain.html)
+>
+>>* [Parameters](#parameters-b)
+>>* [Returns](#returns-b)
+>>* [Function Principle Explanation](#function-principle-explanation-b)
+>>* [Usage Workflow](#usage-workflow-b)
+>>* [Usage of New_MACFCmain (four_methods_degs_union)](#usage-of-new-macfcmain-four-methods-degs-union-b)
+>>* [Usage of New_MACFCmain (all_count_exp)](#usage-of-new-macfcmain-all-count-exp-b)
+>>* [References](#references-b)
+> 
+>* [AutogluonTimeLimit](AutogluonTimeLimit.html)
+>
+>>* [Parameters](#parameters-c)
+>>* [Returns](#returns-c)
+>>* [Usage of Autogluon_TimeLimit](#usage-of-autogluon-timelimit)
+>>* [Insignificant Correlation](#insignificant-correlation-c)
+>>* [Significant Correlation](#significant-correlation-c)
+>>* [References](#references-c)
+>  
+>* [AutoGluonSelectML](AutoGluonSelectML.html)
+>
+>>* [Parameters](#parameters-d)
+>>* [Returns](#returns-d)
+>>* [Usage of Autogluon_SelectML](#usage-of-autogluon-selectml)
+>>* [Insignificant Correlation](#insignificant-correlation-d)
+>>* [Significant Correlation](#significant-correlation-d)
+>>* [References](#references-d)
+>   
+>* [AutoFeatureSelection](AutoFeatureSelection.html)
+>
+>>* [Parameters](#parameters-f)
+>>* [Please note](#please-note)
+>>* [Description](#description)
+>>* [Usage](#usage-multithreaded-computation-showprogress-false-njobs-1)
+>
+
+## Citation
+Yu Dongyue (2023). TransProPy: A python package that integrate algorithms and various machine learning approaches to extract features (genes) effective for classification and attribute them accordingly.
+<https://github.com/SSSYDYSSS/TransProPy>, 
+<https://sssydysss.gitbook.io/transpropy-manual/>.
+
+## License
+This project is licensed under the BSD 3-Clause License - see the <https://github.com/SSSYDYSSS/TransProPy/blob/main/LICENSE.txt> file for details.

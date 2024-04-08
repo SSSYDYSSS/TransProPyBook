@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="TransProPy is a Python package that is part of the TransPro series under the SuperOmics framework.">
+
+<title>TransProPyBook - 3&nbsp; UtilsFunction3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./MACFCmain.html" rel="next">
+<link href="./UtilsFunction2.html" rel="prev">
+<link href="./TransProPy_logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="custom.css">
+<meta property="og:title" content="TransProPyBook - 3&nbsp; UtilsFunction3">
+<meta property="og:description" content="Python package TransProPy.">
+<meta property="og:image" content="https://github.com/SSSYDYSSS/TransProPyBook/blob/main/TransProPy_logo.png">
+<meta property="og:site-name" content="TransProPyBook">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./UtilsFunction3.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">UtilsFunction3</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./TransProPy_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">TransProPyBook</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/SSSYDYSSS/TransProPyBook" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./UtilsFunction1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">UtilsFunction1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./UtilsFunction2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">UtilsFunction2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./UtilsFunction3.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">UtilsFunction3</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./MACFCmain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">MACFCmain.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NewMACFCmain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">NewMACFCmain.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AutogluonTimeLimit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">AutogluonTimeLimit.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AutoGluonSelectML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">AutoGluonSelectML.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AutoFeatureSelection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">AutoFeatureSelection.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Contact.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Contact</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">References</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#loadfiltertranspose.py" id="toc-loadfiltertranspose.py" class="nav-link active" data-scroll-target="#loadfiltertranspose.py"><span class="header-section-number">3.1</span> LoadFilterTranspose.py</a>
+  <ul class="collapse">
+  <li><a href="#parameters" id="toc-parameters" class="nav-link" data-scroll-target="#parameters"><span class="header-section-number">3.1.1</span> Parameters</a></li>
+  <li><a href="#returns" id="toc-returns" class="nav-link" data-scroll-target="#returns"><span class="header-section-number">3.1.2</span> Returns</a></li>
+  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage"><span class="header-section-number">3.1.3</span> Usage</a></li>
+  </ul></li>
+  <li><a href="#loadencodelabels.py" id="toc-loadencodelabels.py" class="nav-link" data-scroll-target="#loadencodelabels.py"><span class="header-section-number">3.2</span> LoadEncodeLabels.py</a>
+  <ul class="collapse">
+  <li><a href="#parameters-1" id="toc-parameters-1" class="nav-link" data-scroll-target="#parameters-1"><span class="header-section-number">3.2.1</span> Parameters</a></li>
+  <li><a href="#returns-1" id="toc-returns-1" class="nav-link" data-scroll-target="#returns-1"><span class="header-section-number">3.2.2</span> Returns</a></li>
+  <li><a href="#usage-1" id="toc-usage-1" class="nav-link" data-scroll-target="#usage-1"><span class="header-section-number">3.2.3</span> Usage</a></li>
+  </ul></li>
+  <li><a href="#extractcommonsamples.py" id="toc-extractcommonsamples.py" class="nav-link" data-scroll-target="#extractcommonsamples.py"><span class="header-section-number">3.3</span> ExtractCommonSamples.py</a>
+  <ul class="collapse">
+  <li><a href="#parameters-2" id="toc-parameters-2" class="nav-link" data-scroll-target="#parameters-2"><span class="header-section-number">3.3.1</span> Parameters</a></li>
+  <li><a href="#returns-2" id="toc-returns-2" class="nav-link" data-scroll-target="#returns-2"><span class="header-section-number">3.3.2</span> Returns</a></li>
+  <li><a href="#usage-2" id="toc-usage-2" class="nav-link" data-scroll-target="#usage-2"><span class="header-section-number">3.3.3</span> Usage</a></li>
+  </ul></li>
+  <li><a href="#loadandpreprocessdata.py" id="toc-loadandpreprocessdata.py" class="nav-link" data-scroll-target="#loadandpreprocessdata.py"><span class="header-section-number">3.4</span> LoadAndPreprocessData.py</a>
+  <ul class="collapse">
+  <li><a href="#parameters-3" id="toc-parameters-3" class="nav-link" data-scroll-target="#parameters-3"><span class="header-section-number">3.4.1</span> Parameters</a></li>
+  <li><a href="#returns-3" id="toc-returns-3" class="nav-link" data-scroll-target="#returns-3"><span class="header-section-number">3.4.2</span> Returns</a></li>
+  <li><a href="#usage-3" id="toc-usage-3" class="nav-link" data-scroll-target="#usage-3"><span class="header-section-number">3.4.3</span> Usage</a></li>
+  </ul></li>
+  <li><a href="#setuploggingandprogressbar.py" id="toc-setuploggingandprogressbar.py" class="nav-link" data-scroll-target="#setuploggingandprogressbar.py"><span class="header-section-number">3.5</span> SetupLoggingAndProgressBar.py</a>
+  <ul class="collapse">
+  <li><a href="#parameters-4" id="toc-parameters-4" class="nav-link" data-scroll-target="#parameters-4"><span class="header-section-number">3.5.1</span> Parameters</a></li>
+  <li><a href="#returns-4" id="toc-returns-4" class="nav-link" data-scroll-target="#returns-4"><span class="header-section-number">3.5.2</span> Returns</a></li>
+  <li><a href="#usage-4" id="toc-usage-4" class="nav-link" data-scroll-target="#usage-4"><span class="header-section-number">3.5.3</span> Usage</a></li>
+  </ul></li>
+  <li><a href="#updateprogressbar.py" id="toc-updateprogressbar.py" class="nav-link" data-scroll-target="#updateprogressbar.py"><span class="header-section-number">3.6</span> UpdateProgressBar.py</a>
+  <ul class="collapse">
+  <li><a href="#parameters-5" id="toc-parameters-5" class="nav-link" data-scroll-target="#parameters-5"><span class="header-section-number">3.6.1</span> Parameters</a></li>
+  <li><a href="#usage-5" id="toc-usage-5" class="nav-link" data-scroll-target="#usage-5"><span class="header-section-number">3.6.2</span> Usage</a></li>
+  </ul></li>
+  <li><a href="#loggingcustomscorer.py" id="toc-loggingcustomscorer.py" class="nav-link" data-scroll-target="#loggingcustomscorer.py"><span class="header-section-number">3.7</span> LoggingCustomScorer.py</a>
+  <ul class="collapse">
+  <li><a href="#parameters-6" id="toc-parameters-6" class="nav-link" data-scroll-target="#parameters-6"><span class="header-section-number">3.7.1</span> Parameters</a></li>
+  <li><a href="#returns-5" id="toc-returns-5" class="nav-link" data-scroll-target="#returns-5"><span class="header-section-number">3.7.2</span> Returns</a></li>
+  <li><a href="#usage-6" id="toc-usage-6" class="nav-link" data-scroll-target="#usage-6"><span class="header-section-number">3.7.3</span> Usage</a></li>
+  </ul></li>
+  <li><a href="#tqdmcustomscorer.py" id="toc-tqdmcustomscorer.py" class="nav-link" data-scroll-target="#tqdmcustomscorer.py"><span class="header-section-number">3.8</span> TqdmCustomScorer.py</a>
+  <ul class="collapse">
+  <li><a href="#parameters-7" id="toc-parameters-7" class="nav-link" data-scroll-target="#parameters-7"><span class="header-section-number">3.8.1</span> Parameters</a></li>
+  <li><a href="#returns-6" id="toc-returns-6" class="nav-link" data-scroll-target="#returns-6"><span class="header-section-number">3.8.2</span> Returns</a></li>
+  <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description"><span class="header-section-number">3.8.3</span> Description</a></li>
+  <li><a href="#usage-7" id="toc-usage-7" class="nav-link" data-scroll-target="#usage-7"><span class="header-section-number">3.8.4</span> Usage</a></li>
+  </ul></li>
+  <li><a href="#trainmodel.py" id="toc-trainmodel.py" class="nav-link" data-scroll-target="#trainmodel.py"><span class="header-section-number">3.9</span> TrainModel.py</a>
+  <ul class="collapse">
+  <li><a href="#parameters-8" id="toc-parameters-8" class="nav-link" data-scroll-target="#parameters-8"><span class="header-section-number">3.9.1</span> Parameters</a></li>
+  <li><a href="#returns-7" id="toc-returns-7" class="nav-link" data-scroll-target="#returns-7"><span class="header-section-number">3.9.2</span> Returns</a></li>
+  <li><a href="#usage-8" id="toc-usage-8" class="nav-link" data-scroll-target="#usage-8"><span class="header-section-number">3.9.3</span> Usage</a></li>
+  </ul></li>
+  <li><a href="#ensembleforrfe.py" id="toc-ensembleforrfe.py" class="nav-link" data-scroll-target="#ensembleforrfe.py"><span class="header-section-number">3.10</span> EnsembleForRFE.py</a>
+  <ul class="collapse">
+  <li><a href="#parameters-9" id="toc-parameters-9" class="nav-link" data-scroll-target="#parameters-9"><span class="header-section-number">3.10.1</span> Parameters</a></li>
+  <li><a href="#attributes" id="toc-attributes" class="nav-link" data-scroll-target="#attributes"><span class="header-section-number">3.10.2</span> Attributes</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">3.10.3</span> Methods</a></li>
+  </ul></li>
+  <li><a href="#setupfeatureselection.py" id="toc-setupfeatureselection.py" class="nav-link" data-scroll-target="#setupfeatureselection.py"><span class="header-section-number">3.11</span> SetupFeatureSelection.py</a>
+  <ul class="collapse">
+  <li><a href="#returns-8" id="toc-returns-8" class="nav-link" data-scroll-target="#returns-8"><span class="header-section-number">3.11.1</span> Returns</a></li>
+  <li><a href="#description-1" id="toc-description-1" class="nav-link" data-scroll-target="#description-1"><span class="header-section-number">3.11.2</span> Description</a></li>
+  <li><a href="#usage-9" id="toc-usage-9" class="nav-link" data-scroll-target="#usage-9"><span class="header-section-number">3.11.3</span> Usage</a></li>
+  </ul></li>
+  <li><a href="#printboxedtext.py" id="toc-printboxedtext.py" class="nav-link" data-scroll-target="#printboxedtext.py"><span class="header-section-number">3.12</span> PrintBoxedText.py</a>
+  <ul class="collapse">
+  <li><a href="#parameters-10" id="toc-parameters-10" class="nav-link" data-scroll-target="#parameters-10"><span class="header-section-number">3.12.1</span> Parameters</a></li>
+  <li><a href="#returns-9" id="toc-returns-9" class="nav-link" data-scroll-target="#returns-9"><span class="header-section-number">3.12.2</span> Returns</a></li>
+  <li><a href="#description-2" id="toc-description-2" class="nav-link" data-scroll-target="#description-2"><span class="header-section-number">3.12.3</span> Description</a></li>
+  <li><a href="#usage-example" id="toc-usage-example" class="nav-link" data-scroll-target="#usage-example"><span class="header-section-number">3.12.4</span> Usage Example</a></li>
+  </ul></li>
+  <li><a href="#extractandsaveresults.py" id="toc-extractandsaveresults.py" class="nav-link" data-scroll-target="#extractandsaveresults.py"><span class="header-section-number">3.13</span> ExtractAndSaveResults.py</a>
+  <ul class="collapse">
+  <li><a href="#parameters-11" id="toc-parameters-11" class="nav-link" data-scroll-target="#parameters-11"><span class="header-section-number">3.13.1</span> Parameters</a></li>
+  <li><a href="#description-3" id="toc-description-3" class="nav-link" data-scroll-target="#description-3"><span class="header-section-number">3.13.2</span> Description</a></li>
+  <li><a href="#usage-10" id="toc-usage-10" class="nav-link" data-scroll-target="#usage-10"><span class="header-section-number">3.13.3</span> Usage</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/edit/main/UtilsFunction3.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/blob/main/UtilsFunction3.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">UtilsFunction3</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>This section serves as the helper function for the AutoFeatureSelection.py function.</p>
+<section id="loadfiltertranspose.py" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="loadfiltertranspose.py"><span class="header-section-number">3.1</span> LoadFilterTranspose.py</h2>
+<p>Remove samples with high zero expression.</p>
+<section id="parameters" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="parameters"><span class="header-section-number">3.1.1</span> Parameters</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">data_path: string</b>:
+<ul>
+<li><b style="color: #54467d;">For example</b>: ‘../data/gene_tpm.csv’</li>
+<li><b style="color: #54467d;">Please note</b>: The input data matrix should have genes as rows and samples as columns.</li>
+</ul></li>
+<li><b style="color: #43799a;">threshold: float</b>:
+<ul>
+<li><b style="color: #54467d;">For example</b>: 0.9</li>
+<li>The set threshold indicates the proportion of non-zero value samples to all samples in each feature.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="returns" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="returns"><span class="header-section-number">3.1.2</span> Returns</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">X</b> (pandas.core.frame.DataFrame):</li>
+</ul>
+</blockquote>
+</section>
+<section id="usage" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="usage"><span class="header-section-number">3.1.3</span> Usage</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>load_filter_transpose(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    threshold<span class="op">=</span><span class="fl">0.9</span>, </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    data_path<span class="op">=</span><span class="st">'../data/gene_tpm.csv'</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="loadencodelabels.py" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="loadencodelabels.py"><span class="header-section-number">3.2</span> LoadEncodeLabels.py</h2>
+<p>Reads a CSV file containing labels and encodes categorical labels in the specified column to numeric labels.</p>
+<section id="parameters-1" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="parameters-1"><span class="header-section-number">3.2.1</span> Parameters</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">file_path (str)</b>:
+<ul>
+<li>Path to the CSV file containing labels.</li>
+</ul></li>
+<li><b style="color: #43799a;">column_name (str)</b>:
+<ul>
+<li>Name of the column to be encoded.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="returns-1" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="returns-1"><span class="header-section-number">3.2.2</span> Returns</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">Y</b> (pd.DataFrame):
+<ul>
+<li>A DataFrame containing the encoded numeric labels.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="usage-1" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="usage-1"><span class="header-section-number">3.2.3</span> Usage</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>load_encode_labels(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    file_path<span class="op">=</span><span class="st">'../data/class.csv'</span>, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    column_name<span class="op">=</span><span class="st">'class'</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="extractcommonsamples.py" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="extractcommonsamples.py"><span class="header-section-number">3.3</span> ExtractCommonSamples.py</h2>
+<p>Extracts common samples (rows) from two DataFrames based on their indices.</p>
+<section id="parameters-2" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="parameters-2"><span class="header-section-number">3.3.1</span> Parameters</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">X (pd.DataFrame)</b>:
+<ul>
+<li>First DataFrame.</li>
+</ul></li>
+<li><b style="color: #43799a;">Y (pd.DataFrame)</b>:
+<ul>
+<li>Second DataFrame.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="returns-2" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="returns-2"><span class="header-section-number">3.3.2</span> Returns</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">X_common, Y_common</b> (pd.DataFrame):
+<ul>
+<li>Two DataFrames containing only the rows that are common in both.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="usage-2" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="usage-2"><span class="header-section-number">3.3.3</span> Usage</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>extract_common_samples(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    X, </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    Y</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="loadandpreprocessdata.py" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="loadandpreprocessdata.py"><span class="header-section-number">3.4</span> LoadAndPreprocessData.py</h2>
+<p>Load and preprocess the data.</p>
+<section id="parameters-3" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="parameters-3"><span class="header-section-number">3.4.1</span> Parameters</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">feature_file: str</b>:
+<ul>
+<li>Path to the feature data file.</li>
+</ul></li>
+<li><b style="color: #43799a;">label_file: str</b>:
+<ul>
+<li>Path to the label data file.</li>
+</ul></li>
+<li><b style="color: #43799a;">label_column: str</b>:
+<ul>
+<li>Column name of the labels in the label file.</li>
+</ul></li>
+<li><b style="color: #43799a;">threshold: float</b>:
+<ul>
+<li>Threshold for filtering in load_filter_transpose function.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="returns-3" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="returns-3"><span class="header-section-number">3.4.2</span> Returns</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">X</b> (DataFrame):
+<ul>
+<li>Preprocessed feature data.</li>
+</ul></li>
+<li><b style="color: #43799a;">Y</b> (ndarray):
+<ul>
+<li>Preprocessed label data.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="usage-3" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="usage-3"><span class="header-section-number">3.4.3</span> Usage</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>load_and_preprocess_data(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    feature_file, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    label_file, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    label_column, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    threshold</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="setuploggingandprogressbar.py" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="setuploggingandprogressbar.py"><span class="header-section-number">3.5</span> SetupLoggingAndProgressBar.py</h2>
+<p>Set up logging and initialize a tqdm progress bar.</p>
+<section id="parameters-4" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="parameters-4"><span class="header-section-number">3.5.1</span> Parameters</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">n_iter (int)</b>:
+<ul>
+<li>Number of iterations for RandomizedSearchCV.</li>
+</ul></li>
+<li><b style="color: #43799a;">n_cv (int)</b>:
+<ul>
+<li>Number of cross-validation folds.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="returns-4" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="returns-4"><span class="header-section-number">3.5.2</span> Returns</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">tqdm object</b>
+<ul>
+<li>An initialized tqdm progress bar.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="usage-4" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="usage-4"><span class="header-section-number">3.5.3</span> Usage</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>setup_logging_and_progress_bar(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    n_iter, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    n_cv</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="updateprogressbar.py" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="updateprogressbar.py"><span class="header-section-number">3.6</span> UpdateProgressBar.py</h2>
+<p>Read the number of log entries in the log file and update the tqdm progress bar.</p>
+<section id="parameters-5" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="parameters-5"><span class="header-section-number">3.6.1</span> Parameters</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">pbar (tqdm)</b>:
+<ul>
+<li>The tqdm progress bar object.</li>
+</ul></li>
+<li><b style="color: #43799a;">log_file (str)</b>:
+<ul>
+<li>Path to the log file, default is ‘progress.log’.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="usage-5" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="usage-5"><span class="header-section-number">3.6.2</span> Usage</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>update_progress_bar(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    pbar, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    log_file<span class="op">=</span><span class="st">'progress.log'</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="loggingcustomscorer.py" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="loggingcustomscorer.py"><span class="header-section-number">3.7</span> LoggingCustomScorer.py</h2>
+<p>Creates a custom scorer function for use in model evaluation processes. This scorer logs both the accuracy score and the time taken for each call.</p>
+<section id="parameters-6" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="parameters-6"><span class="header-section-number">3.7.1</span> Parameters</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">n_iter (int)</b>:
+<ul>
+<li>Number of iterations for the search process. Default is 10.</li>
+</ul></li>
+<li><b style="color: #43799a;">n_cv (int)</b>:
+<ul>
+<li>Number of cross-validation splits. Default is 5.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="returns-5" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="returns-5"><span class="header-section-number">3.7.2</span> Returns</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">custom_scorer(function)</b>
+<ul>
+<li>A custom scorer function that logs the accuracy score and time taken for each call.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="usage-6" class="level3" data-number="3.7.3">
+<h3 data-number="3.7.3" class="anchored" data-anchor-id="usage-6"><span class="header-section-number">3.7.3</span> Usage</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>logging_custom_scorer(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    n_iter<span class="op">=</span><span class="dv">10</span>, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    n_cv<span class="op">=</span><span class="dv">5</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="tqdmcustomscorer.py" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="tqdmcustomscorer.py"><span class="header-section-number">3.8</span> TqdmCustomScorer.py</h2>
+<blockquote class="blockquote">
+<p>Creates a custom scorer for model evaluation, integrating a progress bar with <code>tqdm</code>.</p>
+</blockquote>
+<section id="parameters-7" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="parameters-7"><span class="header-section-number">3.8.1</span> Parameters</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">n_iter: int</b> (optional):
+<ul>
+<li>Number of iterations for the search process. Default is 10.</li>
+</ul></li>
+<li><b style="color: #43799a;">n_cv: int</b> (optional):
+<ul>
+<li>Number of cross-validation splits. Default is 5.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="returns-6" class="level3" data-number="3.8.2">
+<h3 data-number="3.8.2" class="anchored" data-anchor-id="returns-6"><span class="header-section-number">3.8.2</span> Returns</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">function</b>:
+<ul>
+<li>A custom scorer function that can be used with model evaluation methods like <code>RandomizedSearchCV</code>.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="description" class="level3" data-number="3.8.3">
+<h3 data-number="3.8.3" class="anchored" data-anchor-id="description"><span class="header-section-number">3.8.3</span> Description</h3>
+<blockquote class="blockquote">
+<p>The <code>tqdm_custom_scorer</code> function creates a scorer for model evaluation, incorporating a <code>tqdm</code> progress bar to monitor the evaluation process. This scorer is especially useful in processes like <code>RandomizedSearchCV</code>, where it provides real-time feedback on the number of iterations and cross-validation steps completed.</p>
+</blockquote>
+</section>
+<section id="usage-7" class="level3" data-number="3.8.4">
+<h3 data-number="3.8.4" class="anchored" data-anchor-id="usage-7"><span class="header-section-number">3.8.4</span> Usage</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>custom_scorer <span class="op">=</span> tqdm_custom_scorer(n_iter<span class="op">=</span><span class="dv">10</span>, n_cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Use this scorer in RandomizedSearchCV or similar methods</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="trainmodel.py" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="trainmodel.py"><span class="header-section-number">3.9</span> TrainModel.py</h2>
+<p>Set up and run the model training process.</p>
+<section id="parameters-8" class="level3" data-number="3.9.1">
+<h3 data-number="3.9.1" class="anchored" data-anchor-id="parameters-8"><span class="header-section-number">3.9.1</span> Parameters</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">X: DataFrame</b>:
+<ul>
+<li>feature data.</li>
+</ul></li>
+<li><b style="color: #43799a;">Y: ndarray</b>:
+<ul>
+<li>label data.</li>
+</ul></li>
+<li><b style="color: #43799a;">feature_selection</b>:
+<ul>
+<li>FeatureUnion, the feature selection process.</li>
+</ul></li>
+<li><b style="color: #43799a;">parameters: dict</b>:
+<ul>
+<li>parameters for RandomizedSearchCV.</li>
+</ul></li>
+<li><b style="color: #43799a;">n_iter: int</b>:
+<ul>
+<li>number of iterations for RandomizedSearchCV.</li>
+</ul></li>
+<li><b style="color: #43799a;">n_cv: int</b>:
+<ul>
+<li>number of cross-validation folds.</li>
+</ul></li>
+<li><b style="color: #43799a;">n_jobs: int</b>:
+<ul>
+<li>number of jobs to run in parallel (default is 9).</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="returns-7" class="level3" data-number="3.9.2">
+<h3 data-number="3.9.2" class="anchored" data-anchor-id="returns-7"><span class="header-section-number">3.9.2</span> Returns</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">clf</b>
+<ul>
+<li>RandomizedSearchCV object after fitting.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="usage-8" class="level3" data-number="3.9.3">
+<h3 data-number="3.9.3" class="anchored" data-anchor-id="usage-8"><span class="header-section-number">3.9.3</span> Usage</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>train_model(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    X, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    Y, </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    feature_selection, </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    parameters, </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    n_iter, </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    n_cv, </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    n_jobs<span class="op">=</span><span class="dv">9</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="ensembleforrfe.py" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="ensembleforrfe.py"><span class="header-section-number">3.10</span> EnsembleForRFE.py</h2>
+<p>Set up and run the Ensemble model for Recursive Feature Elimination.</p>
+<section id="parameters-9" class="level3" data-number="3.10.1">
+<h3 data-number="3.10.1" class="anchored" data-anchor-id="parameters-9"><span class="header-section-number">3.10.1</span> Parameters</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">svm_C: float</b>:</li>
+<li>Regularization parameter for SVM.</li>
+<li><b style="color: #43799a;">tree_max_depth: int</b>:</li>
+<li>Maximum depth of the decision tree.</li>
+<li><b style="color: #43799a;">tree_min_samples_split: int</b>:</li>
+<li>Minimum number of samples required to split an internal node.</li>
+<li><b style="color: #43799a;">gbm_learning_rate: float</b>:</li>
+<li>Learning rate for gradient boosting.</li>
+<li><b style="color: #43799a;">gbm_n_estimators: int</b>:</li>
+<li>Number of boosting stages for gradient boosting.</li>
+</ul>
+</blockquote>
+</section>
+<section id="attributes" class="level3" data-number="3.10.2">
+<h3 data-number="3.10.2" class="anchored" data-anchor-id="attributes"><span class="header-section-number">3.10.2</span> Attributes</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">feature_importances_</b>:</li>
+<li>Array of feature importances after fitting the model.</li>
+</ul>
+</blockquote>
+</section>
+<section id="methods" class="level3" data-number="3.10.3">
+<h3 data-number="3.10.3" class="anchored" data-anchor-id="methods"><span class="header-section-number">3.10.3</span> Methods</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">fit(X, y)</b>:</li>
+<li>Fit the model to data matrix X and target(s) y.</li>
+<li><b style="color: #43799a;">predict(X)</b>:</li>
+<li>Predict class labels for samples in X.</li>
+<li><b style="color: #43799a;">set_params(**params)</b>:</li>
+<li>Set parameters for the ensemble estimator.</li>
+</ul>
+</blockquote>
+</section>
+</section>
+<section id="setupfeatureselection.py" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="setupfeatureselection.py"><span class="header-section-number">3.11</span> SetupFeatureSelection.py</h2>
+<blockquote class="blockquote">
+<p>Set up the feature selection process in <code>TransProPy.UtilsFunction3</code>. This function is particularly useful for setting up a feature selection pipeline, especially in models that benefit from ensemble methods and mutual information-based feature selection.</p>
+</blockquote>
+<section id="returns-8" class="level3" data-number="3.11.1">
+<h3 data-number="3.11.1" class="anchored" data-anchor-id="returns-8"><span class="header-section-number">3.11.1</span> Returns</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">feature_selection: FeatureUnion</b>:
+<ul>
+<li>A combined feature selection process.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="description-1" class="level3" data-number="3.11.2">
+<h3 data-number="3.11.2" class="anchored" data-anchor-id="description-1"><span class="header-section-number">3.11.2</span> Description</h3>
+<blockquote class="blockquote">
+<p>The <code>setup_feature_selection</code> function initializes and returns a <code>FeatureUnion</code> object for feature selection. This union includes: - <code>RFECV</code>: Utilizes an <code>EnsembleForRFE</code> estimator with <code>StratifiedKFold(5)</code> for cross-validation, focusing on accuracy. - <code>SelectKBest</code>: Applies <code>mutual_info_classif</code> for feature scoring. The combination of these techniques provides a robust approach to feature selection in machine learning models.</p>
+</blockquote>
+</section>
+<section id="usage-9" class="level3" data-number="3.11.3">
+<h3 data-number="3.11.3" class="anchored" data-anchor-id="usage-9"><span class="header-section-number">3.11.3</span> Usage</h3>
+<blockquote class="blockquote">
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>feature_selection <span class="op">=</span> setup_feature_selection()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</blockquote>
+</section>
+</section>
+<section id="printboxedtext.py" class="level2" data-number="3.12">
+<h2 data-number="3.12" class="anchored" data-anchor-id="printboxedtext.py"><span class="header-section-number">3.12</span> PrintBoxedText.py</h2>
+<blockquote class="blockquote">
+<p>Prints a title in a boxed format in the console output.</p>
+</blockquote>
+<section id="parameters-10" class="level3" data-number="3.12.1">
+<h3 data-number="3.12.1" class="anchored" data-anchor-id="parameters-10"><span class="header-section-number">3.12.1</span> Parameters</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">title: str</b>:
+<ul>
+<li>The text to be displayed inside the box.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="returns-9" class="level3" data-number="3.12.2">
+<h3 data-number="3.12.2" class="anchored" data-anchor-id="returns-9"><span class="header-section-number">3.12.2</span> Returns</h3>
+<blockquote class="blockquote">
+<ul>
+<li>None. This function directly prints the formatted title to the console.</li>
+</ul>
+</blockquote>
+</section>
+<section id="description-2" class="level3" data-number="3.12.3">
+<h3 data-number="3.12.3" class="anchored" data-anchor-id="description-2"><span class="header-section-number">3.12.3</span> Description</h3>
+<blockquote class="blockquote">
+<p>This function creates a box around the given title text using hash (#) and equals (=) symbols. It prints the title with a border on the top and bottom, making it stand out in the console output. The border line consists of a hash symbol, followed by equals symbols the length of the title plus two (for padding), and then another hash symbol.</p>
+</blockquote>
+</section>
+<section id="usage-example" class="level3" data-number="3.12.4">
+<h3 data-number="3.12.4" class="anchored" data-anchor-id="usage-example"><span class="header-section-number">3.12.4</span> Usage Example</h3>
+<blockquote class="blockquote">
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>print_boxed_text(<span class="st">"Example Title"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</blockquote>
+</section>
+</section>
+<section id="extractandsaveresults.py" class="level2" data-number="3.13">
+<h2 data-number="3.13" class="anchored" data-anchor-id="extractandsaveresults.py"><span class="header-section-number">3.13</span> ExtractAndSaveResults.py</h2>
+<blockquote class="blockquote">
+<p>The function uses matplotlib for plotting, pandas for data handling, and a custom <code>print_boxed_text</code> function for formatted output.</p>
+</blockquote>
+<section id="parameters-11" class="level3" data-number="3.13.1">
+<h3 data-number="3.13.1" class="anchored" data-anchor-id="parameters-11"><span class="header-section-number">3.13.1</span> Parameters</h3>
+<blockquote class="blockquote">
+<ul>
+<li><b style="color: #43799a;">clf: trained model (RandomizedSearchCV object)</b>:
+<ul>
+<li>The classifier object after training.</li>
+</ul></li>
+<li><b style="color: #43799a;">X: DataFrame</b>:
+<ul>
+<li>Feature data used for training.</li>
+</ul></li>
+<li><b style="color: #43799a;">save_path: str</b>:
+<ul>
+<li>Base path for saving results.</li>
+</ul></li>
+<li><b style="color: #43799a;">show_plot: bool</b> (optional):
+<ul>
+<li>Whether to display the plot. Default is False.</li>
+</ul></li>
+<li><b style="color: #43799a;">use_tkagg: bool</b> (optional):
+<ul>
+<li>Whether to use ‘TkAgg’ backend for matplotlib. Generally, choose False when using in PyCharm IDE, and choose True when rendering file.qmd to an HTML file.</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="description-3" class="level3" data-number="3.13.2">
+<h3 data-number="3.13.2" class="anchored" data-anchor-id="description-3"><span class="header-section-number">3.13.2</span> Description</h3>
+<blockquote class="blockquote">
+<p>This function performs a comprehensive analysis and extraction of results from a trained model. It includes: - Extracting and plotting cross-validation results. - Identifying and printing features selected by RFECV and SelectKBest. - Combining and saving selected features in a CSV file. - Extracting and saving feature importances from EnsembleForRFE. - Extracting and saving scores from SelectKBest.</p>
+</blockquote>
+</section>
+<section id="usage-10" class="level3" data-number="3.13.3">
+<h3 data-number="3.13.3" class="anchored" data-anchor-id="usage-10"><span class="header-section-number">3.13.3</span> Usage</h3>
+<blockquote class="blockquote">
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>extract_and_save_results(clf, X, <span class="st">"path/to/save/"</span>, show_plot<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</blockquote>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="SSSYDYSSS/TransProPyBook" data-repo-id="R_kgDOKxwgVA" data-category="General" data-category-id="DIC_kwDOKxwgVM4CbO4f" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./UtilsFunction2.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">UtilsFunction2</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./MACFCmain.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">MACFCmain.py</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

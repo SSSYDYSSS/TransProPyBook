@@ -30,11 +30,13 @@ book:
     - index.qmd
     - UtilsFunction1.qmd
     - UtilsFunction2.qmd
+    - UtilsFunction3.qmd
     - MACFCmain.qmd
     - NewMACFCmain.qmd
     - AutogluonTimeLimit.qmd
     - AutoGluonSelectML.qmd
-    - summary.qmd
+    - AutoFeatureSelection.qmd
+    - Contact.qmd
     - references.qmd
 
 bibliography: references.bib
