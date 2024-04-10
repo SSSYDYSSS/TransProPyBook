@@ -32,21 +32,21 @@ h4 {
 }
 
 .callout-tip {
-    border: 3px solid #544680 !important;
+    border: 3px solid #806fb6 !important;
     background-color: #d5caf7 !important;
 }
 
 .callout-note {
-    border: 3px solid #6ca83f !important;
-    background-color: #d7f5c1 !important;
+    border: 3px solid #93c76c !important;
+    background-color: #dbf1cb !important;
 }
 
 .callout-tip .callout-header {
-    background-color: #8271ba !important; 
+    background-color: #9383c6 !important; 
 }
 
 .callout-note .callout-header {
-    background-color: #70ad41 !important; 
+    background-color: #92c36c !important; 
 }
 
 /* 改变Tip框中的标题颜色 */
