@@ -32,6 +32,7 @@ Reads the gene expression and class data, processes it, and splits it into train
 >- <b style="color: #43799a;">test_data</b> (pd.DataFrame): 
 >   - The testing data.
 
+
 ### Usage
 ```python
 split_data(

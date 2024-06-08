@@ -1,0 +1,986 @@
+# Comparison of TransPropy with Other Tool Packages Using Ridge Plot
+
+```r
+library(readr)
+library(TransProR)
+library(dplyr)
+library(rlang)
+library(linkET)
+library(funkyheatmap)
+library(tidyverse)
+library(RColorBrewer)
+library(ggalluvial)
+library(tidyr)
+library(tibble)
+library(ggplot2)
+library(ggridges)
+```
+
+## Finding the top three genes with the highest countdown: CFD, ANKRD35, ALOXE3
+```r
+# Select all *countdown columns
+test_formatted <- df_formatted[ ,c("id","deseq2countdown","edgeRcountdown","limmacountdown","outRstcountdown","TransPropycountdown")]
+
+# Extract the rows where the values in the last column are greater than all previous columns
+test_formatted1 <- test_formatted[apply(test_formatted[, -1], 1, function(row) all(row[length(row)] > row[1:(length(row)-1)])), ]
+print(test_formatted1) # Show the total number of genes where the countdown is higher than that selected by the previous four methods
+
+# Set the value of N
+N <- 100  # Replace with your desired value
+# Exclude the ID column from the comparison and find the rows where the value in the last column is greater than the maximum value of the previous columns by more than N
+test_formatted2 <- test_formatted1[apply(test_formatted1[, -1], 1, function(row) max(row[1:(length(row)-1)]) + N < row[length(row)]), ]
+# Display the result
+print(test_formatted2)
+
+# Sort by the difference between the last column and the maximum value of the previous columns, select the top N rows with the largest differences
+N1 <- 3  # Replace with your desired value
+# Calculate the difference and add it as a new column
+test_formatted$Difference <- apply(test_formatted[, -1], 1, function(row) row[length(row)] - max(row[1:(length(row)-1)]))
+# Sort the data frame by the Difference column in descending order
+sorted_df <- test_formatted[order(-test_formatted$Difference), ]
+# Select the top N rows
+top_N1_rows <- head(sorted_df, N1)
+
+# Display the result
+print(top_N1_rows)
+
+```
+
+## CFD
+### TRANSPROPY
+```r
+#### TRANSPRO
+
+# Set up the container for the final generated data
+correlation <- data.frame()
+
+TransPropy_CFD <- as.data.frame(TransPropy[,"CFD"])
+colnames(TransPropy_CFD) <- c("CFD")
+
+# Get the range for batch operations, which should be a vector
+genelist <- colnames(TransPropy)
+
+# Start the for loop, exporting data to the container
+gene <- "CFD"
+genedata <- as.numeric(TransPropy[,gene])
+
+for(i in 1:length(genelist)) {
+  # 1. Indicate progress
+  print(i)
+  # 2. Compute correlation
+  dd <- cor.test(genedata, as.numeric(TransPropy[,i]), method="spearman")
+  # 3. Fill in the data
+  correlation[i,1] <- gene
+  correlation[i,2] <- genelist[i]
+  correlation[i,3] <- dd$estimate
+  correlation[i,4] <- dd$p.value
+}
+
+colnames(correlation) <- c("gene1", "gene2", "cor", "p.value")
+class(correlation)
+
+correlation <- na.omit(correlation)
+correlation_TransPropy_CFD <- correlation
+
+# write.table(correlation_TransPropy_CFD, file="correlation_TransPropy_CFD.csv", sep=",", row.names=TRUE)
+
+N <- 0.5 # Set the threshold to 0.5, for example
+# Calculate the number of rows where the absolute value of 'cor' is greater than N
+TransPropycount_CFD <- sum(abs(correlation_TransPropy_CFD$cor) > N)
+
+# Print results
+TransPropycountup_CFD <- sum(correlation_TransPropy_CFD$cor > N)
+TransPropycountdown_CFD <- sum(correlation_TransPropy_CFD$cor < -N)
+print(paste("TransPropycount_CFD:", TransPropycount_CFD, 
+            "TransPropycountup_CFD:", TransPropycountup_CFD, 
+            "TransPropycountdown_CFD:", TransPropycountdown_CFD))
+
+```
+### DESEQ2
+```r
+# Set up the container for the final generated data
+correlation <- data.frame()
+
+# Get the range for batch operations, which should be a vector
+genelist <- colnames(deseq2)
+
+# Start the for loop, exporting data to the container
+gene <- "CFD"
+genedata <- as.numeric(deseq2[,gene])
+
+for(i in 1:length(genelist)) {
+  # 1. Indicate progress
+  print(i)
+  # 2. Compute correlation
+  dd <- cor.test(genedata, as.numeric(deseq2[,i]), method="spearman")
+  # 3. Fill in the data
+  correlation[i,1] <- gene
+  correlation[i,2] <- genelist[i]
+  correlation[i,3] <- dd$estimate
+  correlation[i,4] <- dd$p.value
+}
+
+colnames(correlation) <- c("gene1", "gene2", "cor", "p.value")
+class(correlation)
+
+correlation <- na.omit(correlation)
+correlation_deseq2_CFD <- correlation
+
+# write.table(correlation_deseq2_CFD, file="correlation_deseq2_CFD.csv", sep=",", row.names=TRUE)
+
+N <- 0.5 # Set the threshold to 0.5, for example
+# Calculate the number of rows where the absolute value of 'cor' is greater than N
+deseq2count_CFD <- sum(abs(correlation_deseq2_CFD$cor) > N)
+
+# Print results
+deseq2countup_CFD <- sum(correlation_deseq2_CFD$cor > N)
+deseq2countdown_CFD <- sum(correlation_deseq2_CFD$cor < -N)
+print(paste("deseq2count_CFD:", deseq2count_CFD, 
+            "deseq2countup_CFD:", deseq2countup_CFD, 
+            "deseq2countdown_CFD:", deseq2countdown_CFD))
+```
+
+### edgeR
+```r
+# Set up the container for the final generated data
+correlation <- data.frame()
+
+# Get the range for batch operations, which should be a vector
+genelist <- colnames(edgeR)
+
+# Start the for loop, exporting data to the container
+gene <- "CFD"
+genedata <- as.numeric(edgeR[,gene])
+
+for(i in 1:length(genelist)) {
+  # 1. Indicate progress
+  print(i)
+  # 2. Compute correlation
+  dd <- cor.test(genedata, as.numeric(edgeR[,i]), method="spearman")
+  # 3. Fill in the data
+  correlation[i,1] <- gene
+  correlation[i,2] <- genelist[i]
+  correlation[i,3] <- dd$estimate
+  correlation[i,4] <- dd$p.value
+}
+
+colnames(correlation) <- c("gene1", "gene2", "cor", "p.value")
+class(correlation)
+
+correlation <- na.omit(correlation)
+correlation_edgeR_CFD <- correlation
+
+# write.table(correlation_edgeR_CFD, file="correlation_edgeR_CFD.csv", sep=",", row.names=TRUE)
+
+N <- 0.5 # Set the threshold to 0.5, for example
+# Calculate the number of rows where the absolute value of 'cor' is greater than N
+edgeRcount_CFD <- sum(abs(correlation_edgeR_CFD$cor) > N)
+
+# Print results
+edgeRcountup_CFD <- sum(correlation_edgeR_CFD$cor > N)
+edgeRcountdown_CFD <- sum(correlation_edgeR_CFD$cor < -N)
+print(paste("edgeRcount_CFD:", edgeRcount_CFD, 
+            "edgeRcountup_CFD:", edgeRcountup_CFD, 
+            "edgeRcountdown_CFD:", edgeRcountdown_CFD))
+```
+
+### limma
+```r
+# Set up the container for the final generated data
+correlation <- data.frame()
+
+# Get the range for batch operations, which should be a vector
+genelist <- colnames(limma)
+
+# Start the for loop, exporting data to the container
+gene <- "CFD"
+genedata <- as.numeric(limma[,gene])
+
+for(i in 1:length(genelist)) {
+  # 1. Indicate progress
+  print(i)
+  # 2. Compute correlation
+  dd <- cor.test(genedata, as.numeric(limma[,i]), method="spearman")
+  # 3. Fill in the data
+  correlation[i,1] <- gene
+  correlation[i,2] <- genelist[i]
+  correlation[i,3] <- dd$estimate
+  correlation[i,4] <- dd$p.value
+}
+
+colnames(correlation) <- c("gene1", "gene2", "cor", "p.value")
+class(correlation)
+
+correlation <- na.omit(correlation)
+correlation_limma_CFD <- correlation
+
+# write.table(correlation_limma_CFD, file="correlation_limma_CFD.csv", sep=",", row.names=TRUE)
+
+N <- 0.5 # Set the threshold to 0.5, for example
+# Calculate the number of rows where the absolute value of 'cor' is greater than N
+limmacount_CFD <- sum(abs(correlation_limma_CFD$cor) > N)
+
+# Print results
+limmacountup_CFD <- sum(correlation_limma_CFD$cor > N)
+limmacountdown_CFD <- sum(correlation_limma_CFD$cor < -N)
+print(paste("limmacount_CFD:", limmacount_CFD, 
+            "limmacountup_CFD:", limmacountup_CFD, 
+            "limmacountdown_CFD:", limmacountdown_CFD))
+```
+
+### outRst
+```r
+# Set up the container for the final generated data
+correlation <- data.frame()
+
+# Get the range for batch operations, which should be a vector
+genelist <- colnames(outRst)
+
+# Start the for loop, exporting data to the container
+gene <- "CFD"
+genedata <- as.numeric(outRst[,gene])
+
+for(i in 1:length(genelist)) {
+  # 1. Indicate progress
+  print(i)
+  # 2. Compute correlation
+  dd <- cor.test(genedata, as.numeric(outRst[,i]), method="spearman")
+  # 3. Fill in the data
+  correlation[i,1] <- gene
+  correlation[i,2] <- genelist[i]
+  correlation[i,3] <- dd$estimate
+  correlation[i,4] <- dd$p.value
+}
+
+colnames(correlation) <- c("gene1", "gene2", "cor", "p.value")
+class(correlation)
+
+correlation <- na.omit(correlation)
+correlation_outRst_CFD <- correlation
+
+# write.table(correlation_outRst_CFD, file="correlation_outRst_CFD.csv", sep=",", row.names=TRUE)
+
+N <- 0.5 # Set the threshold to 0.5, for example
+# Calculate the number of rows where the absolute value of 'cor' is greater than N
+outRstcount_CFD <- sum(abs(correlation_outRst_CFD$cor) > N)
+
+# Print results
+outRstcountup_CFD <- sum(correlation_outRst_CFD$cor > N)
+outRstcountdown_CFD <- sum(correlation_outRst_CFD$cor < -N)
+print(paste("outRstcount_CFD:", outRstcount_CFD, 
+            "outRstcountup_CFD:", outRstcountup_CFD, 
+            "outRstcountdown_CFD:", outRstcountdown_CFD))
+```
+
+## ANKRD35
+
+### TRANSPROPY
+```r
+# Set the container to store the final generated data
+correlation <- data.frame()
+
+# Get the range for batch processing, which should be a vector
+genelist <- colnames(TransPropy)
+
+# Start the for loop, exporting data to the container
+gene <- "ANKRD35"
+genedata <- as.numeric(TransPropy[, gene])
+
+for (i in 1:length(genelist)) {
+  # 1. Indicate progress
+  print(i)
+  # 2. Calculate correlation
+  dd = cor.test(genedata, as.numeric(TransPropy[, i]), method="spearman")
+  # 3. Fill the container
+  correlation[i, 1] = gene
+  correlation[i, 2] = genelist[i]
+  correlation[i, 3] = dd$estimate
+  correlation[i, 4] = dd$p.value
+}
+
+colnames(correlation) <- c("gene1", "gene2", "cor", "p.value")
+class(correlation)
+
+correlation = na.omit(correlation)
+correlation_TransPropy_ANKRD35 <- correlation
+
+# write.table(correlation_TransPropy_ANKRD35, file="correlation_TransPropy_ANKRD35.csv", sep=",", row.names=T)
+
+N <- 0.5  # Set threshold to 0.5
+TransPropycount_ANKRD35 <- sum(abs(correlation_TransPropy_ANKRD35$cor) > N)
+
+TransPropycountup_ANKRD35 <- sum(correlation_TransPropy_ANKRD35$cor > N)
+TransPropycountdown_ANKRD35 <- sum(correlation_TransPropy_ANKRD35$cor < -N)
+print(paste("TransPropycount_ANKRD35:", TransPropycount_ANKRD35, 
+            "TransPropycountup_ANKRD35:", TransPropycountup_ANKRD35, 
+            "TransPropycountdown_ANKRD35:", TransPropycountdown_ANKRD35))
+
+```
+
+### DESEQ2
+```r
+# Set the container to store the final generated data
+correlation <- data.frame()
+
+# Get the range for batch processing, which should be a vector
+genelist <- colnames(deseq2)
+
+# Start the for loop, exporting data to the container
+gene <- "ANKRD35"
+genedata <- as.numeric(deseq2[, gene])
+
+for (i in 1:length(genelist)) {
+  # 1. Indicate progress
+  print(i)
+  # 2. Calculate correlation
+  dd = cor.test(genedata, as.numeric(deseq2[, i]), method="spearman")
+  # 3. Fill the container
+  correlation[i, 1] = gene
+  correlation[i, 2] = genelist[i]
+  correlation[i, 3] = dd$estimate
+  correlation[i, 4] = dd$p.value
+}
+
+colnames(correlation) <- c("gene1", "gene2", "cor", "p.value")
+class(correlation)
+
+correlation = na.omit(correlation)
+correlation_deseq2_ANKRD35 <- correlation
+
+# write.table(correlation_deseq2_ANKRD35, file="correlation_deseq2_ANKRD35.csv", sep=",", row.names=T)
+
+N <- 0.5  # Set threshold to 0.5
+deseq2count_ANKRD35 <- sum(abs(correlation_deseq2_ANKRD35$cor) > N)
+
+deseq2countup_ANKRD35 <- sum(correlation_deseq2_ANKRD35$cor > N)
+deseq2countdown_ANKRD35 <- sum(correlation_deseq2_ANKRD35$cor < -N)
+print(paste("deseq2count_ANKRD35:", deseq2count_ANKRD35, 
+            "deseq2countup_ANKRD35:", deseq2countup_ANKRD35, 
+            "deseq2countdown_ANKRD35:", deseq2countdown_ANKRD35))
+
+```
+### edgeR
+```r
+# Set the container to store the final generated data
+correlation <- data.frame()
+
+# Get the range for batch processing, which should be a vector
+genelist <- colnames(edgeR)
+
+# Start the for loop, exporting data to the container
+gene <- "ANKRD35"
+genedata <- as.numeric(edgeR[, gene])
+
+for (i in 1:length(genelist)) {
+  # 1. Indicate progress
+  print(i)
+  # 2. Calculate correlation
+  dd = cor.test(genedata, as.numeric(edgeR[, i]), method="spearman")
+  # 3. Fill the container
+  correlation[i, 1] = gene
+  correlation[i, 2] = genelist[i]
+  correlation[i, 3] = dd$estimate
+  correlation[i, 4] = dd$p.value
+}
+
+colnames(correlation) <- c("gene1", "gene2", "cor", "p.value")
+class(correlation)
+
+correlation = na.omit(correlation)
+correlation_edgeR_ANKRD35 <- correlation
+
+# write.table(correlation_edgeR_ANKRD35, file="correlation_edgeR_ANKRD35.csv", sep=",", row.names=T)
+
+N <- 0.5  # Set threshold to 0.5
+edgeRcount_ANKRD35 <- sum(abs(correlation_edgeR_ANKRD35$cor) > N)
+
+edgeRcountup_ANKRD35 <- sum(correlation_edgeR_ANKRD35$cor > N)
+edgeRcountdown_ANKRD35 <- sum(correlation_edgeR_ANKRD35$cor < -N)
+print(paste("edgeRcount_ANKRD35:", edgeRcount_ANKRD35, 
+            "edgeRcountup_ANKRD35:", edgeRcountup_ANKRD35, 
+            "edgeRcountdown_ANKRD35:", edgeRcountdown_ANKRD35))
+
+```
+### limma
+```r
+# Set the container to store the final generated data
+correlation <- data.frame()
+# Get the range for batch processing, which should be a vector
+genelist <- colnames(limma)
+# Start the for loop, exporting data to the container
+gene <- "ANKRD35"
+genedata <- as.numeric(limma[, gene])
+
+for (i in 1:length(genelist)) {
+  # 1. Indicate progress
+  print(i)
+  # 2. Calculate correlation
+  dd = cor.test(genedata, as.numeric(limma[, i]), method="spearman")
+  # 3. Fill the container
+  correlation[i, 1] = gene
+  correlation[i, 2] = genelist[i]
+  correlation[i, 3] = dd$estimate
+  correlation[i, 4] = dd$p.value
+}
+
+colnames(correlation) <- c("gene1", "gene2", "cor", "p.value")
+class(correlation)
+
+correlation = na.omit(correlation)
+correlation_limma_ANKRD35 <- correlation
+
+# write.table(correlation_limma_ANKRD35, file="correlation_limma_ANKRD35.csv", sep=",", row.names=T)
+
+N <- 0.5  # Set threshold to 0.5
+limmacount_ANKRD35 <- sum(abs(correlation_limma_ANKRD35$cor) > N)
+
+limmacountup_ANKRD35 <- sum(correlation_limma_ANKRD35$cor > N)
+limmacountdown_ANKRD35 <- sum(correlation_limma_ANKRD35$cor < -N)
+print(paste("limmacount_ANKRD35:", limmacount_ANKRD35, 
+            "limmacountup_ANKRD35:", limmacountup_ANKRD35, 
+            "limmacountdown_ANKRD35:", limmacountdown_ANKRD35))
+
+```
+### outRst
+```r
+# Set the container to store the final generated data
+correlation <- data.frame()
+# Get the range for batch processing, which should be a vector
+genelist <- colnames(outRst)
+# Start the for loop, exporting data to the container
+gene <- "ANKRD35"
+genedata <- as.numeric(outRst[, gene])
+
+for (i in 1:length(genelist)) {
+  # 1. Indicate progress
+  print(i)
+  # 2. Calculate correlation
+  dd = cor.test(genedata, as.numeric(outRst[, i]), method="spearman")
+  # 3. Fill the container
+  correlation[i, 1] = gene
+  correlation[i, 2] = genelist[i]
+  correlation[i, 3] = dd$estimate
+  correlation[i, 4] = dd$p.value
+}
+
+colnames(correlation) <- c("gene1", "gene2", "cor", "p.value")
+class(correlation)
+
+correlation = na.omit(correlation)
+correlation_outRst_ANKRD35 <- correlation
+
+# write.table(correlation_outRst_ANKRD35, file="correlation_outRst_ANKRD35.csv", sep=",", row.names=T)
+
+N <- 0.5  # Set threshold to 0.5
+outRstcount_ANKRD35 <- sum(abs(correlation_outRst_ANKRD35$cor) > N)
+
+outRstcountup_ANKRD35 <- sum(correlation_outRst_ANKRD35$cor > N)
+outRstcountdown_ANKRD35 <- sum(correlation_outRst_ANKRD35$cor < -N)
+print(paste("outRstcount_ANKRD35:", outRstcount_ANKRD35, 
+            "outRstcountup_ANKRD35:", outRstcountup_ANKRD35, 
+            "outRstcountdown_ANKRD35:", outRstcountdown_ANKRD35))
+
+```
+
+## ALOXE3
+### TRANSPROPY
+```r
+# Set the container to store the final generated data
+correlation <- data.frame()
+# Get the range for batch processing, which should be a vector
+genelist <- colnames(TransPropy)
+# Start the for loop, exporting data to the container
+gene <- "ALOXE3"
+genedata <- as.numeric(TransPropy[, gene])
+
+for (i in 1:length(genelist)) {
+  # 1. Indicate progress
+  print(i)
+  # 2. Calculate correlation
+  dd = cor.test(genedata, as.numeric(TransPropy[, i]), method="spearman")
+  # 3. Fill the container
+  correlation[i, 1] = gene
+  correlation[i, 2] = genelist[i]
+  correlation[i, 3] = dd$estimate
+  correlation[i, 4] = dd$p.value
+}
+
+colnames(correlation) <- c("gene1", "gene2", "cor", "p.value")
+class(correlation)
+
+correlation = na.omit(correlation)
+correlation_TransPropy_ALOXE3 <- correlation
+
+# write.table(correlation_TransPropy_ALOXE3, file="correlation_TransPropy_ALOXE3.csv", sep=",", row.names=T)
+
+N <- 0.5  # Set threshold to 0.5
+TransPropycount_ALOXE3 <- sum(abs(correlation_TransPropy_ALOXE3$cor) > N)
+
+TransPropycountup_ALOXE3 <- sum(correlation_TransPropy_ALOXE3$cor > N)
+TransPropycountdown_ALOXE3 <- sum(correlation_TransPropy_ALOXE3$cor < -N)
+print(paste("TransPropycount_ALOXE3:", TransPropycount_ALOXE3, 
+            "TransPropycountup_ALOXE3:", TransPropycountup_ALOXE3, 
+            "TransPropycountdown_ALOXE3:", TransPropycountdown_ALOXE3))
+
+```
+### DESEQ2
+```r
+# Set the container to store the final generated data
+correlation <- data.frame()
+# Get the range for batch processing, which should be a vector
+genelist <- colnames(deseq2)
+# Start the for loop, exporting data to the container
+gene <- "ALOXE3"
+genedata <- as.numeric(deseq2[, gene])
+
+for (i in 1:length(genelist)) {
+  # 1. Indicate progress
+  print(i)
+  # 2. Calculate correlation
+  dd = cor.test(genedata, as.numeric(deseq2[, i]), method="spearman")
+  # 3. Fill the container
+  correlation[i, 1] = gene
+  correlation[i, 2] = genelist[i]
+  correlation[i, 3] = dd$estimate
+  correlation[i, 4] = dd$p.value
+}
+
+colnames(correlation) <- c("gene1", "gene2", "cor", "p.value")
+class(correlation)
+
+correlation = na.omit(correlation)
+correlation_deseq2_ALOXE3 <- correlation
+
+# write.table(correlation_deseq2_ALOXE3, file="correlation_deseq2_ALOXE3.csv", sep=",", row.names=T)
+
+N <- 0.5  # Set threshold to 0.5
+deseq2count_ALOXE3 <- sum(abs(correlation_deseq2_ALOXE3$cor) > N)
+
+deseq2countup_ALOXE3 <- sum(correlation_deseq2_ALOXE3$cor > N)
+deseq2countdown_ALOXE3 <- sum(correlation_deseq2_ALOXE3$cor < -N)
+print(paste("deseq2count_ALOXE3:", deseq2count_ALOXE3, 
+            "deseq2countup_ALOXE3:", deseq2countup_ALOXE3, 
+            "deseq2countdown_ALOXE3:", deseq2countdown_ALOXE3))
+
+```
+### edgeR
+```r
+# Set the container to store the final generated data
+correlation <- data.frame()
+# Get the range for batch processing, which should be a vector
+genelist <- colnames(edgeR)
+# Start the for loop, exporting data to the container
+gene <- "ALOXE3"
+genedata <- as.numeric(edgeR[, gene])
+
+for (i in 1:length(genelist)) {
+  # 1. Indicate progress
+  print(i)
+  # 2. Calculate correlation
+  dd = cor.test(genedata, as.numeric(edgeR[, i]), method="spearman")
+  # 3. Fill the container
+  correlation[i, 1] = gene
+  correlation[i, 2] = genelist[i]
+  correlation[i, 3] = dd$estimate
+  correlation[i, 4] = dd$p.value
+}
+
+colnames(correlation) <- c("gene1", "gene2", "cor", "p.value")
+class(correlation)
+
+correlation = na.omit(correlation)
+correlation_edgeR_ALOXE3 <- correlation
+
+# write.table(correlation_edgeR_ALOXE3, file="correlation_edgeR_ALOXE3.csv", sep=",", row.names=T)
+
+N <- 0.5  # Set threshold to 0.5
+edgeRcount_ALOXE3 <- sum(abs(correlation_edgeR_ALOXE3$cor) > N)
+
+edgeRcountup_ALOXE3 <- sum(correlation_edgeR_ALOXE3$cor > N)
+edgeRcountdown_ALOXE3 <- sum(correlation_edgeR_ALOXE3$cor < -N)
+print(paste("edgeRcount_ALOXE3:", edgeRcount_ALOXE3, 
+            "edgeRcountup_ALOXE3:", edgeRcountup_ALOXE3, 
+            "edgeRcountdown_ALOXE3:", edgeRcountdown_ALOXE3))
+
+```
+### limma
+```r
+# Set the container to store the final generated data
+correlation <- data.frame()
+# Get the range for batch processing, which should be a vector
+genelist <- colnames(limma)
+# Start the for loop, exporting data to the container
+gene <- "ALOXE3"
+genedata <- as.numeric(limma[, gene])
+
+for (i in 1:length(genelist)) {
+  # 1. Indicate progress
+  print(i)
+  # 2. Calculate correlation
+  dd = cor.test(genedata, as.numeric(limma[, i]), method="spearman")
+  # 3. Fill the container
+  correlation[i, 1] = gene
+  correlation[i, 2] = genelist[i]
+  correlation[i, 3] = dd$estimate
+  correlation[i, 4] = dd$p.value
+}
+
+colnames(correlation) <- c("gene1", "gene2", "cor", "p.value")
+class(correlation)
+
+correlation = na.omit(correlation)
+correlation_limma_ALOXE3 <- correlation
+
+# write.table(correlation_limma_ALOXE3, file="correlation_limma_ALOXE3.csv", sep=",", row.names=T)
+
+N <- 0.5  # Set threshold to 0.5
+limmacount_ALOXE3 <- sum(abs(correlation_limma_ALOXE3$cor) > N)
+
+limmacountup_ALOXE3 <- sum(correlation_limma_ALOXE3$cor > N)
+limmacountdown_ALOXE3 <- sum(correlation_limma_ALOXE3$cor < -N)
+print(paste("limmacount_ALOXE3:", limmacount_ALOXE3, 
+            "limmacountup_ALOXE3:", limmacountup_ALOXE3, 
+            "limmacountdown_ALOXE3:", limmacountdown_ALOXE3))
+
+```
+### outRst
+```r
+# Set the container to store the final generated data
+correlation <- data.frame()
+# Get the range for batch processing, which should be a vector
+genelist <- colnames(outRst)
+# Start the for loop, exporting data to the container
+gene <- "ALOXE3"
+genedata <- as.numeric(outRst[, gene])
+
+for (i in 1:length(genelist)) {
+  # 1. Indicate progress
+  print(i)
+  # 2. Calculate correlation
+  dd = cor.test(genedata, as.numeric(outRst[, i]), method="spearman")
+  # 3. Fill the container
+  correlation[i, 1] = gene
+  correlation[i, 2] = genelist[i]
+  correlation[i, 3] = dd$estimate
+  correlation[i, 4] = dd$p.value
+}
+
+colnames(correlation) <- c("gene1", "gene2", "cor", "p.value")
+class(correlation)
+
+correlation = na.omit(correlation)
+correlation_outRst_ALOXE3 <- correlation
+
+# write.table(correlation_outRst_ALOXE3, file="correlation_outRst_ALOXE3.csv", sep=",", row.names=T)
+
+N <- 0.5  # Set threshold to 0.5
+outRstcount_ALOXE3 <- sum(abs(correlation_outRst_ALOXE3$cor) > N)
+
+outRstcountup_ALOXE3 <- sum(correlation_outRst_ALOXE3$cor > N)
+outRstcountdown_ALOXE3 <- sum(correlation_outRst_ALOXE3$cor < -N)
+print(paste("outRstcount_ALOXE3:", outRstcount_ALOXE3, 
+            "outRstcountup_ALOXE3:", outRstcountup_ALOXE3, 
+            "outRstcountdown_ALOXE3:", outRstcountdown_ALOXE3))
+
+```
+
+## Creating a new column to mark the positive and negative correlations
+```r
+# correlation_TransPropy_CFD
+correlation_TransPropy_CFD$cor_type <- ifelse(correlation_TransPropy_CFD$cor > 0, 
+                                              "TransPropy_Positive", "TransPropy_Negative")
+correlation_TransPropy_CFD$methods <- "TransPropy"
+
+# correlation_deseq2_CFD
+correlation_deseq2_CFD$cor_type <- ifelse(correlation_deseq2_CFD$cor > 0, 
+                                              "deseq2_Positive", "deseq2_Negative")
+correlation_deseq2_CFD$methods <- "deseq2"
+
+# correlation_edgeR_CFD
+correlation_edgeR_CFD$cor_type <- ifelse(correlation_edgeR_CFD$cor > 0, 
+                                              "edgeR_Positive", "edgeR_Negative")
+correlation_edgeR_CFD$methods <- "edgeR"
+
+# correlation_limma_CFD
+correlation_limma_CFD$cor_type <- ifelse(correlation_limma_CFD$cor > 0, 
+                                              "limma_Positive", "limma_Negative")
+correlation_limma_CFD$methods <- "limma"
+
+# correlation_outRst_CFD
+correlation_outRst_CFD$cor_type <- ifelse(correlation_outRst_CFD$cor > 0, 
+                                              "outRst_Positive", "outRst_Negative")
+correlation_outRst_CFD$methods <- "outRst"
+
+combined_CFD <- rbind(correlation_TransPropy_CFD,
+                      correlation_deseq2_CFD,
+                      correlation_edgeR_CFD,
+                      correlation_limma_CFD,
+                      correlation_outRst_CFD)
+
+# correlation_TransPropy_ANKRD35
+correlation_TransPropy_ANKRD35$cor_type <- ifelse(correlation_TransPropy_ANKRD35$cor > 0, 
+                                              "TransPropy_Positive", "TransPropy_Negative")
+correlation_TransPropy_ANKRD35$methods <- "TransPropy"
+
+# correlation_deseq2_ANKRD35
+correlation_deseq2_ANKRD35$cor_type <- ifelse(correlation_deseq2_ANKRD35$cor > 0, 
+                                              "deseq2_Positive", "deseq2_Negative")
+correlation_deseq2_ANKRD35$methods <- "deseq2"
+
+# correlation_edgeR_ANKRD35
+correlation_edgeR_ANKRD35$cor_type <- ifelse(correlation_edgeR_ANKRD35$cor > 0, 
+                                              "edgeR_Positive", "edgeR_Negative")
+correlation_edgeR_ANKRD35$methods <- "edgeR"
+
+# correlation_limma_ANKRD35
+correlation_limma_ANKRD35$cor_type <- ifelse(correlation_limma_ANKRD35$cor > 0, 
+                                              "limma_Positive", "limma_Negative")
+correlation_limma_ANKRD35$methods <- "limma"
+
+# correlation_outRst_ANKRD35
+correlation_outRst_ANKRD35$cor_type <- ifelse(correlation_outRst_ANKRD35$cor > 0, 
+                                              "outRst_Positive", "outRst_Negative")
+correlation_outRst_ANKRD35$methods <- "outRst"
+
+combined_ANKRD35 <- rbind(correlation_TransPropy_ANKRD35,
+                      correlation_deseq2_ANKRD35,
+                      correlation_edgeR_ANKRD35,
+                      correlation_limma_ANKRD35,
+                      correlation_outRst_ANKRD35)
+
+# correlation_TransPropy_ALOXE3
+correlation_TransPropy_ALOXE3$cor_type <- ifelse(correlation_TransPropy_ALOXE3$cor > 0, 
+                                              "TransPropy_Positive", "TransPropy_Negative")
+correlation_TransPropy_ALOXE3$methods <- "TransPropy"
+
+# correlation_deseq2_ALOXE3
+correlation_deseq2_ALOXE3$cor_type <- ifelse(correlation_deseq2_ALOXE3$cor > 0, 
+                                              "deseq2_Positive", "deseq2_Negative")
+correlation_deseq2_ALOXE3$methods <- "deseq2"
+
+# correlation_edgeR_ALOXE3
+correlation_edgeR_ALOXE3$cor_type <- ifelse(correlation_edgeR_ALOXE3$cor > 0, 
+                                              "edgeR_Positive", "edgeR_Negative")
+correlation_edgeR_ALOXE3$methods <- "edgeR"
+
+# correlation_limma_ALOXE3
+correlation_limma_ALOXE3$cor_type <- ifelse(correlation_limma_ALOXE3$cor > 0, 
+                                              "limma_Positive", "limma_Negative")
+correlation_limma_ALOXE3$methods <- "limma"
+
+# correlation_outRst_ALOXE3
+correlation_outRst_ALOXE3$cor_type <- ifelse(correlation_outRst_ALOXE3$cor > 0, 
+                                              "outRst_Positive", "outRst_Negative")
+correlation_outRst_ALOXE3$methods <- "outRst"
+
+combined_ALOXE3 <- rbind(correlation_TransPropy_ALOXE3,
+                          correlation_deseq2_ALOXE3,
+                          correlation_edgeR_ALOXE3,
+                          correlation_limma_ALOXE3,
+                          correlation_outRst_ALOXE3)
+
+```
+
+## CFD Ridge Plot
+```r
+# Define colors for CFD Gene
+colors <- rev(c("#ee3e42", "#25789a", "#e96e29", "#547089", "#ee8f1d", "#488a87", "#ee7f46", "#41a286", "#efbe4d", "#8ab569"))
+
+# Plot Ridge Plot for CFD Gene
+ggplot(combined_CFD, aes(x = cor, y = methods, fill = cor_type)) +
+  geom_density_ridges(
+    alpha = 0.7,
+    color = 'white',
+    scale = 1,  # Adjust overlap degree, scale = 1 just touches the baseline, larger values increase overlap
+    rel_min_height = 0.01,  # Tail trimming, larger values trim more
+    quantile_lines = TRUE,
+    quantiles = 2,
+    linewidth = 1
+  ) +
+  scale_fill_manual(values = colors) +
+  labs(
+    title = "Ridge Plot for Positive and Negative Correlations of CFD Gene",
+    x = "Correlation",
+    y = "CFD"
+  ) +
+  theme(
+    axis.text.x = element_text(angle = 90, hjust = 1)
+  ) +
+  geom_vline(
+    xintercept = c(-0.5, 0.5),
+    linewidth = 1,
+    color = 'grey50',
+    lty = 'dashed',
+    alpha = 0.3
+  ) +
+  geom_vline(
+    xintercept = c(-1, 0, 1),
+    linewidth = 0.4,
+    color = 'grey',
+    lty = 'dashed',
+    alpha = 0.8
+  ) +
+  theme_classic() +
+  scale_y_discrete(expand = c(0,0)) +
+  theme_minimal() +
+  theme(
+    panel.grid = element_blank(),
+    # axis.text.y = element_blank(),
+    legend.title = element_blank()
+  )
+
+
+```
+
+![](figure/Ridge Plot for Positive and Negative Correlations of CFD Gene.png)
+
+<div style="text-align: center;">
+Fig1
+</div>
+
+
+
+## ANKRD35 Ridge Plot
+```r
+# Define colors for ANKRD35 Gene
+colors <- c("#7b1fa2", "#afb42b", "#512da8", "#fbc02d", "#303f9f", "#ffa000", "#1565c0", "#f57c00", "#0288d1", "#e64a19")
+
+# Plot Ridge Plot for ANKRD35 Gene
+ggplot(combined_ANKRD35, aes(x = cor, y = methods, fill = cor_type)) +
+  geom_density_ridges(
+    alpha = 0.7,
+    color = 'white',
+    scale = 1,  # Adjust overlap degree, scale = 1 just touches the baseline, larger values increase overlap
+    rel_min_height = 0.01,  # Tail trimming, larger values trim more
+    quantile_lines = TRUE,
+    quantiles = 2,
+    linewidth = 1
+  ) +
+  scale_fill_manual(values = colors) +
+  labs(
+    title = "Ridge Plot for Positive and Negative Correlations of ANKRD35 Gene",
+    x = "Correlation",
+    y = "ANKRD35"
+  ) +
+  theme(
+    axis.text.x = element_text(angle = 90, hjust = 1)
+  ) +
+  geom_vline(
+    xintercept = c(-0.5, 0.5),
+    linewidth = 1,
+    color = 'grey50',
+    lty = 'dashed',
+    alpha = 0.3
+  ) +
+  geom_vline(
+    xintercept = c(-1, 0, 1),
+    linewidth = 0.4,
+    color = 'grey',
+    lty = 'dashed',
+    alpha = 0.8
+  ) +
+  theme_classic() +
+  scale_y_discrete(expand = c(0,0)) +
+  theme_minimal() +
+  theme(
+    panel.grid = element_blank(),
+    # axis.text.y = element_blank(),
+    legend.title = element_blank()
+  )
+
+
+```
+
+![](figure/Ridge Plot for Positive and Negative Correlations of ANKRD35 Gene.png)
+
+<div style="text-align: center;">
+Fig1
+</div>
+
+
+
+
+## ALOXE3 Ridge Plot
+```r
+# Define colors for ALOXE3 Gene
+colors <- c("#00838f", "#c62828", "#00695c", "#ad1457", "#2e7d32", "#6a1b9a", "#558b2f", "#4527a0", "#9e9d24", "#283593")
+
+# Plot Ridge Plot for ALOXE3 Gene
+ggplot(combined_ALOXE3, aes(x = cor, y = methods, fill = cor_type)) +
+  geom_density_ridges(
+    alpha = 0.6,
+    color = 'white',
+    scale = 1,  # Adjust overlap degree, scale = 1 just touches the baseline, larger values increase overlap
+    rel_min_height = 0.01,  # Tail trimming, larger values trim more
+    quantile_lines = TRUE,
+    quantiles = 2,
+    linewidth = 1
+  ) +
+  scale_fill_manual(values = colors) +
+  labs(
+    title = "Ridge Plot for Positive and Negative Correlations of ALOXE3 Gene",
+    x = "Correlation",
+    y = "ALOXE3"
+  ) +
+  theme(
+    axis.text.x = element_text(angle = 90, hjust = 1)
+  ) +
+  geom_vline(
+    xintercept = c(-0.5, 0.5),
+    linewidth = 1,
+    color = 'grey50',
+    lty = 'dashed',
+    alpha = 0.3
+  ) +
+  geom_vline(
+    xintercept = c(-1, 0, 1),
+    linewidth = 0.4,
+    color = 'grey',
+    lty = 'dashed',
+    alpha = 0.8
+  ) +
+  theme_classic() +
+  scale_y_discrete(expand = c(0,0)) +
+  theme_minimal() +
+  theme(
+    panel.grid = element_blank(),
+    # axis.text.y = element_blank(),
+    legend.title = element_blank()
+  )
+```
+
+
+![](figure/Ridge Plot for Positive and Negative Correlations of ALOXE3 Gene.png)
+
+<div style="text-align: center;">
+Fig1
+</div>
+
+
+
+
+## Methods
+> 
+> * Finding the top three genes with the highest countdown: CFD, ANKRD35, ALOXE3
+> * Since the TransPropy method has the most balanced proportion of positively and negatively correlated genes, while other methods have a higher UpRatio than DownRatio, we chose the top three genes with the highest DownRatio in the TransPropy method. This approach will further amplify the difference compared to the other four methods. If the distribution trend remains consistent with the other methods while maintaining its advantage of balanced positive and negative correlations, it suggests that this method has greater potential for practical application.
+> 
+
+
+
+
+## Discussion
+
+::: {.panel-tabset}
+
+## deseq2/edgeR
+
+The data exhibit **a bimodal distribution** with few low-correlation genes, showing a **steep increase** on both sides. However, the proportion of Positive genes remains **higher** than that of Negative genes.
+
+## TransPropy
+**Consistent** with the trends observed in DESeq2, edgeR, limma, and outRst methods, the data from the TransPropy method also exhibit **a bimodal distribution** with few low-correlation genes and a **steep increase** on both sides. However, compared to these four methods, the TransPropy method shows a **more balanced proportion** of Positive and Negative genes, with the **median distribution being most symmetrically centered** around 0 **(BEST)**.
+
+## limma/outRst
+Similar to DESeq2 and edgeR, the data exhibit **a bimodal distribution** with few low-correlation genes, showing a **steep increase** on both sides. However, the proportion of Positive genes remains **higher** than that of Negative genes.
+
+:::
+

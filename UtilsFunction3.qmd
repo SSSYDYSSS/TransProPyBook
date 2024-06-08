@@ -261,7 +261,6 @@ Set up and run the Ensemble model for Recursive Feature Elimination.
 > feature_selection = setup_feature_selection()
 > ```
 
-
 ## PrintBoxedText.py
 > Prints a title in a boxed format in the console output.
 

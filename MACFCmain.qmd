@@ -33,6 +33,7 @@ Applying the MACFC selection for relevant feature genes in classification.
 >- <b style="color: #43799a;">Fauc</b>: array of floats
 >   - AUC values corresponding to the ranked feature names.
 
+
 ## Function Principle Explanation {#function-principle-explanation-a}
 1. <b style="color: #54467d;">Feature Frequency and AUC</b>: In this function, features that appear with high frequency indicate their presence in multiple optimal feature sets. Each optimal feature set is determined by calculating its Area Under the Receiver Operating Characteristic (ROC) Curve (AUC), which is a common measure for evaluating classifier performance. During each iteration of the loop, an optimal feature set with the highest average AUC value is selected. Features from this set are then added to a rank list, known as 'ranklist,' and when necessary, also to a set named 'rankset'.
 2. <b style="color: #54467d;">High-Frequency Features and Performance</b>: Because features in each set are chosen based on their contribution to classifier performance, high-frequency features are likely to perform well. In other words, if a feature appears in multiple optimal feature sets, it may have a significant impact on the performance of the classifier.

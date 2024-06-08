@@ -1,0 +1,1802 @@
+# Comparison of TransPropy with Other Tool Packages Using VennNetwork with core enrichment  (Gene: CFD/ANKRD35/ALOXE3)
+
+## R
+```r
+library(readr)
+library(TransProR)
+library(dplyr)
+library(rlang)
+library(linkET)
+library(funkyheatmap)
+library(tidyverse)
+library(RColorBrewer)
+library(ggalluvial)
+library(tidyr)
+library(tibble)
+library(ggplot2)
+library(ggridges)
+library(GSVA)
+library(fgsea) 
+library(clusterProfiler)
+library(enrichplot)
+library(MetaTrx)
+library(GseaVis)
+library(stringr)
+```
+
+
+## Python
+```python
+import pandas as pd
+import numpy as np
+import matplotlib
+matplotlib.use('TkAgg') 
+import matplotlib.pyplot as plt
+from haplot.chart import VennNetworkPlot
+```
+
+
+## CFD_hallmarks
+```r
+# r
+# Example: Process the core enrichment genes from TransPropy_CFD_hallmarks_y
+TransPropy_CFD_hallmarks_core_enrichment <- TransPropy_CFD_hallmarks_y@result[["core_enrichment"]]
+process_core_enrichment(TransPropy_CFD_hallmarks_core_enrichment, correlation_TransPropy_CFD)
+
+# Process the core enrichment genes from deseq2_CFD_hallmarks_y
+deseq2_CFD_hallmarks_core_enrichment <- deseq2_CFD_hallmarks_y@result[["core_enrichment"]]
+process_core_enrichment(deseq2_CFD_hallmarks_core_enrichment, correlation_deseq2_CFD)
+
+# Process the core enrichment genes from edgeR_CFD_hallmarks_y
+edgeR_CFD_hallmarks_core_enrichment <- edgeR_CFD_hallmarks_y@result[["core_enrichment"]]
+process_core_enrichment(edgeR_CFD_hallmarks_core_enrichment, correlation_edgeR_CFD)
+
+# Process the core enrichment genes from limma_CFD_hallmarks_y
+limma_CFD_hallmarks_core_enrichment <- limma_CFD_hallmarks_y@result[["core_enrichment"]]
+process_core_enrichment(limma_CFD_hallmarks_core_enrichment, correlation_limma_CFD)
+
+# Process the core enrichment genes from outRst_CFD_hallmarks_y
+outRst_CFD_hallmarks_core_enrichment <- outRst_CFD_hallmarks_y@result[["core_enrichment"]]
+process_core_enrichment(outRst_CFD_hallmarks_core_enrichment, correlation_outRst_CFD)
+
+
+```
+
+```
+> process_core_enrichment(TransPropy_CFD_hallmarks_core_enrichment, correlation_TransPropy_CFD)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+  [1] "AURKB"    "MYBL2"    "CDC20"    "KIF2C"    "UBE2C"    "NEK2"     "STMN1"    "BIRC5"    "BUB1"    
+ [10] "RAD54L"   "CENPA"    "CDC45"    "PTTG1"    "GINS2"    "CDKN3"    "SLC7A5"   "KIF4A"    "NDC80"   
+ [19] "AURKA"    "CENPF"    "CDC25A"   "EXO1"     "CDC6"     "CENPM"    "KIF18B"   "ASF1B"    "SPC24"   
+ [28] "DLGAP5"   "GINS1"    "GINS4"    "TRIP13"   "UBE2T"    "AKR1C2"   "ITIH4"    "CES1"     "RBP4"    
+ [37] "ALDH2"    "AKR1C3"   "CYP2E1"   "ETS2"     "HSD11B1"  "FETUB"    "CYP2C18"  "ACSM1"    "ARG1"    
+ [46] "CFB"      "AQP9"     "ALDH3A1"  "CDA"      "AOX1"     "CYP4F2"   "ABCC3"    "ADH1C"    "NCAPH"   
+ [55] "EDN1"     "CALML5"   "ZBTB16"   "FGF22"    "ACTC1"    "ATP6V1B1" "EDAR"     "FGFR3"    "EDN2"    
+ [64] "ALOX12B"  "CKM"      "AKR1B10"  "ABCB11"   "SERPINB2" "TG"       "MYH7"     "CLDN16"   "CFD"     
+ [73] "DES"      "FHL1"     "ACTA1"    "ABLIM1"   "ANKRD2"   "GADD45B"  "SDC3"     "KIF20A"   "CHST6"   
+ [82] "KLRD1"    "HLA-DOA"  "HLA-DRA"  "CD74"     "NLRP3"    "SPI1"     "CD96"     "HLA-DQA1" "CD4"     
+ [91] "WAS"      "IL2RG"    "CD3D"     "CD3E"     "ITGB2"    "ITGAL"    "LTB"      "ST8SIA4"  "CD28"    
+[100] "CD7"      "MAP4K1"   "CCR5"     "IRF4"     "CXCL13"   "IL12RB1"  "CCR1"     "CXCR3"    "CCL5"    
+[109] "CRTAM"    "SIT1"     "CTSS"     "IGSF6"    "FASLG"    "MMP9"     "CD79A"    "GPR65"    "HLA-G"   
+[118] "IL27RA"   "CDKN2A"  
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 150 
+All Number of genes with core enrichment (unique): 119 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 48 
+Number of genes with negative correlation (notunique): 102 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 45 
+Number of genes with negative correlation (unique): 74 
+
+
+> process_core_enrichment(deseq2_CFD_hallmarks_core_enrichment, correlation_deseq2_CFD)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+ [1] "SCNN1A"   "CLIC3"    "KLF4"     "KRT19"    "PCP4"     "HMGCS2"   "TRIM29"   "TPSAB1"   "KLK11"   
+[10] "PKP3"     "PERP"     "OVOL2"    "GJB3"     "SFN"      "XBP1"     "FGFR3"    "RAPGEFL1" "SULT2B1" 
+[19] "SOX10"    "NPY4R"    "CALML5"   "CLDN8"    "KRT1"     "PRODH"    "ZBTB16"   "KRT15"    "KLK7"    
+[28] "LGALS7"   "TGM1"     "KLK8"     "KRT5"     "FGF22"    "PKP1"     "HSD11B2"  "EDN2"     "NOS1"    
+[37] "ALOX12B"  "LYPD3"    "CLCA2"    "SERPINB5" "GLS2"     "TP63"     "AQP3"     "ESRP2"    "EGFR"    
+[46] "KRT31"    "CDSN"     "CLDN4"    "PPP2R2C"  "DSC1"     "DSC3"     "COL17A1"  "GRB7"     "CFD"     
+[55] "PGAM2"    "TNNT2"    "KLF5"     "MYL2"     "VIPR1"    "SPDEF"    "MYL7"     "CD8A"     "CD3D"    
+[64] "CD3E"     "CD3G"     "PRF1"     "CD2"      "GZMA"     "CCR5"     "CCL4"     "CXCL13"   "IL12RB1" 
+[73] "CXCR3"    "CCL5"     "CXCL9"    "GZMB"     "IFNG"     "FASLG"    "MMP9"     "CD79A"    "NCR1"    
+[82] "HLA-G"   
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 100 
+All Number of genes with core enrichment (unique): 82 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 79 
+Number of genes with negative correlation (notunique): 21 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 61 
+Number of genes with negative correlation (unique): 21 
+
+
+> process_core_enrichment(edgeR_CFD_hallmarks_core_enrichment, correlation_edgeR_CFD)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+ [1] "SCNN1A"   "KLF4"     "PCP4"     "HMGCS2"   "TRIM29"   "TPSAB1"   "KLK11"    "PKP3"     "OVOL2"   
+[10] "GJB3"     "XBP1"     "FGFR3"    "RAPGEFL1" "SULT2B1"  "SOX10"    "NPY4R"    "CALML5"   "CLDN8"   
+[19] "KRT1"     "PRODH"    "ZBTB16"   "KRT15"    "KLK7"     "LGALS7"   "TGM1"     "KLK8"     "KRT5"    
+[28] "FGF22"    "PKP1"     "HSD11B2"  "EDN2"     "ALOX12B"  "LYPD3"    "KRT31"    "CDSN"     "CLDN4"   
+[37] "DSC1"     "DSC3"     "COL17A1"  "GRB7"     "CRB3"     "AQP3"     "ESRP2"    "CD8A"     "CD3D"    
+[46] "CD3E"     "CD3G"     "PRF1"     "CD2"      "GZMA"     "CCR5"     "CCL4"     "CXCL13"   "IL12RB1" 
+[55] "CXCR3"    "CCL5"     "CXCL9"    "GZMB"     "IFNG"     "FASLG"    "MMP9"     "CD79A"    "NCR1"    
+[64] "HLA-G"   
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 73 
+All Number of genes with core enrichment (unique): 64 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 52 
+Number of genes with negative correlation (notunique): 21 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 43 
+Number of genes with negative correlation (unique): 21 
+
+
+> process_core_enrichment(limma_CFD_hallmarks_core_enrichment, correlation_limma_CFD)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+  [1] "SCNN1A"   "CLIC3"    "MAPK13"   "KLF4"     "KRT19"    "PCP4"     "ZFP36"    "HMGCS2"   "TRIM29"  
+ [10] "TPSAB1"   "CA12"     "KLK11"    "CXCL14"   "PKP3"     "PERP"     "KLK10"    "OVOL2"    "GJB3"    
+ [19] "ASS1"     "NPY1R"    "SFN"      "XBP1"     "FGFR3"    "LAMC2"    "RAPGEFL1" "SULT2B1"  "LTC4S"   
+ [28] "CYP4B1"   "BCL6"     "ADIPOQ"   "ACADL"    "GPX3"     "ALDH2"    "FABP4"    "CIDEA"    "CFD"     
+ [37] "PGAM2"    "DES"      "TNNT2"    "FHL1"     "KLF5"     "MB"       "SGCG"     "ACTA1"    "ACTC1"   
+ [46] "MYH11"    "EFS"      "SPEG"     "MYL2"     "VIPR1"    "NOS1"     "CKM"      "SPDEF"    "MYH7"    
+ [55] "LAMA2"    "MYH2"     "MYH1"     "IFI30"    "ZBTB16"   "CLCA2"    "ALOX15B"  "SERPINB5" "KLK8"    
+ [64] "EPS8L2"   "KRT17"    "GLS2"     "TP63"     "NHLH2"    "GPX2"     "CLDN8"    "LAMA3"    "EGFR"    
+ [73] "KRT31"    "CDSN"     "CLDN4"    "PPP2R2C"  "DSC1"     "DSC3"     "COL17A1"  "GRB7"     "IL2RG"   
+ [82] "CD38"     "A2M"      "LTB"      "CD14"     "IL2RA"    "CXCL13"   "IL12RB1"  "CCR1"     "CXCL9"   
+ [91] "EBI3"     "CXCL10"   "CXCL11"   "IL1B"     "CD74"     "CCRL2"    "RSAD2"    "GBP4"     "BST2"    
+[100] "CMPK2"    "GMPR"     "SELL"     "OASL"     "RTP4"     "LGALS3BP" "BATF2"    "RRM2"     "BUB1"    
+[109] "SLC7A5"   "AURKA"    "CDC25A"   "FCN1"     "ITGAM"    "LCP2"     "MMP13"    "LCK"      "GZMK"    
+[118] "PIK3CG"   "WAS"      "PLEK"     "FCER1G"   "C1QA"     "PLA2G7"   "C1QC"     "SPOCK2"   "GZMA"    
+[127] "CCL5"     "HPCAL4"   "GNGT2"    "GZMB"     "APOC1"    "CTSS"     "SERPINA1" "MMP12"    "CDK5R1"  
+[136] "OLR1"     "MMP8"     "PLAT"     "GAPDHS"   "GFI1"     "TKTL1"    "IL12RB2"  "IL13RA2"  "NEK2"    
+[145] "NCAPH"    "CDKN3"    "F3"       "IL1R1"    "ADM"      "LPAR1"    "IL10RA"   "APLNR"    "SLAMF1"  
+[154] "RGS1"     "NLRP3"    "IL10"     "MSR1"     "LTA"      "C3AR1"    "CYBB"     "OSM"      "CCL17"   
+[163] "CD48"     "CXCR6"    "KCNA3"    "TNFRSF9"  "CXCL8"    "IRF8"     "HLA-DQA1" "ZBP1"     "HLA-DRB1"
+[172] "CD86"     "IDO1"     "IRF4"     "SLAMF7"   "GPR18"    "FCGR1A"   "OAS2"     "HLA-G"    "METTL7B" 
+[181] "TRAT1"    "CD8B"     "NCF4"     "PTPRC"    "HLA-DOA"  "HLA-DRA"  "CCR2"     "CD247"    "SPI1"    
+[190] "CD96"     "CD8A"     "CD4"      "CD3D"     "CD3E"     "ITGB2"    "ITGAL"    "CD3G"     "PRF1"    
+[199] "CD2"      "CD28"     "CCR5"     "CCL4"     "LY86"     "CXCR3"    "CRTAM"    "SIT1"     "CD80"    
+[208] "IGSF6"    "FASLG"    "MMP9"     "CD79A"    "CDKN2A"   "SPC25"    "ASF1B"    "MYBL2"    "SPC24"   
+[217] "DLGAP5"   "BIRC5"    "KIF4A"    "UBE2T"    "UBE2C"    "PBK"      "CDC45"    "GINS2"    "CENPF"   
+[226] "EXO1"     "CDC6"    
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 306 
+All Number of genes with core enrichment (unique): 227 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 93 
+Number of genes with negative correlation (notunique): 213 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 84 
+Number of genes with negative correlation (unique): 143 
+
+
+> process_core_enrichment(outRst_CFD_hallmarks_core_enrichment, correlation_outRst_CFD)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+  [1] "SCNN1A"   "CLIC3"    "MAPK13"   "KLF4"     "KRT19"    "PCP4"     "HMGCS2"   "TRIM29"   "TPSAB1"  
+ [10] "CA12"     "KLK11"    "PTGER3"   "CXCL14"   "PKP3"     "PERP"     "KLK10"    "OVOL2"    "GJB3"    
+ [19] "SFN"      "XBP1"     "FGFR3"    "TJP3"     "RAPGEFL1" "SULT2B1"  "LTC4S"    "CYP4B1"   "BCL6"    
+ [28] "ADIPOQ"   "ACADL"    "FABP4"    "CIDEA"    "GBP4"     "CTLA4"    "LTB"      "ICOS"     "CD86"    
+ [37] "CD48"     "IL2RA"    "IRF4"     "TLR7"     "S100A1"   "EOMES"    "SELL"     "CXCL10"   "SPP1"    
+ [46] "TNFRSF9"  "ST3GAL4"  "ETV4"     "SPRY4"    "F3"       "IL1R1"    "ADM"      "LPAR1"    "CSF3"    
+ [55] "PTGER2"   "SLAMF1"   "CXCL6"    "RGS1"     "LCK"      "MSR1"     "LTA"      "CD14"     "BST2"    
+ [64] "CYBB"     "OSM"      "CXCR6"    "CCL5"     "CXCL9"    "EBI3"     "CXCL11"   "RTP4"     "SCG3"    
+ [73] "MMP13"    "GZMK"     "PIK3CG"   "PLEK"     "FCER1G"   "C1QA"     "C1QC"     "SPOCK2"   "GZMA"    
+ [82] "GNGT2"    "GZMB"     "APOC1"    "CTSS"     "SERPINA1" "MMP12"    "CDK5R1"   "MMP8"     "PLAT"    
+ [91] "IFI27"    "CD74"     "RSAD2"    "GMPR"     "OASL"     "LGALS3BP" "BATF2"    "IL2RG"    "CD38"    
+[100] "A2M"      "CXCL13"   "IL12RB1"  "CCR1"     "HLA-DQA1" "ZBP1"     "HLA-DRB1" "IDO1"     "SLAMF7"  
+[109] "GPR18"    "FCGR1A"   "OAS2"     "HLA-G"    "HLA-DOA"  "CD247"    "CD96"     "CD8A"     "CD3D"    
+[118] "CD3E"     "ITGB2"    "ITGAL"    "CD3G"     "PRF1"     "CD2"      "CCR5"     "CCL4"     "LY86"    
+[127] "CXCR3"    "CRTAM"    "SIT1"     "CD80"     "IGSF6"    "FASLG"    "MMP9"     "CD79A"   
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 188 
+All Number of genes with core enrichment (unique): 134 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 38 
+Number of genes with negative correlation (notunique): 150 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 37 
+Number of genes with negative correlation (unique): 97 
+
+```
+
+
+
+```python
+# python
+# CFD_hallmarks
+A = ["AURKB", "MYBL2", "CDC20", "KIF2C", "UBE2C", "NEK2", "STMN1", "BIRC5", "BUB1", "RAD54L",
+"CENPA", "CDC45", "PTTG1", "GINS2", "CDKN3", "SLC7A5", "KIF4A", "NDC80", "AURKA", "CENPF",
+"CDC25A", "EXO1", "CDC6", "CENPM", "KIF18B", "ASF1B", "SPC24", "DLGAP5", "GINS1", "GINS4",
+"TRIP13", "UBE2T", "AKR1C2", "ITIH4", "CES1", "RBP4", "ALDH2", "AKR1C3", "CYP2E1", "ETS2",
+"HSD11B1", "FETUB", "CYP2C18", "ACSM1", "ARG1", "CFB", "AQP9", "ALDH3A1", "CDA", "AOX1",
+"CYP4F2", "ABCC3", "ADH1C", "NCAPH", "EDN1", "CALML5", "ZBTB16", "FGF22", "ACTC1", "ATP6V1B1",
+"EDAR", "FGFR3", "EDN2", "ALOX12B", "CKM", "AKR1B10", "ABCB11", "SERPINB2", "TG", "MYH7",
+"CLDN16", "CFD", "DES", "FHL1", "ACTA1", "ABLIM1", "ANKRD2", "GADD45B", "SDC3", "KIF20A",
+"CHST6", "KLRD1", "HLA-DOA", "HLA-DRA", "CD74", "NLRP3", "SPI1", "CD96", "HLA-DQA1", "CD4",
+"WAS", "IL2RG", "CD3D", "CD3E", "ITGB2", "ITGAL", "LTB", "ST8SIA4", "CD28", "CD7",
+"MAP4K1", "CCR5", "IRF4", "CXCL13", "IL12RB1", "CCR1", "CXCR3", "CCL5", "CRTAM", "SIT1",
+"CTSS", "IGSF6", "FASLG", "MMP9", "CD79A", "GPR65", "HLA-G", "IL27RA", "CDKN2A"]
+
+B = ["SCNN1A", "CLIC3", "KLF4", "KRT19", "PCP4", "HMGCS2", "TRIM29", "TPSAB1", "KLK11", "PKP3",
+"PERP", "OVOL2", "GJB3", "SFN", "XBP1", "FGFR3", "RAPGEFL1", "SULT2B1", "SOX10", "NPY4R",
+"CALML5", "CLDN8", "KRT1", "PRODH", "ZBTB16", "KRT15", "KLK7", "LGALS7", "TGM1", "KLK8",
+"KRT5", "FGF22", "PKP1", "HSD11B2", "EDN2", "NOS1", "ALOX12B", "LYPD3", "CLCA2", "SERPINB5",
+"GLS2", "TP63", "AQP3", "ESRP2", "EGFR", "KRT31", "CDSN", "CLDN4", "PPP2R2C", "DSC1",
+"DSC3", "COL17A1", "GRB7", "CFD", "PGAM2", "TNNT2", "KLF5", "MYL2", "VIPR1", "SPDEF",
+"MYL7", "CD8A", "CD3D", "CD3E", "CD3G", "PRF1", "CD2", "GZMA", "CCR5", "CCL4",
+"CXCL13", "IL12RB1", "CXCR3", "CCL5", "CXCL9", "GZMB", "IFNG", "FASLG", "MMP9", "CD79A",
+"NCR1", "HLA-G"]
+
+C = ["SCNN1A", "KLF4", "PCP4", "HMGCS2", "TRIM29", "TPSAB1", "KLK11", "PKP3", "OVOL2", "GJB3",
+"XBP1", "FGFR3", "RAPGEFL1", "SULT2B1", "SOX10", "NPY4R", "CALML5", "CLDN8", "KRT1",
+"PRODH", "ZBTB16", "KRT15", "KLK7", "LGALS7", "TGM1", "KLK8", "KRT5", "FGF22", "PKP1",
+"HSD11B2", "EDN2", "ALOX12B", "LYPD3", "KRT31", "CDSN", "CLDN4", "DSC1", "DSC3", "COL17A1",
+"GRB7", "CRB3", "AQP3", "ESRP2", "CD8A", "CD3D", "CD3E", "CD3G", "PRF1", "CD2",
+"GZMA", "CCR5", "CCL4", "CXCL13", "IL12RB1", "CXCR3", "CCL5", "CXCL9", "GZMB", "IFNG",
+"FASLG", "MMP9", "CD79A", "NCR1", "HLA-G"]
+
+D = ["SCNN1A", "CLIC3", "MAPK13", "KLF4", "KRT19", "PCP4", "ZFP36", "HMGCS2", "TRIM29", "TPSAB1",
+"CA12", "KLK11", "CXCL14", "PKP3", "PERP", "KLK10", "OVOL2", "GJB3", "ASS1", "NPY1R",
+"SFN", "XBP1", "FGFR3", "LAMC2", "RAPGEFL1", "SULT2B1", "LTC4S", "CYP4B1", "BCL6", "ADIPOQ",
+"ACADL", "GPX3", "ALDH2", "FABP4", "CIDEA", "CFD", "PGAM2", "DES", "TNNT2", "FHL1",
+"KLF5", "MB", "SGCG", "ACTA1", "ACTC1", "MYH11", "EFS", "SPEG", "MYL2", "VIPR1",
+"NOS1", "CKM", "SPDEF", "MYH7", "LAMA2", "MYH2", "MYH1", "IFI30", "ZBTB16", "CLCA2",
+"ALOX15B", "SERPINB5", "KLK8", "EPS8L2", "KRT17", "GLS2", "TP63", "NHLH2", "GPX2", "CLDN8",
+"LAMA3", "EGFR", "KRT31", "CDSN", "CLDN4", "PPP2R2C", "DSC1", "DSC3", "COL17A1", "GRB7",
+"IL2RG", "CD38", "A2M", "LTB", "CD14", "IL2RA", "CXCL13", "IL12RB1", "CCR1", "CXCL9",
+"EBI3", "CXCL10", "CXCL11", "IL1B", "CD74", "CCRL2", "RSAD2", "GBP4", "BST2", "CMPK2",
+"GMPR", "SELL", "OASL", "RTP4", "LGALS3BP", "BATF2", "RRM2", "BUB1", "SLC7A5", "AURKA",
+"CDC25A", "FCN1", "ITGAM", "LCP2", "MMP13", "LCK", "GZMK", "PIK3CG", "WAS", "PLEK",
+"FCER1G", "C1QA", "PLA2G7", "C1QC", "SPOCK2", "GZMA", "CCL5", "HPCAL4", "GNGT2", "GZMB",
+"APOC1", "CTSS", "SERPINA1", "MMP12", "CDK5R1", "OLR1", "MMP8", "PLAT", "GAPDHS", "GFI1",
+"TKTL1", "IL12RB2", "IL13RA2", "NEK2", "NCAPH", "CDKN3", "F3", "IL1R1", "ADM", "LPAR1",
+"IL10RA", "APLNR", "SLAMF1", "RGS1", "NLRP3", "IL10", "MSR1", "LTA", "C3AR1", "CYBB",
+"OSM", "CCL17", "CD48", "CXCR6", "KCNA3", "TNFRSF9", "CXCL8", "IRF8", "HLA-DQA1", "ZBP1",
+"HLA-DRB1", "CD86", "IDO1", "IRF4", "SLAMF7", "GPR18", "FCGR1A", "OAS2", "HLA-G", "METTL7B",
+"TRAT1", "CD8B", "NCF4", "PTPRC", "HLA-DOA", "HLA-DRA", "CCR2", "CD247", "SPI1", "CD96",
+"CD8A", "CD4", "CD3D", "CD3E", "ITGB2", "ITGAL", "CD3G", "PRF1", "CD2", "CD28",
+"CCR5", "CCL4", "LY86", "CXCR3", "CRTAM", "SIT1", "CD80", "IGSF6", "FASLG", "MMP9",
+"CD79A", "CDKN2A", "SPC25", "ASF1B", "MYBL2", "SPC24", "DLGAP5", "BIRC5", "KIF4A", "UBE2T",
+"UBE2C", "PBK", "CDC45", "GINS2", "CENPF", "EXO1", "CDC6"]
+
+E = ["SCNN1A", "CLIC3", "MAPK13", "KLF4", "KRT19", "PCP4", "HMGCS2", "TRIM29", "TPSAB1", "CA12",
+"KLK11", "PTGER3", "CXCL14", "PKP3", "PERP", "KLK10", "OVOL2", "GJB3", "SFN", "XBP1",
+"FGFR3", "TJP3", "RAPGEFL1", "SULT2B1", "LTC4S", "CYP4B1", "BCL6", "ADIPOQ", "ACADL", "FABP4",
+"CIDEA", "GBP4", "CTLA4", "LTB", "ICOS", "CD86", "CD48", "IL2RA", "IRF4", "TLR7",
+"S100A1", "EOMES", "SELL", "CXCL10", "SPP1", "TNFRSF9", "ST3GAL4", "ETV4", "SPRY4", "F3",
+"IL1R1", "ADM", "LPAR1", "CSF3", "PTGER2", "SLAMF1", "CXCL6", "RGS1", "LCK", "MSR1",
+"LTA", "CD14", "BST2", "CYBB", "OSM", "CXCR6", "CCL5", "CXCL9", "EBI3", "CXCL11",
+"RTP4", "SCG3", "MMP13", "GZMK", "PIK3CG", "PLEK", "FCER1G", "C1QA", "C1QC", "SPOCK2",
+"GZMA", "GNGT2", "GZMB", "APOC1", "CTSS", "SERPINA1", "MMP12", "CDK5R1", "MMP8", "PLAT",
+"IFI27", "CD74", "RSAD2", "GMPR", "OASL", "LGALS3BP", "BATF2", "IL2RG", "CD38", "A2M",
+"CXCL13", "IL12RB1", "CCR1", "HLA-DQA1", "ZBP1", "HLA-DRB1", "IDO1", "SLAMF7", "GPR18", "FCGR1A",
+"OAS2", "HLA-G", "HLA-DOA", "CD247", "CD96", "CD8A", "CD3D", "CD3E", "ITGB2", "ITGAL",
+"CD3G", "PRF1", "CD2", "CCR5", "CCL4", "LY86", "CXCR3", "CRTAM", "SIT1", "CD80",
+"IGSF6", "FASLG", "MMP9", "CD79A"]
+
+target_data_A = np.array(A)
+target_data_B = np.array(B)
+target_data_C = np.array(C)
+target_data_D = np.array(D)
+target_data_E = np.array(E)
+ALL = [target_data_A, target_data_B, target_data_C, target_data_D, target_data_E]
+ALL_concatenated = np.concatenate(ALL)
+# Convert list A to numpy array and get unique elements preserving order
+target_data = np.array(ALL_concatenated)
+print(target_data)
+
+groups = ['TransPropy', 'deseq2', 'edgeR', 'limma', 'outRst']
+groups_colors = plt.get_cmap('Set2').colors[:5]
+# Repeat counts for each group
+repeat_counts = [119, 82, 64, 227, 134]
+# Repeating each group name by the respective counts
+repeated_group_names = np.repeat(groups, repeat_counts)
+# Printing the repeated group names
+print(repeated_group_names)
+#target_data = np.concatenate([np.random.choice(1000, 100, replace=False) for i in range(len(groups))])
+
+# create a dataframe
+edge_data = pd.DataFrame({'source': repeated_group_names, 'target': target_data})
+edge_data = edge_data.assign(color = lambda x: x['source'].map(dict(zip(groups, groups_colors))))
+
+fig, ax = plt.subplots(figsize=(10, 10))
+#plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
+VennNetworkPlot(edge_data,
+                edge_style=2,
+                target_node_size=15,
+                show_node_margin=True,
+                #show_target_label=True,
+                #target_font_size=4,
+                show_node_color=True,
+                k=0.1,
+                ax=ax)
+plt.show()
+```
+
+![](figure/VennNetwork core enrichment/VennNetwork core enrichment CFD_hallmarks_fivemethods.png)
+
+<div style="text-align: center;">
+VennNetwork core enrichment CFD_hallmarks_fivemethods
+</div>
+
+
+
+
+
+## CFD_kegg
+```r
+# r
+# Process the core enrichment genes from TransPropy_CFD_kegg_y
+TransPropy_CFD_kegg_core_enrichment <- TransPropy_CFD_kegg_y@result[["core_enrichment"]]
+process_core_enrichment(TransPropy_CFD_kegg_core_enrichment, correlation_TransPropy_CFD)
+
+# Process the core enrichment genes from deseq2_CFD_kegg_y
+deseq2_CFD_kegg_core_enrichment <- deseq2_CFD_kegg_y@result[["core_enrichment"]]
+process_core_enrichment(deseq2_CFD_kegg_core_enrichment, correlation_deseq2_CFD)
+
+# Process the core enrichment genes from edgeR_CFD_kegg_y
+edgeR_CFD_kegg_core_enrichment <- edgeR_CFD_kegg_y@result[["core_enrichment"]]
+process_core_enrichment(edgeR_CFD_kegg_core_enrichment, correlation_edgeR_CFD)
+
+# Process the core enrichment genes from limma_CFD_kegg_y
+limma_CFD_kegg_core_enrichment <- limma_CFD_kegg_y@result[["core_enrichment"]]
+process_core_enrichment(limma_CFD_kegg_core_enrichment, correlation_limma_CFD)
+
+# Process the core enrichment genes from outRst_CFD_kegg_y
+outRst_CFD_kegg_core_enrichment <- outRst_CFD_kegg_y@result[["core_enrichment"]]
+process_core_enrichment(outRst_CFD_kegg_core_enrichment, correlation_outRst_CFD)
+
+```
+
+```
+> process_core_enrichment(TransPropy_CFD_kegg_core_enrichment, correlation_TransPropy_CFD)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+ [1] "GSTM5"    "ADH1B"    "AKR1C2"   "AKR1C3"   "CYP2E1"   "AKR1C1"   "CYP2C9"   "CYP3A5"   "CYP2C18" 
+[10] "ADH4"     "CYP3A4"   "ADH1A"    "ALDH3A1"  "ADH1C"    "ALDH3B2"  "CYP2D6"   "AOX1"     "FMO2"    
+[19] "DGAT2"    "CYP4A11"  "CYP26B1"  "ADH6"     "AWAT2"    "AGTR1"    "CACNA1G"  "ADORA2A"  "ADCY4"   
+[28] "CALML5"   "EGFR"     "CHP2"     "ADRA1A"   "ADRB2"    "ADCY8"    "PLA2G4B"  "ALOX15B"  "ALOX12B" 
+[37] "CYP4F2"   "ALOX12"   "ADIPOQ"   "PLIN1"    "ACADL"    "AQP7"     "CPT1B"    "FABP4"    "ALDH2"   
+[46] "PGAM1"    "CHMP4A"   "FGFR2"    "CBLC"     "EPN3"     "FGFR3"    "HLA-DRA"  "HLA-DPA1" "HLA-DQB1"
+[55] "HLA-DQA1" "HLA-DRB1" "HLA-DPB1" "ITGB2"    "HLA-DRB5" "FCGR2A"   "FCGR3A"   "FCGR1A"   "MARCKSL1"
+[64] "CDK2"     "CDKN2A"   "E2F1"     "CDC25C"   "CDC20"    "BUB1"     "CDC45"    "PTTG1"    "CCNB1"   
+[73] "CDC25A"   "CDC6"    
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 117 
+All Number of genes with core enrichment (unique): 74 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 94 
+Number of genes with negative correlation (notunique): 23 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 51 
+Number of genes with negative correlation (unique): 23 
+
+
+> process_core_enrichment(deseq2_CFD_kegg_core_enrichment, correlation_deseq2_CFD)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+ [1] "LTC4S"         "PLA2G4B"       "JMJD7-PLA2G4B" "CYP2C9"        "PLA2G2F"       "PLA2G3"       
+ [7] "CYP2C18"       "GGT6"          "PLA2G4E"       "CYP4F3"        "ALOX12B"       "FGF11"        
+[13] "EGFR"          "CHP2"          "FGF22"         "NTF4"          "FGFR2"         "FGFR3"        
+[19] "ADH1B"         "UGT1A4"        "UGT1A6"        "UGT1A1"        "UGT1A7"        "CYP3A5"       
+[25] "AOX1"          "UGT2A1"        "CYP2C19"       "UGT1A10"       "UGT1A3"        "UGT1A5"       
+[31] "CYP1A2"        "AKR1C2"        "SULT1E1"       "HSD11B2"       "SULT2B1"       "HSD3B1"       
+[37] "CALML5"        "CALML3"       
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 83 
+All Number of genes with core enrichment (unique): 38 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 83 
+Number of genes with negative correlation (notunique): 0 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 38 
+Number of genes with negative correlation (unique): 0 
+
+
+> process_core_enrichment(edgeR_CFD_kegg_core_enrichment, correlation_edgeR_CFD)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+ [1] "LTC4S"         "PLA2G4B"       "JMJD7-PLA2G4B" "PLA2G2F"       "PLA2G3"        "CYP2C18"      
+ [7] "GGT6"          "PLA2G4E"       "CYP4F3"        "ALOX12B"       "ADH1B"         "UGT1A4"       
+[13] "UGT1A6"        "UGT1A1"        "UGT1A7"        "CYP3A5"        "AOX1"          "CYP2C19"      
+[19] "UGT1A10"       "UGT1A3"        "UGT1A5"        "FGF11"         "CHP2"          "FGF22"        
+[25] "NTF4"          "FGFR3"         "HSD11B2"       "SULT2B1"      
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 53 
+All Number of genes with core enrichment (unique): 28 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 53 
+Number of genes with negative correlation (notunique): 0 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 28 
+Number of genes with negative correlation (unique): 0 
+
+
+> process_core_enrichment(limma_CFD_kegg_core_enrichment, correlation_limma_CFD)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+  [1] "LTC4S"         "PLA2G4B"       "JMJD7-PLA2G4B" "GPX3"          "AKR1C3"        "PLA2G2A"      
+  [7] "ALOX15B"       "CYP2E1"        "PLA2G2F"       "PLA2G3"        "CYP2C18"       "GGT6"         
+ [13] "PLA2G4E"       "CYP4F3"        "PTGS1"         "ALOX12B"       "AKR1C2"        "SULT1E1"      
+ [19] "UGT1A6"        "UGT1A1"        "AKR1C1"        "UGT1A7"        "HSD11B1"       "CYP3A5"       
+ [25] "HSD11B2"       "SULT2B1"       "GSTM5"         "ADH1B"         "GSTA3"         "NCF1"         
+ [31] "CCR2"          "VAV1"          "PIK3CG"        "HCK"           "WAS"           "CCL17"        
+ [37] "CXCR4"         "ADCY1"         "CCR5"          "CCL4"          "CXCR6"         "CXCL13"       
+ [43] "CCR1"          "CXCR3"         "CCL5"          "CXCL9"         "GNGT2"         "CCL18"        
+ [49] "GNG7"          "CCL3"          "CCL8"          "CXCL10"        "GNG4"          "CXCL11"       
+ [55] "CCL3L3"        "SHC4"          "CXCL8"         "HLA-DQA2"      "HLA-DOA"       "HLA-DRA"      
+ [61] "HLA-DQB1"      "HLA-DQA1"      "HLA-DRB1"      "IL10"          "HLA-DRB5"      "C1QA"         
+ [67] "C1QB"          "CD28"          "CD86"          "C1QC"          "FCGR2A"        "FCGR3A"       
+ [73] "FCGR1A"        "CD80"          "PTPRC"         "BTK"           "LCK"           "CD8A"         
+ [79] "CD4"           "IL2RG"         "CD3D"          "CD3E"          "ICOS"          "CD79A"        
+ [85] "CR1"           "NCF4"          "ITGAM"         "ITGB2"         "MARCKSL1"      "IL1B"         
+ [91] "IL1R1"         "ANPEP"         "CD8B"          "CSF2RA"        "CD5"           "MS4A1"        
+ [97] "CD38"          "CD3G"          "CD2"           "CD14"          "IL2RA"         "CD22"         
+[103] "PRF1"          "GZMB"          "FASLG"         "HLA-G"         "CTLA4"         "LTA"          
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 193 
+All Number of genes with core enrichment (unique): 108 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 41 
+Number of genes with negative correlation (notunique): 152 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 31 
+Number of genes with negative correlation (unique): 77 
+
+
+> process_core_enrichment(outRst_CFD_kegg_core_enrichment, correlation_outRst_CFD)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+  [1] "PLA2G4B"       "JMJD7-PLA2G4B" "MAPK13"        "CALML5"        "EGFR"          "CALML3"       
+  [7] "PLA2G2F"       "PLA2G3"        "PLA2G4E"       "AKR1C2"        "SULT1E1"       "UGT1A4"       
+ [13] "UGT1A6"        "UGT1A1"        "AKR1C1"        "UGT1A7"        "HSD11B1"       "CYP3A5"       
+ [19] "GSTM5"         "ADH1B"         "CYP2C9"        "CYP2C18"       "TLR8"          "PIK3CG"       
+ [25] "CD14"          "CD86"          "CCL4"          "CCL5"          "CXCL9"         "TLR7"         
+ [31] "CCL3"          "CD80"          "CXCL10"        "CXCL11"        "SPP1"          "PIK3CD"       
+ [37] "HLA-DQA2"      "HLA-DOA"       "HLA-DQA1"      "HLA-DRB1"      "HLA-DPB1"      "ITGB2"        
+ [43] "HLA-DRB5"      "FCGR2A"        "FCGR3A"        "FCGR1A"        "MARCKSL1"      "CSF3"         
+ [49] "FCER2"         "CD8B"          "MME"           "CD5"           "MS4A1"         "CD8A"         
+ [55] "CD3D"          "CD3E"          "CD38"          "CD3G"          "CD2"           "IL2RA"        
+ [61] "CD22"          "CD74"          "LTA"           "CTSS"          "HLA-G"         "MAG"          
+ [67] "MPZ"           "CD6"           "SPN"           "PDCD1"         "L1CAM"         "CTLA4"        
+ [73] "CLDN14"        "ITGAL"         "ICOS"          "SELL"          "NLGN1"         "SDC3"         
+ [79] "ULBP1"         "CD247"         "LCK"           "SH2D1A"        "NCR3"          "TYROBP"       
+ [85] "FCER1G"        "PRF1"          "CD244"         "CD48"          "GZMB"          "FASLG"        
+ [91] "SHC4"          "C1QA"          "C1QB"          "C1QC"          "ADCY1"         "CCR5"         
+ [97] "CXCR6"         "CXCL13"        "CCR1"          "CXCR3"         "GNGT2"         "CCL18"        
+[103] "GNG7"          "GNG4"          "CCL3L3"       
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 210 
+All Number of genes with core enrichment (unique): 105 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 31 
+Number of genes with negative correlation (notunique): 179 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 24 
+Number of genes with negative correlation (unique): 81 
+```
+
+
+```python
+# python
+# CFD_kegg
+A = ["GSTM5", "ADH1B", "AKR1C2", "AKR1C3", "CYP2E1", "AKR1C1", "CYP2C9", "CYP3A5", "CYP2C18", "ADH4",
+"CYP3A4", "ADH1A", "ALDH3A1", "ADH1C", "ALDH3B2", "CYP2D6", "AOX1", "FMO2", "DGAT2", "CYP4A11",
+"CYP26B1", "ADH6", "AWAT2", "AGTR1", "CACNA1G", "ADORA2A", "ADCY4", "CALML5", "EGFR", "CHP2",
+"ADRA1A", "ADRB2", "ADCY8", "PLA2G4B", "ALOX15B", "ALOX12B", "CYP4F2", "ALOX12", "ADIPOQ", "PLIN1",
+"ACADL", "AQP7", "CPT1B", "FABP4", "ALDH2", "PGAM1", "CHMP4A", "FGFR2", "CBLC",
+"EPN3", "FGFR3", "HLA-DRA", "HLA-DPA1", "HLA-DQB1", "HLA-DQA1", "HLA-DRB1", "HLA-DPB1", "ITGB2", "HLA-DRB5",
+"FCGR2A", "FCGR3A", "FCGR1A", "MARCKSL1", "CDK2", "CDKN2A", "E2F1", "CDC25C", "CDC20", "BUB1",
+"CDC45", "PTTG1", "CCNB1", "CDC25A", "CDC6"]
+
+B = ["LTC4S", "PLA2G4B", "JMJD7-PLA2G4B", "CYP2C9", "PLA2G2F", "PLA2G3", "CYP2C18", "GGT6", "PLA2G4E", "CYP4F3",
+"ALOX12B", "FGF11", "EGFR", "CHP2", "FGF22", "NTF4", "FGFR2", "FGFR3", "ADH1B", "UGT1A4",
+"UGT1A6", "UGT1A1", "UGT1A7", "CYP3A5", "AOX1", "UGT2A1", "CYP2C19", "UGT1A10", "UGT1A3", "UGT1A5",
+"CYP1A2", "AKR1C2", "SULT1E1", "HSD11B2", "SULT2B1", "HSD3B1", "CALML5", "CALML3"
+]
+
+C = ["LTC4S", "PLA2G4B", "JMJD7-PLA2G4B", "PLA2G2F", "PLA2G3", "CYP2C18", "GGT6", "PLA2G4E", "CYP4F3", "ALOX12B",
+"ADH1B", "UGT1A4", "UGT1A6", "UGT1A1", "UGT1A7", "CYP3A5", "AOX1", "CYP2C19", "UGT1A10", "UGT1A3",
+"UGT1A5", "FGF11", "CHP2", "FGF22", "NTF4", "FGFR3", "HSD11B2", "SULT2B1"]
+
+D = ["LTC4S", "PLA2G4B", "JMJD7-PLA2G4B", "GPX3", "AKR1C3", "PLA2G2A", "ALOX15B", "CYP2E1", "PLA2G2F", "PLA2G3",
+"CYP2C18", "GGT6", "PLA2G4E", "CYP4F3", "PTGS1", "ALOX12B", "AKR1C2", "SULT1E1", "UGT1A6", "UGT1A1",
+"AKR1C1", "UGT1A7", "HSD11B1", "CYP3A5", "HSD11B2", "SULT2B1", "GSTM5", "ADH1B", "GSTA3", "NCF1",
+"CCR2", "VAV1", "PIK3CG", "HCK", "WAS", "CCL17", "CXCR4", "ADCY1", "CCR5", "CCL4",
+"CXCR6", "CXCL13", "CCR1", "CXCR3", "CCL5", "CXCL9", "GNGT2", "CCL18", "GNG7", "CCL3",
+"CCL8", "CXCL10", "GNG4", "CXCL11", "CCL3L3", "SHC4", "CXCL8", "HLA-DQA2", "HLA-DOA", "HLA-DRA",
+"HLA-DQB1", "HLA-DQA1", "HLA-DRB1", "IL10", "HLA-DRB5", "C1QA", "C1QB", "CD28", "CD86", "C1QC",
+"FCGR2A", "FCGR3A", "FCGR1A", "CD80", "PTPRC", "BTK", "LCK", "CD8A", "CD4", "IL2RG",
+"CD3D", "CD3E", "ICOS", "CD79A", "CR1", "NCF4", "ITGAM", "ITGB2", "MARCKSL1", "IL1B",
+"IL1R1", "ANPEP", "CD8B", "CSF2RA", "CD5", "MS4A1", "CD38", "CD3G", "CD2", "CD14",
+"IL2RA", "CD22", "PRF1", "GZMB", "FASLG", "HLA-G", "CTLA4", "LTA"]
+
+E = ["PLA2G4B", "JMJD7-PLA2G4B", "MAPK13", "CALML5", "EGFR", "CALML3", "PLA2G2F", "PLA2G3", "PLA2G4E", "AKR1C2",
+"SULT1E1", "UGT1A4", "UGT1A6", "UGT1A1", "AKR1C1", "UGT1A7", "HSD11B1", "CYP3A5", "GSTM5", "ADH1B",
+"CYP2C9", "CYP2C18", "TLR8", "PIK3CG", "CD14", "CD86", "CCL4", "CCL5", "CXCL9", "TLR7",
+"CCL3", "CD80", "CXCL10", "CXCL11", "SPP1", "PIK3CD", "HLA-DQA2", "HLA-DOA", "HLA-DQA1", "HLA-DRB1",
+"HLA-DPB1", "ITGB2", "HLA-DRB5", "FCGR2A", "FCGR3A", "FCGR1A", "MARCKSL1", "CSF3", "FCER2", "CD8B",
+"MME", "CD5", "MS4A1", "CD8A", "CD3D", "CD3E", "CD38", "CD3G", "CD2", "IL2RA",
+"CD22", "CD74", "LTA", "CTSS", "HLA-G", "MAG", "MPZ", "CD6", "SPN", "PDCD1",
+"L1CAM", "CTLA4", "CLDN14", "ITGAL", "ICOS", "SELL", "NLGN1", "SDC3", "ULBP1", "CD247",
+"LCK", "SH2D1A", "NCR3", "TYROBP", "FCER1G", "PRF1", "CD244", "CD48", "GZMB", "FASLG",
+"SHC4", "C1QA", "C1QB", "C1QC", "ADCY1", "CCR5", "CXCR6", "CXCL13", "CCR1", "CXCR3",
+"GNGT2", "CCL18", "GNG7", "GNG4", "CCL3L3"]
+
+target_data_A = np.array(A)
+target_data_B = np.array(B)
+target_data_C = np.array(C)
+target_data_D = np.array(D)
+target_data_E = np.array(E)
+ALL = [target_data_A, target_data_B, target_data_C, target_data_D, target_data_E]
+ALL_concatenated = np.concatenate(ALL)
+# Convert list A to numpy array and get unique elements preserving order
+target_data = np.array(ALL_concatenated)
+print(target_data)
+
+groups = ['TransPropy', 'deseq2', 'edgeR', 'limma', 'outRst']
+groups_colors = plt.get_cmap('Set2').colors[:5]
+# Repeat counts for each group
+repeat_counts = [74, 38, 28, 108, 105]
+# Repeating each group name by the respective counts
+repeated_group_names = np.repeat(groups, repeat_counts)
+# Printing the repeated group names
+print(repeated_group_names)
+#target_data = np.concatenate([np.random.choice(1000, 100, replace=False) for i in range(len(groups))])
+
+# create a dataframe
+edge_data = pd.DataFrame({'source': repeated_group_names, 'target': target_data})
+edge_data = edge_data.assign(color = lambda x: x['source'].map(dict(zip(groups, groups_colors))))
+
+fig, ax = plt.subplots(figsize=(10, 10))
+VennNetworkPlot(edge_data,
+                edge_style=2,
+                target_node_size=15,
+                show_node_margin=True,
+                #show_target_label=True,
+                #target_font_size=4,
+                show_node_color=True,
+                k=0.1,
+                ax=ax)
+plt.show()
+
+
+```
+
+![](figure/VennNetwork core enrichment/VennNetwork core enrichment CFD_kegg_fivemethods.png)
+
+<div style="text-align: center;">
+VennNetwork core enrichment CFD_kegg_fivemethods
+</div>
+
+
+
+
+
+## ANKRD35_hallmarks
+```r
+# r
+# Process the core enrichment genes from TransPropy_ANKRD35_hallmarks_y
+TransPropy_ANKRD35_hallmarks_core_enrichment <- TransPropy_ANKRD35_hallmarks_y@result[["core_enrichment"]]
+process_core_enrichment(TransPropy_ANKRD35_hallmarks_core_enrichment, correlation_TransPropy_ANKRD35)
+
+# Process the core enrichment genes from deseq2_ANKRD35_hallmarks_y
+deseq2_ANKRD35_hallmarks_core_enrichment <- deseq2_ANKRD35_hallmarks_y@result[["core_enrichment"]]
+process_core_enrichment(deseq2_ANKRD35_hallmarks_core_enrichment, correlation_deseq2_ANKRD35)
+
+# Process the core enrichment genes from edgeR_ANKRD35_hallmarks_y
+edgeR_ANKRD35_hallmarks_core_enrichment <- edgeR_ANKRD35_hallmarks_y@result[["core_enrichment"]]
+process_core_enrichment(edgeR_ANKRD35_hallmarks_core_enrichment, correlation_edgeR_ANKRD35)
+
+# Process the core enrichment genes from limma_ANKRD35_hallmarks_y
+limma_ANKRD35_hallmarks_core_enrichment <- limma_ANKRD35_hallmarks_y@result[["core_enrichment"]]
+process_core_enrichment(limma_ANKRD35_hallmarks_core_enrichment, correlation_limma_ANKRD35)
+
+# Process the core enrichment genes from outRst_ANKRD35_hallmarks_y
+outRst_ANKRD35_hallmarks_core_enrichment <- outRst_ANKRD35_hallmarks_y@result[["core_enrichment"]]
+process_core_enrichment(outRst_ANKRD35_hallmarks_core_enrichment, correlation_outRst_ANKRD35)
+
+```
+
+```
+> process_core_enrichment(TransPropy_ANKRD35_hallmarks_core_enrichment, correlation_TransPropy_ANKRD35)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+  [1] "ITIH4"    "ALDH2"    "CYP2C18"  "CYP2E1"   "AKR1C2"   "ETS2"     "ARG1"     "FETUB"    "ALDH3A1" 
+ [10] "AQP9"     "HSD11B1"  "ACSM1"    "CDA"      "CYP4F2"   "CES1"     "AKR1C3"   "RBP4"     "ABCC3"   
+ [19] "CFB"      "AOX1"     "ADH1C"    "CALML5"   "SERPINB2" "FGF22"    "FGFR3"    "ALOX12B"  "EDN1"    
+ [28] "AKR1B10"  "EDN2"     "CLDN16"   "EDAR"     "ZBTB16"   "ACTC1"    "CKM"      "ABCB11"   "ATP6V1B1"
+ [37] "MYH7"     "TG"       "CFD"      "DES"      "ACTA1"    "ANKRD2"   "ABLIM1"   "FHL1"     "GADD45B" 
+ [46] "CDH13"    "PPP2R2C"  "CDSN"     "EGFR"     "DSC3"     "COL17A1"  "CRB3"     "ALOX15B"  "ICOSLG"  
+ [55] "DUSP1"    "BCL6"     "SIK1"     "FOSL2"    "F2RL1"    "NEK2"     "KIF2C"    "NCAPH"    "BUB1"    
+ [64] "CDKN3"    "AURKA"    "CD74"     "RSAD2"    "HLA-DQA1" "MX1"      "HLA-DRB1" "ISG20"    "GBP4"    
+ [73] "IRF4"     "ST8SIA4"  "CD38"     "CCL5"     "BST2"     "PSMB9"    "FCGR1A"   "CXCL11"   "OASL"    
+ [82] "HLA-G"    "OAS2"     "ST3GAL5"  "RTP4"     "ISG15"    "BATF2"    "LGALS3BP" "HLA-DOA"  "HLA-DRA" 
+ [91] "CD96"     "IL2RG"    "SPI1"     "LTB"      "NLRP3"    "CD3D"     "CD3E"     "ITGAL"    "WAS"     
+[100] "CD4"      "KLRD1"    "MAP4K1"   "CD28"     "CCR5"     "IGSF6"    "CXCL13"   "CD7"      "CXCR3"   
+[109] "FASLG"    "IL12RB1"  "ITGB2"    "CTSS"     "SIT1"     "MMP9"     "CRTAM"    "CCR1"     "CD79A"   
+[118] "IL27RA"   "GPR65"    "CDKN2A"   "DLGAP5"   "BIRC5"    "KIF4A"    "CENPF"    "NDC80"    "AURKB"   
+[127] "KIF18B"   "GINS1"    "CDC20"    "PTTG1"    "ASF1B"    "MYBL2"    "SPC24"    "STMN1"    "GINS4"   
+[136] "TRIP13"   "UBE2T"    "CDC25A"   "CENPA"    "UBE2C"    "RAD54L"   "CDC45"    "GINS2"    "SLC7A5"  
+[145] "CDC6"     "EXO1"    
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 186 
+All Number of genes with core enrichment (unique): 146 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 67 
+Number of genes with negative correlation (notunique): 119 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 59 
+Number of genes with negative correlation (unique): 87 
+
+
+> process_core_enrichment(deseq2_ANKRD35_hallmarks_core_enrichment, correlation_deseq2_ANKRD35)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+ [1] "SCNN1A"   "KLF4"     "TRIM29"   "CLIC3"    "KLK11"    "PKP3"     "GJB3"     "PERP"     "SFN"     
+[10] "HMGCS2"   "OVOL2"    "PCP4"     "RAPGEFL1" "KRT19"    "FGFR3"    "SULT2B1"  "TPSAB1"   "PPP2R2C" 
+[19] "CDSN"     "EGFR"     "CLDN4"    "DSC3"     "DSC1"     "KRT31"    "COL17A1"  "CLDN8"    "GRB7"    
+[28] "KRT1"     "KLK7"     "CALML5"   "KRT15"    "NPY4R"    "TGM1"     "KLK8"     "SOX10"    "KRT5"    
+[37] "LGALS7"   "PKP1"     "PRODH"    "FGF22"    "ALOX12B"  "LYPD3"    "NOS1"     "EDN2"     "ZBTB16"  
+[46] "HSD11B2"  "SERPINB5" "CLCA2"    "TP63"     "GLS2"     "ESRP2"    "AQP3"     "TNNT2"    "PGAM2"   
+[55] "KLF5"     "CFD"      "VIPR1"    "MYL2"     "MYL7"     "SPDEF"    "RORA"     "B4GALNT2" "CD8A"    
+[64] "CD3D"     "CD3E"     "CD3G"     "CD2"      "PRF1"     "GZMA"     "CCR5"     "CXCL9"    "IFNG"    
+[73] "CCL5"     "CCL4"     "CXCL13"   "CXCR3"    "FASLG"    "GZMB"     "IL12RB1"  "MMP9"     "NCR1"    
+[82] "HLA-G"    "CD79A"   
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 105 
+All Number of genes with core enrichment (unique): 83 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 84 
+Number of genes with negative correlation (notunique): 21 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 62 
+Number of genes with negative correlation (unique): 21 
+
+
+> process_core_enrichment(edgeR_ANKRD35_hallmarks_core_enrichment, correlation_edgeR_ANKRD35)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+ [1] "SCNN1A"   "KLF4"     "TRIM29"   "KLK11"    "PKP3"     "GJB3"     "HMGCS2"   "OVOL2"    "PCP4"    
+[10] "RAPGEFL1" "FGFR3"    "SULT2B1"  "TPSAB1"   "XBP1"     "KRT1"     "KLK7"     "CALML5"   "KRT15"   
+[19] "NPY4R"    "TGM1"     "KLK8"     "SOX10"    "KRT5"     "LGALS7"   "PKP1"     "CLDN8"    "PRODH"   
+[28] "FGF22"    "ALOX12B"  "LYPD3"    "EDN2"     "ZBTB16"   "HSD11B2"  "CDSN"     "CLDN4"    "DSC3"    
+[37] "DSC1"     "KRT31"    "COL17A1"  "GRB7"     "CRB3"     "ESRP2"    "AQP3"     "CD8A"     "CD3D"    
+[46] "CD3E"     "CD3G"     "CD2"      "PRF1"     "GZMA"     "CCR5"     "CXCL9"    "IFNG"     "CCL5"    
+[55] "CCL4"     "CXCL13"   "CXCR3"    "FASLG"    "GZMB"     "IL12RB1"  "MMP9"     "NCR1"     "HLA-G"   
+[64] "CD79A"   
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 73 
+All Number of genes with core enrichment (unique): 64 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 52 
+Number of genes with negative correlation (notunique): 21 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 43 
+Number of genes with negative correlation (unique): 21 
+
+
+> process_core_enrichment(limma_ANKRD35_hallmarks_core_enrichment, correlation_limma_ANKRD35)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+  [1] "KLF4"     "SERPINB5" "CLCA2"    "KLK8"     "IFI30"    "PERP"     "SFN"      "NHLH2"    "KRT17"   
+ [10] "TP63"     "EPS8L2"   "GLS2"     "ALOX15B"  "ZBTB16"   "GPX2"     "MAPK13"   "SCNN1A"   "TRIM29"  
+ [19] "CLIC3"    "KLK11"    "PKP3"     "CA12"     "GJB3"     "KLK10"    "HMGCS2"   "OVOL2"    "PCP4"    
+ [28] "RAPGEFL1" "KRT19"    "FGFR3"    "ZFP36"    "LAMC2"    "SULT2B1"  "CXCL14"   "KRT15"    "GJA1"    
+ [37] "ESRP2"    "RHOD"     "MSMB"     "AQP3"     "ELF3"     "LAD1"     "PPP2R2C"  "CDSN"     "EGFR"    
+ [46] "LAMA3"    "CLDN4"    "DSC3"     "DSC1"     "KRT31"    "COL17A1"  "CLDN8"    "GRB7"     "ACTA1"   
+ [55] "CRB3"     "TNNT2"    "PGAM2"    "KLF5"     "CFD"      "DES"      "EFS"      "VIPR1"    "SGCG"    
+ [64] "MB"       "NOS1"     "MYL2"     "ACTC1"    "MYH11"    "CKM"      "MYH7"     "FHL1"     "SPDEF"   
+ [73] "SPEG"     "GPX3"     "MYH2"     "MYH1"     "LAMA2"    "KRT1"     "KLK7"     "CALML5"   "NPY4R"   
+ [82] "TGM1"     "SOX10"    "KRT5"     "LGALS7"   "PKP1"     "SERPINB2" "PRODH"    "WNT16"    "FGF22"   
+ [91] "ALOX12B"  "LYPD3"    "SLC6A14"  "AKR1B10"  "EDN2"     "TFCP2L1"  "HSD11B2"  "CPB1"     "TENM2"   
+[100] "THRB"     "KRT4"     "PTGFR"    "CLPS"     "GP2"      "IRF8"     "CST7"     "GBP4"     "BATF"    
+[109] "LTB"      "CTLA4"    "ICOS"     "IL10"     "CD86"     "TNFRSF4"  "IRF4"     "CD48"     "IL2RA"   
+[118] "S100A1"   "TLR7"     "CXCL10"   "EOMES"    "SELL"     "SPP1"     "TNFRSF9"  "ETV4"     "ST3GAL4" 
+[127] "CDC6"     "SPRY4"    "IL1R1"    "REG1A"    "CSF2RA"   "IL2RG"    "CXCL9"    "CD38"     "CD14"    
+[136] "CXCL13"   "A2M"      "IL12RB1"  "IL1B"     "EBI3"     "CXCL11"   "CCR1"     "CD74"     "RSAD2"   
+[145] "CCRL2"    "CMPK2"    "GMPR"     "BST2"     "OASL"     "RTP4"     "BATF2"    "LGALS3BP" "GAPDHS"  
+[154] "GFI1"     "TKTL1"    "IL12RB2"  "IL13RA2"  "NEK2"     "NCAPH"    "BUB1"     "CDKN3"    "AURKA"   
+[163] "CR1"      "FCN1"     "LCK"      "PLA2G7"   "PIK3CG"   "ITGAM"    "LCP2"     "GZMK"     "PLEK"    
+[172] "WAS"      "HPCAL4"   "GZMA"     "FCER1G"   "C1QA"     "CCL5"     "SPOCK2"   "C1QC"     "GNGT2"   
+[181] "GZMB"     "CTSS"     "SERPINA1" "CDK5R1"   "APOC1"    "MMP12"    "MMP8"     "OLR1"     "PLAT"    
+[190] "ADM"      "LPAR1"    "RGS1"     "APLNR"    "IL10RA"   "SLAMF1"   "LTA"      "NLRP3"    "CCL17"   
+[199] "CXCR6"    "OSM"      "CYBB"     "C3AR1"    "MSR1"     "KCNA3"    "CXCL8"    "HLA-DQA1" "HLA-DRB1"
+[208] "ZBP1"     "SLAMF7"   "GPR18"    "IDO1"     "FCGR1A"   "HLA-G"    "OAS2"     "METTL7B"  "HLA-DOA" 
+[217] "CCR2"     "PTPRC"    "NCF4"     "HLA-DRA"  "CD247"    "CD96"     "CD8A"     "SPI1"     "CD3D"    
+[226] "CD3E"     "CD3G"     "ITGAL"    "CD4"      "CD2"      "PRF1"     "CD28"     "LY86"     "CCR5"    
+[235] "IGSF6"    "CCL4"     "CXCR3"    "FASLG"    "ITGB2"    "SIT1"     "MMP9"     "CD80"     "CRTAM"   
+[244] "CD79A"    "CDKN2A"   "DLGAP5"   "ASF1B"    "BIRC5"    "MYBL2"    "RRM2"     "SPC24"    "KIF4A"   
+[253] "UBE2T"    "CDC25A"   "UBE2C"    "PBK"      "CDC45"    "GINS2"    "CENPF"    "SLC7A5"   "EXO1"    
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 366 
+All Number of genes with core enrichment (unique): 261 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 135 
+Number of genes with negative correlation (notunique): 231 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 108 
+Number of genes with negative correlation (unique): 153 
+
+
+> process_core_enrichment(outRst_ANKRD35_hallmarks_core_enrichment, correlation_outRst_ANKRD35)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+  [1] "MAPK13"   "SCNN1A"   "KLF4"     "TRIM29"   "CLIC3"    "KLK11"    "PKP3"     "CA12"     "GJB3"    
+ [10] "PERP"     "SFN"      "KLK10"    "HMGCS2"   "OVOL2"    "PCP4"     "RAPGEFL1" "KRT19"    "FGFR3"   
+ [19] "PTGER3"   "SULT2B1"  "CXCL14"   "TJP3"     "NMU"      "TPSAB1"   "SERPINB5" "CLCA2"    "KLK8"    
+ [28] "IFI30"    "KRT17"    "TP63"     "GLS2"     "CEBPA"    "ZBTB16"   "GPX2"     "PPP2R2C"  "CDSN"    
+ [37] "EGFR"     "LAMA3"    "CLDN4"    "DSC3"     "DSC1"     "KRT31"    "COL17A1"  "CLDN8"    "GRB7"    
+ [46] "KRT15"    "GJA1"     "ESRP2"    "MSMB"     "AQP3"     "ELF3"     "LAD1"     "CD2"      "PRF1"    
+ [55] "CD38"     "CD14"     "LEF1"     "FASLG"    "CDK2"     "PLAT"     "CST7"     "GBP4"     "LTB"     
+ [64] "CTLA4"    "ICOS"     "CD86"     "IRF4"     "CD48"     "IL2RA"    "S100A1"   "TLR7"     "CXCL10"  
+ [73] "EOMES"    "SELL"     "SPP1"     "TNFRSF9"  "ETV4"     "ST3GAL4"  "SPRY4"    "IL1R1"    "ADM"     
+ [82] "LPAR1"    "CSF3"     "PTGER2"   "RGS1"     "CXCL6"    "SLAMF1"   "LTA"      "LCK"      "CXCR6"   
+ [91] "OSM"      "CYBB"     "CXCL9"    "CCL5"     "MSR1"     "BST2"     "EBI3"     "CXCL11"   "RTP4"    
+[100] "SCG3"     "MMP13"    "PIK3CG"   "GZMK"     "PLEK"     "GZMA"     "FCER1G"   "C1QA"     "SPOCK2"  
+[109] "C1QC"     "GNGT2"    "GZMB"     "CTSS"     "SERPINA1" "CDK5R1"   "APOC1"    "MMP12"    "MMP8"    
+[118] "IFI27"    "CD74"     "RSAD2"    "GMPR"     "OASL"     "BATF2"    "LGALS3BP" "IL2RG"    "CXCL13"  
+[127] "A2M"      "IL12RB1"  "CCR1"     "HLA-DQA1" "HLA-DRB1" "ZBP1"     "SLAMF7"   "GPR18"    "IDO1"    
+[136] "FCGR1A"   "HLA-G"    "OAS2"     "HLA-DOA"  "CD247"    "CD96"     "CD8A"     "CD3D"     "CD3E"    
+[145] "CD3G"     "ITGAL"    "LY86"     "CCR5"     "IGSF6"    "CCL4"     "CXCR3"    "ITGB2"    "SIT1"    
+[154] "MMP9"     "CD80"     "CRTAM"    "CD79A"   
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 231 
+All Number of genes with core enrichment (unique): 157 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 71 
+Number of genes with negative correlation (notunique): 160 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 56 
+Number of genes with negative correlation (unique): 101 
+```
+
+
+```python
+# python
+# ANKRD35_hallmarks
+A = ["ITIH4", "ALDH2", "CYP2C18", "CYP2E1", "AKR1C2", "ETS2", "ARG1", "FETUB", "ALDH3A1", "AQP9",
+"HSD11B1", "ACSM1", "CDA", "CYP4F2", "CES1", "AKR1C3", "RBP4", "ABCC3", "CFB", "AOX1",
+"ADH1C", "CALML5", "SERPINB2", "FGF22", "FGFR3", "ALOX12B", "EDN1", "AKR1B10", "EDN2", "CLDN16",
+"EDAR", "ZBTB16", "ACTC1", "CKM", "ABCB11", "ATP6V1B1", "MYH7", "TG", "CFD", "DES",
+"ACTA1", "ANKRD2", "ABLIM1", "FHL1", "GADD45B", "CDH13", "PPP2R2C", "CDSN", "EGFR", "DSC3",
+"COL17A1", "CRB3", "ALOX15B", "ICOSLG", "DUSP1", "BCL6", "SIK1", "FOSL2", "F2RL1", "NEK2",
+"KIF2C", "NCAPH", "BUB1", "CDKN3", "AURKA", "CD74", "RSAD2", "HLA-DQA1", "MX1", "HLA-DRB1",
+"ISG20", "GBP4", "IRF4", "ST8SIA4", "CD38", "CCL5", "BST2", "PSMB9", "FCGR1A", "CXCL11",
+"OASL", "HLA-G", "OAS2", "ST3GAL5", "RTP4", "ISG15", "BATF2", "LGALS3BP", "HLA-DOA", "HLA-DRA",
+"CD96", "IL2RG", "SPI1", "LTB", "NLRP3", "CD3D", "CD3E", "ITGAL", "WAS", "CD4",
+"KLRD1", "MAP4K1", "CD28", "CCR5", "IGSF6", "CXCL13", "CD7", "CXCR3", "FASLG", "IL12RB1",
+"ITGB2", "CTSS", "SIT1", "MMP9", "CRTAM", "CCR1", "CD79A", "IL27RA", "GPR65", "CDKN2A",
+"DLGAP5", "BIRC5", "KIF4A", "CENPF", "NDC80", "AURKB", "KIF18B", "GINS1", "CDC20", "PTTG1",
+"ASF1B", "MYBL2", "SPC24", "STMN1", "GINS4", "TRIP13", "UBE2T", "CDC25A", "CENPA", "UBE2C",
+"RAD54L", "CDC45", "GINS2", "SLC7A5", "CDC6", "EXO1"]
+
+B = ["SCNN1A", "KLF4", "TRIM29", "CLIC3", "KLK11", "PKP3", "GJB3",
+"PERP", "SFN", "HMGCS2", "OVOL2", "PCP4", "RAPGEFL1", "KRT19",
+"FGFR3", "SULT2B1", "TPSAB1", "PPP2R2C", "CDSN", "EGFR", "CLDN4",
+"DSC3", "DSC1", "KRT31", "COL17A1", "CLDN8", "GRB7", "KRT1",
+"KLK7", "CALML5", "KRT15", "NPY4R", "TGM1", "KLK8", "SOX10",
+"KRT5", "LGALS7", "PKP1", "PRODH", "FGF22", "ALOX12B", "LYPD3",
+"NOS1", "EDN2", "ZBTB16", "HSD11B2", "SERPINB5", "CLCA2", "TP63",
+"GLS2", "ESRP2", "AQP3", "TNNT2", "PGAM2", "KLF5", "CFD",
+"VIPR1", "MYL2", "MYL7", "SPDEF", "RORA", "B4GALNT2", "CD8A",
+"CD3D", "CD3E", "CD3G", "CD2", "PRF1", "GZMA", "CCR5",
+"CXCL9", "IFNG", "CCL5", "CCL4", "CXCL13", "CXCR3", "FASLG",
+"GZMB", "IL12RB1", "MMP9", "NCR1", "HLA-G", "CD79A"]
+
+C = ["SCNN1A", "KLF4", "TRIM29", "KLK11", "PKP3", "GJB3", "HMGCS2",
+"OVOL2", "PCP4", "RAPGEFL1", "FGFR3", "SULT2B1", "TPSAB1", "XBP1",
+"KRT1", "KLK7", "CALML5", "KRT15", "NPY4R", "TGM1", "KLK8",
+"SOX10", "KRT5", "LGALS7", "PKP1", "CLDN8", "PRODH", "FGF22",
+"ALOX12B", "LYPD3", "EDN2", "ZBTB16", "HSD11B2", "CDSN", "CLDN4",
+"DSC3", "DSC1", "KRT31", "COL17A1", "GRB7", "CRB3", "ESRP2",
+"AQP3", "CD8A", "CD3D", "CD3E", "CD3G", "CD2", "PRF1",
+"GZMA", "CCR5", "CXCL9", "IFNG", "CCL5", "CCL4", "CXCL13",
+"CXCR3", "FASLG", "GZMB", "IL12RB1", "MMP9", "NCR1", "HLA-G",
+"CD79A"]
+
+D = ["KLF4", "SERPINB5", "CLCA2", "KLK8", "IFI30", "PERP", "SFN",
+"NHLH2", "KRT17", "TP63", "EPS8L2", "GLS2", "ALOX15B", "ZBTB16",
+"GPX2", "MAPK13", "SCNN1A", "TRIM29", "CLIC3", "KLK11", "PKP3",
+"CA12", "GJB3", "KLK10", "HMGCS2", "OVOL2", "PCP4", "RAPGEFL1",
+"KRT19", "FGFR3", "ZFP36", "LAMC2", "SULT2B1", "CXCL14", "KRT15",
+"GJA1", "ESRP2", "RHOD", "MSMB", "AQP3", "ELF3", "LAD1",
+"PPP2R2C", "CDSN", "EGFR", "LAMA3", "CLDN4", "DSC3", "DSC1",
+"KRT31", "COL17A1", "CLDN8", "GRB7", "ACTA1", "CRB3", "TNNT2",
+"PGAM2", "KLF5", "CFD", "DES", "EFS", "VIPR1", "SGCG",
+"MB", "NOS1", "MYL2", "ACTC1", "MYH11", "CKM", "MYH7",
+"FHL1", "SPDEF", "SPEG", "GPX3", "MYH2", "MYH1", "LAMA2",
+"KRT1", "KLK7", "CALML5", "NPY4R", "TGM1", "SOX10", "KRT5",
+"LGALS7", "PKP1", "SERPINB2", "PRODH", "WNT16", "FGF22", "ALOX12B",
+"LYPD3", "SLC6A14", "AKR1B10", "EDN2", "TFCP2L1", "HSD11B2", "CPB1",
+"TENM2", "THRB", "KRT4", "PTGFR", "CLPS", "GP2", "IRF8",
+"CST7", "GBP4", "BATF", "LTB", "CTLA4", "ICOS", "IL10",
+"CD86", "TNFRSF4", "IRF4", "CD48", "IL2RA", "S100A1", "TLR7",
+"CXCL10", "EOMES", "SELL", "SPP1", "TNFRSF9", "ETV4", "ST3GAL4",
+"CDC6", "SPRY4", "IL1R1", "REG1A", "CSF2RA", "IL2RG", "CXCL9",
+"CD38", "CD14", "CXCL13", "A2M", "IL12RB1", "IL1B", "EBI3",
+"CXCL11", "CCR1", "CD74", "RSAD2", "CCRL2", "CMPK2", "GMPR",
+"BST2", "OASL", "RTP4", "BATF2", "LGALS3BP", "GAPDHS", "GFI1",
+"TKTL1", "IL12RB2", "IL13RA2", "NEK2", "NCAPH", "BUB1", "CDKN3",
+"AURKA", "CR1", "FCN1", "LCK", "PLA2G7", "PIK3CG", "ITGAM",
+"LCP2", "GZMK", "PLEK", "WAS", "HPCAL4", "GZMA", "FCER1G",
+"C1QA", "CCL5", "SPOCK2", "C1QC", "GNGT2", "GZMB", "CTSS",
+"SERPINA1", "CDK5R1", "APOC1", "MMP12", "MMP8", "OLR1", "PLAT",
+"ADM", "LPAR1", "RGS1", "APLNR", "IL10RA", "SLAMF1", "LTA",
+"NLRP3", "CCL17", "CXCR6", "OSM", "CYBB", "C3AR1", "MSR1",
+"KCNA3", "CXCL8", "HLA-DQA1", "HLA-DRB1", "ZBP1", "SLAMF7", "GPR18",
+"IDO1", "FCGR1A", "HLA-G", "OAS2", "METTL7B", "HLA-DOA", "CCR2",
+"PTPRC", "NCF4", "HLA-DRA", "CD247", "CD96", "CD8A", "SPI1",
+"CD3D", "CD3E", "CD3G", "ITGAL", "CD4", "CD2", "PRF1",
+"CD28", "LY86", "CCR5", "IGSF6", "CCL4", "CXCR3", "FASLG",
+"ITGB2", "SIT1", "MMP9", "CD80", "CRTAM", "CD79A", "CDKN2A",
+"DLGAP5", "ASF1B", "BIRC5", "MYBL2", "RRM2", "SPC24", "KIF4A",
+"UBE2T", "CDC25A", "UBE2C", "PBK", "CDC45", "GINS2", "CENPF",
+"SLC7A5", "EXO1"]
+
+E = ["MAPK13", "SCNN1A", "KLF4", "TRIM29", "CLIC3", "KLK11", "PKP3",
+"CA12", "GJB3", "PERP", "SFN", "KLK10", "HMGCS2", "OVOL2",
+"PCP4", "RAPGEFL1", "KRT19", "FGFR3", "PTGER3", "SULT2B1", "CXCL14",
+"TJP3", "NMU", "TPSAB1", "SERPINB5", "CLCA2", "KLK8", "IFI30",
+"KRT17", "TP63", "GLS2", "CEBPA", "ZBTB16", "GPX2", "PPP2R2C",
+"CDSN", "EGFR", "LAMA3", "CLDN4", "DSC3", "DSC1", "KRT31",
+"COL17A1", "CLDN8", "GRB7", "KRT15", "GJA1", "ESRP2", "MSMB",
+"AQP3", "ELF3", "LAD1", "CD2", "PRF1", "CD38", "CD14",
+"LEF1", "FASLG", "CDK2", "PLAT", "CST7", "GBP4", "LTB",
+"CTLA4", "ICOS", "CD86", "IRF4", "CD48", "IL2RA", "S100A1",
+"TLR7", "CXCL10", "EOMES", "SELL", "SPP1", "TNFRSF9", "ETV4",
+"ST3GAL4", "SPRY4", "IL1R1", "ADM", "LPAR1", "CSF3", "PTGER2",
+"RGS1", "CXCL6", "SLAMF1", "LTA", "LCK", "CXCR6", "OSM",
+"CYBB", "CXCL9", "CCL5", "MSR1", "BST2", "EBI3", "CXCL11",
+"RTP4", "SCG3", "MMP13", "PIK3CG", "GZMK", "PLEK", "GZMA",
+"FCER1G", "C1QA", "SPOCK2", "C1QC", "GNGT2", "GZMB", "CTSS",
+"SERPINA1", "CDK5R1", "APOC1", "MMP12", "MMP8", "IFI27", "CD74",
+"RSAD2", "GMPR", "OASL", "BATF2", "LGALS3BP", "IL2RG", "CXCL13",
+"A2M", "IL12RB1", "CCR1", "HLA-DQA1", "HLA-DRB1", "ZBP1", "SLAMF7",
+"GPR18", "IDO1", "FCGR1A", "HLA-G", "OAS2", "HLA-DOA", "CD247",
+"CD96", "CD8A", "CD3D", "CD3E", "CD3G", "ITGAL", "LY86",
+"CCR5", "IGSF6", "CCL4", "CXCR3", "ITGB2", "SIT1", "MMP9",
+"CD80", "CRTAM", "CD79A"]
+
+target_data_A = np.array(A)
+target_data_B = np.array(B)
+target_data_C = np.array(C)
+target_data_D = np.array(D)
+target_data_E = np.array(E)
+ALL = [target_data_A, target_data_B, target_data_C, target_data_D, target_data_E]
+ALL_concatenated = np.concatenate(ALL)
+# Convert list A to numpy array and get unique elements preserving order
+target_data = np.array(ALL_concatenated)
+print(target_data)
+
+groups = ['TransPropy', 'deseq2', 'edgeR', 'limma', 'outRst']
+groups_colors = plt.get_cmap('Set2').colors[:5]
+# Repeat counts for each group
+repeat_counts = [146, 83, 64, 261, 157]
+# Repeating each group name by the respective counts
+repeated_group_names = np.repeat(groups, repeat_counts)
+# Printing the repeated group names
+print(repeated_group_names)
+#target_data = np.concatenate([np.random.choice(1000, 100, replace=False) for i in range(len(groups))])
+
+# create a dataframe
+edge_data = pd.DataFrame({'source': repeated_group_names, 'target': target_data})
+edge_data = edge_data.assign(color = lambda x: x['source'].map(dict(zip(groups, groups_colors))))
+
+fig, ax = plt.subplots(figsize=(10, 10))
+VennNetworkPlot(edge_data,
+                edge_style=2,
+                target_node_size=15,
+                show_node_margin=True,
+                #show_target_label=True,
+                #target_font_size=4,
+                show_node_color=True,
+                k=0.1,
+                ax=ax)
+plt.show()
+
+```
+
+
+![](figure/VennNetwork core enrichment/VennNetwork core enrichment _ANKRD35_hallmarks_fivemethods.png)
+
+<div style="text-align: center;">
+VennNetwork core enrichment _ANKRD35_hallmarks_fivemethods
+</div>
+
+
+
+## ANKRD35_kegg
+```r
+# r
+# Process the core enrichment genes from TransPropy_ANKRD35_kegg_y
+TransPropy_ANKRD35_kegg_core_enrichment <- TransPropy_ANKRD35_kegg_y@result[["core_enrichment"]]
+process_core_enrichment(TransPropy_ANKRD35_kegg_core_enrichment, correlation_TransPropy_ANKRD35)
+
+# Process the core enrichment genes from deseq2_ANKRD35_kegg_y
+deseq2_ANKRD35_kegg_core_enrichment <- deseq2_ANKRD35_kegg_y@result[["core_enrichment"]]
+process_core_enrichment(deseq2_ANKRD35_kegg_core_enrichment, correlation_deseq2_ANKRD35)
+
+# Process the core enrichment genes from edgeR_ANKRD35_kegg_y
+edgeR_ANKRD35_kegg_core_enrichment <- edgeR_ANKRD35_kegg_y@result[["core_enrichment"]]
+process_core_enrichment(edgeR_ANKRD35_kegg_core_enrichment, correlation_edgeR_ANKRD35)
+
+# Process the core enrichment genes from limma_ANKRD35_kegg_y
+limma_ANKRD35_kegg_core_enrichment <- limma_ANKRD35_kegg_y@result[["core_enrichment"]]
+process_core_enrichment(limma_ANKRD35_kegg_core_enrichment, correlation_limma_ANKRD35)
+
+# Process the core enrichment genes from outRst_ANKRD35_kegg_y
+outRst_ANKRD35_kegg_core_enrichment <- outRst_ANKRD35_kegg_y@result[["core_enrichment"]]
+process_core_enrichment(outRst_ANKRD35_kegg_core_enrichment, correlation_outRst_ANKRD35)
+
+```
+
+```
+> process_core_enrichment(TransPropy_ANKRD35_kegg_core_enrichment, correlation_TransPropy_ANKRD35)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+ [1] "CYP2C18"  "CYP3A5"   "CYP2E1"   "CYP2C9"   "AKR1C2"   "GSTM5"    "CYP3A4"   "ALDH3A1"  "ADH1B"   
+[10] "ALDH3B2"  "AKR1C1"   "AKR1C3"   "ADH4"     "ADH6"     "ADH1A"    "ADH1C"    "CYP2D6"   "AOX1"    
+[19] "FMO2"     "PLA2G4B"  "ALOX12B"  "ALOX15B"  "ALOX12"   "CYP4A11"  "CYP4F2"   "DGAT2"    "CYP26B1" 
+[28] "AWAT2"    "EGFR"     "CHMP4A"   "CBLC"     "EPN3"     "FGFR2"    "FGFR3"    "ADRB2"    "CALML5"  
+[37] "CHP2"     "ADORA2A"  "CACNA1G"  "ADCY4"    "AGTR1"    "ADCY8"    "ADRA1A"   "FGF11"    "DUSP1"   
+[46] "FGF22"    "ACADL"    "CPT1B"    "AQP7"     "ADIPOQ"   "PLIN1"    "FABP4"    "ILK"      "HLA-DOA" 
+[55] "HLA-DQB1" "HLA-DRA"  "HLA-DPA1" "HLA-DQA1" "HLA-DRB1" "HLA-DRB5" "HLA-DPB1" "CD28"     "FASLG"   
+[64] "HLA-G"    "KLRD1"    "FCGR3A"   "FCGR2A"   "ITGB2"    "FCGR1A"   "MARCKSL1" "CD33"     "CR2"     
+[73] "CSF1R"    "CSF2RA"   "CD5"      "DNTT"     "CD3D"     "CD3E"     "CD4"      "CD37"     "CD38"    
+[82] "CD14"     "CD7"      "CD19"     "CDK2"     "E2F1"     "CDC25C"   "CDC20"    "PTTG1"    "BUB1"    
+[91] "CDC45"    "CCNB1"    "CDKN2A"   "CDC6"     "CDC25A"  
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 160 
+All Number of genes with core enrichment (unique): 95 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 97 
+Number of genes with negative correlation (notunique): 63 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 53 
+Number of genes with negative correlation (unique): 42 
+
+
+> process_core_enrichment(deseq2_ANKRD35_kegg_core_enrichment, correlation_deseq2_ANKRD35)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+ [1] "PLA2G4B"       "LTC4S"         "JMJD7-PLA2G4B" "PLA2G3"        "GGT6"          "CYP2C18"      
+ [7] "PLA2G4E"       "PLA2G2F"       "CYP4F3"        "CYP2C9"        "ALOX12B"       "FGF11"        
+[13] "CHP2"          "EGFR"          "FGFR2"         "NTF4"          "FGF22"         "FGFR3"        
+[19] "CALML5"        "CALML3"        "CYP3A5"        "UGT1A6"        "UGT1A4"        "UGT1A1"       
+[25] "UGT1A7"        "AKR1C2"        "ADH1B"         "CYP2C19"       "UGT2A1"        "UGT1A10"      
+[31] "UGT1A5"        "UGT1A3"        "AOX1"          "CYP1A2"        "SULT1E1"       "SULT2B1"      
+[37] "HSD11B2"       "LAMB4"         "CBLC"          "WNT3A"         "ZBTB16"        "PIK3R2"       
+[43] "CCR5"          "CXCL9"         "CCL5"          "CCL4"          "CXCL13"        "CXCR3"        
+[49] "CCL18"         "CXCL10"        "ADCY1"         "GNGT1"         "CXCL11"        "GNG4"         
+[55] "XCL2"          "SHC4"         
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 105 
+All Number of genes with core enrichment (unique): 56 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 91 
+Number of genes with negative correlation (notunique): 14 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 42 
+Number of genes with negative correlation (unique): 14 
+
+
+> process_core_enrichment(edgeR_ANKRD35_kegg_core_enrichment, correlation_edgeR_ANKRD35)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+ [1] "PLA2G4B"       "LTC4S"         "JMJD7-PLA2G4B" "PLA2G3"        "GGT6"          "CYP2C18"      
+ [7] "PLA2G4E"       "PLA2G2F"       "CYP4F3"        "ALOX12B"       "FGF11"         "CHP2"         
+[13] "NTF4"          "FGF22"         "FGFR3"         "UGT1A6"        "UGT1A4"        "CYP3A5"       
+[19] "UGT1A1"        "UGT1A7"        "ADH1B"         "CYP2C19"       "UGT1A10"       "UGT1A5"       
+[25] "UGT1A3"        "AOX1"          "SULT2B1"       "HSD11B2"       "AMY2A"        
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 72 
+All Number of genes with core enrichment (unique): 29 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 72 
+Number of genes with negative correlation (notunique): 0 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 29 
+Number of genes with negative correlation (unique): 0 
+
+
+> process_core_enrichment(limma_ANKRD35_kegg_core_enrichment, correlation_limma_ANKRD35)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+  [1] "MAPK13"        "PLA2G4B"       "CALML5"        "JMJD7-PLA2G4B" "EGFR"          "PLA2G3"       
+  [7] "CALML3"        "PLA2G4E"       "PLA2G2F"       "UGT1A6"        "CYP2C18"       "CYP3A5"       
+ [13] "UGT1A1"        "UGT1A7"        "CYP2E1"        "AKR1C2"        "GSTM5"         "GSTA3"        
+ [19] "ALDH3A1"       "ADH1B"         "ALDH3B2"       "AKR1C1"        "AKR1C3"        "SULT1E1"      
+ [25] "SULT2B1"       "HSD11B1"       "HSD11B2"       "MAOA"          "LTC4S"         "GGT6"         
+ [31] "CYP4F3"        "PTGS1"         "ALOX12B"       "ALOX15B"       "GPX2"          "PLA2G2A"      
+ [37] "GPX3"          "LTB"           "TNFSF8"        "CCL17"         "CXCR6"         "IL10"         
+ [43] "OSM"           "TNFRSF4"       "IL12RB2"       "CXCR4"         "CCR5"          "CXCL9"        
+ [49] "CCL5"          "CCL4"          "CXCL13"        "IL2RA"         "CXCR3"         "CCL18"        
+ [55] "FASLG"         "IL12RB1"       "CCL3"          "CXCL10"        "IL1B"          "CXCL11"       
+ [61] "IL21R"         "CCR1"          "CD27"          "CCL8"          "TNFSF13B"      "TNFRSF9"      
+ [67] "CCL3L3"        "CXCL8"         "IL24"          "HLA-DQA2"      "CD8B"          "HLA-DOA"      
+ [73] "HLA-DQB1"      "HLA-DRA"       "CD74"          "HLA-DQA1"      "LTA"           "CD8A"         
+ [79] "HLA-DRB1"      "HLA-DRB5"      "CD4"           "CTSS"          "HLA-G"         "CLDN11"       
+ [85] "CADM1"         "SIGLEC1"       "PTPRC"         "SPN"           "CD6"           "L1CAM"        
+ [91] "CLDN14"        "ITGAM"         "PDCD1"         "ITGAL"         "CTLA4"         "ICOS"         
+ [97] "CD2"           "CD86"          "CD28"          "ITGB2"         "CD80"          "SELL"         
+[103] "CD22"          "CDH15"         "CDH2"          "NLGN1"         "SDC3"          "PIK3CG"       
+[109] "TLR8"          "CD14"          "TLR7"          "SPP1"          "NCF4"          "CR1"          
+[115] "NCF1"          "FCGR3A"        "FCGR2A"        "FCGR1A"        "MARCKSL1"      "BTK"          
+[121] "LCK"           "IL2RG"         "CD3D"          "CD3E"          "CD79A"         "VAV1"         
+[127] "HCK"           "WAS"           "GNGT2"         "ADCY1"         "GNG7"          "GNG4"         
+[133] "SHC4"          "C1QA"          "C1QB"          "C1QC"          "IL1R1"         "ANPEP"        
+[139] "CSF2RA"        "CD5"           "MS4A1"         "CD3G"          "CD38"          "PRF1"         
+[145] "GZMB"         
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 320 
+All Number of genes with core enrichment (unique): 145 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 74 
+Number of genes with negative correlation (notunique): 246 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 40 
+Number of genes with negative correlation (unique): 105 
+
+
+> process_core_enrichment(outRst_ANKRD35_kegg_core_enrichment, correlation_outRst_ANKRD35)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+  [1] "MAPK13"        "PLA2G4B"       "CALML5"        "JMJD7-PLA2G4B" "EGFR"          "PLA2G3"       
+  [7] "CALML3"        "PLA2G4E"       "PLA2G2F"       "LTC4S"         "GGT6"          "CYP2C18"      
+ [13] "CYP4F3"        "CYP2C9"        "PTGS1"         "ALOX12B"       "MYH11"         "MYH6"         
+ [19] "MYH7"          "MYH2"          "MYH1"          "LAMA2"         "HLA-DQA2"      "HLA-DOA"      
+ [25] "HLA-DQA1"      "HLA-DRB1"      "HLA-DRB5"      "HLA-DPB1"      "ITGAL"         "CD86"         
+ [31] "PRF1"          "ITGB2"         "CD80"          "HLA-G"         "FCGR3A"        "FCGR2A"       
+ [37] "FCGR1A"        "MARCKSL1"      "CD8B"          "CD74"          "LTA"           "CD8A"         
+ [43] "CTSS"          "PIK3CG"        "TLR8"          "CXCL9"         "CCL5"          "CD14"         
+ [49] "CCL4"          "TLR7"          "CCL3"          "CXCL10"        "CXCL11"        "SPP1"         
+ [55] "PIK3CD"        "MAG"           "MPZ"           "SPN"           "CD6"           "L1CAM"        
+ [61] "CLDN14"        "PDCD1"         "CTLA4"         "ICOS"          "CD2"           "SELL"         
+ [67] "CD22"          "NLGN1"         "SDC3"          "CD247"         "NCR3"          "SH2D1A"       
+ [73] "LCK"           "CD244"         "TYROBP"        "FCER1G"        "CD48"          "FASLG"        
+ [79] "GZMB"          "SHC4"          "FCER2"         "CD5"           "MS4A1"         "CD3D"         
+ [85] "CD3E"          "CD3G"          "MME"           "CD38"          "IL2RA"         "C1QA"         
+ [91] "C1QB"          "C1QC"          "CXCR6"         "CCR5"          "CXCL13"        "CXCR3"        
+ [97] "CCL18"         "GNGT2"         "ADCY1"         "GNG7"          "CCR1"          "GNG4"         
+[103] "CCL3L3"       
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 219 
+All Number of genes with core enrichment (unique): 103 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 27 
+Number of genes with negative correlation (notunique): 192 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 22 
+Number of genes with negative correlation (unique): 81
+```
+
+
+```python
+# python
+# ANKRD35_kegg
+A = ["CYP2C18", "CYP3A5", "CYP2E1", "CYP2C9", "AKR1C2", "GSTM5", "CYP3A4",
+"ALDH3A1", "ADH1B", "ALDH3B2", "AKR1C1", "AKR1C3", "ADH4", "ADH6",
+"ADH1A", "ADH1C", "CYP2D6", "AOX1", "FMO2", "PLA2G4B", "ALOX12B",
+"ALOX15B", "ALOX12", "CYP4A11", "CYP4F2", "DGAT2", "CYP26B1", "AWAT2",
+"EGFR", "CHMP4A", "CBLC", "EPN3", "FGFR2", "FGFR3", "ADRB2",
+"CALML5", "CHP2", "ADORA2A", "CACNA1G", "ADCY4", "AGTR1", "ADCY8",
+"ADRA1A", "FGF11", "DUSP1", "FGF22", "ACADL", "CPT1B", "AQP7",
+"ADIPOQ", "PLIN1", "FABP4", "ILK", "HLA-DOA", "HLA-DQB1", "HLA-DRA",
+"HLA-DPA1", "HLA-DQA1", "HLA-DRB1", "HLA-DRB5", "HLA-DPB1", "CD28", "FASLG",
+"HLA-G", "KLRD1", "FCGR3A", "FCGR2A", "ITGB2", "FCGR1A", "MARCKSL1",
+"CD33", "CR2", "CSF1R", "CSF2RA", "CD5", "DNTT", "CD3D",
+"CD3E", "CD4", "CD37", "CD38", "CD14", "CD7", "CD19",
+"CDK2", "E2F1", "CDC25C", "CDC20", "PTTG1", "BUB1", "CDC45",
+"CCNB1", "CDKN2A", "CDC6", "CDC25A"]
+
+B = ["PLA2G4B", "LTC4S", "JMJD7-PLA2G4B", "PLA2G3", "GGT6",
+"CYP2C18", "PLA2G4E", "PLA2G2F", "CYP4F3", "CYP2C9",
+"ALOX12B", "FGF11", "CHP2", "EGFR", "FGFR2",
+"NTF4", "FGF22", "FGFR3", "CALML5", "CALML3",
+"CYP3A5", "UGT1A6", "UGT1A4", "UGT1A1", "UGT1A7",
+"AKR1C2", "ADH1B", "CYP2C19", "UGT2A1", "UGT1A10",
+"UGT1A5", "UGT1A3", "AOX1", "CYP1A2", "SULT1E1",
+"SULT2B1", "HSD11B2", "LAMB4", "CBLC", "WNT3A",
+"ZBTB16", "PIK3R2", "CCR5", "CXCL9", "CCL5",
+"CCL4", "CXCL13", "CXCR3", "CCL18", "CXCL10",
+"ADCY1", "GNGT1", "CXCL11", "GNG4", "XCL2",
+"SHC4"]
+
+C = ["PLA2G4B", "LTC4S", "JMJD7-PLA2G4B", "PLA2G3", "GGT6",
+"CYP2C18", "PLA2G4E", "PLA2G2F", "CYP4F3", "ALOX12B",
+"FGF11", "CHP2", "NTF4", "FGF22", "FGFR3",
+"UGT1A6", "UGT1A4", "CYP3A5", "UGT1A1", "UGT1A7",
+"ADH1B", "CYP2C19", "UGT1A10", "UGT1A5", "UGT1A3",
+"AOX1", "SULT2B1", "HSD11B2", "AMY2A"]
+
+D = ["MAPK13", "PLA2G4B", "CALML5", "JMJD7-PLA2G4B", "EGFR",
+"PLA2G3", "CALML3", "PLA2G4E", "PLA2G2F", "UGT1A6",
+"CYP2C18", "CYP3A5", "UGT1A1", "UGT1A7", "CYP2E1",
+"AKR1C2", "GSTM5", "GSTA3", "ALDH3A1", "ADH1B",
+"ALDH3B2", "AKR1C1", "AKR1C3", "SULT1E1", "SULT2B1",
+"HSD11B1", "HSD11B2", "MAOA", "LTC4S", "GGT6",
+"CYP4F3", "PTGS1", "ALOX12B", "ALOX15B", "GPX2",
+"PLA2G2A", "GPX3", "LTB", "TNFSF8", "CCL17",
+"CXCR6", "IL10", "OSM", "TNFRSF4", "IL12RB2",
+"CXCR4", "CCR5", "CXCL9", "CCL5", "CCL4",
+"CXCL13", "IL2RA", "CXCR3", "CCL18", "FASLG",
+"IL12RB1", "CCL3", "CXCL10", "IL1B", "CXCL11",
+"IL21R", "CCR1", "CD27", "CCL8", "TNFSF13B",
+"TNFRSF9", "CCL3L3", "CXCL8", "IL24", "HLA-DQA2",
+"CD8B", "HLA-DOA", "HLA-DQB1", "HLA-DRA", "CD74",
+"HLA-DQA1", "LTA", "CD8A", "HLA-DRB1", "HLA-DRB5",
+"CD4", "CTSS", "HLA-G", "CLDN11", "CADM1",
+"SIGLEC1", "PTPRC", "SPN", "CD6", "L1CAM",
+"CLDN14", "ITGAM", "PDCD1", "ITGAL", "CTLA4",
+"ICOS", "CD2", "CD86", "CD28", "ITGB2",
+"CD80", "SELL", "CD22", "CDH15", "CDH2",
+"NLGN1", "SDC3", "PIK3CG", "TLR8", "CD14",
+"TLR7", "SPP1", "NCF4", "CR1", "NCF1",
+"FCGR3A", "FCGR2A", "FCGR1A", "MARCKSL1", "BTK",
+"LCK", "IL2RG", "CD3D", "CD3E", "CD79A",
+"VAV1", "HCK", "WAS", "GNGT2", "ADCY1",
+"GNG7", "GNG4", "SHC4", "C1QA", "C1QB",
+"C1QC", "IL1R1", "ANPEP", "CSF2RA", "CD5",
+"MS4A1", "CD3G", "CD38", "PRF1", "GZMB"]
+
+E = ["MAPK13", "PLA2G4B", "CALML5", "JMJD7-PLA2G4B", "EGFR",
+"PLA2G3", "CALML3", "PLA2G4E", "PLA2G2F", "LTC4S",
+"GGT6", "CYP2C18", "CYP4F3", "CYP2C9", "PTGS1",
+"ALOX12B", "MYH11", "MYH6", "MYH7", "MYH2",
+"MYH1", "LAMA2", "HLA-DQA2", "HLA-DOA", "HLA-DQA1",
+"HLA-DRB1", "HLA-DRB5", "HLA-DPB1", "ITGAL", "CD86",
+"PRF1", "ITGB2", "CD80", "HLA-G", "FCGR3A",
+"FCGR2A", "FCGR1A", "MARCKSL1", "CD8B", "CD74",
+"LTA", "CD8A", "CTSS", "PIK3CG", "TLR8",
+"CXCL9", "CCL5", "CD14", "CCL4", "TLR7",
+"CCL3", "CXCL10", "CXCL11", "SPP1", "PIK3CD",
+"MAG", "MPZ", "SPN", "CD6", "L1CAM",
+"CLDN14", "PDCD1", "CTLA4", "ICOS", "CD2",
+"SELL", "CD22", "NLGN1", "SDC3", "CD247",
+"NCR3", "SH2D1A", "LCK", "CD244", "TYROBP",
+"FCER1G", "CD48", "FASLG", "GZMB", "SHC4",
+"FCER2", "CD5", "MS4A1", "CD3D", "CD3E",
+"CD3G", "MME", "CD38", "IL2RA", "C1QA",
+"C1QB", "C1QC", "CXCR6", "CCR5", "CXCL13",
+"CXCR3", "CCL18", "GNGT2", "ADCY1", "GNG7",
+"CCR1", "GNG4", "CCL3L3"]
+
+target_data_A = np.array(A)
+target_data_B = np.array(B)
+target_data_C = np.array(C)
+target_data_D = np.array(D)
+target_data_E = np.array(E)
+ALL = [target_data_A, target_data_B, target_data_C, target_data_D, target_data_E]
+ALL_concatenated = np.concatenate(ALL)
+# Convert list A to numpy array and get unique elements preserving order
+target_data = np.array(ALL_concatenated)
+print(target_data)
+
+groups = ['TransPropy', 'deseq2', 'edgeR', 'limma', 'outRst']
+groups_colors = plt.get_cmap('Set2').colors[:5]
+# Repeat counts for each group
+repeat_counts = [95, 56, 29, 145, 103]
+# Repeating each group name by the respective counts
+repeated_group_names = np.repeat(groups, repeat_counts)
+# Printing the repeated group names
+print(repeated_group_names)
+#target_data = np.concatenate([np.random.choice(1000, 100, replace=False) for i in range(len(groups))])
+
+# create a dataframe
+edge_data = pd.DataFrame({'source': repeated_group_names, 'target': target_data})
+edge_data = edge_data.assign(color = lambda x: x['source'].map(dict(zip(groups, groups_colors))))
+
+fig, ax = plt.subplots(figsize=(10, 10))
+VennNetworkPlot(edge_data,
+                edge_style=2,
+                target_node_size=15,
+                show_node_margin=True,
+                #show_target_label=True,
+                #target_font_size=4,
+                show_node_color=True,
+                k=0.1,
+                ax=ax)
+plt.show()
+
+```
+
+![](figure/VennNetwork core enrichment/VennNetwork core enrichment _ANKRD35_kegg_fivemethods.png)
+
+<div style="text-align: center;">
+VennNetwork core enrichment _ANKRD35_kegg_fivemethods
+</div>
+
+
+
+
+
+## ALOXE3_hallmarks
+```r
+# r
+
+# Process the core enrichment genes from TransPropy_ALOXE3_hallmarks_y
+TransPropy_ALOXE3_hallmarks_core_enrichment <- TransPropy_ALOXE3_hallmarks_y@result[["core_enrichment"]]
+process_core_enrichment(TransPropy_ALOXE3_hallmarks_core_enrichment, correlation_TransPropy_ALOXE3)
+
+# Process the core enrichment genes from deseq2_ALOXE3_hallmarks_y
+deseq2_ALOXE3_hallmarks_core_enrichment <- deseq2_ALOXE3_hallmarks_y@result[["core_enrichment"]]
+process_core_enrichment(deseq2_ALOXE3_hallmarks_core_enrichment, correlation_deseq2_ALOXE3)
+
+# Process the core enrichment genes from edgeR_ALOXE3_hallmarks_y
+edgeR_ALOXE3_hallmarks_core_enrichment <- edgeR_ALOXE3_hallmarks_y@result[["core_enrichment"]]
+process_core_enrichment(edgeR_ALOXE3_hallmarks_core_enrichment, correlation_edgeR_ALOXE3)
+
+# Process the core enrichment genes from limma_ALOXE3_hallmarks_y
+limma_ALOXE3_hallmarks_core_enrichment <- limma_ALOXE3_hallmarks_y@result[["core_enrichment"]]
+process_core_enrichment(limma_ALOXE3_hallmarks_core_enrichment, correlation_limma_ALOXE3)
+
+# Process the core enrichment genes from outRst_ALOXE3_hallmarks_y
+outRst_ALOXE3_hallmarks_core_enrichment <- outRst_ALOXE3_hallmarks_y@result[["core_enrichment"]]
+process_core_enrichment(outRst_ALOXE3_hallmarks_core_enrichment, correlation_outRst_ALOXE3)
+```
+
+```
+> process_core_enrichment(TransPropy_ALOXE3_hallmarks_core_enrichment, correlation_TransPropy_ALOXE3)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+  [1] "ESRP2"    "KLK10"    "CLIC3"    "CYP26B1"  "ELF3"     "CA12"     "BCL11B"   "ABLIM1"   "CALML5"  
+ [10] "ALOX12B"  "FGFR3"    "SERPINB2" "FGF22"    "EDN2"     "CLDN16"   "AKR1B10"  "EDAR"     "EDN1"    
+ [19] "ABCB11"   "ATP6V1B1" "ACTC1"    "ZBTB16"   "CKM"      "MYH7"     "TG"       "CYP2C18"  "ARG1"    
+ [28] "ETS2"     "FETUB"    "ALDH3A1"  "AQP9"     "CYP2E1"   "ALDH2"    "ITIH4"    "CYP4F2"   "ACSM1"   
+ [37] "AKR1C2"   "CDA"      "HSD11B1"  "RBP4"     "CES1"     "AKR1C3"   "ABCC3"    "CFB"      "ADH1C"   
+ [46] "AOX1"     "CDSN"     "PPP2R2C"  "COL17A1"  "DSC3"     "CRB3"     "EGFR"     "ALOX15B"  "ACTA1"   
+ [55] "ICOSLG"   "F2RL1"    "SIK1"     "BCL6"     "DUSP1"    "FOSL2"    "TMEM45A"  "EFNA3"    "NDST2"   
+ [64] "ATF3"     "F3"       "DES"      "CFD"      "ANKRD2"   "FHL1"     "CDH13"    "GADD45B"  "LTB"     
+ [73] "IRF4"     "GBP4"     "CTLA4"    "CD48"     "CD83"     "EOMES"    "SPP1"     "SELL"     "ETV4"    
+ [82] "TNFRSF21" "ST3GAL4"  "GPR65"    "CDC6"     "SPRY4"    "CTSZ"     "HLA-DOA"  "HLA-DRA"  "CD74"    
+ [91] "HLA-DQA1" "CD96"     "SPI1"     "NLRP3"    "IL2RG"    "CD3E"     "CD3D"     "WAS"      "ITGAL"   
+[100] "CD4"      "MAP4K1"   "CD28"     "CCR5"     "CCL5"     "IGSF6"    "CXCR3"    "CXCL13"   "IL12RB1" 
+[109] "MMP9"     "ST8SIA4"  "CTSS"     "FASLG"    "ITGB2"    "KLRD1"    "CCR1"     "SIT1"     "CD7"     
+[118] "HLA-G"    "CRTAM"    "CD79A"    "IL27RA"   "CDKN2A"   "ISG20"    "HLA-DRB1" "RSAD2"    "MX1"     
+[127] "CD38"     "BST2"     "FCGR1A"   "CXCL11"   "OASL"     "PSMB9"    "OAS2"     "ST3GAL5"  "RTP4"    
+[136] "BATF2"    "ISG15"    "LGALS3BP" "NEK2"     "KIF2C"    "NCAPH"    "BUB1"     "AURKA"    "CDKN3"   
+[145] "CDH2"     "CXCL8"    "FBN2"     "FN1"      "ADAM12"   "PLOD3"    "BIRC5"    "DLGAP5"   "KIF4A"   
+[154] "CENPF"    "NDC80"    "AURKB"    "KIF18B"   "CDC20"    "GINS1"    "PTTG1"    "MYBL2"    "ASF1B"   
+[163] "SPC24"    "STMN1"    "UBE2T"    "CDC25A"   "TRIP13"   "GINS4"    "CENPA"    "UBE2C"    "SLC7A5"  
+[172] "RAD54L"   "GINS2"    "CDC45"    "EXO1"    
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 226 
+All Number of genes with core enrichment (unique): 175 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 85 
+Number of genes with negative correlation (notunique): 141 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 71 
+Number of genes with negative correlation (unique): 104 
+
+
+> process_core_enrichment(deseq2_ALOXE3_hallmarks_core_enrichment, correlation_deseq2_ALOXE3)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+ [1] "GJB3"     "PKP3"     "TRIM29"   "SCNN1A"   "KLK11"    "SFN"      "KLF4"     "PERP"     "OVOL2"   
+[10] "RAPGEFL1" "FGFR3"    "SULT2B1"  "CLIC3"    "HMGCS2"   "PCP4"     "TPSAB1"   "KRT19"    "CDSN"    
+[19] "CLDN4"    "PPP2R2C"  "COL17A1"  "GRB7"     "DSC3"     "DSC1"     "KRT31"    "CRB3"     "CLDN8"   
+[28] "EGFR"     "KLK7"     "KLK8"     "TGM1"     "CALML5"   "ALOX12B"  "PKP1"     "KRT1"     "KRT5"    
+[37] "KRT15"    "LYPD3"    "LGALS7"   "SOX10"    "FGF22"    "NOS1"     "NPY4R"    "PRODH"    "EDN2"    
+[46] "HSD11B2"  "ESRP2"    "AQP3"     "RORA"     "PGAM2"    "B4GALNT2" "SERPINB5" "CLCA2"    "TP63"    
+[55] "GLS2"     "KLF5"     "TNNT2"    "VIPR1"    "SPDEF"    "CFD"      "MYL2"     "MYL7"     "MALL"    
+[64] "IL1RL2"   "ARG1"     "CD8A"     "CD3E"     "CD3D"     "CD3G"     "CD2"      "PRF1"     "CCR5"    
+[73] "GZMA"     "CCL5"     "CCL4"     "CXCL9"    "CXCR3"    "CXCL13"   "IL12RB1"  "GZMB"     "MMP9"    
+[82] "FASLG"    "IFNG"     "HLA-G"    "NCR1"     "CD79A"   
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 108 
+All Number of genes with core enrichment (unique): 86 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 87 
+Number of genes with negative correlation (notunique): 21 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 65 
+Number of genes with negative correlation (unique): 21 
+
+
+> process_core_enrichment(edgeR_ALOXE3_hallmarks_core_enrichment, correlation_edgeR_ALOXE3)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+ [1] "KLK7"     "KLK8"     "TGM1"     "CALML5"   "ALOX12B"  "PKP1"     "KRT1"     "KRT5"     "KRT15"   
+[10] "FGFR3"    "LYPD3"    "LGALS7"   "SOX10"    "FGF22"    "CLDN8"    "NPY4R"    "PRODH"    "EDN2"    
+[19] "HSD11B2"  "GJB3"     "PKP3"     "TRIM29"   "SCNN1A"   "KLK11"    "KLF4"     "OVOL2"    "RAPGEFL1"
+[28] "SULT2B1"  "HMGCS2"   "PCP4"     "TPSAB1"   "CDSN"     "CLDN4"    "COL17A1"  "GRB7"     "DSC3"    
+[37] "DSC1"     "KRT31"    "CRB3"     "ESRP2"    "AQP3"    
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 49 
+All Number of genes with core enrichment (unique): 41 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 49 
+Number of genes with negative correlation (notunique): 0 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 41 
+Number of genes with negative correlation (unique): 0 
+
+
+> process_core_enrichment(limma_ALOXE3_hallmarks_core_enrichment, correlation_limma_ALOXE3)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+  [1] "KLK8"     "SERPINB5" "SFN"      "KLF4"     "PERP"     "CLCA2"    "NHLH2"    "TP63"     "KRT17"   
+ [10] "GLS2"     "IFI30"    "GPX2"     "EPS8L2"   "KLK7"     "TGM1"     "CALML5"   "ALOX12B"  "PKP1"    
+ [19] "KRT1"     "KRT5"     "KRT15"    "FGFR3"    "LYPD3"    "LGALS7"   "SERPINB2" "SOX10"    "FGF22"   
+ [28] "SLC6A14"  "CLDN8"    "NOS1"     "NPY4R"    "PRODH"    "EDN2"     "HSD11B2"  "AKR1B10"  "WNT16"   
+ [37] "TFCP2L1"  "SCNN1A"   "ESRP2"    "OVOL2"    "KLK10"    "RAPGEFL1" "SULT2B1"  "CLIC3"    "LAD1"    
+ [46] "AQP3"     "MSMB"     "ELF3"     "CA12"     "RHOD"     "KRT19"    "NPY1R"    "GJA1"     "GJB3"    
+ [55] "PKP3"     "TRIM29"   "KLK11"    "MAPK13"   "HMGCS2"   "PCP4"     "TPSAB1"   "CXCL14"   "LAMC2"   
+ [64] "CDSN"     "CLDN4"    "PPP2R2C"  "COL17A1"  "GRB7"     "DSC3"     "DSC1"     "LAMA3"    "KRT31"   
+ [73] "CRB3"     "EGFR"     "ALOX15B"  "ACTA1"    "ACTC1"    "KLF5"     "TNNT2"    "VIPR1"    "PGAM2"   
+ [82] "SGCG"     "DES"      "EFS"      "MYH11"    "SPDEF"    "MB"       "CFD"      "MYL2"     "CKM"     
+ [91] "MYH7"     "FHL1"     "SPEG"     "GPX3"     "MYH2"     "MYH1"     "FCN1"     "PLA2G7"   "PIK3CG"  
+[100] "ITGAM"    "LCP2"     "LCK"      "GZMK"     "WAS"      "PLEK"     "FCER1G"   "C1QA"     "C1QC"    
+[109] "HPCAL4"   "SPOCK2"   "GZMA"     "CCL5"     "CDK5R1"   "GZMB"     "GNGT2"    "CTSS"     "SERPINA1"
+[118] "APOC1"    "MMP12"    "MMP8"     "OLR1"     "PLAT"     "SCG2"     "CDH2"     "CXCL8"    "MMP1"    
+[127] "SGCD"     "RGS4"     "PLOD3"    "SERPINE2" "CD74"     "CCRL2"    "RSAD2"    "GMPR"     "GBP4"    
+[136] "CMPK2"    "BST2"     "CXCL10"   "CXCL11"   "OASL"     "SELL"     "RTP4"     "BATF2"    "LGALS3BP"
+[145] "IL2RG"    "LTB"      "CD38"     "CD14"     "CXCL9"    "IL2RA"    "CXCL13"   "IL12RB1"  "IL1B"    
+[154] "A2M"      "EBI3"     "CCR1"     "NLRP3"    "CCL17"    "LTA"      "C3AR1"    "IL10"     "CYBB"    
+[163] "OSM"      "CXCR6"    "MSR1"     "CD48"     "KCNA3"    "TNFRSF9"  "NEK2"     "NCAPH"    "IL13RA2" 
+[172] "BUB1"     "AURKA"    "CDKN3"    "CCR2"     "HLA-DOA"  "PTPRC"    "NCF4"     "HLA-DRA"  "CD247"   
+[181] "IRF8"     "HLA-DQA1" "CD96"     "SPI1"     "CD8A"     "CD3E"     "CD3D"     "IRF4"     "CD86"    
+[190] "CD3G"     "ITGAL"    "CD2"      "CD4"      "PRF1"     "LY86"     "CD28"     "CCR5"     "CCL4"    
+[199] "IGSF6"    "CXCR3"    "MMP9"     "FASLG"    "ITGB2"    "CD80"     "SIT1"     "HLA-G"    "CRTAM"   
+[208] "CD79A"    "CDKN2A"   "HLA-DRB1" "SLAMF7"   "ZBP1"     "IDO1"     "GPR18"    "FCGR1A"   "OAS2"    
+[217] "METTL7B"  "BIRC5"    "SPC25"    "ASF1B"    "DLGAP5"   "KIF4A"    "SPC24"    "RRM2"     "UBE2T"   
+[226] "CDC25A"   "UBE2C"    "SLC7A5"   "MYBL2"    "GINS2"    "CDC45"    "PBK"      "CENPF"    "CDC6"    
+[235] "EXO1"    
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 323 
+All Number of genes with core enrichment (unique): 235 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 119 
+Number of genes with negative correlation (notunique): 204 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 96 
+Number of genes with negative correlation (unique): 139 
+
+
+> process_core_enrichment(outRst_ALOXE3_hallmarks_core_enrichment, correlation_outRst_ALOXE3)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+  [1] "GJB3"     "PKP3"     "TRIM29"   "SCNN1A"   "KLK11"    "MAPK13"   "SFN"      "KLF4"     "PERP"    
+ [10] "OVOL2"    "KLK10"    "RAPGEFL1" "FGFR3"    "SULT2B1"  "CLIC3"    "TJP3"     "HMGCS2"   "NMU"     
+ [19] "CA12"     "PTGER3"   "PCP4"     "TPSAB1"   "KRT19"    "CXCL14"   "KLK8"     "SERPINB5" "CLCA2"   
+ [28] "TP63"     "KRT17"    "CEBPA"    "GLS2"     "IFI30"    "GPX2"     "CDSN"     "CLDN4"    "PPP2R2C" 
+ [37] "COL17A1"  "GRB7"     "DSC3"     "DSC1"     "LAMA3"    "KRT31"    "CRB3"     "CLDN8"    "JUP"     
+ [46] "ESRP2"    "KRT15"    "LAD1"     "AQP3"     "MSMB"     "ELF3"     "KLK7"     "TGM1"     "CALML5"  
+ [55] "ALOX12B"  "PKP1"     "KRT1"     "KRT5"     "LYPD3"    "LGALS7"   "SERPINB2" "SOX10"    "FGF22"   
+ [64] "SLC6A14"  "NOS1"     "NPY4R"    "PRODH"    "EDN2"     "HSD11B2"  "CD207"    "TFCP2L1"  "EDAR"    
+ [73] "UPK3B"    "CD2"      "PRF1"     "LEF1"     "CD38"     "CD14"     "FASLG"    "CDK2"     "PLAT"    
+ [82] "CST7"     "PTGER2"   "LTB"      "IRF4"     "CD86"     "GBP4"     "CTLA4"    "ICOS"     "S100A1"  
+ [91] "CD48"     "IL2RA"    "TLR7"     "EOMES"    "CXCL10"   "SPP1"     "SELL"     "TNFRSF9"  "ETV4"    
+[100] "ST3GAL4"  "SPRY4"    "SCG3"     "MMP13"    "PIK3CG"   "LCK"      "GZMK"     "PLEK"     "FCER1G"  
+[109] "C1QA"     "C1QC"     "SPOCK2"   "GZMA"     "CCL5"     "CDK5R1"   "GZMB"     "GNGT2"    "CTSS"    
+[118] "SERPINA1" "APOC1"    "MMP12"    "MMP8"     "RGS1"     "SLAMF1"   "LTA"      "CYBB"     "OSM"     
+[127] "CXCR6"    "MSR1"     "CXCL9"    "BST2"     "EBI3"     "CXCL6"    "CXCL11"   "RTP4"     "IFI27"   
+[136] "CD74"     "RSAD2"    "GMPR"     "OASL"     "BATF2"    "LGALS3BP" "IL2RG"    "CXCL13"   "IL12RB1" 
+[145] "A2M"      "CCR1"     "HLA-DQA1" "HLA-DRB1" "SLAMF7"   "ZBP1"     "IDO1"     "GPR18"    "FCGR1A"  
+[154] "HLA-G"    "OAS2"     "HLA-DOA"  "CD247"    "CD96"     "CD8A"     "CD3E"     "CD3D"     "CD3G"    
+[163] "ITGAL"    "LY86"     "CCR5"     "CCL4"     "IGSF6"    "CXCR3"    "MMP9"     "ITGB2"    "CD80"    
+[172] "SIT1"     "CRTAM"    "CD79A"   
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 252 
+All Number of genes with core enrichment (unique): 174 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 91 
+Number of genes with negative correlation (notunique): 161 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 73 
+Number of genes with negative correlation (unique): 101 
+```
+
+```python
+# python
+# ALOXE3_hallmarks
+A = ["ESRP2", "KLK10", "CLIC3", "CYP26B1", "ELF3", "CA12", "BCL11B", "ABLIM1", "CALML5", "ALOX12B",
+"FGFR3", "SERPINB2", "FGF22", "EDN2", "CLDN16", "AKR1B10", "EDAR", "EDN1", "ABCB11", "ATP6V1B1",
+"ACTC1", "ZBTB16", "CKM", "MYH7", "TG", "CYP2C18", "ARG1", "ETS2", "FETUB", "ALDH3A1",
+"AQP9", "CYP2E1", "ALDH2", "ITIH4", "CYP4F2", "ACSM1", "AKR1C2", "CDA", "HSD11B1", "RBP4",
+"CES1", "AKR1C3", "ABCC3", "CFB", "ADH1C", "AOX1", "CDSN", "PPP2R2C", "COL17A1", "DSC3",
+"CRB3", "EGFR", "ALOX15B", "ACTA1", "ICOSLG", "F2RL1", "SIK1", "BCL6", "DUSP1", "FOSL2",
+"TMEM45A", "EFNA3", "NDST2", "ATF3", "F3", "DES", "CFD", "ANKRD2", "FHL1", "CDH13",
+"GADD45B", "LTB", "IRF4", "GBP4", "CTLA4", "CD48", "CD83", "EOMES", "SPP1", "SELL",
+"ETV4", "TNFRSF21", "ST3GAL4", "GPR65", "CDC6", "SPRY4", "CTSZ", "HLA-DOA", "HLA-DRA", "CD74",
+"HLA-DQA1", "CD96", "SPI1", "NLRP3", "IL2RG", "CD3E", "CD3D", "WAS", "ITGAL", "CD4",
+"MAP4K1", "CD28", "CCR5", "CCL5", "IGSF6", "CXCR3", "CXCL13", "IL12RB1", "MMP9", "ST8SIA4",
+"CTSS", "FASLG", "ITGB2", "KLRD1", "CCR1", "SIT1", "CD7", "HLA-G", "CRTAM", "CD79A",
+"IL27RA", "CDKN2A", "ISG20", "HLA-DRB1", "RSAD2", "MX1", "CD38", "BST2", "FCGR1A", "CXCL11",
+"OASL", "PSMB9", "OAS2", "ST3GAL5", "RTP4", "BATF2", "ISG15", "LGALS3BP", "NEK2", "KIF2C",
+"NCAPH", "BUB1", "AURKA", "CDKN3", "CDH2", "CXCL8", "FBN2", "FN1", "ADAM12", "PLOD3",
+"BIRC5", "DLGAP5", "KIF4A", "CENPF", "NDC80", "AURKB", "KIF18B", "CDC20", "GINS1", "PTTG1",
+"MYBL2", "ASF1B", "SPC24", "STMN1", "UBE2T", "CDC25A", "TRIP13", "GINS4", "CENPA", "UBE2C",
+"SLC7A5", "RAD54L", "GINS2", "CDC45", "EXO1"]
+
+B = ["GJB3", "PKP3", "TRIM29", "SCNN1A", "KLK11", "SFN", "KLF4", "PERP", "OVOL2", "RAPGEFL1",
+"FGFR3", "SULT2B1", "CLIC3", "HMGCS2", "PCP4", "TPSAB1", "KRT19", "CDSN", "CLDN4", "PPP2R2C",
+"COL17A1", "GRB7", "DSC3", "DSC1", "KRT31", "CRB3", "CLDN8", "EGFR", "KLK7", "KLK8",
+"TGM1", "CALML5", "ALOX12B", "PKP1", "KRT1", "KRT5", "KRT15", "LYPD3", "LGALS7", "SOX10",
+"FGF22", "NOS1", "NPY4R", "PRODH", "EDN2", "HSD11B2", "ESRP2", "AQP3", "RORA", "PGAM2",
+"B4GALNT2", "SERPINB5", "CLCA2", "TP63", "GLS2", "KLF5", "TNNT2", "VIPR1", "SPDEF", "CFD",
+"MYL2", "MYL7", "MALL", "IL1RL2", "ARG1", "CD8A", "CD3E", "CD3D", "CD3G", "CD2",
+"PRF1", "CCR5", "GZMA", "CCL5", "CCL4", "CXCL9", "CXCR3", "CXCL13", "IL12RB1", "GZMB",
+"MMP9", "FASLG", "IFNG", "HLA-G", "NCR1", "CD79A"]
+
+C = ["KLK7", "KLK8", "TGM1", "CALML5", "ALOX12B", "PKP1", "KRT1", "KRT5", "KRT15", "FGFR3",
+"LYPD3", "LGALS7", "SOX10", "FGF22", "CLDN8", "NPY4R", "PRODH", "EDN2", "HSD11B2", "GJB3",
+"PKP3", "TRIM29", "SCNN1A", "KLK11", "KLF4", "OVOL2", "RAPGEFL1", "SULT2B1", "HMGCS2", "PCP4",
+"TPSAB1", "CDSN", "CLDN4", "COL17A1", "GRB7", "DSC3", "DSC1", "KRT31", "CRB3", "ESRP2",
+"AQP3"]
+
+D = ["KLK8", "SERPINB5", "SFN", "KLF4", "PERP", "CLCA2", "NHLH2", "TP63", "KRT17", "GLS2",
+"IFI30", "GPX2", "EPS8L2", "KLK7", "TGM1", "CALML5", "ALOX12B", "PKP1", "KRT1", "KRT5",
+"KRT15", "FGFR3", "LYPD3", "LGALS7", "SERPINB2", "SOX10", "FGF22", "SLC6A14", "CLDN8", "NOS1",
+"NPY4R", "PRODH", "EDN2", "HSD11B2", "AKR1B10", "WNT16", "TFCP2L1", "SCNN1A", "ESRP2", "OVOL2",
+"KLK10", "RAPGEFL1", "SULT2B1", "CLIC3", "LAD1", "AQP3", "MSMB", "ELF3", "CA12", "RHOD",
+"KRT19", "NPY1R", "GJA1", "GJB3", "PKP3", "TRIM29", "KLK11", "MAPK13", "HMGCS2", "PCP4",
+"TPSAB1", "CXCL14", "LAMC2", "CDSN", "CLDN4", "PPP2R2C", "COL17A1", "GRB7", "DSC3", "DSC1",
+"LAMA3", "KRT31", "CRB3", "EGFR", "ALOX15B", "ACTA1", "ACTC1", "KLF5", "TNNT2", "VIPR1",
+"PGAM2", "SGCG", "DES", "EFS", "MYH11", "SPDEF", "MB", "CFD", "MYL2", "CKM",
+"MYH7", "FHL1", "SPEG", "GPX3", "MYH2", "MYH1", "FCN1", "PLA2G7", "PIK3CG", "ITGAM",
+"LCP2", "LCK", "GZMK", "WAS", "PLEK", "FCER1G", "C1QA", "C1QC", "HPCAL4", "SPOCK2",
+"GZMA", "CCL5", "CDK5R1", "GZMB", "GNGT2", "CTSS", "SERPINA1", "APOC1", "MMP12", "MMP8",
+"OLR1", "PLAT", "SCG2", "CDH2", "CXCL8", "MMP1", "SGCD", "RGS4", "PLOD3", "SERPINE2",
+"CD74", "CCRL2", "RSAD2", "GMPR", "GBP4", "CMPK2", "BST2", "CXCL10", "CXCL11", "OASL",
+"SELL", "RTP4", "BATF2", "LGALS3BP", "IL2RG", "LTB", "CD38", "CD14", "CXCL9", "IL2RA",
+"CXCL13", "IL12RB1", "IL1B", "A2M", "EBI3", "CCR1", "NLRP3", "CCL17", "LTA", "C3AR1",
+"IL10", "CYBB", "OSM", "CXCR6", "MSR1", "CD48", "KCNA3", "TNFRSF9", "NEK2", "NCAPH",
+"IL13RA2", "BUB1", "AURKA", "CDKN3", "CCR2", "HLA-DOA", "PTPRC", "NCF4", "HLA-DRA", "CD247",
+"IRF8", "HLA-DQA1", "CD96", "SPI1", "CD8A", "CD3E", "CD3D", "IRF4", "CD86", "CD3G",
+"ITGAL", "CD2", "CD4", "PRF1", "LY86", "CD28", "CCR5", "CCL4", "IGSF6", "CXCR3",
+"MMP9", "FASLG", "ITGB2", "CD80", "SIT1", "HLA-G", "CRTAM", "CD79A", "CDKN2A", "HLA-DRB1",
+"SLAMF7", "ZBP1", "IDO1", "GPR18", "FCGR1A", "OAS2", "METTL7B", "BIRC5", "SPC25", "ASF1B",
+"DLGAP5", "KIF4A", "SPC24", "RRM2", "UBE2T", "CDC25A", "UBE2C", "SLC7A5", "MYBL2", "GINS2",
+"CDC45", "PBK", "CENPF", "CDC6", "EXO1"]
+
+E = ["GJB3", "PKP3", "TRIM29", "SCNN1A", "KLK11", "MAPK13", "SFN", "KLF4", "PERP", "OVOL2",
+"KLK10", "RAPGEFL1", "FGFR3", "SULT2B1", "CLIC3", "TJP3", "HMGCS2", "NMU", "CA12", "PTGER3",
+"PCP4", "TPSAB1", "KRT19", "CXCL14", "KLK8", "SERPINB5", "CLCA2", "TP63", "KRT17", "CEBPA",
+"GLS2", "IFI30", "GPX2", "CDSN", "CLDN4", "PPP2R2C", "COL17A1", "GRB7", "DSC3", "DSC1",
+"LAMA3", "KRT31", "CRB3", "CLDN8", "JUP", "ESRP2", "KRT15", "LAD1", "AQP3", "MSMB",
+"ELF3", "KLK7", "TGM1", "CALML5", "ALOX12B", "PKP1", "KRT1", "KRT5", "LYPD3", "LGALS7",
+"SERPINB2", "SOX10", "FGF22", "SLC6A14", "NOS1", "NPY4R", "PRODH", "EDN2", "HSD11B2", "CD207",
+"TFCP2L1", "EDAR", "UPK3B", "CD2", "PRF1", "LEF1", "CD38", "CD14", "FASLG", "CDK2",
+"PLAT", "CST7", "PTGER2", "LTB", "IRF4", "CD86", "GBP4", "CTLA4", "ICOS", "S100A1",
+"CD48", "IL2RA", "TLR7", "EOMES", "CXCL10", "SPP1", "SELL", "TNFRSF9", "ETV4", "ST3GAL4",
+"SPRY4", "SCG3", "MMP13", "PIK3CG", "LCK", "GZMK", "PLEK", "FCER1G", "C1QA", "C1QC",
+"SPOCK2", "GZMA", "CCL5", "CDK5R1", "GZMB", "GNGT2", "CTSS", "SERPINA1", "APOC1", "MMP12",
+"MMP8", "RGS1", "SLAMF1", "LTA", "CYBB", "OSM", "CXCR6", "MSR1", "CXCL9", "BST2",
+"EBI3", "CXCL6", "CXCL11", "RTP4", "IFI27", "CD74", "RSAD2", "GMPR", "OASL", "BATF2",
+"LGALS3BP", "IL2RG", "CXCL13", "IL12RB1", "A2M", "CCR1", "HLA-DQA1", "HLA-DRB1", "SLAMF7", "ZBP1",
+"IDO1", "GPR18", "FCGR1A", "HLA-G", "OAS2", "HLA-DOA", "CD247", "CD96", "CD8A", "CD3E",
+"CD3D", "CD3G", "ITGAL", "LY86", "CCR5", "CCL4", "IGSF6", "CXCR3", "MMP9", "ITGB2",
+"CD80", "SIT1", "CRTAM", "CD79A"]
+
+target_data_A = np.array(A)
+target_data_B = np.array(B)
+target_data_C = np.array(C)
+target_data_D = np.array(D)
+target_data_E = np.array(E)
+ALL = [target_data_A, target_data_B, target_data_C, target_data_D, target_data_E]
+ALL_concatenated = np.concatenate(ALL)
+# Convert list A to numpy array and get unique elements preserving order
+target_data = np.array(ALL_concatenated)
+print(target_data)
+
+groups = ['TransPropy', 'deseq2', 'edgeR', 'limma', 'outRst']
+groups_colors = plt.get_cmap('Set2').colors[:5]
+# Repeat counts for each group
+repeat_counts = [175, 86, 41, 235, 174]
+# Repeating each group name by the respective counts
+repeated_group_names = np.repeat(groups, repeat_counts)
+# Printing the repeated group names
+print(repeated_group_names)
+#target_data = np.concatenate([np.random.choice(1000, 100, replace=False) for i in range(len(groups))])
+
+# create a dataframe
+edge_data = pd.DataFrame({'source': repeated_group_names, 'target': target_data})
+edge_data = edge_data.assign(color = lambda x: x['source'].map(dict(zip(groups, groups_colors))))
+
+fig, ax = plt.subplots(figsize=(10, 10))
+VennNetworkPlot(edge_data,
+                edge_style=2,
+                target_node_size=15,
+                show_node_margin=True,
+                #show_target_label=True,
+                #target_font_size=4,
+                show_node_color=True,
+                k=0.1,
+                ax=ax)
+plt.show()
+
+
+
+```
+
+![](figure/VennNetwork core enrichment/VennNetwork core enrichment _ALOXE3_hallmarks_fivemethods.png)
+
+<div style="text-align: center;">
+VennNetwork core enrichment _ALOXE3_hallmarks_fivemethods
+</div>
+
+
+
+## ALOXE3_kegg
+```r
+# r
+
+# Process the core enrichment genes from TransPropy_ALOXE3_kegg_y
+TransPropy_ALOXE3_kegg_core_enrichment <- TransPropy_ALOXE3_kegg_y@result[["core_enrichment"]]
+process_core_enrichment(TransPropy_ALOXE3_kegg_core_enrichment, correlation_TransPropy_ALOXE3)
+
+# Process the core enrichment genes from deseq2_ALOXE3_kegg_y
+deseq2_ALOXE3_kegg_core_enrichment <- deseq2_ALOXE3_kegg_y@result[["core_enrichment"]]
+process_core_enrichment(deseq2_ALOXE3_kegg_core_enrichment, correlation_deseq2_ALOXE3)
+
+# Process the core enrichment genes from edgeR_ALOXE3_kegg_y
+edgeR_ALOXE3_kegg_core_enrichment <- edgeR_ALOXE3_kegg_y@result[["core_enrichment"]]
+process_core_enrichment(edgeR_ALOXE3_kegg_core_enrichment, correlation_edgeR_ALOXE3)
+
+# Process the core enrichment genes from limma_ALOXE3_kegg_y
+limma_ALOXE3_kegg_core_enrichment <- limma_ALOXE3_kegg_y@result[["core_enrichment"]]
+process_core_enrichment(limma_ALOXE3_kegg_core_enrichment, correlation_limma_ALOXE3)
+
+# Process the core enrichment genes from outRst_ALOXE3_kegg_y
+outRst_ALOXE3_kegg_core_enrichment <- outRst_ALOXE3_kegg_y@result[["core_enrichment"]]
+process_core_enrichment(outRst_ALOXE3_kegg_core_enrichment, correlation_outRst_ALOXE3)
+
+```
+
+
+```
+> process_core_enrichment(TransPropy_ALOXE3_kegg_core_enrichment, correlation_TransPropy_ALOXE3)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+ [1] "ALOX12B"  "CYP2C18"  "PLA2G4B"  "CYP2C9"   "ALOX12"   "CYP2E1"   "CYP4F2"   "ALOX15B"  "CYP4A11" 
+[10] "EPN3"     "CBLC"     "FGFR3"    "FGFR2"    "ADRB2"    "EGFR"     "CHMP4A"   "CYP3A5"   "ALDH3A1" 
+[19] "CYP3A4"   "ALDH3B2"  "AKR1C2"   "GSTM5"    "ADH4"     "ADH6"     "ADH1B"    "AKR1C1"   "AKR1C3"  
+[28] "DGAT2"    "CYP26B1"  "AWAT2"    "CYP2D6"   "ACADL"    "CPT1B"    "AQP7"     "FABP4"    "PLIN1"   
+[37] "ADIPOQ"   "CALML5"   "CHP2"     "ADORA2A"  "ADCY4"    "CACNA1G"  "AGTR1"    "ADCY8"    "ADRA1A"  
+[46] "FGF22"    "FGF11"    "DUSP1"    "CD33"     "CSF1R"    "CSF2RA"   "HLA-DRA"  "CD5"      "CR2"     
+[55] "HLA-DRB5" "HLA-DRB1" "CD3E"     "CD3D"     "CD4"      "CD37"     "CD38"     "CD14"     "DNTT"    
+[64] "FCGR1A"   "CD7"      "CD19"     "CDC25C"   "CDC20"    "PTTG1"    "BUB1"     "CDC45"    "CCNB1"   
+[73] "CDC25A"   "CDC6"     "CDKN2A"  
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 113 
+All Number of genes with core enrichment (unique): 75 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 86 
+Number of genes with negative correlation (notunique): 27 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 48 
+Number of genes with negative correlation (unique): 27 
+
+
+> process_core_enrichment(deseq2_ALOXE3_kegg_core_enrichment, correlation_deseq2_ALOXE3)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+ [1] "CHP2"          "PLA2G2F"       "PLA2G3"        "PLA2G4E"       "FGFR3"         "PLA2G4B"      
+ [7] "FGF22"         "NTF4"          "FGFR2"         "FGF11"         "JMJD7-PLA2G4B" "EGFR"         
+[13] "ALOX12B"       "GGT6"          "CYP2C18"       "CYP4F3"        "CYP2C9"        "LTC4S"        
+[19] "UGT1A6"        "UGT1A7"        "CYP3A5"        "UGT1A4"        "UGT1A1"        "AKR1C2"       
+[25] "CYP2C19"       "UGT1A10"       "UGT1A5"        "ADH1B"         "UGT1A3"        "UGT2A1"       
+[31] "CYP1A2"        "CALML5"        "CALML3"        "SULT2B1"       "SULT1E1"       "HSD11B2"      
+[37] "HSD3B1"        "AWAT2"         "CBLC"          "LAMB4"         "WNT3A"         "CLDN4"        
+[43] "PPP2R2C"       "OCLN"          "CRB3"          "CLDN8"         "CLDN10"        "MYL2"         
+[49] "MYH6"          "MYL7"          "CLDN22"       
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 115 
+All Number of genes with core enrichment (unique): 51 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 115 
+Number of genes with negative correlation (notunique): 0 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 51 
+Number of genes with negative correlation (unique): 0 
+
+
+> process_core_enrichment(edgeR_ALOXE3_kegg_core_enrichment, correlation_edgeR_ALOXE3)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+ [1] "CHP2"          "PLA2G2F"       "PLA2G3"        "PLA2G4E"       "FGFR3"         "PLA2G4B"      
+ [7] "FGF22"         "NTF4"          "FGF11"         "JMJD7-PLA2G4B" "ALOX12B"       "GGT6"         
+[13] "CYP2C18"       "CYP4F3"        "LTC4S"         "UGT1A6"        "UGT1A7"        "CYP3A5"       
+[19] "UGT1A4"        "UGT1A1"        "CYP2C19"       "UGT1A10"       "UGT1A5"        "ADH1B"        
+[25] "UGT1A3"        "SULT2B1"       "HSD11B2"       "AMY2A"         "CBLC"          "LAMB4"        
+[31] "WNT3A"        
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 77 
+All Number of genes with core enrichment (unique): 31 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 77 
+Number of genes with negative correlation (notunique): 0 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 31 
+Number of genes with negative correlation (unique): 0 
+
+
+> process_core_enrichment(limma_ALOXE3_kegg_core_enrichment, correlation_limma_ALOXE3)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+ [1] "DGAT2"         "CYP2C18"       "UGT1A6"        "UGT1A7"        "CYP3A5"        "UGT1A1"       
+ [7] "RDH12"         "PLA2G2F"       "PLA2G3"        "PLA2G4E"       "PLA2G4B"       "JMJD7-PLA2G4B"
+[13] "CYP2E1"        "AKR1B10"       "ALDH3A1"       "GSTA3"         "ALDH3B2"       "GSTM5"        
+[19] "MAOA"          "ADH1B"         "HLA-DQA2"      "HLA-DOA"       "NCF4"          "HLA-DQB1"     
+[25] "CR1"           "HLA-DRA"       "HLA-DQA1"      "NCF1"          "ITGAM"         "HLA-DRB5"     
+[31] "HLA-DRB1"      "IL10"          "FCGR3A"        "FCGR2A"        "IL1B"          "FCGR1A"       
+[37] "ITGB2"         "MARCKSL1"      "PTPRC"         "BTK"           "CD8A"          "IL2RG"        
+[43] "LCK"           "CD3E"          "CD3D"          "CD4"           "ICOS"          "CD79A"        
+[49] "CD86"          "C1QB"          "C1QA"          "C1QC"          "CD28"          "CD80"         
+[55] "CD8B"          "CSF2RA"        "CD5"           "CD3G"          "CD2"           "MS4A1"        
+[61] "CD38"          "CD14"          "IL2RA"         "CD22"          "PRF1"          "GZMB"         
+[67] "FASLG"         "HLA-G"         "CTLA4"         "LTA"          
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 152 
+All Number of genes with core enrichment (unique): 70 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 28 
+Number of genes with negative correlation (notunique): 124 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 20 
+Number of genes with negative correlation (unique): 50 
+
+
+> process_core_enrichment(outRst_ALOXE3_kegg_core_enrichment, correlation_outRst_ALOXE3)
+#=================================================================================# 
+core_enrichment_list_unique_genes: 
+  [1] "ALOX12B"       "GGT6"          "CYP2C18"       "PLA2G2F"       "PLA2G3"        "CYP4F3"       
+  [7] "PLA2G4E"       "PLA2G4B"       "JMJD7-PLA2G4B" "CYP2C9"        "ALOX12"        "GPX2"         
+ [13] "LTC4S"         "CALML5"        "MAPK13"        "CALML3"        "EGFR"          "DGAT2"        
+ [19] "UGT1A6"        "UGT1A7"        "CYP3A5"        "UGT1A4"        "UGT1A1"        "RDH16"        
+ [25] "RDH12"         "CHP2"          "WNT7B"         "WNT3A"         "WNT2B"         "WNT3"         
+ [31] "FZD10"         "NOS1"          "FGFR3"         "FGF22"         "NTF4"          "FGFR2"        
+ [37] "FGF11"         "CBLC"          "LAMB4"         "LAMA3"         "COL4A6"        "JUP"          
+ [43] "CEBPA"         "EGLN3"         "HLA-DQA2"      "MPZ"           "CD8B"          "L1CAM"        
+ [49] "HLA-DOA"       "SPN"           "HLA-DQA1"      "CD8A"          "CD6"           "HLA-DRB5"     
+ [55] "HLA-DRB1"      "HLA-DPB1"      "PDCD1"         "CLDN14"        "CD86"          "CTLA4"        
+ [61] "ITGAL"         "CD2"           "ICOS"          "ITGB2"         "CD80"          "SELL"         
+ [67] "CD22"          "HLA-G"         "NLGN1"         "SDC3"          "MYH11"         "MYH6"         
+ [73] "MYH7"          "MYH2"          "MYH1"          "LAMA2"         "PRF1"          "F10"          
+ [79] "F3"            "MASP1"         "CFI"           "C1QB"          "C1QA"          "C1QC"         
+ [85] "A2M"           "SERPINA1"      "CPB2"          "PLAT"          "FCGR3A"        "FCGR2A"       
+ [91] "FCGR1A"        "MARCKSL1"      "CD74"          "LTA"           "CTSS"          "PIK3CG"       
+ [97] "TLR8"          "CCL5"          "CCL4"          "CD14"          "CXCL9"         "TLR7"         
+[103] "CCL3"          "CXCL10"        "SPP1"          "CXCL11"        "PIK3CD"        "CD247"        
+[109] "LCK"           "NCR3"          "SH2D1A"        "ULBP1"         "CD244"         "FCER1G"       
+[115] "TYROBP"        "CD48"          "GZMB"          "FASLG"         "SHC4"          "CD5"          
+[121] "CD3E"          "CD3D"          "CD3G"          "MS4A1"         "CD38"          "IL2RA"        
+[127] "MME"           "CCR5"          "CCL18"         "CXCR3"         "CXCL13"        "ADCY1"        
+[133] "GNGT2"         "GNG7"          "GNG4"          "CCR1"          "CXCL6"         "CCL3L3"       
+#=================================================================================# 
+All Number of genes with core enrichment (notunique): 280 
+All Number of genes with core enrichment (unique): 138 
+#=================================================================================# 
+Number of genes with positive correlation (notunique): 82 
+Number of genes with negative correlation (notunique): 198 
+#=================================================================================# 
+Number of genes with positive correlation (unique): 53 
+Number of genes with negative correlation (unique): 85 
+```
+
+```python
+# python
+# ALOXE3_kegg
+A = ["ALOX12B", "CYP2C18", "PLA2G4B", "CYP2C9", "ALOX12", "CYP2E1", "CYP4F2", "ALOX15B", "CYP4A11", "EPN3",
+"CBLC", "FGFR3", "FGFR2", "ADRB2", "EGFR", "CHMP4A", "CYP3A5", "ALDH3A1", "CYP3A4", "ALDH3B2",
+"AKR1C2", "GSTM5", "ADH4", "ADH6", "ADH1B", "AKR1C1", "AKR1C3", "DGAT2", "CYP26B1", "AWAT2",
+"CYP2D6", "ACADL", "CPT1B", "AQP7", "FABP4", "PLIN1", "ADIPOQ", "CALML5", "CHP2", "ADORA2A",
+"ADCY4", "CACNA1G", "AGTR1", "ADCY8", "ADRA1A", "FGF22", "FGF11", "DUSP1", "CD33", "CSF1R",
+"CSF2RA", "HLA-DRA", "CD5", "CR2", "HLA-DRB5", "HLA-DRB1", "CD3E", "CD3D", "CD4", "CD37",
+"CD38", "CD14", "DNTT", "FCGR1A", "CD7", "CD19", "CDC25C", "CDC20", "PTTG1", "BUB1",
+"CDC45", "CCNB1", "CDC25A", "CDC6", "CDKN2A"]
+
+B = ["CHP2", "PLA2G2F", "PLA2G3", "PLA2G4E", "FGFR3", "PLA2G4B", "FGF22", "NTF4", "FGFR2", "FGF11",
+"JMJD7-PLA2G4B", "EGFR", "ALOX12B", "GGT6", "CYP2C18", "CYP4F3", "CYP2C9", "LTC4S", "UGT1A6", "UGT1A7",
+"CYP3A5", "UGT1A4", "UGT1A1", "AKR1C2", "CYP2C19", "UGT1A10", "UGT1A5", "ADH1B", "UGT1A3", "UGT2A1",
+"CYP1A2", "CALML5", "CALML3", "SULT2B1", "SULT1E1", "HSD11B2", "HSD3B1", "AWAT2", "CBLC", "LAMB4",
+"WNT3A", "CLDN4", "PPP2R2C", "OCLN", "CRB3", "CLDN8", "CLDN10", "MYL2", "MYH6", "MYL7",
+"CLDN22"]
+
+C = ["CHP2", "PLA2G2F", "PLA2G3", "PLA2G4E", "FGFR3", "PLA2G4B", "FGF22", "NTF4", "FGF11", "JMJD7-PLA2G4B",
+"ALOX12B", "GGT6", "CYP2C18", "CYP4F3", "LTC4S", "UGT1A6", "UGT1A7", "CYP3A5", "UGT1A4", "UGT1A1",
+"CYP2C19", "UGT1A10", "UGT1A5", "ADH1B", "UGT1A3", "SULT2B1", "HSD11B2", "AMY2A", "CBLC", "LAMB4",
+"WNT3A"]
+
+D = ["DGAT2", "CYP2C18", "UGT1A6", "UGT1A7", "CYP3A5", "UGT1A1", "RDH12", "PLA2G2F", "PLA2G3", "PLA2G4E",
+"PLA2G4B", "JMJD7-PLA2G4B", "CYP2E1", "AKR1B10", "ALDH3A1", "GSTA3", "ALDH3B2", "GSTM5", "MAOA", "ADH1B",
+"HLA-DQA2", "HLA-DOA", "NCF4", "HLA-DQB1", "CR1", "HLA-DRA", "HLA-DQA1", "NCF1", "ITGAM", "HLA-DRB5",
+"HLA-DRB1", "IL10", "FCGR3A", "FCGR2A", "IL1B", "FCGR1A", "ITGB2", "MARCKSL1", "PTPRC", "BTK",
+"CD8A", "IL2RG", "LCK", "CD3E", "CD3D", "CD4", "ICOS", "CD79A", "CD86", "C1QB",
+"C1QA", "C1QC", "CD28", "CD80", "CD8B", "CSF2RA", "CD5", "CD3G", "CD2", "MS4A1",
+"CD38", "CD14", "IL2RA", "CD22", "PRF1", "GZMB", "FASLG", "HLA-G", "CTLA4", "LTA"]
+
+E = ["ALOX12B", "GGT6", "CYP2C18", "PLA2G2F", "PLA2G3", "CYP4F3", "PLA2G4E", "PLA2G4B", "JMJD7-PLA2G4B", "CYP2C9",
+"ALOX12", "GPX2", "LTC4S", "CALML5", "MAPK13", "CALML3", "EGFR", "DGAT2", "UGT1A6", "UGT1A7",
+"CYP3A5", "UGT1A4", "UGT1A1", "RDH16", "RDH12", "CHP2", "WNT7B", "WNT3A", "WNT2B", "WNT3",
+"FZD10", "NOS1", "FGFR3", "FGF22", "NTF4", "FGFR2", "FGF11", "CBLC", "LAMB4", "LAMA3",
+"COL4A6", "JUP", "CEBPA", "EGLN3", "HLA-DQA2", "MPZ", "CD8B", "L1CAM", "HLA-DOA", "SPN",
+"HLA-DQA1", "CD8A", "CD6", "HLA-DRB5", "HLA-DRB1", "HLA-DPB1", "PDCD1", "CLDN14", "CD86", "CTLA4",
+"ITGAL", "CD2", "ICOS", "ITGB2", "CD80", "SELL", "CD22", "HLA-G", "NLGN1", "SDC3",
+"MYH11", "MYH6", "MYH7", "MYH2", "MYH1", "LAMA2", "PRF1", "F10", "F3", "MASP1",
+"CFI", "C1QB", "C1QA", "C1QC", "A2M", "SERPINA1", "CPB2", "PLAT", "FCGR3A", "FCGR2A",
+"FCGR1A", "MARCKSL1", "CD74", "LTA", "CTSS", "PIK3CG", "TLR8", "CCL5", "CCL4", "CD14",
+"CXCL9", "TLR7", "CCL3", "CXCL10", "SPP1", "CXCL11", "PIK3CD", "CD247", "LCK", "NCR3",
+"SH2D1A", "ULBP1", "CD244", "FCER1G", "TYROBP", "CD48", "GZMB", "FASLG", "SHC4", "CD5",
+"CD3E", "CD3D", "CD3G", "MS4A1", "CD38", "IL2RA", "MME", "CCR5", "CCL18", "CXCR3",
+"CXCL13", "ADCY1", "GNGT2", "GNG7", "GNG4", "CCR1", "CXCL6", "CCL3L3"]
+
+target_data_A = np.array(A)
+target_data_B = np.array(B)
+target_data_C = np.array(C)
+target_data_D = np.array(D)
+target_data_E = np.array(E)
+ALL = [target_data_A, target_data_B, target_data_C, target_data_D, target_data_E]
+ALL_concatenated = np.concatenate(ALL)
+# Convert list A to numpy array and get unique elements preserving order
+target_data = np.array(ALL_concatenated)
+print(target_data)
+
+groups = ['TransPropy', 'deseq2', 'edgeR', 'limma', 'outRst']
+groups_colors = plt.get_cmap('Set2').colors[:5]
+# Repeat counts for each group
+repeat_counts = [75, 51, 31, 70, 138]
+# Repeating each group name by the respective counts
+repeated_group_names = np.repeat(groups, repeat_counts)
+# Printing the repeated group names
+print(repeated_group_names)
+#target_data = np.concatenate([np.random.choice(1000, 100, replace=False) for i in range(len(groups))])
+
+# create a dataframe
+edge_data = pd.DataFrame({'source': repeated_group_names, 'target': target_data})
+edge_data = edge_data.assign(color = lambda x: x['source'].map(dict(zip(groups, groups_colors))))
+
+fig, ax = plt.subplots(figsize=(10, 10))
+VennNetworkPlot(edge_data,
+                edge_style=2,
+                target_node_size=15,
+                show_node_margin=True,
+                #show_target_label=True,
+                #target_font_size=4,
+                show_node_color=True,
+                k=0.1,
+                ax=ax)
+plt.show()
+
+```
+
+![](figure/VennNetwork core enrichment/VennNetwork core enrichment ALOXE3_kegg_fivemethods.png)
+
+<div style="text-align: center;">
+VennNetwork core enrichment ALOXE3_kegg_fivemethods
+</div>
+
+
+
+
+
+::: {.panel-tabset}
+
+## Aim
+
+Verifying whether the gene sets selected by each method are completely independent can partly explain the comparability of the results produced by each method. If the results of each algorithm have common intersections and also possess unique characteristic genes, then the unique parts represent the specific features of each method. Consequently, the differences in subsequent analysis results are also caused by these unique genes. We can indirectly reflect the relative advantages of an algorithm through the relative advantages of the results.
+
+However, if the gene sets selected by each method are entirely independent, the subsequent analysis results are likely to be different as well. This increases the difficulty of comparing the characteristics of different algorithms. For instance, we cannot directly judge the superiority of an algorithm based on the number of enriched pathways, especially when these pathways are completely different from each other, as this is due to the distinct characteristics of the respective gene sets. The data distribution characteristics of the gene sets do not fully equate to biological characteristics.
+
+Our core objective is to select genes and pathways that have true regulatory relationships and to ensure that the selection results are as balanced and comprehensive as possible, without being influenced by the noise or distribution characteristics of the data itself. This is particularly important in the field of biology because the regulatory mechanisms of all pathways are the result of the coordinated work of different genes. Our main goal is to select key intersecting genes that can be identified by other algorithms, while also balancing the selection of other meaningful characteristic genes for further elucidation.
+
+## Method
+
+Calculate the number of core enrichment genes in all significant pathways under different methods, and visualize them using Venn Network with each method as a set.
+
+## Result
+
+The characteristic genes obtained by the five methods intersect, indicating that even though the algorithms differ, they can still select a portion of the most core enrichment genes. Additionally, TransPropy, limma (linear model), and outRst each have some unique characteristic genes. These genes effectively complement the data, and as can be seen from the analysis results in the previous chapters, TransPropy's supplementary effect is more balanced. Furthermore, the unique genes of deseq2 and edgeR (negative binomial distribution model) are relatively few (or even none). The lack of more characteristic genes to balance the results might be one of the important reasons why the pathway enrichment results were overly biased (almost all activating pathways, with very few or even no inhibiting pathways) in previous analyses.
+
+:::

@@ -247,6 +247,7 @@ Index(['ABCD1', 'AC125232.1', 'AC138035.2', 'AC159540.1', 'ACAD11', 'ACOT7',
 [184 rows x 2 columns]
 ```
 
+
 ### four_methods_degs_union
 ```python
 from TransProPy.AutoFeatureSelection import auto_feature_selection
@@ -265,6 +266,7 @@ auto_feature_selection(
     use_tkagg=False
 )
 ```
+
 
 ![](figure/four_methods_degs_union_Model_Accuracy_per_Iteration_figure.png)
 

@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="TransProPy is a Python package that is part of the TransPro series under the SuperOmics framework.">
+
+<title>TransProPyBook - 12&nbsp; Comparison of TransPropy with Other Tool Packages Using GSEA (Gene: CFD)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ANKRD35 FullGSEA.html" rel="next">
+<link href="./Ridge Plot.html" rel="prev">
+<link href="./TransProPy_logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="custom.css">
+<meta property="og:title" content="TransProPyBook - 12&nbsp; Comparison of TransPropy with Other Tool Packages Using GSEA (Gene: CFD)">
+<meta property="og:description" content="Python package TransProPy.">
+<meta property="og:image" content="https://github.com/SSSYDYSSS/TransProPyBook/blob/main/TransProPy_logo.png">
+<meta property="og:site-name" content="TransProPyBook">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./CFD FullGSEA.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using GSEA (Gene: CFD)</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./TransProPy_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">TransProPyBook</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/SSSYDYSSS/TransProPyBook" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./UtilsFunction1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">UtilsFunction1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./UtilsFunction2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">UtilsFunction2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./UtilsFunction3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">UtilsFunction3</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./MACFCmain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">MACFCmain.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NewMACFCmain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">NewMACFCmain.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AutogluonTimeLimit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">AutogluonTimeLimit.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AutoGluonSelectML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">AutoGluonSelectML.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AutoFeatureSelection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">AutoFeatureSelection.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./funkyheatmap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using Funkyheatmap</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Percentage Stacked Line Bar Chart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using Percentage Stacked Line Bar Chart</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ridge Plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using Ridge Plot</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CFD FullGSEA.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using GSEA (Gene: CFD)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ANKRD35 FullGSEA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using GSEA (Gene: ANKRD35)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ALOXE3 FullGSEA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using GSEA (Gene: ALOXE3)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GeneCount and GseaNES.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using GeneCount and GseaNES Data (Gene: CFD/ANKRD35/ALOXE3)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Seprate All GSEA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using Seprate All GSEA (Gene: CFD/ANKRD35/ALOXE3)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./VennNetwork core enrichment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using VennNetwork with core enrichment (Gene: CFD/ANKRD35/ALOXE3)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CircosBar core enrichment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using CircosBar</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Contact.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Contact</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">References</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#cfd" id="toc-cfd" class="nav-link active" data-scroll-target="#cfd"><span class="header-section-number">12.1</span> CFD</a>
+  <ul class="collapse">
+  <li><a href="#correlation_transpropy_cfd" id="toc-correlation_transpropy_cfd" class="nav-link" data-scroll-target="#correlation_transpropy_cfd"><span class="header-section-number">12.1.1</span> correlation_TransPropy_CFD</a></li>
+  <li><a href="#correlation_deseq2_cfd" id="toc-correlation_deseq2_cfd" class="nav-link" data-scroll-target="#correlation_deseq2_cfd"><span class="header-section-number">12.1.2</span> correlation_deseq2_CFD</a></li>
+  <li><a href="#correlation_edger_cfd" id="toc-correlation_edger_cfd" class="nav-link" data-scroll-target="#correlation_edger_cfd"><span class="header-section-number">12.1.3</span> correlation_edgeR_CFD</a></li>
+  <li><a href="#correlation_limma_cfd" id="toc-correlation_limma_cfd" class="nav-link" data-scroll-target="#correlation_limma_cfd"><span class="header-section-number">12.1.4</span> correlation_limma_CFD</a></li>
+  <li><a href="#correlation_outrst_cfd" id="toc-correlation_outrst_cfd" class="nav-link" data-scroll-target="#correlation_outrst_cfd"><span class="header-section-number">12.1.5</span> correlation_outRst_CFD</a></li>
+  </ul></li>
+  <li><a href="#cfd_kegg_hallmarks_all" id="toc-cfd_kegg_hallmarks_all" class="nav-link" data-scroll-target="#cfd_kegg_hallmarks_all"><span class="header-section-number">12.2</span> CFD_KEGG_HALLMARKS_ALL</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">12.3</span> Discussion</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/edit/main/CFD FullGSEA.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/blob/main/CFD FullGSEA.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using GSEA (Gene: CFD)</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TransProR)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rlang)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(linkET)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(funkyheatmap)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggalluvial)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GSVA)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fgsea) </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clusterProfiler)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(enrichplot)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MetaTrx)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="cfd" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="cfd"><span class="header-section-number">12.1</span> CFD</h2>
+<section id="correlation_transpropy_cfd" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="correlation_transpropy_cfd"><span class="header-section-number">12.1.1</span> correlation_TransPropy_CFD</h3>
+<section id="hallmarks" class="level4" data-number="12.1.1.1">
+<h4 data-number="12.1.1.1" class="anchored" data-anchor-id="hallmarks"><span class="header-section-number">12.1.1.1</span> HALLMARKS</h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a named vector from the correlation data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>geneList <span class="ot">&lt;-</span> correlation_TransPropy_CFD<span class="sc">$</span>cor</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(geneList) <span class="ot">=</span> correlation_TransPropy_CFD<span class="sc">$</span>gene2</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>geneList <span class="ot">=</span> <span class="fu">sort</span>(geneList, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(geneList)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the hallmark gene sets</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>hallmarks <span class="ot">&lt;-</span> <span class="fu">read.gmt</span>(<span class="st">"h.all.v7.4.symbols.gmt"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform Gene Set Enrichment Analysis (GSEA)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>TransPropy_CFD_hallmarks_y <span class="ot">&lt;-</span> <span class="fu">GSEA</span>(geneList, <span class="at">TERM2GENE =</span> hallmarks, <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the results by NES (Normalized Enrichment Score)</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>TransPropysorted_df <span class="ot">&lt;-</span> TransPropy_CFD_hallmarks_y<span class="sc">@</span>result <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(NES))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of core enriched genes in each row</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>TransPropysorted_df<span class="sc">$</span>core_gene_count <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">strsplit</span>(<span class="fu">as.character</span>(TransPropysorted_df<span class="sc">$</span>core_enrichment), <span class="st">"/"</span>), length)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to process strings (change pathway name prefixes and case)</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>process_string <span class="ot">&lt;-</span> <span class="cf">function</span>(s) {</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove the first word and underscore</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"^HALLMARK_"</span>, <span class="st">""</span>, s)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Split the string by underscore</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(s, <span class="st">"_"</span>))</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Capitalize the first letter of each word and make other letters lowercase</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">tolower</span>(words)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(<span class="fu">substring</span>(words, <span class="dv">1</span>, <span class="dv">1</span>)), <span class="fu">substring</span>(words, <span class="dv">2</span>), <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine the words back into a single string</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">paste</span>(words, <span class="at">collapse =</span> <span class="st">" "</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to the ID and Description columns</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>TransPropysorted_df<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="fu">sapply</span>(TransPropysorted_df<span class="sc">$</span>ID, process_string)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>TransPropysorted_df<span class="sc">$</span>Description <span class="ot">&lt;-</span> <span class="fu">sapply</span>(TransPropysorted_df<span class="sc">$</span>Description, process_string)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Process the row names</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(TransPropysorted_df) <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">rownames</span>(TransPropysorted_df), process_string)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the results</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(TransPropysorted_df)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the processed data back to y@result for the GSEA collective pathway plot</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>TransPropy_CFD_hallmarks_y<span class="sc">@</span>result <span class="ot">&lt;-</span> TransPropysorted_df</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Process y@geneSets for the GSEA collective pathway plot</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the current geneSet names</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>gene_set_names <span class="ot">&lt;-</span> <span class="fu">names</span>(TransPropy_CFD_hallmarks_y<span class="sc">@</span>geneSets)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the process_string function to the names</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>new_gene_set_names <span class="ot">&lt;-</span> <span class="fu">sapply</span>(gene_set_names, process_string)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the geneSet names</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(TransPropy_CFD_hallmarks_y<span class="sc">@</span>geneSets) <span class="ot">&lt;-</span> new_gene_set_names</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the modified geneSet names</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">names</span>(TransPropy_CFD_hallmarks_y<span class="sc">@</span>geneSets))</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(TransPropy_CFD_hallmarks_y<span class="sc">@</span>result<span class="sc">$</span>ID)</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the color palette for the plot</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>color <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#6a1b9a"</span>, <span class="st">"#00838f"</span>))(<span class="dv">9</span>)</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all gene sets in one image</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="fu">new_gseaNb</span>(<span class="at">object =</span> TransPropy_CFD_hallmarks_y,</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>            <span class="at">geneSetID =</span> <span class="fu">c</span>(<span class="st">"Xenobiotic Metabolism"</span>,</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Kras Signaling Dn"</span>,</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Myogenesis"</span>,</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Allograft Rejection"</span>,  </span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Glycolysis"</span>,</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Spermatogenesis"</span>,</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Mitotic Spindle"</span>,</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"E2f Targets"</span>,          </span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"G2m Checkpoint"</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>            ),</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>            <span class="at">curveCol =</span> color,</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineSize =</span> <span class="fl">2.5</span>,            <span class="co"># Control the line size in the first plot</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineAlpha =</span> <span class="fl">0.6</span>,           <span class="co"># Control the line transparency in the first plot</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentSize =</span> <span class="dv">3</span>,           <span class="co"># Control the vertical line size in the second plot</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentAlpha =</span> <span class="fl">0.6</span>,        <span class="co"># Control the vertical line transparency in the second plot</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>            <span class="at">plotHeightRatio =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.2</span>),  <span class="co"># Control the height ratio of the three plots</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>            <span class="at">htCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#6a1b9a"</span>, <span class="st">"#00838f"</span>)), </span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>            <span class="at">rankCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#6a1b9a"</span>, <span class="st">"white"</span>, <span class="st">"#00838f"</span>))</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="figure/all_GSEA/CFD/TransPropy_CFD_hallmarks_legend.png" class="img-fluid"></p>
+<div style="text-align: center;">
+<p>TransPropy_CFD_hallmarks_GSEA_legend</p>
+</div>
+</section>
+<section id="kegg" class="level4" data-number="12.1.1.2">
+<h4 data-number="12.1.1.2" class="anchored" data-anchor-id="kegg"><span class="header-section-number">12.1.1.2</span> KEGG</h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># KEGG</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>kegg <span class="ot">&lt;-</span> <span class="fu">read.gmt</span>(<span class="st">"c2.cp.kegg.v7.4.symbols.gmt"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>TransPropy_CFD_kegg_y <span class="ot">&lt;-</span> <span class="fu">GSEA</span>(geneList, <span class="at">TERM2GENE =</span> kegg)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by NES (Normalized Enrichment Score)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>TransPropysorted_df <span class="ot">&lt;-</span> TransPropy_CFD_kegg_y<span class="sc">@</span>result <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(NES))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of core enriched genes in each row</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>TransPropysorted_df<span class="sc">$</span>core_gene_count <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">strsplit</span>(<span class="fu">as.character</span>(TransPropysorted_df<span class="sc">$</span>core_enrichment), <span class="st">"/"</span>), length)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to process strings (change pathway name prefixes and case)</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>process_string <span class="ot">&lt;-</span> <span class="cf">function</span>(s) {</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove the first word and underscore</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"^KEGG_"</span>, <span class="st">""</span>, s)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Split the string by underscore</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(s, <span class="st">"_"</span>))</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Capitalize the first letter of each word and make other letters lowercase</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">tolower</span>(words)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(<span class="fu">substring</span>(words, <span class="dv">1</span>, <span class="dv">1</span>)), <span class="fu">substring</span>(words, <span class="dv">2</span>), <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine the words back into a single string</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">paste</span>(words, <span class="at">collapse =</span> <span class="st">" "</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to the ID and Description columns</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>TransPropysorted_df<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="fu">sapply</span>(TransPropysorted_df<span class="sc">$</span>ID, process_string)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>TransPropysorted_df<span class="sc">$</span>Description <span class="ot">&lt;-</span> <span class="fu">sapply</span>(TransPropysorted_df<span class="sc">$</span>Description, process_string)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Process the row names</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(TransPropysorted_df) <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">rownames</span>(TransPropysorted_df), process_string)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the results</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(TransPropysorted_df)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the processed data back to y@result for the GSEA collective pathway plot</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>TransPropy_CFD_kegg_y<span class="sc">@</span>result <span class="ot">&lt;-</span> TransPropysorted_df</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Process y@geneSets for the GSEA collective pathway plot</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the current geneSet names</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>gene_set_names <span class="ot">&lt;-</span> <span class="fu">names</span>(TransPropy_CFD_kegg_y<span class="sc">@</span>geneSets)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the process_string function to the names</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>new_gene_set_names <span class="ot">&lt;-</span> <span class="fu">sapply</span>(gene_set_names, process_string)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the geneSet names</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(TransPropy_CFD_kegg_y<span class="sc">@</span>geneSets) <span class="ot">&lt;-</span> new_gene_set_names</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the modified geneSet names</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">names</span>(TransPropy_CFD_kegg_y<span class="sc">@</span>geneSets))</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the processed results to a CSV file</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="co"># write.table(TransPropy_CFD_kegg_y@result, file="Transpropy_KEGG_GSEA_all.csv", sep=",", row.names=TRUE)</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(TransPropy_CFD_kegg_y<span class="sc">@</span>result<span class="sc">$</span>ID)</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the color palette for the plot</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>color <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#6a1b9a"</span>, <span class="st">"#00838f"</span>))(<span class="dv">14</span>)</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all gene sets in one image</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="fu">new_gseaNb</span>(<span class="at">object =</span> TransPropy_CFD_kegg_y,</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>            <span class="at">geneSetID =</span> <span class="fu">c</span>(<span class="st">"Metabolism Of Xenobiotics By Cytochrome P450"</span>,</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Drug Metabolism Cytochrome P450"</span>,             </span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Retinol Metabolism"</span>,</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Arachidonic Acid Metabolism"</span>,                 </span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Calcium Signaling Pathway"</span>,</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Ppar Signaling Pathway"</span>,                      </span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Vascular Smooth Muscle Contraction"</span>,</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Glycolysis Gluconeogenesis"</span>,                  </span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Endocytosis"</span>,</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Type I Diabetes Mellitus"</span>,                    </span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Hematopoietic Cell Lineage"</span>,</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Graft Versus Host Disease"</span>,                   </span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Leishmania Infection"</span>,</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Cell Cycle"</span>), </span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>            <span class="at">curveCol =</span> color,</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineSize =</span> <span class="fl">2.5</span>,            <span class="co"># Control the line size in the first plot</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineAlpha =</span> <span class="fl">0.6</span>,           <span class="co"># Control the line transparency in the first plot</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentSize =</span> <span class="dv">3</span>,           <span class="co"># Control the vertical line size in the second plot</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentAlpha =</span> <span class="fl">0.6</span>,        <span class="co"># Control the vertical line transparency in the second plot</span></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>            <span class="at">plotHeightRatio =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.2</span>),  <span class="co"># Control the height ratio of the three plots</span></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>            <span class="co"># legend.position = "none",</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>            <span class="at">htCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#6a1b9a"</span>, <span class="st">"#00838f"</span>)), </span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>            <span class="at">rankCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#6a1b9a"</span>, <span class="st">"white"</span>, <span class="st">"#00838f"</span>))</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="figure/all_GSEA/CFD/TransPropy_CFD_kegg_legend.png" class="img-fluid"></p>
+<div style="text-align: center;">
+<p>TransPropy_CFD_kegg_GSEA_legend</p>
+</div>
+</section>
+</section>
+<section id="correlation_deseq2_cfd" class="level3" data-number="12.1.2">
+<h3 data-number="12.1.2" class="anchored" data-anchor-id="correlation_deseq2_cfd"><span class="header-section-number">12.1.2</span> correlation_deseq2_CFD</h3>
+<section id="hallmarks-1" class="level4" data-number="12.1.2.1">
+<h4 data-number="12.1.2.1" class="anchored" data-anchor-id="hallmarks-1"><span class="header-section-number">12.1.2.1</span> HALLMARKS</h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a named vector from the correlation data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>geneList <span class="ot">&lt;-</span> correlation_deseq2_CFD<span class="sc">$</span>cor</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(geneList) <span class="ot">=</span> correlation_deseq2_CFD<span class="sc">$</span>gene2</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>geneList <span class="ot">=</span> <span class="fu">sort</span>(geneList, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(geneList)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the hallmark gene sets</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>hallmarks <span class="ot">&lt;-</span> <span class="fu">read.gmt</span>(<span class="st">"h.all.v7.4.symbols.gmt"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform Gene Set Enrichment Analysis (GSEA)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>deseq2_CFD_hallmarks_y <span class="ot">&lt;-</span> <span class="fu">GSEA</span>(geneList, <span class="at">TERM2GENE =</span> hallmarks, <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the results by NES (Normalized Enrichment Score)</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>deseq2sorted_df <span class="ot">&lt;-</span> deseq2_CFD_hallmarks_y<span class="sc">@</span>result <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(NES))</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of core enriched genes in each row</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>deseq2sorted_df<span class="sc">$</span>core_gene_count <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">strsplit</span>(<span class="fu">as.character</span>(deseq2sorted_df<span class="sc">$</span>core_enrichment), <span class="st">"/"</span>), length)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to process strings (change pathway name prefixes and case)</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>process_string <span class="ot">&lt;-</span> <span class="cf">function</span>(s) {</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove the first word and underscore</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"^HALLMARK_"</span>, <span class="st">""</span>, s)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Split the string by underscore</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(s, <span class="st">"_"</span>))</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Capitalize the first letter of each word and make other letters lowercase</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">tolower</span>(words)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(<span class="fu">substring</span>(words, <span class="dv">1</span>, <span class="dv">1</span>)), <span class="fu">substring</span>(words, <span class="dv">2</span>), <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine the words back into a single string</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">paste</span>(words, <span class="at">collapse =</span> <span class="st">" "</span>)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to the ID and Description columns</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>deseq2sorted_df<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="fu">sapply</span>(deseq2sorted_df<span class="sc">$</span>ID, process_string)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>deseq2sorted_df<span class="sc">$</span>Description <span class="ot">&lt;-</span> <span class="fu">sapply</span>(deseq2sorted_df<span class="sc">$</span>Description, process_string)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Process the row names</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(deseq2sorted_df) <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">rownames</span>(deseq2sorted_df), process_string)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the results</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(deseq2sorted_df)</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the processed data back to y@result for the GSEA collective pathway plot</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>deseq2_CFD_hallmarks_y<span class="sc">@</span>result <span class="ot">&lt;-</span> deseq2sorted_df</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Process y@geneSets for the GSEA collective pathway plot</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the current geneSet names</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>gene_set_names <span class="ot">&lt;-</span> <span class="fu">names</span>(deseq2_CFD_hallmarks_y<span class="sc">@</span>geneSets)</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the process_string function to the names</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>new_gene_set_names <span class="ot">&lt;-</span> <span class="fu">sapply</span>(gene_set_names, process_string)</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the geneSet names</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(deseq2_CFD_hallmarks_y<span class="sc">@</span>geneSets) <span class="ot">&lt;-</span> new_gene_set_names</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the modified geneSet names</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">names</span>(deseq2_CFD_hallmarks_y<span class="sc">@</span>geneSets))</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the processed results to a CSV file</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="co"># write.table(deseq2sorted_df, file="TransPropy_HALLMARKS_GSEA_all.csv", sep=",", row.names=FALSE)</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(deseq2_CFD_hallmarks_y<span class="sc">@</span>result<span class="sc">$</span>ID)</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the color palette for the plot</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>color <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#4527a0"</span>, <span class="st">"#00695c"</span>))(<span class="dv">7</span>)</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all gene sets in one image</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="fu">new_gseaNb</span>(<span class="at">object =</span> deseq2_CFD_hallmarks_y,</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>            <span class="at">geneSetID =</span> <span class="fu">c</span>(<span class="st">"Estrogen Response Late"</span>,</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"P53 Pathway"</span>,</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Estrogen Response Early"</span>,</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Kras Signaling Dn"</span>, </span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Apical Junction"</span>, </span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Myogenesis"</span>,             </span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Allograft Rejection"</span>),</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>            <span class="at">curveCol =</span> color,</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineSize =</span> <span class="fl">2.5</span>,            <span class="co"># Control the line size in the first plot</span></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineAlpha =</span> <span class="fl">0.6</span>,           <span class="co"># Control the line transparency in the first plot</span></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentSize =</span> <span class="dv">3</span>,           <span class="co"># Control the vertical line size in the second plot</span></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentAlpha =</span> <span class="fl">0.6</span>,        <span class="co"># Control the vertical line transparency in the second plot</span></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>            <span class="at">plotHeightRatio =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.2</span>),  <span class="co"># Control the height ratio of the three plots</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>            <span class="co"># legend.position = "none",</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>            <span class="at">htCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#4527a0"</span>, <span class="st">"#00695c"</span>)), </span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>            <span class="at">rankCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#4527a0"</span>, <span class="st">"white"</span>, <span class="st">"#00695c"</span>))</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="figure/all_GSEA/CFD/deseq2_CFD_hallmarks_legend.png" class="img-fluid"></p>
+<div style="text-align: center;">
+<p>deseq2_CFD_hallmarks_GSEA_legend</p>
+</div>
+</section>
+<section id="kegg-1" class="level4" data-number="12.1.2.2">
+<h4 data-number="12.1.2.2" class="anchored" data-anchor-id="kegg-1"><span class="header-section-number">12.1.2.2</span> kegg</h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#kegg</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>kegg <span class="ot">&lt;-</span> <span class="fu">read.gmt</span>(<span class="st">"c2.cp.kegg.v7.4.symbols.gmt"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>deseq2_CFD_kegg_y <span class="ot">&lt;-</span> <span class="fu">GSEA</span>(geneList,<span class="at">TERM2GENE =</span>kegg)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by NES</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>deseq2sorted_df <span class="ot">&lt;-</span> deseq2_CFD_kegg_y<span class="sc">@</span>result <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(NES))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of core enrichment genes per row</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>deseq2sorted_df<span class="sc">$</span>core_gene_count <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">strsplit</span>(<span class="fu">as.character</span>(deseq2sorted_df<span class="sc">$</span>core_enrichment), <span class="st">"/"</span>), length)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to process strings (change pathway name prefix and case)</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>process_string <span class="ot">&lt;-</span> <span class="cf">function</span>(s) {</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove the first word and underscore at the beginning</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"^KEGG_"</span>, <span class="st">""</span>, s)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Split the string by underscores</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(s, <span class="st">"_"</span>))</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Capitalize the first letter of each word and make the rest lowercase</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">tolower</span>(words)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(<span class="fu">substring</span>(words, <span class="dv">1</span>, <span class="dv">1</span>)), <span class="fu">substring</span>(words, <span class="dv">2</span>), <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine the words</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">paste</span>(words, <span class="at">collapse =</span> <span class="st">" "</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to the ID and Description columns</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>deseq2sorted_df<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="fu">sapply</span>(deseq2sorted_df<span class="sc">$</span>ID, process_string)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>deseq2sorted_df<span class="sc">$</span>Description <span class="ot">&lt;-</span> <span class="fu">sapply</span>(deseq2sorted_df<span class="sc">$</span>Description, process_string)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Process row names</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(deseq2sorted_df) <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">rownames</span>(deseq2sorted_df), process_string)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the result</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(deseq2sorted_df)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Transfer the processed data back to y@result for the GSEA collective pathway plot</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>deseq2_CFD_kegg_y<span class="sc">@</span>result <span class="ot">&lt;-</span> deseq2sorted_df</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Process y@geneSets for the GSEA collective pathway plot</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the current geneSets names</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>gene_set_names <span class="ot">&lt;-</span> <span class="fu">names</span>(deseq2_CFD_kegg_y<span class="sc">@</span>geneSets)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the process_string function to the names</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>new_gene_set_names <span class="ot">&lt;-</span> <span class="fu">sapply</span>(gene_set_names, process_string)</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the geneSets names</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(deseq2_CFD_kegg_y<span class="sc">@</span>geneSets) <span class="ot">&lt;-</span> new_gene_set_names</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the modified geneSets names</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">names</span>(deseq2_CFD_kegg_y<span class="sc">@</span>geneSets))</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="co"># write.table(y@result, file="Transpropy_KEGG_GSEA_all.csv",sep=",",row.names=T)</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(deseq2_CFD_kegg_y<span class="sc">@</span>result<span class="sc">$</span>ID)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>color <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#4527a0"</span>,<span class="st">"#00695c"</span>))(<span class="dv">7</span>)</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="co"># All plot one image</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="fu">new_gseaNb</span>(<span class="at">object =</span> deseq2_CFD_kegg_y,</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>            <span class="at">geneSetID =</span> <span class="fu">c</span>(<span class="st">"Arachidonic Acid Metabolism"</span>,</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Mapk Signaling Pathway"</span>,                      </span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Drug Metabolism Cytochrome P450"</span>,</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Metabolism Of Xenobiotics By Cytochrome P450"</span>,</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Steroid Hormone Biosynthesis"</span>,</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Linoleic Acid Metabolism"</span>,                    </span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Gnrh Signaling Pathway"</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>                          ), </span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>            <span class="at">curveCol =</span> color,</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineSize =</span> <span class="fl">2.5</span>,            <span class="co"># Control the size of the lines in the first plot</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineAlpha =</span> <span class="fl">0.6</span>,         <span class="co"># Control the transparency of the lines in the first plot</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentSize =</span> <span class="dv">3</span>,       <span class="co"># Control the size of the vertical lines in the second plot</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentAlpha =</span> <span class="fl">0.6</span>,      <span class="co"># Control the transparency of the vertical lines in the second plot</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>            <span class="at">plotHeightRatio =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.2</span>),  <span class="co"># Control the vertical proportions of the three plots</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>            <span class="co">#legend.position = "none",</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>            <span class="at">htCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#4527a0"</span>,<span class="st">"#00695c"</span>)), </span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>            <span class="at">rankCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#4527a0"</span>,<span class="st">"white"</span>,<span class="st">"#00695c"</span>))</span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="figure/all_GSEA/CFD/deseq2_CFD_kegg_legend.png" class="img-fluid"></p>
+<div style="text-align: center;">
+<p>deseq2_CFD_kegg_GSEA_legend</p>
+</div>
+</section>
+</section>
+<section id="correlation_edger_cfd" class="level3" data-number="12.1.3">
+<h3 data-number="12.1.3" class="anchored" data-anchor-id="correlation_edger_cfd"><span class="header-section-number">12.1.3</span> correlation_edgeR_CFD</h3>
+<section id="hallmarks-2" class="level4" data-number="12.1.3.1">
+<h4 data-number="12.1.3.1" class="anchored" data-anchor-id="hallmarks-2"><span class="header-section-number">12.1.3.1</span> HALLMARKS</h4>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Translate the gene list from the correlation_edgeR_CFD data</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>geneList <span class="ot">&lt;-</span> correlation_edgeR_CFD<span class="sc">$</span>cor</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(geneList) <span class="ot">=</span> correlation_edgeR_CFD<span class="sc">$</span>gene2</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>geneList <span class="ot">=</span> <span class="fu">sort</span>(geneList, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(geneList)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Read hallmark gene sets</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>hallmarks <span class="ot">&lt;-</span> <span class="fu">read.gmt</span>(<span class="st">"h.all.v7.4.symbols.gmt"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>edgeR_CFD_hallmarks_y <span class="ot">&lt;-</span> <span class="fu">GSEA</span>(geneList, <span class="at">TERM2GENE =</span> hallmarks, <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by Normalized Enrichment Score (NES)</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>edgeRsorted_df <span class="ot">&lt;-</span> edgeR_CFD_hallmarks_y<span class="sc">@</span>result <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(NES))</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Count core enrichment genes per pathway</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>edgeRsorted_df<span class="sc">$</span>core_gene_count <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">strsplit</span>(<span class="fu">as.character</span>(edgeRsorted_df<span class="sc">$</span>core_enrichment), <span class="st">"/"</span>), length)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to modify string (change pathway name prefix and casing)</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>process_string <span class="ot">&lt;-</span> <span class="cf">function</span>(s) {</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove the first word and underscore</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"^HALLMARK_"</span>, <span class="st">""</span>, s)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Split the string on underscores</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(s, <span class="st">"_"</span>))</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Capitalize the first letter of each word, rest lowercase</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">tolower</span>(words)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(<span class="fu">substring</span>(words, <span class="dv">1</span>, <span class="dv">1</span>)), <span class="fu">substring</span>(words, <span class="dv">2</span>), <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Concatenate the words</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">paste</span>(words, <span class="at">collapse =</span> <span class="st">" "</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to ID and Description columns</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>edgeRsorted_df<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="fu">sapply</span>(edgeRsorted_df<span class="sc">$</span>ID, process_string)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>edgeRsorted_df<span class="sc">$</span>Description <span class="ot">&lt;-</span> <span class="fu">sapply</span>(edgeRsorted_df<span class="sc">$</span>Description, process_string)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Modify row names</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(edgeRsorted_df) <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">rownames</span>(edgeRsorted_df), process_string)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the modified dataframe</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(edgeRsorted_df)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Update processed data back to y@result for a collective GSEA pathway diagram</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>edgeR_CFD_hallmarks_y<span class="sc">@</span>result <span class="ot">&lt;-</span> edgeRsorted_df</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Process y@geneSets for collective pathway diagrams</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Get current geneSets names</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>gene_set_names <span class="ot">&lt;-</span> <span class="fu">names</span>(edgeR_CFD_hallmarks_y<span class="sc">@</span>geneSets)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply process_string function to names</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>new_gene_set_names <span class="ot">&lt;-</span> <span class="fu">sapply</span>(gene_set_names, process_string)</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Update geneSets names</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(edgeR_CFD_hallmarks_y<span class="sc">@</span>geneSets) <span class="ot">&lt;-</span> new_gene_based_names</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Display updated geneSets names</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">names</span>(edgeR_CFD_hallmarks_y<span class="sc">@</span>geneSets))</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(edgeR_CFD_hallmarks_y<span class="sc">@</span>result<span class="sc">$</span>ID)</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate GSEA plots for selected gene sets</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>color <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#283593"</span>,<span class="st">"#2e7d32"</span>))(<span class="dv">5</span>)</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all on one image</span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="fu">new_gseaNb</span>(<span class="at">object =</span> edgeR_CFD_hallmarks_y,</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>            <span class="at">geneSetID =</span> <span class="fu">c</span>(<span class="st">"Estrogen Response Late"</span>,</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Kras Signaling Dn"</span>,</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Apical Junction"</span>,</span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Estrogen Response Early"</span>,</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Allograft Rejection"</span>),</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>            <span class="at">curveCol =</span> color,</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineSize =</span> <span class="fl">2.5</span>,            <span class="co"># Control the size of the first plot's lines</span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineAlpha =</span> <span class="fl">0.6</span>,         <span class="co"># Control the transparency of the first plot's lines</span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentSize =</span> <span class="dv">3</span>,       <span class="co"># Control the size of the second plot's vertical lines</span></span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentAlpha =</span> <span class="fl">0.6</span>,      <span class="co"># Control the transparency of the second plot's vertical lines</span></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>            <span class="at">plotHeightRatio =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.2</span>),  <span class="co"># Control the proportion of the three plots</span></span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>            <span class="co">#legend.position = "none",</span></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>            <span class="at">htCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#283593"</span>,<span class="st">"#2e7d32"</span>)),</span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>            <span class="at">rankCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#283593"</span>,<span class="st">"white"</span>,<span class="st">"#2e7d32"</span>))</span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="figure/all_GSEA/CFD/edgeR_CFD_hallmarks_legend.png" class="img-fluid"></p>
+<div style="text-align: center;">
+<p>edgeR_CFD_hallmarks_GESA_legend</p>
+</div>
+</section>
+<section id="kegg-2" class="level4" data-number="12.1.3.2">
+<h4 data-number="12.1.3.2" class="anchored" data-anchor-id="kegg-2"><span class="header-section-number">12.1.3.2</span> KEGG</h4>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#kegg</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>kegg <span class="ot">&lt;-</span> <span class="fu">read.gmt</span>(<span class="st">"c2.cp.kegg.v7.4.symbols.gmt"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>edgeR_CFD_kegg_y <span class="ot">&lt;-</span> <span class="fu">GSEA</span>(geneList, <span class="at">TERM2GENE =</span> kegg)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by NES</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>edgeRsorted_df <span class="ot">&lt;-</span> edgeR_CFD_kegg_y<span class="sc">@</span>result <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(NES))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of core enriched genes per row</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>edgeRsorted_df<span class="sc">$</span>core_gene_count <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">strsplit</span>(<span class="fu">as.character</span>(edgeRsorted_df<span class="sc">$</span>core_enrichment), <span class="st">"/"</span>), length)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to process strings (change pathway name prefix and case)</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>process_string <span class="ot">&lt;-</span> <span class="cf">function</span>(s) {</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove the first word and underscore at the beginning</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"^KEGG_"</span>, <span class="st">""</span>, s)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Split the string by underscore</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(s, <span class="st">"_"</span>))</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Capitalize the first letter of each word, make other letters lowercase</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">tolower</span>(words)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(<span class="fu">substring</span>(words, <span class="dv">1</span>, <span class="dv">1</span>)), <span class="fu">substring</span>(words, <span class="dv">2</span>), <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine words</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">paste</span>(words, <span class="at">collapse =</span> <span class="st">" "</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to ID and Description columns</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>edgeRsorted_df<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="fu">sapply</span>(edgeRsorted_df<span class="sc">$</span>ID, process_string)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>edgeRsorted_df<span class="sc">$</span>Description <span class="ot">&lt;-</span> <span class="fu">sapply</span>(edgeRsorted_df<span class="sc">$</span>Description, process_string)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Process row names</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(edgeRsorted_df) <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">rownames</span>(edgeRsorted_df), process_string)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Display results</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(edgeRsorted_df)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Send the processed data back to y@result for easy GSEA pathway diagram</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>edgeR_CFD_kegg_y<span class="sc">@</span>result <span class="ot">&lt;-</span> edgeRsorted_df</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Process y@geneSets for easy GSEA pathway diagram</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the current geneSets names</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>gene_set_names <span class="ot">&lt;-</span> <span class="fu">names</span>(edgeR_CFD_kegg_y<span class="sc">@</span>geneSets)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the process_string function to names</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>new_gene_set_names <span class="ot">&lt;-</span> <span class="fu">sapply</span>(gene_set_names, process_string)</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the names of geneSets</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(edgeR_CFD_kegg_y<span class="sc">@</span>geneSets) <span class="ot">&lt;-</span> new_gene_set_names</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the updated geneSets names</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">names</span>(edgeR_CFD_kegg_y<span class="sc">@</span>geneSets))</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the result to a CSV file</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="co"># write.table(y@result, file="Transpropy_KEGG_GSEA_all.csv", sep=",", row.names=T)</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Display IDs</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(edgeR_CFD_kegg_y<span class="sc">@</span>result<span class="sc">$</span>ID)</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a color gradient</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>color <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#283593"</span>,<span class="st">"#2e7d32"</span>))(<span class="dv">5</span>)</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all in one image</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="fu">new_gseaNb</span>(<span class="at">object =</span> edgeR_CFD_kegg_y,</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>            <span class="at">geneSetID =</span> <span class="fu">c</span>(<span class="st">"Arachidonic Acid Metabolism"</span>,</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Drug Metabolism Cytochrome P450"</span>,</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Metabolism Of Xenobiotics By Cytochrome P450"</span>,</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Mapk Signaling Pathway"</span>,</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Steroid Hormone Biosynthesis"</span>), </span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>            <span class="at">curveCol =</span> color,</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineSize =</span> <span class="fl">2.5</span>,            <span class="co"># Control the line size of the first plot</span></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineAlpha =</span> <span class="fl">0.6</span>,         <span class="co"># Control the transparency of the line in the first plot</span></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentSize =</span> <span class="dv">3</span>,       <span class="co"># Control the size of the vertical lines in the second plot</span></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>            segment <span class="at">Alpha =</span> <span class="fl">0.6</span>,      <span class="co"># Control the transparency of the vertical lines in the second plot</span></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>            <span class="at">plotHeightRatio =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.2</span>),  <span class="co"># Control the height ratio of the three plots</span></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>            <span class="co">#legend.position = "none",</span></span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>            <span class="at">htCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#283593"</span>,<span class="st">"#2e7d32"</span>)), </span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>            <span class="at">rankCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#283593"</span>,<span class="st">"white"</span>,<span class="st">"#2e7d32"</span>))</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="figure/all_GSEA/CFD/edgeR_CFD_kegg_legend.png" class="img-fluid"></p>
+<div style="text-align: center;">
+<p>edgeR_CFD_kegg_GESA_legend</p>
+</div>
+</section>
+</section>
+<section id="correlation_limma_cfd" class="level3" data-number="12.1.4">
+<h3 data-number="12.1.4" class="anchored" data-anchor-id="correlation_limma_cfd"><span class="header-section-number">12.1.4</span> correlation_limma_CFD</h3>
+<section id="hallmarks-3" class="level4" data-number="12.1.4.1">
+<h4 data-number="12.1.4.1" class="anchored" data-anchor-id="hallmarks-3"><span class="header-section-number">12.1.4.1</span> HALLMARKS</h4>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>geneList <span class="ot">&lt;-</span> correlation_limma_CFD<span class="sc">$</span>cor</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(geneList) <span class="ot">=</span> correlation_limma_CFD<span class="sc">$</span>gene2</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>geneList <span class="ot">=</span> <span class="fu">sort</span>(geneList, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(geneList)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#hallmark</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>hallmarks <span class="ot">&lt;-</span> <span class="fu">read.gmt</span>(<span class="st">"h.all.v7.4.symbols.gmt"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>limma_CFD_hallmarks_y <span class="ot">&lt;-</span> <span class="fu">GSEA</span>(geneList, <span class="at">TERM2GENE =</span> hallmarks, <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by NES</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>limmasorted_df <span class="ot">&lt;-</span> limma_CFD_hallmarks_y<span class="sc">@</span>result <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(NES))</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of core enriched genes per row</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>limmasorted_df<span class="sc">$</span>core_gene_count <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">strsplit</span>(<span class="fu">as.character</span>(limmasorted_df<span class="sc">$</span>core_enrichment), <span class="st">"/"</span>), length)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to process strings (change pathway name prefix and case)</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>process_string <span class="ot">&lt;-</span> <span class="cf">function</span>(s) {</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove the first word and underscore at the beginning</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"^HALLMARK_"</span>, <span class="st">""</span>, s)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Split the string by underscore</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(s, <span class="st">"_"</span>))</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Capitalize the first letter of each word, make other letters lowercase</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">tolower</span>(words)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(<span class="fu">substring</span>(words, <span class="dv">1</span>, <span class="dv">1</span>)), <span class="fu">substring</span>(words, <span class="dv">2</span>), <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine words</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">paste</span>(words, <span class="at">collapse =</span> <span class="st">" "</span>)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to ID and Description columns</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>limmasorted_df<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="fu">sapply</span>(limmasorted_df<span class="sc">$</span>ID, process_string)</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>limmasorted_df<span class="sc">$</span>Description <span class="ot">&lt;-</span> <span class="fu">sapply</span>(limmasorted_df<span class="sc">$</span>Description, process_string)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Process row names</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(limmasorted_df) <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">rownames</span>(limmasorted_df), process_string)</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Display results</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(limmasorted_df)</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Send the processed data back to y@result for easy GSEA pathway diagram</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>limma_CFD_hallmarks_y<span class="sc">@</span>result <span class="ot">&lt;-</span> limmasorted_df</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Process y@geneSets for easy GSEA pathway diagram</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the current geneSets names</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>gene_set_names <span class="ot">&lt;-</span> <span class="fu">names</span>(limma_CFD_hallmarks_y<span class="sc">@</span>geneSets)</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the process_string function to names</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>new_gene_set_names <span class="ot">&lt;-</span> <span class="fu">sapply</span>(gene_set_names, process_string)</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the names of geneSets</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(limma_CFD_hallmarks_y<span class="sc">@</span>geneSets) <span class="ot">&lt;-</span> new_gene_set<span class="ot">&lt;-</span> names</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the updated geneSets names</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">names</span>(limma_CFD_hallmarks_y<span class="sc">@</span>geneSets))</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the result to a CSV file</span></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a><span class="co"># write.table(TransPropysorted_df, file="TransPropy_HALLMARKS_GSEA_all.csv", sep=",", row.names=F)</span></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(limma_CFD_hallmarks_y<span class="sc">@</span>result<span class="sc">$</span>ID)</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a color gradient</span></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>color <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#1565c0"</span>,<span class="st">"#558b2f"</span>))(<span class="dv">13</span>)</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all in one image</span></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a><span class="fu">new_gseaNb</span>(<span class="at">object =</span> limma_CFD_hallmarks_y,</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>            <span class="at">geneSetID =</span> <span class="fu">c</span>(<span class="st">"Estrogen Response Late"</span>,</span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Adipogenesis"</span>,</span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"P53 Pathway"</span>,              </span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Myogenesis"</span>,</span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Apical Junction"</span>,</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Mtorc1 Signaling"</span>,         </span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Complement"</span>,</span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Spermatogenesis"</span>,</span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Inflammatory Response"</span>,    </span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Interferon Gamma Response"</span>,</span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Allograft Rejection"</span>,</span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"E2f Targets"</span>,              </span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"G2m Checkpoint"</span>),</span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>            <span class="at">curveCol =</span> color,</span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineSize =</span> <span class="fl">2.5</span>,            <span class="co"># Control the line size of the first plot</span></span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineAlpha =</span> <span class="fl">0.6</span>,           <span class="co"># Control the transparency of the line in the first plot</span></span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentSize =</span> <span class="dv">3</span>,           <span class="co"># Control the size of the vertical lines in the second plot</span></span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentAlpha =</span> <span class="fl">0.6</span>,        <span class="co"># Control the transparency of the vertical lines in the second plot</span></span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a>            <span class="at">plotHeightRatio =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.2</span>),  <span class="co"># Control the height ratio of the three plots</span></span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>            <span class="co">#legend.position = "none",</span></span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>            <span class="at">htCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#1565c0"</span>,<span class="st">"#558b2f"</span>)), </span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>            <span class="at">rankCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#1565c0"</span>,<span class="st">"white"</span>,<span class="st">"#558b2f"</span>))</span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="figure/all_GSEA/CFD/limma_CFD_hallmarks_legend.png" class="img-fluid"></p>
+<div style="text-align: center;">
+<p>limma_CFD_hallmarks_GSEA_legend</p>
+</div>
+</section>
+<section id="kegg-3" class="level4" data-number="12.1.4.2">
+<h4 data-number="12.1.4.2" class="anchored" data-anchor-id="kegg-3"><span class="header-section-number">12.1.4.2</span> KEGG</h4>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#kegg</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>kegg <span class="ot">&lt;-</span> <span class="fu">read.gmt</span>(<span class="st">"c2.cp.kegg.v7.4.symbols.gmt"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>limma_CFD_kegg_y <span class="ot">&lt;-</span> <span class="fu">GSEA</span>(geneList, <span class="at">TERM2GENE =</span> kegg)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by NES</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>limmasorted_df <span class="ot">&lt;-</span> limma_CFD_kegg_y<span class="sc">@</span>result <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(NES))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of core enriched genes per row</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>limmasorted_df<span class="sc">$</span>core_gene_count <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">strsplit</span>(<span class="fu">as.character</span>(limmasorted_df<span class="sc">$</span>core_enrichment), <span class="st">"/"</span>), length)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to process strings (change pathway name prefix and case)</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>process_string <span class="ot">&lt;-</span> <span class="cf">function</span>(s) {</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove the first word and underscore at the beginning</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"^KEGG_"</span>, <span class="st">""</span>, s)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Split the string by underscore</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(s, <span class="st">"_"</span>))</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Capitalize the first letter of each word, make other letters lowercase</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">tolower</span>(words)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(<span class="fu">substring</span>(words, <span class="dv">1</span>, <span class="dv">1</span>)), <span class="fu">substring</span>(words, <span class="dv">2</span>), <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine words</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">paste</span>(words, <span class="at">collapse =</span> <span class="st">" "</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to ID and Description columns</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>limmasorted_df<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="fu">sapply</span>(limmasorted_df<span class="sc">$</span>ID, process_string)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>limmasorted_df<span class="sc">$</span>Description <span class="ot">&lt;-</span> <span class="fu">sapply</span>(limmasorted_df<span class="sc">$</span>Description, process_string)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Process row names</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(limmasorted_df) <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">rownames</span>(limmasorted_df), process_string)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Display results</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(limmasorted_df)</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Send the processed data back to y@result for easy GSEA pathway diagram</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>limma_CFD_kegg_y<span class="sc">@</span>result <span class="ot">&lt;-</span> limmasorted_df</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Process y@geneSets for easy GSEA pathway diagram</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the current geneSets names</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>gene_set_names <span class="ot">&lt;-</span> <span class="fu">names</span>(limma_CFD_kegg_y<span class="sc">@</span>geneSets)</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the process_string function to names</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>new_gene_set_names <span class="ot">&lt;-</span> <span class="fu">sapply</span>(gene_set_names, process_string)</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the names of geneSets</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(limma_CFD_kegg_y<span class="sc">@</span>geneSets) <span class="ot">&lt;-</span> new_gene_set_names</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the updated geneSets names</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">names</span>(limma_CFD_kegg_y<span class="sc">@</span>geneSets))</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the result to a CSV file</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="co"># write.table(y@result, file="Transpropy_KEGG_GSEA_all.csv", sep=",", row.names=T)</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Display IDs</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(limma_CFD_kegg_y<span class="sc">@</span>result<span class="sc">$</span>ID)</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a color gradient</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>color <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#1565c0"</span>, <span class="st">"#558b2f"</span>))(<span class="dv">12</span>)</span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all in one image</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="fu">new_gseaNb</span>(<span class="at">object =</span> limma_CFD_kegg_y,</span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>            <span class="at">geneSetID =</span> <span class="fu">c</span>(<span class="st">"Arachidonic Acid Metabolism"</span>,</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Steroid Hormone Biosynthesis"</span>,</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Metabolism Of Xenobiotics By Cytochrome P450"</span>,</span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Chemokine Signaling Pathway"</span>,</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Systemic Lupus Erythematosus"</span>,</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Primary Immunodeficiency"</span>,</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Leishmania Infection"</span>,</span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Hematopoietic Cell Lineage"</span>,</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Allograft Rejection"</span>,</span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Graft Versus Host Disease"</span>,</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Autoimmune Thyroid Disease"</span>,</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Type I Diabetes Mellitus"</span>), </span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>            <span class="at">curveCol =</span> color,</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineSize =</span> <span class="fl">2.5</span>,            <span class="co"># Control the line size of the first plot</span></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineAlpha =</span> <span class="fl">0.6</span>,           <span class="co"># Control the transparency of the line in the first plot</span></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentSize =</span> <span class="dv">3</span>,           <span class="co"># Control the size of the vertical lines in the second plot</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentAlpha =</span> <span class="fl">0.6</span>,        <span class="co"># Control the transparency of the vertical lines in the second plot</span></span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>            <span class="at">plotHeightRatio =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.2</span>),  <span class="co"># Control the height ratio of the three plots</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>            <span class="co">#legend.position = "none",</span></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>            <span class="at">htCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#1565c0"</span>, <span class="st">"#558b2f"</span>)), </span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>            <span class="at">rankandRev =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#1565c0"</span>, <span class="st">"white"</span>, <span class="st">"#558b2f"</span>))</span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="figure/all_GSEA/CFD/limma_CFD_kegg_legend.png" class="img-fluid"></p>
+<div style="text-align: center;">
+<p>limma_CFD_kegg_GSEA_legend</p>
+</div>
+</section>
+</section>
+<section id="correlation_outrst_cfd" class="level3" data-number="12.1.5">
+<h3 data-number="12.1.5" class="anchored" data-anchor-id="correlation_outrst_cfd"><span class="header-section-number">12.1.5</span> correlation_outRst_CFD</h3>
+<section id="hallmarks-4" class="level4" data-number="12.1.5.1">
+<h4 data-number="12.1.5.1" class="anchored" data-anchor-id="hallmarks-4"><span class="header-section-number">12.1.5.1</span> HALLMARKS</h4>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>geneList <span class="ot">&lt;-</span> correlation_outRst_CFD<span class="sc">$</span>cor</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(geneList) <span class="ot">=</span> correlation_outRst_CFD<span class="sc">$</span>gene2</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>geneList <span class="ot">=</span> <span class="fu">sort</span>(geneList, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(geneList)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#hallmark</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>hallmarks <span class="ot">&lt;-</span> <span class="fu">read.gmt</span>(<span class="st">"h.all.v7.4.symbols.gmt"</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>outRst_CFD_hallmarks_y <span class="ot">&lt;-</span> <span class="fu">GSEA</span>(geneList, <span class="at">TERM2GENE =</span> hallmarks, <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by NES</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>outRstsorted_df <span class="ot">&lt;-</span> outRst_CFD_hallmarks_y<span class="sc">@</span>result <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(NES))</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of core enriched genes per row</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>outRstsorted_df<span class="sc">$</span>core_gene_count <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">strsplit</span>(<span class="fu">as.character</span>(outRstsorted_df<span class="sc">$</span>core_enrichment), <span class="st">"/"</span>), length)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to process strings (change pathway name prefix and case)</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>process_string <span class="ot">&lt;-</span> <span class="cf">function</span>(s) {</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove the first word and underscore at the beginning</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"^HALLMARK_"</span>, <span class="st">""</span>, s)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Split the string by underscore</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(s, <span class="st">"_"</span>))</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Capitalize the first letter of each word, make other letters lowercase</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">tolower</span>(words)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(<span class="fu">substring</span>(words, <span class="dv">1</span>, <span class="dv">1</span>)), <span class="fu">substring</span>(words, <span class="dv">2</span>), <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine words</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">paste</span>(words, <span class="at">collapse =</span> <span class="st">" "</span>)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to ID and Description columns</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>outRstsorted_df<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="fu">sapply</span>(outRstsorted_df<span class="sc">$</span>ID, process_string)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>outRstsorted_df<span class="sc">$</span>Description <span class="ot">&lt;-</span> <span class="fu">sapply</span>(outRstsorted_df<span class="sc">$</span>Description, process_string)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Process row names</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(outRstsorted_df) <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">rownames</span>(outRstsorted_df), process_string)</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Display results</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(outRstsorted_df)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Send the processed data back to y@result for easy GSEA pathway diagram</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>outRst_CFD_hallmarks_y<span class="sc">@</span>result <span class="ot">&lt;-</span> outRstsorted_df</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Process y@geneSets for easy GSEA pathway diagram</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the current geneSets names</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>gene_set_names <span class="ot">&lt;-</span> <span class="fu">names</span>(outRst_CFD_hallmarks_y<span class="sc">@</span>geneSets)</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the process_string function to names</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>new_gene_set_names <span class="ot">&lt;-</span> <span class="fu">sapply</span>(gene_set_names, process_string)</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the names of geneSets</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(outRgr_CFD_hallmarks_y<span class="sc">@</span>geneSets) <span class="ot">&lt;-</span> new_gene_set_names</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the updated geneSets names</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">names</span>(outRst_CFD_hallmarks_y<span class="sc">@</span>geneSets))</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the result to a CSV file</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="co"># write.table(TransPropysorted_df, file="TransPropy_HALLMARKS_GSEA_all.csv", sep=",", row.names=F)</span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Display IDs</span></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(outRst_CFD_hallmarks_y<span class="sc">@</span>result<span class="sc">$</span>ID)</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a color gradient</span></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>color <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#0277bd"</span>,<span class="st">"#9e9d24"</span>))(<span class="dv">8</span>)</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all in one image</span></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="fu">new_gseaNb</span>(<span class="at">object =</span> outRst_CFD_hallmarks_y,</span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>            <span class="at">geneSetID =</span> <span class="fu">c</span>(<span class="st">"Estrogen Response Late"</span>,</span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Il2 Stat5 Signaling"</span>,</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Inflammatory Response"</span>,</span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Complement"</span>,</span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Interferon Alpha Response"</span>,</span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Il6 Jak Stat3 Signaling"</span>,</span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Interferon Gamma Response"</span>,</span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Allograft Rejection"</span>),</span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>            <span class="at">curveCol =</span> color,</span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineSize =</span> <span class="fl">2.5</span>,            <span class="co"># Control the line size of the first plot</span></span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineAlpha =</span> <span class="fl">0.7</span>,           <span class="co"># Control the transparency of the line in the first plot</span></span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentSize =</span> <span class="dv">3</span>,           <span class="co"># Control the size of the vertical lines in the second plot</span></span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentAlpha =</span> <span class="fl">0.7</span>,        <span class="co"># Control the transparency of the vertical lines in the second plot</span></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>            <span class="at">plotHeightRatio =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.2</span>),  <span class="co"># Control the height ratio of the three plots</span></span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>            <span class="co">#legend.position = "none",</span></span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>            <span class="at">htCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#0277bd"</span>,<span class="st">"#9e9d24"</span>)), </span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>            <span class="at">rankCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#0277bd"</span>,<span class="st">"white"</span>,<span class="st">"#9e9d24"</span>))</span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="figure/all_GSEA/CFD/outRst_CFD_hallmarks_legend.png" class="img-fluid"></p>
+<div style="text-align: center;">
+<p>outRst_CFD_hallmarks_GSEA_legend</p>
+</div>
+</section>
+<section id="kegg-4" class="level4" data-number="12.1.5.2">
+<h4 data-number="12.1.5.2" class="anchored" data-anchor-id="kegg-4"><span class="header-section-number">12.1.5.2</span> KEGG</h4>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#kegg</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>kegg <span class="ot">&lt;-</span> <span class="fu">read.gmt</span>(<span class="st">"c2.cp.kegg.v7.4.symbols.gmt"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>outRst_CFD_kegg_y <span class="ot">&lt;-</span> <span class="fu">GSEA</span>(geneList, <span class="at">TERM2GENE =</span> kegg)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by NES</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>outRstsorted_df <span class="ot">&lt;-</span> outRst_CFD_kegg_y<span class="sc">@</span>result <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(NES))</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of core enriched genes per row</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>outRstsorted_df<span class="sc">$</span>core_gene_count <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">strsplit</span>(<span class="fu">as.character</span>(outRstsorted_df<span class="sc">$</span>core_enrichment), <span class="st">"/"</span>), length)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to process strings (change pathway name prefix and case)</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>process_string <span class="ot">&lt;-</span> <span class="cf">function</span>(s) {</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove the first word and underscore at the beginning</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"^KEGG_"</span>, <span class="st">""</span>, s)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Split the string by underscore</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(s, <span class="st">"_"</span>))</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Capitalize the first letter of each word, make other letters lowercase</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">tolower</span>(words)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  words <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(<span class="fu">substring</span>(words, <span class="dv">1</span>, <span class="dv">1</span>)), <span class="fu">substring</span>(words, <span class="dv">2</span>), <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine words</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">paste</span>(words, <span class="at">collapse =</span> <span class="st">" "</span>)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to ID and Description columns</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>outRstsorted_df<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="fu">sapply</span>(outRstsorted_df<span class="sc">$</span>ID, process_string)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>outRstsorted_df<span class="sc">$</span>Description <span class="ot">&lt;-</span> <span class="fu">sapply</span>(outRstsorted_df<span class="sc">$</span>Description, process_string)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Process row names</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(outRstsorted_df) <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">rownames</span>(outRstsorted_df), process_string)</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Display results</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(outRstsorted_df)</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Send the processed data back to y@result for easy GSEA pathway visualization</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>outRst_CFD_kegg_y<span class="sc">@</span>result <span class="ot">&lt;-</span> outRstsorted_df</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Process y@geneSets for easy GSEA pathway visualization</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the current geneSets names</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>gene_set_names <span class="ot">&lt;-</span> <span class="fu">names</span>(outRst_CFD_kegg_y<span class="sc">@</span>geneSets)</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the process_string function to names</span></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>new_gene_set_names <span class="ot">&lt;-</span> <span class="fu">sapply</span>(gene_set_names, process_string)</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the names of geneSets</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(outRst_CFD_kegg_y<span class="sc">@</span>geneSets) <span class="ot">&lt;-</span> new_gene_set_names</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the updated geneSets names</span></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">names</span>(outRst_CFD_kegg_y<span class="sc">@</span>geneSets))</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the result to a CSV file</span></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a><span class="co"># write.table(y@result, file="Transpropy_KEGG_GSEA_all.csv", sep=",", row.names=T)</span></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Display IDs</span></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(outRst_CFD_kegg_y<span class="sc">@</span>result<span class="sc">$</span>ID)</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a color gradient</span></span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>color <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#0277bd"</span>, <span class="st">"#9e9d24"</span>))(<span class="dv">13</span>)</span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all in one image</span></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a><span class="fu">new_gseaNb</span>(<span class="at">object =</span> outRst_CFD_kegg_y,</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>            <span class="at">geneSetID =</span> <span class="fu">c</span>(<span class="st">"Steroid Hormone Biosynthesis"</span>,</span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Toll Like Receptor Signaling Pathway"</span>,     </span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Leishmania Infection"</span>,</span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Antigen Processing And Presentation"</span>,      </span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Cell Adhesion Molecules Cams"</span>,</span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Hematopoietic Cell Lineage"</span>,               </span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Natural Killer Cell Mediated Cytotoxicity"</span>,</span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Autoimmune Thyroid Disease"</span>,               </span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Systemic Lupus Erythematosus"</span>,</span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Chemokine Signaling Pathway"</span>,              </span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Allograft Rejection"</span>,</span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Graft Versus Host Disease"</span>,                </span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Type I Diabetes Mellitus"</span>), </span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>            <span class="at">curveCol =</span> color,</span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineSize =</span> <span class="fl">2.5</span>,            <span class="co"># Control the line size of the first plot</span></span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineAlpha =</span> <span class="fl">0.7</span>,         <span class="co"># Control the transparency of the first plot's lines</span></span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentSize =</span> <span class="dv">3</span>,       <span class="co"># Control the size of the vertical lines in the second plot</span></span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>            <span class="at">segmentAlpha =</span> <span class="fl">0.7</span>,      <span class="co"># Control the transparency of the vertical lines in the second plot</span></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>            <span class="at">plotHeightRatio =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.2</span>),  <span class="co"># Control the height ratio of the three plots</span></span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>            <span class="co">#legend.position = "none",</span></span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>            <span class="at">htCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#0277bd"</span>, <span class="st">"#9e9d24"</span>)), </span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>            <span class="at">rankCol =</span> <span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">"#0277bd"</span>, <span class="st">"white"</span>, <span class="st">"#9e9d24"</span>))</span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="figure/all_GSEA/CFD/outRst_CFD_kegg_legend.png" class="img-fluid"></p>
+<div style="text-align: center;">
+<p>outRst_CFD_kegg_GSEA_legend</p>
+</div>
+</section>
+</section>
+</section>
+<section id="cfd_kegg_hallmarks_all" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="cfd_kegg_hallmarks_all"><span class="header-section-number">12.2</span> CFD_KEGG_HALLMARKS_ALL</h2>
+<p><img src="figure/all_GSEA/CFD_KEGG_HALLMARKS_ALL.png" class="img-fluid"></p>
+<div style="text-align: center;">
+<p>CFD_KEGG_HALLMARKS_ALL</p>
+</div>
+</section>
+<section id="discussion" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="discussion"><span class="header-section-number">12.3</span> Discussion</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">deseq2/edgeR</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">TransPropy</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">limma/outRst</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>In the Ranked List, the proportion of positively correlated genes is <strong>greater</strong> than that of negatively correlated ones. Although the proportions of positive and negative values in edgeR are roughly equal, the proportion of genes with absolute correlation values greater than 0.5 remains higher for positive values. GSEA analysis shows a similar trend, with <strong>significantly more</strong> activated pathways (NES &gt; 0) than inhibited pathways (NES &lt; 0). Pathways enriched for inhibition are <strong>very few (or even none)</strong>, indicating a <strong>significant bias</strong> in the pathway analysis results.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>The proportion of positive and negative genes is <strong>balanced</strong>, and the proportion of activated and inhibited pathways is <strong>also moderate</strong>. This <strong>avoids the polarization trend</strong> seen with other methods. Additionally, the proportions of activated and inhibited pathways are <strong>consistent with the trend</strong> of positive and negative correlated genes.<strong>（Best）</strong></p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>In the Ranked List, positively correlated genes are <strong>more abundant</strong> than negatively correlated ones, which is consistent with the results of deseq2 and edgeR. However, GSEA analysis shows the <strong>opposite trend</strong>, with <strong>fewer</strong> activated pathways (NES &gt; 0) than inhibited pathways (NES &lt; 0). This phenomenon is particularly pronounced in outRst, where the proportion of negatively correlated genes is <strong>smaller</strong>, <strong>yet</strong> the number of enriched inhibited pathways is <strong>significantly higher</strong>. This <strong>imbalance</strong> in the proportion of positive and negative pathways is <strong>contrary</strong> to the trend observed in gene correlation.</p>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="SSSYDYSSS/TransProPyBook" data-repo-id="R_kgDOKxwgVA" data-category="General" data-category-id="DIC_kwDOKxwgVM4CbO4f" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Ridge Plot.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using Ridge Plot</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ANKRD35 FullGSEA.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using GSEA (Gene: ANKRD35)</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

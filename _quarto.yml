@@ -36,6 +36,16 @@ book:
     - AutogluonTimeLimit.qmd
     - AutoGluonSelectML.qmd
     - AutoFeatureSelection.qmd
+    - funkyheatmap.qmd
+    - Percentage Stacked Line Bar Chart.qmd
+    - Ridge Plot.qmd
+    - CFD FullGSEA.qmd
+    - ANKRD35 FullGSEA.qmd
+    - ALOXE3 FullGSEA.qmd
+    - GeneCount and GseaNES.qmd
+    - Seprate All GSEA.qmd
+    - VennNetwork core enrichment.qmd
+    - CircosBar core enrichment.qmd
     - Contact.qmd
     - references.qmd
 

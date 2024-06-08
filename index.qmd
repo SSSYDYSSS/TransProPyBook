@@ -101,6 +101,32 @@ To learn more about TransProPy visit <https://github.com/SSSYDYSSS/TransProPy>.
 >>* [Usage](#usage-multithreaded-computation-showprogress-false-njobs-1)
 >
 
+
+## Comparison of TransPropy with Other Tool Packages
+
+>
+>* [funkyheatmap](funkyheatmap.html)
+>
+>* [Percentage Stacked Line Bar Chart](Percentage Stacked Line Bar Chart.html)
+> 
+>* [Ridge Plot](Ridge Plot.html)
+>  
+>* [CFD FullGSEA](CFD FullGSEA.html)
+>
+>* [ANKRD35 FullGSEA](ANKRD35 FullGSEA.html)
+>
+>* [ALOXE3 FullGSEA](ALOXE3 FullGSEA.html)
+>
+>* [GeneCount and GseaNES](GeneCount and GseaNES.html)
+> 
+>* [Seprate All GSEA](Seprate All GSEA.html)
+>  
+>* [VennNetwork core enrichment](VennNetwork core enrichment.html)
+>
+>* [CircosBar core enrichment](CircosBar core enrichment.html)
+>
+
+
 ## Citation
 Yu Dongyue (2023). TransProPy: A python package that integrate algorithms and various machine learning approaches to extract features (genes) effective for classification and attribute them accordingly.
 <https://github.com/SSSYDYSSS/TransProPy>, 
