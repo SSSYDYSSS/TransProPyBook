@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="TransProPy is a Python package that is part of the TransPro series under the SuperOmics framework.">
+
+<title>TransProPyBook - 9&nbsp; Comparison of TransPropy with Other Tool Packages Using Funkyheatmap</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Percentage Stacked Line Bar Chart.html" rel="next">
+<link href="./AutoFeatureSelection.html" rel="prev">
+<link href="./TransProPy_logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="custom.css">
+<meta property="og:title" content="TransProPyBook - 9&nbsp; Comparison of TransPropy with Other Tool Packages Using Funkyheatmap">
+<meta property="og:description" content="Python package TransProPy.">
+<meta property="og:image" content="https://github.com/SSSYDYSSS/TransProPyBook/blob/main/TransProPy_logo.png">
+<meta property="og:site-name" content="TransProPyBook">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./funkyheatmap.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using Funkyheatmap</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./TransProPy_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">TransProPyBook</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/SSSYDYSSS/TransProPyBook" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./UtilsFunction1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">UtilsFunction1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./UtilsFunction2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">UtilsFunction2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./UtilsFunction3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">UtilsFunction3</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./MACFCmain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">MACFCmain.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NewMACFCmain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">NewMACFCmain.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AutogluonTimeLimit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">AutogluonTimeLimit.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AutoGluonSelectML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">AutoGluonSelectML.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AutoFeatureSelection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">AutoFeatureSelection.py</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./funkyheatmap.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using Funkyheatmap</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Percentage Stacked Line Bar Chart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using Percentage Stacked Line Bar Chart</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ridge Plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using Ridge Plot</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CFD FullGSEA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using GSEA (Gene: CFD)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ANKRD35 FullGSEA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using GSEA (Gene: ANKRD35)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ALOXE3 FullGSEA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using GSEA (Gene: ALOXE3)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GeneCount and GseaNES.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using GeneCount and GseaNES Data (Gene: CFD/ANKRD35/ALOXE3)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Seprate All GSEA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using Seprate All GSEA (Gene: CFD/ANKRD35/ALOXE3)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./VennNetwork core enrichment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using VennNetwork with core enrichment (Gene: CFD/ANKRD35/ALOXE3)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CircosBar core enrichment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using CircosBar</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Contact.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Contact</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">References</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#library" id="toc-library" class="nav-link active" data-scroll-target="#library"><span class="header-section-number">9.1</span> library</a></li>
+  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data"><span class="header-section-number">9.2</span> load data</a></li>
+  <li><a href="#to-ensure-a-relatively-fair-comparison-the-number-of-features-extracted-by-the-other-four-methods-is-equal-to-the-number-of-features-in-the-transpropy_union_list." id="toc-to-ensure-a-relatively-fair-comparison-the-number-of-features-extracted-by-the-other-four-methods-is-equal-to-the-number-of-features-in-the-transpropy_union_list." class="nav-link" data-scroll-target="#to-ensure-a-relatively-fair-comparison-the-number-of-features-extracted-by-the-other-four-methods-is-equal-to-the-number-of-features-in-the-transpropy_union_list."><span class="header-section-number">9.3</span> To ensure a relatively fair comparison, the number of features extracted by the other four methods is equal to the number of features in the TransPropy_union_list.</a>
+  <ul class="collapse">
+  <li><a href="#assuming-your-data-is-stored-in-the-data-frame-variable-deg_deseq2" id="toc-assuming-your-data-is-stored-in-the-data-frame-variable-deg_deseq2" class="nav-link" data-scroll-target="#assuming-your-data-is-stored-in-the-data-frame-variable-deg_deseq2"><span class="header-section-number">9.3.1</span> Assuming Your Data is Stored in the Data Frame Variable DEG_deseq2</a></li>
+  <li><a href="#assuming-your-data-is-stored-in-the-data-frame-variable-deg_edger" id="toc-assuming-your-data-is-stored-in-the-data-frame-variable-deg_edger" class="nav-link" data-scroll-target="#assuming-your-data-is-stored-in-the-data-frame-variable-deg_edger"><span class="header-section-number">9.3.2</span> Assuming Your Data is Stored in the Data Frame Variable DEG_edgeR</a></li>
+  <li><a href="#assuming-your-data-is-stored-in-the-data-frame-variable-deg_limma_voom" id="toc-assuming-your-data-is-stored-in-the-data-frame-variable-deg_limma_voom" class="nav-link" data-scroll-target="#assuming-your-data-is-stored-in-the-data-frame-variable-deg_limma_voom"><span class="header-section-number">9.3.3</span> Assuming Your Data is Stored in the Data Frame Variable DEG_limma_voom</a></li>
+  <li><a href="#assuming-your-data-is-stored-in-the-data-frame-variable-outrst" id="toc-assuming-your-data-is-stored-in-the-data-frame-variable-outrst" class="nav-link" data-scroll-target="#assuming-your-data-is-stored-in-the-data-frame-variable-outrst"><span class="header-section-number">9.3.4</span> Assuming Your Data is Stored in the Data Frame Variable outRst</a></li>
+  </ul></li>
+  <li><a href="#prepare-data" id="toc-prepare-data" class="nav-link" data-scroll-target="#prepare-data"><span class="header-section-number">9.4</span> prepare data</a></li>
+  <li><a href="#finding-genes-common-to-all-methods" id="toc-finding-genes-common-to-all-methods" class="nav-link" data-scroll-target="#finding-genes-common-to-all-methods"><span class="header-section-number">9.5</span> Finding Genes Common to All Methods</a></li>
+  <li><a href="#calculating-the-positive-and-negative-correlation-ratio-for-each-gene-with-all-other-genes" id="toc-calculating-the-positive-and-negative-correlation-ratio-for-each-gene-with-all-other-genes" class="nav-link" data-scroll-target="#calculating-the-positive-and-negative-correlation-ratio-for-each-gene-with-all-other-genes"><span class="header-section-number">9.6</span> Calculating the Positive and Negative Correlation Ratio for Each Gene with All Other Genes</a>
+  <ul class="collapse">
+  <li><a href="#transpropy" id="toc-transpropy" class="nav-link" data-scroll-target="#transpropy"><span class="header-section-number">9.6.1</span> TransPropy</a></li>
+  <li><a href="#deseq2" id="toc-deseq2" class="nav-link" data-scroll-target="#deseq2"><span class="header-section-number">9.6.2</span> deseq2</a></li>
+  <li><a href="#edger" id="toc-edger" class="nav-link" data-scroll-target="#edger"><span class="header-section-number">9.6.3</span> edgeR</a></li>
+  <li><a href="#limma" id="toc-limma" class="nav-link" data-scroll-target="#limma"><span class="header-section-number">9.6.4</span> limma</a></li>
+  <li><a href="#outrst" id="toc-outrst" class="nav-link" data-scroll-target="#outrst"><span class="header-section-number">9.6.5</span> outRst</a></li>
+  </ul></li>
+  <li><a href="#funkyheatmap" id="toc-funkyheatmap" class="nav-link" data-scroll-target="#funkyheatmap"><span class="header-section-number">9.7</span> funkyheatmap</a></li>
+  <li><a href="#start-drawing" id="toc-start-drawing" class="nav-link" data-scroll-target="#start-drawing"><span class="header-section-number">9.8</span> Start drawing</a>
+  <ul class="collapse">
+  <li><a href="#name-is-the-text-displayed-in-the-final-image-which-can-be-changed-freely-but-id-must-be-accurate-without-any-errors.-the-group-can-be-repeated-and-is-used-to-further-merge-id-assisting-in-the-generation-of-column_groups-in-subsequent-steps." id="toc-name-is-the-text-displayed-in-the-final-image-which-can-be-changed-freely-but-id-must-be-accurate-without-any-errors.-the-group-can-be-repeated-and-is-used-to-further-merge-id-assisting-in-the-generation-of-column_groups-in-subsequent-steps." class="nav-link" data-scroll-target="#name-is-the-text-displayed-in-the-final-image-which-can-be-changed-freely-but-id-must-be-accurate-without-any-errors.-the-group-can-be-repeated-and-is-used-to-further-merge-id-assisting-in-the-generation-of-column_groups-in-subsequent-steps."><span class="header-section-number">9.8.1</span> <strong>name</strong> is the <strong>text</strong> displayed in the final image, which can be changed freely, but <strong>~id</strong> must be accurate without any errors. The <strong>~group</strong> can be repeated and is used to further merge <strong>~id</strong>, assisting in the generation of <strong>column_groups</strong> in subsequent steps.</a></li>
+  <li><a href="#category-and-experiment-are-the-text-on-the-final-image-and-can-be-customized-freely." id="toc-category-and-experiment-are-the-text-on-the-final-image-and-can-be-customized-freely." class="nav-link" data-scroll-target="#category-and-experiment-are-the-text-on-the-final-image-and-can-be-customized-freely."><span class="header-section-number">9.8.2</span> <strong>~Category</strong> and <strong>~Experiment</strong> are the text on the final image and can be customized freely.</a></li>
+  <li><a href="#group-is-the-text-in-the-final-image-and-can-be-named-freely." id="toc-group-is-the-text-in-the-final-image-and-can-be-named-freely." class="nav-link" data-scroll-target="#group-is-the-text-in-the-final-image-and-can-be-named-freely."><span class="header-section-number">9.8.3</span> <strong>~Group</strong> is the text in the final image and can be named freely.</a></li>
+  </ul></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">9.9</span> Methods</a></li>
+  <li><a href="#result" id="toc-result" class="nav-link" data-scroll-target="#result"><span class="header-section-number">9.10</span> Result</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">9.11</span> Discussion</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/edit/main/funkyheatmap.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/blob/main/funkyheatmap.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using Funkyheatmap</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="library" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="library"><span class="header-section-number">9.1</span> library</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TransProR)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rlang)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(linkET)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(funkyheatmap)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="load-data" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="load-data"><span class="header-section-number">9.2</span> load data</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load CSV files</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>four_methods_degs_union_combined_features <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../test_TransProR/four_methods_degs_union_combined_features.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>all_degs_count_exp_gene_feature_auc_mapping_0_5_0_9 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../test_TransProR/all_degs_count_exp_gene_feature_auc_mapping_0.5_0.9.csv"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>all_degs_count_exp_gene_feature_auc_mapping_0_9 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../test_TransProR/all_degs_count_exp_gene_feature_auc_mapping_0.9.csv"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract features and genes</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>AutoFeatureSelection <span class="ot">&lt;-</span> four_methods_degs_union_combined_features<span class="sc">$</span>Feature</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>NewMACFCmain_0_5_0_9 <span class="ot">&lt;-</span> all_degs_count_exp_gene_feature_auc_mapping_0_5_0_9<span class="sc">$</span>Gene</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>NewMACFCmain_0_9 <span class="ot">&lt;-</span> all_degs_count_exp_gene_feature_auc_mapping_0_9<span class="sc">$</span>Gene</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine gene lists</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>NewMACFCmain <span class="ot">&lt;-</span> <span class="fu">c</span>(NewMACFCmain_0_5_0_9, NewMACFCmain_0_9)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Load RDS files</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>DEG_deseq2 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../test_TransProR/Select DEGs/DEG_deseq2.Rdata"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>DEG_edgeR <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../test_TransProR/Select DEGs/DEG_edgeR.Rdata"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>DEG_limma_voom <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../test_TransProR/Select DEGs/DEG_limma_voom.Rdata"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>outRst <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../test_TransProR/Select DEGs/Wilcoxon_rank_sum_testoutRst.Rdata"</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove duplicates</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>AutoFeatureSelection <span class="ot">&lt;-</span> <span class="fu">unique</span>(AutoFeatureSelection)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>NewMACFCmain <span class="ot">&lt;-</span> <span class="fu">unique</span>(NewMACFCmain)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Intersection</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>TransPropy_intersection <span class="ot">&lt;-</span> <span class="fu">intersect</span>(AutoFeatureSelection, NewMACFCmain)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(TransPropy_intersection)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Union</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>TransPropy_union_list <span class="ot">&lt;-</span> <span class="fu">union</span>(AutoFeatureSelection, NewMACFCmain)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="to-ensure-a-relatively-fair-comparison-the-number-of-features-extracted-by-the-other-four-methods-is-equal-to-the-number-of-features-in-the-transpropy_union_list." class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="to-ensure-a-relatively-fair-comparison-the-number-of-features-extracted-by-the-other-four-methods-is-equal-to-the-number-of-features-in-the-transpropy_union_list."><span class="header-section-number">9.3</span> To ensure a relatively fair comparison, the number of features extracted by the other four methods is equal to the number of features in the TransPropy_union_list.</h2>
+<section id="assuming-your-data-is-stored-in-the-data-frame-variable-deg_deseq2" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="assuming-your-data-is-stored-in-the-data-frame-variable-deg_deseq2"><span class="header-section-number">9.3.1</span> Assuming Your Data is Stored in the Data Frame Variable DEG_deseq2</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set filtering parameters</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>p_val_col <span class="ot">&lt;-</span> <span class="st">"pvalue"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>log_fc_col <span class="ot">&lt;-</span> <span class="st">"log2FoldChange"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>p_val_threshold <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">2635</span>  <span class="co"># Top N genes</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the specified columns exist in the data frame</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span>(p_val_col <span class="sc">%in%</span> <span class="fu">names</span>(DEG_deseq2))) {</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="fu">paste</span>(<span class="st">"Column"</span>, p_val_col, <span class="st">"not found in the data frame."</span>))</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span>(log_fc_col <span class="sc">%in%</span> <span class="fu">names</span>(DEG_deseq2))) {</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="fu">paste</span>(<span class="st">"Column"</span>, log_fc_col, <span class="st">"not found in the data frame."</span>))</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data: first by p-value threshold</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> DEG_deseq2 <span class="sc">%&gt;%</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!!</span><span class="fu">sym</span>(p_val_col) <span class="sc">&lt;</span> p_val_threshold)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the number of filtered genes is greater than N</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">nrow</span>(filtered_data) <span class="sc">&gt;</span> N) {</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sort by the absolute value of log2FoldChange and take the top N genes</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  deseq2_filtered_data <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(<span class="sc">!!</span><span class="fu">sym</span>(log_fc_col)))) <span class="sc">%&gt;%</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(N)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add row names as a new column "gene"</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  deseq2_filtered_data <span class="ot">&lt;-</span> deseq2_filtered_data <span class="sc">%&gt;%</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">gene =</span> <span class="fu">rownames</span>(deseq2_filtered_data))</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove row names</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames</span>(deseq2_filtered_data) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="assuming-your-data-is-stored-in-the-data-frame-variable-deg_edger" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="assuming-your-data-is-stored-in-the-data-frame-variable-deg_edger"><span class="header-section-number">9.3.2</span> Assuming Your Data is Stored in the Data Frame Variable DEG_edgeR</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set filtering parameters</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>p_val_col <span class="ot">&lt;-</span> <span class="st">"PValue"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>log_fc_col <span class="ot">&lt;-</span> <span class="st">"logFC"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>p_val_threshold <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">2635</span>  <span class="co"># Top N genes</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the specified columns exist in the data frame</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span>(p_val_col <span class="sc">%in%</span> <span class="fu">names</span>(DEG_edgeR))) {</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="fu">paste</span>(<span class="st">"Column"</span>, p_val_col, <span class="st">"not found in the data frame."</span>))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span>(log_fc_col <span class="sc">%in%</span> <span class="fu">names</span>(DEG_edgeR))) {</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="fu">paste</span>(<span class="st">"Column"</span>, log_fc_col, <span class="st">"not found in the data frame."</span>))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data: first by p-value threshold</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> DEG_edgeR <span class="sc">%&gt;%</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!!</span><span class="fu">sym</span>(p_val_col) <span class="sc">&lt;</span> p_val_threshold)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the number of filtered genes is greater than N</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">nrow</span>(filtered_data) <span class="sc">&gt;</span> N) {</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sort by the absolute value of log2FoldChange and take the top N genes</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  edgeR_filtered_data <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(<span class="sc">!!</span><span class="fu">sym</span>(log_fc_col)))) <span class="sc">%&gt;%</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(N)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add row names as a new column "gene"</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  edgeR_filtered_data <span class="ot">&lt;-</span> edgeR_filtered_data <span class="sc">%&gt;%</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">gene =</span> <span class="fu">rownames</span>(edgeR_filtered_data))</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove row names</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames</span>(edgeR_filtered_data) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="assuming-your-data-is-stored-in-the-data-frame-variable-deg_limma_voom" class="level3" data-number="9.3.3">
+<h3 data-number="9.3.3" class="anchored" data-anchor-id="assuming-your-data-is-stored-in-the-data-frame-variable-deg_limma_voom"><span class="header-section-number">9.3.3</span> Assuming Your Data is Stored in the Data Frame Variable DEG_limma_voom</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set filtering parameters</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>p_val_col <span class="ot">&lt;-</span> <span class="st">"P.Value"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>log_fc_col <span class="ot">&lt;-</span> <span class="st">"logFC"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>p_val_threshold <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">2635</span>  <span class="co"># Top N genes</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the specified columns exist in the data frame</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span>(p_val_col <span class="sc">%in%</span> <span class="fu">names</span>(DEG_limma_voom))) {</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="fu">paste</span>(<span class="st">"Column"</span>, p_val_col, <span class="st">"not found in the data frame."</span>))</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span>(log_fc_col <span class="sc">%in%</span> <span class="fu">names</span>(DEG_limma_voom))) {</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="fu">paste</span>(<span class="st">"Column"</span>, log_fc_col, <span class="st">"not found in the data frame."</span>))</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data: first by p-value threshold</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> DEG_limma_voom <span class="sc">%&gt;%</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!!</span><span class="fu">sym</span>(p_val_col) <span class="sc">&lt;</span> p_val_threshold)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the number of filtered genes is greater than N</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">nrow</span>(filtered_data) <span class="sc">&gt;</span> N) {</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sort by the absolute value of log2FoldChange and take the top N genes</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  limma_filtered_data <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(<span class="sc">!!</span><span class="fu">sym</span>(log_fc_col)))) <span class="sc">%&gt;%</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(N)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add row names as a new column "gene"</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  limma_filtered_data <span class="ot">&lt;-</span> limma_filtered_data <span class="sc">%&gt;%</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">gene =</span> <span class="fu">rownames</span>(limma_filtered_data))</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove row names</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames</span>(limma_filtered_data) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="assuming-your-data-is-stored-in-the-data-frame-variable-outrst" class="level3" data-number="9.3.4">
+<h3 data-number="9.3.4" class="anchored" data-anchor-id="assuming-your-data-is-stored-in-the-data-frame-variable-outrst"><span class="header-section-number">9.3.4</span> Assuming Your Data is Stored in the Data Frame Variable outRst</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set filtering parameters</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>p_val_col <span class="ot">&lt;-</span> <span class="st">"pValues"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>log_fc_col <span class="ot">&lt;-</span> <span class="st">"log2foldChange"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>p_val_threshold <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">2635</span>  <span class="co"># Top N genes</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the specified columns exist in the data frame</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span>(p_val_col <span class="sc">%in%</span> <span class="fu">names</span>(outRst))) {</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="fu">paste</span>(<span class="st">"Column"</span>, p_val_col, <span class="st">"not found in the data frame."</span>))</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span>(log_fc_col <span class="sc">%in%</span> <span class="fu">names</span>(outRst))) {</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="fu">paste</span>(<span class="st">"Column"</span>, log_fc_col, <span class="st">"not found in the data frame."</span>))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data: first by p-value threshold</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> outRst <span class="sc">%&gt;%</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!!</span><span class="fu">sym</span>(p_val_col) <span class="sc">&lt;</span> p_val_threshold)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the number of filtered genes is greater than N</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">nrow</span>(filtered_data) <span class="sc">&gt;</span> N) {</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sort by the absolute value of log2FoldChange and take the top N genes</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  outRst_filtered_data <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(<span class="sc">!!</span><span class="fu">sym</span>(log_fc_col)))) <span class="sc">%&gt;%</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(N)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add row names as a new column "gene" and remove row names</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  outRst_filtered_data <span class="ot">&lt;-</span> outRst_filtered_data <span class="sc">%&gt;%</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">gene =</span> <span class="fu">rownames</span>(outRst_filtered_data)) </span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove row names</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames</span>(outRst_filtered_data) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../test_TransProR/generated_data1/removebatch_SKCM_Skin_TCGA_exp_tumor.rds"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>normal <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">'../test_TransProR/generated_data1/removebatch_SKCM_Skin_Normal_TCGA_GTEX_count.rds'</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge the datasets, ensuring both have genes as row names</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>all_count_exp <span class="ot">&lt;-</span> <span class="fu">merge</span>(tumor, normal, <span class="at">by =</span> <span class="st">"row.names"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>all_count_exp <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(all_count_exp, <span class="at">var =</span> <span class="st">"Row.names"</span>)  <span class="co"># Set the row names</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># log_transform</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>all_count_exp <span class="ot">&lt;-</span> <span class="fu">log_transform</span>(all_count_exp)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># First, obtain a list of gene names from the row names of the first dataset</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>gene_names <span class="ot">&lt;-</span> deseq2_filtered_data<span class="sc">$</span>gene</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the matching rows in the second dataframe</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>deseq2 <span class="ot">&lt;-</span> all_count_exp[gene_names, ]</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>deseq2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(deseq2))</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># First, obtain a list of gene names from the row names of the first dataset</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>gene_names <span class="ot">&lt;-</span> edgeR_filtered_data<span class="sc">$</span>gene</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the matching rows in the second dataframe</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>edgeR <span class="ot">&lt;-</span> all_count_exp[gene_names, ]</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>edgeR <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(edgeR))</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co"># First, obtain a list of gene names from the row names of the first dataset</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>gene_names <span class="ot">&lt;-</span> limma_filtered_data<span class="sc">$</span>gene</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the matching rows in the second dataframe</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>limma <span class="ot">&lt;-</span> all_count_exp[gene_names, ]</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>limma <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(limma))</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co"># First, obtain a list of gene names from the row names of the first dataset</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>gene_names <span class="ot">&lt;-</span>outRst_filtered_data<span class="sc">$</span>gene</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the matching rows in the second dataframe</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>outRst <span class="ot">&lt;-</span> all_count_exp[gene_names, ]</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>outRst <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(outRst))</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>TransPropy <span class="ot">&lt;-</span> all_count_exp[TransPropy_union_list, ]</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>TransPropy <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(TransPropy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="prepare-data" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="prepare-data"><span class="header-section-number">9.4</span> prepare data</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tumor <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../test_TransProR/generated_data1/removebatch_SKCM_Skin_TCGA_exp_tumor.rds"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>normal <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">'../test_TransProR/generated_data1/removebatch_SKCM_Skin_Normal_TCGA_GTEX_count.rds'</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge the datasets, ensuring both have genes as row names</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>all_count_exp <span class="ot">&lt;-</span> <span class="fu">merge</span>(tumor, normal, <span class="at">by =</span> <span class="st">"row.names"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>all_count_exp <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(all_count_exp, <span class="at">var =</span> <span class="st">"Row.names"</span>)  <span class="co"># Set the row names</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># log_transform</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>all_count_exp <span class="ot">&lt;-</span> <span class="fu">log_transform</span>(all_count_exp)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># First, obtain a list of gene names from the row names of the first dataset</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>gene_names <span class="ot">&lt;-</span> deseq2_filtered_data<span class="sc">$</span>gene</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the matching rows in the second dataframe</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>deseq2 <span class="ot">&lt;-</span> all_count_exp[gene_names, ]</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>deseq2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(deseq2))</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># First, obtain a list of gene names from the row names of the first dataset</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>gene_names <span class="ot">&lt;-</span> edgeR_filtered_data<span class="sc">$</span>gene</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the matching rows in the second dataframe</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>edgeR <span class="ot">&lt;-</span> all_count_exp[gene_names, ]</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>edgeR <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(edgeR))</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co"># First, obtain a list of gene names from the row names of the first dataset</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>gene_names <span class="ot">&lt;-</span> limma_filtered_data<span class="sc">$</span>gene</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the matching rows in the second dataframe</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>limma <span class="ot">&lt;-</span> all_count_exp[gene_names, ]</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>limma <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(limma))</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co"># First, obtain a list of gene names from the row names of the first dataset</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>gene_names <span class="ot">&lt;-</span>outRst_filtered_data<span class="sc">$</span>gene</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the matching rows in the second dataframe</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>outRst <span class="ot">&lt;-</span> all_count_exp[gene_names, ]</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>outRst <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(outRst))</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>TransPropy <span class="ot">&lt;-</span> all_count_exp[TransPropy_union_list, ]</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>TransPropy <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(TransPropy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="finding-genes-common-to-all-methods" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="finding-genes-common-to-all-methods"><span class="header-section-number">9.5</span> Finding Genes Common to All Methods</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>deseq2list <span class="ot">&lt;-</span> <span class="fu">colnames</span>(deseq2) </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>edgeRlist <span class="ot">&lt;-</span> <span class="fu">colnames</span>(edgeR)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>limmalist <span class="ot">&lt;-</span> <span class="fu">colnames</span>(limma)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>outRstlist <span class="ot">&lt;-</span> <span class="fu">colnames</span>(outRst)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>lists <span class="ot">&lt;-</span> <span class="fu">list</span>(AutoFeatureSelection, NewMACFCmain, deseq2list, edgeRlist, limmalist, outRstlist)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>TransPro_all <span class="ot">&lt;-</span> <span class="fu">Reduce</span>(intersect, lists)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(TransPro_all)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="calculating-the-positive-and-negative-correlation-ratio-for-each-gene-with-all-other-genes" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="calculating-the-positive-and-negative-correlation-ratio-for-each-gene-with-all-other-genes"><span class="header-section-number">9.6</span> Calculating the Positive and Negative Correlation Ratio for Each Gene with All Other Genes</h2>
+<section id="transpropy" class="level3" data-number="9.6.1">
+<h3 data-number="9.6.1" class="anchored" data-anchor-id="transpropy"><span class="header-section-number">9.6.1</span> TransPropy</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>TransPropy_final_result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through each gene name</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (gene <span class="cf">in</span> TransPro_all) {</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Prepare a temporary data frame for the loop</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  correlation <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the data for the current gene</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  genedata <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(TransPropy[, gene])</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the list of genes</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  genelist <span class="ot">&lt;-</span> <span class="fu">colnames</span>(TransPropy)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># For loop to calculate correlation</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(genelist)) {</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate correlation</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    dd <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(genedata, <span class="fu">as.numeric</span>(TransPropy[, i]), <span class="at">method =</span> <span class="st">"spearman"</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fill the temporary data frame</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">1</span>] <span class="ot">&lt;-</span> gene</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">2</span>] <span class="ot">&lt;-</span> genelist[i]</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">3</span>] <span class="ot">&lt;-</span> dd<span class="sc">$</span>estimate</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">4</span>] <span class="ot">&lt;-</span> dd<span class="sc">$</span>p.value</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set column names for the temporary data frame</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(correlation) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gene1"</span>, <span class="st">"gene2"</span>, <span class="st">"cor"</span>, <span class="st">"p.value"</span>)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove NA values</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>  correlation <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(correlation)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Write to file (if needed, uncomment)</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># write.table(correlation, file = paste0("correlation_", gene, ".csv"), sep = ",", row.names = TRUE)</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate the number of correlations with an absolute value greater than the threshold</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>  TransPropycount <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">abs</span>(correlation<span class="sc">$</span>cor) <span class="sc">&gt;</span> N)</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>  TransPropycountup <span class="ot">&lt;-</span> <span class="fu">sum</span>(correlation<span class="sc">$</span>cor <span class="sc">&gt;</span> N)</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>  TransPropycountdown <span class="ot">&lt;-</span> <span class="fu">sum</span>(correlation<span class="sc">$</span>cor <span class="sc">&lt;</span> <span class="sc">-</span>N)</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Print results</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"TransPropyGene:"</span>, gene, </span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>              <span class="st">"TransPropycount:"</span>, TransPropycount, </span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>              <span class="st">"TransPropycountup:"</span>, TransPropycountup, </span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>              <span class="st">"TransPropycountdown:"</span>, TransPropycountdown))</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add results to the final result data frame</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>  TransPropy_final_result <span class="ot">&lt;-</span> <span class="fu">rbind</span>(TransPropy_final_result, <span class="fu">data.frame</span>(</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">gene =</span> gene, </span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">TransPropycount =</span> TransPropycount, </span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">TransPropycountup =</span> TransPropycountup, </span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">TransPropycountdown =</span> TransPropycountdown))</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Set column names for the final result data frame</span></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(TransPropy_final_result) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gene"</span>, <span class="st">"TransPropycount"</span>, <span class="st">"TransPropycountup"</span>, <span class="st">"TransPropycountdown"</span>)</span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="co"># View the final result</span></span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(TransPropy_final_result)</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the final result to a file</span></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a><span class="co"># write.table(TransPropy_final_result, file = "TransPropy_final_correlation_TransPropy.csv", sep = ",", row.names = FALSE)</span></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate ratios</span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>TransPropy_final_result<span class="sc">$</span>TransPropycountup_ratio <span class="ot">&lt;-</span> TransPropy_final_result<span class="sc">$</span>TransPropycountup <span class="sc">/</span> TransPropy_final_result<span class="sc">$</span>TransPropycount</span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>TransPropy_final_result<span class="sc">$</span>TransPropycountdown_ratio <span class="ot">&lt;-</span> TransPropy_final_result<span class="sc">$</span>TransPropycountdown <span class="sc">/</span> TransPropy_final_result<span class="sc">$</span>TransPropycount</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="deseq2" class="level3" data-number="9.6.2">
+<h3 data-number="9.6.2" class="anchored" data-anchor-id="deseq2"><span class="header-section-number">9.6.2</span> deseq2</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>deseq2_final_result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through each gene name</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (gene <span class="cf">in</span> TransPro_all) {</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Prepare a temporary data frame for the loop</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  correlation <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the data for the current gene</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  genedata <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(deseq2[, gene])</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the list of genes</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  genelist <span class="ot">&lt;-</span> <span class="fu">colnames</span>(deseq2)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># For loop to calculate correlation</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(genelist)) {</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate correlation</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    dd <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(genedata, <span class="fu">as.numeric</span>(deseq2[, i]), <span class="at">method =</span> <span class="st">"spearman"</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fill the temporary data frame</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">1</span>] <span class="ot">&lt;-</span> gene</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">2</span>] <span class="ot">&lt;-</span> genelist[i]</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">3</span>] <span class="ot">&lt;-</span> dd<span class="sc">$</span>estimate</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">4</span>] <span class="ot">&lt;-</span> dd<span class="sc">$</span>p.value</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set column names for the temporary data frame</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(correlation) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gene1"</span>, <span class="st">"gene2"</span>, <span class="st">"cor"</span>, <span class="st">"p.value"</span>)</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove NA values</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>  correlation <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(correlation)</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Write to file (if needed, uncomment)</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># write.table(correlation, file = paste0("correlation_", gene, ".csv"), sep = ",", row.names = TRUE)</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate the number of correlations with an absolute value greater than the threshold</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>  deseq2count <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">abs</span>(correlation<span class="sc">$</span>cor) <span class="sc">&gt;</span> N)</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>  deseq2countup <span class="ot">&lt;-</span> <span class="fu">sum</span>(correlation<span class="sc">$</span>cor <span class="sc">&gt;</span> N)</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>  deseq2countdown <span class="ot">&lt;-</span> <span class="fu">sum</span>(correlation<span class="sc">$</span>cor <span class="sc">&lt;</span> <span class="sc">-</span>N)</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Print results</span></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"deseq2Gene:"</span>, gene, </span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>              <span class="st">"deseq2count:"</span>, deseq2count, </span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>              <span class="st">"deseq2countup:"</span>, deseq2countup, </span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>              <span class="st">"deseq2countdown:"</span>, deseq2countdown))</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add results to the final result data frame</span></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>  deseq2_final_result <span class="ot">&lt;-</span> <span class="fu">rbind</span>(deseq2_final_result, <span class="fu">data.frame</span>(</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">gene =</span> gene, </span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">deseq2count =</span> deseq2count, </span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">deseq2countup =</span> deseq2countup, </span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">deseq2countdown =</span> deseq2countdown))</span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Set column names for the final result data frame</span></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(deseq2_final_result) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gene"</span>, <span class="st">"deseq2count"</span>, <span class="st">"deseq2countup"</span>, <span class="st">"deseq2countdown"</span>)</span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a><span class="co"># View the final result</span></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(deseq2_final_result)</span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the final result to a file</span></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a><span class="co"># write.table(deseq2_final_result, file = "deseq2_final_correlation_TransPropy.csv", sep = ",", row.names = FALSE)</span></span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate ratios</span></span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>deseq2_final_result<span class="sc">$</span>deseq2countup_ratio <span class="ot">&lt;-</span> deseq2_final_result<span class="sc">$</span>deseq2countup <span class="sc">/</span> deseq2_final_result<span class="sc">$</span>deseq2count</span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>deseq2_final_result<span class="sc">$</span>deseq2countdown_ratio <span class="ot">&lt;-</span> deseq2_final_result<span class="sc">$</span>deseq2countdown <span class="sc">/</span> deseq2_final_result<span class="sc">$</span>deseq2count</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="edger" class="level3" data-number="9.6.3">
+<h3 data-number="9.6.3" class="anchored" data-anchor-id="edger"><span class="header-section-number">9.6.3</span> edgeR</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>edgeR_final_result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through each gene name</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (gene <span class="cf">in</span> TransPro_all) {</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Prepare a temporary data frame for the loop</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  correlation <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the data for the current gene</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  genedata <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(edgeR[, gene])</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the list of genes</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  genelist <span class="ot">&lt;-</span> <span class="fu">colnames</span>(edgeR)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># For loop to calculate correlation</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(genelist)) {</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate correlation</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    dd <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(genedata, <span class="fu">as.numeric</span>(edgeR[, i]), <span class="at">method =</span> <span class="st">"spearman"</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fill the temporary data frame</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">1</span>] <span class="ot">&lt;-</span> gene</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">2</span>] <span class="ot">&lt;-</span> genelist[i]</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">3</span>] <span class="ot">&lt;-</span> dd<span class="sc">$</span>estimate</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">4</span>] <span class="ot">&lt;-</span> dd<span class="sc">$</span>p.value</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set column names for the temporary data frame</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(correlation) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gene1"</span>, <span class="st">"gene2"</span>, <span class="st">"cor"</span>, <span class="st">"p.value"</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove NA values</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  correlation <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(correlation)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Write to file (if needed, uncomment)</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># write.table(correlation, file = paste0("correlation_", gene, ".csv"), sep = ",", row.names = TRUE)</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate the number of correlations with an absolute value greater than the threshold</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>  edgeRcount <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">abs</span>(correlation<span class="sc">$</span>cor) <span class="sc">&gt;</span> N)</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>  edgeRcountup <span class="ot">&lt;-</span> <span class="fu">sum</span>(correlation<span class="sc">$</span>cor <span class="sc">&gt;</span> N)</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>  edgeRcountdown <span class="ot">&lt;-</span> <span class="fu">sum</span>(correlation<span class="sc">$</span>cor <span class="sc">&lt;</span> <span class="sc">-</span>N)</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Print results</span></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"edgeRGene:"</span>, gene, </span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>              <span class="st">"edgeRcount:"</span>, edgeRcount, </span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>              <span class="st">"edgeRcountup:"</span>, edgeRcountup, </span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>              <span class="st">"edgeRcountdown:"</span>, edgeRcountdown))</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add results to the final result data frame</span></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>  edgeR_final_result <span class="ot">&lt;-</span> <span class="fu">rbind</span>(edgeR_final_result, <span class="fu">data.frame</span>(</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">gene =</span> gene, </span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">edgeRcount =</span> edgeRcount, </span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">edgeRcountup =</span> edgeRcountup, </span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">edgeRcountdown =</span> edgeRcountdown))</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Set column names for the final result data frame</span></span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(edgeR_final_result) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gene"</span>, <span class="st">"edgeRcount"</span>, <span class="st">"edgeRcountup"</span>, <span class="st">"edgeRcountdown"</span>)</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="co"># View the final result</span></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(edgeR_final_result)</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the final result to a file</span></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a><span class="co"># write.table(edgeR_final_result, file = "edgeR_final_correlation.csv", sep = ",", row.names = FALSE)</span></span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate ratios</span></span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>edgeR_final_result<span class="sc">$</span>edgeRcountup_ratio <span class="ot">&lt;-</span> edgeR_final_result<span class="sc">$</span>edgeRcountup <span class="sc">/</span> edgeR_final_result<span class="sc">$</span>edgeRcount</span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>edgeR_final_result<span class="sc">$</span>edgeRcountdown_ratio <span class="ot">&lt;-</span> edgeR_final_result<span class="sc">$</span>edgeRcountdown <span class="sc">/</span> edgeR_final_result<span class="sc">$</span>edgeRcount</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="limma" class="level3" data-number="9.6.4">
+<h3 data-number="9.6.4" class="anchored" data-anchor-id="limma"><span class="header-section-number">9.6.4</span> limma</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>limma_final_result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through each gene name</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (gene <span class="cf">in</span> TransPro_all) {</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Prepare a temporary data frame for the loop</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  correlation <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the data for the current gene</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  genedata <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(limma[, gene])</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the list of genes</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  genelist <span class="ot">&lt;-</span> <span class="fu">colnames</span>(limma)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># For loop to calculate correlation</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(genelist)) {</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate correlation</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    dd <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(genedata, <span class="fu">as.numeric</span>(limma[, i]), <span class="at">method =</span> <span class="st">"spearman"</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fill the temporary data frame</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">1</span>] <span class="ot">&lt;-</span> gene</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">2</span>] <span class="ot">&lt;-</span> genelist[i]</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">3</span>] <span class="ot">&lt;-</span> dd<span class="sc">$</span>estimate</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">4</span>] <span class="ot">&lt;-</span> dd<span class="sc">$</span>p.value</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set column names for the temporary data frame</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(correlation) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gene1"</span>, <span class="st">"gene2"</span>, <span class="st">"cor"</span>, <span class="st">"p.value"</span>)</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove NA values</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>  correlation <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(correlation)</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Write to file (if needed, uncomment)</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># write.table(correlation, file = paste0("correlation_", gene, ".csv"), sep = ",", row.names = TRUE)</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate the number of correlations with an absolute value greater than the threshold</span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>  limmacount <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">abs</span>(correlation<span class="sc">$</span>cor) <span class="sc">&gt;</span> N)</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>  limmacountup <span class="ot">&lt;-</span> <span class="fu">sum</span>(correlation<span class="sc">$</span>cor <span class="sc">&gt;</span> N)</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>  limmacountdown <span class="ot">&lt;-</span> <span class="fu">sum</span>(correlation<span class="sc">$</span>cor <span class="sc">&lt;</span> <span class="sc">-</span>N)</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Print results</span></span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"limmaGene:"</span>, gene, </span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>              <span class="st">"limmacount:"</span>, limmacount, </span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>              <span class="st">"limmacountup:"</span>, limmacountup, </span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>              <span class="st">"limmacountdown:"</span>, limmacountdown))</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add results to the final result data frame</span></span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>  limma_final_result <span class="ot">&lt;-</span> <span class="fu">rbind</span>(limma_final_result, <span class="fu">data.frame</span>(</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">gene =</span> gene, </span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">limmacount =</span> limmacount, </span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">limmacountup =</span> limmacountup, </span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">limmacountdown =</span> limmacountdown))</span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Set column names for the final result data frame</span></span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(limma_final_result) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gene"</span>, <span class="st">"limmacount"</span>, <span class="st">"limmacountup"</span>, <span class="st">"limmacountdown"</span>)</span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a><span class="co"># View the final result</span></span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(limma_final_result)</span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the final result to a file</span></span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a><span class="co"># write.table(limma_final_result, file = "limma_final_correlation.csv", sep = ",", row.names = FALSE)</span></span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate ratios</span></span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>limma_final_result<span class="sc">$</span>limmacountup_ratio <span class="ot">&lt;-</span> limma_final_result<span class="sc">$</span>limmacountup <span class="sc">/</span> limma_final_result<span class="sc">$</span>limmacount</span>
+<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a>limma_final_result<span class="sc">$</span>limmacountdown_ratio <span class="ot">&lt;-</span> limma_final_result<span class="sc">$</span>limmacountdown <span class="sc">/</span> limma_final_result<span class="sc">$</span>limmacount</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="outrst" class="level3" data-number="9.6.5">
+<h3 data-number="9.6.5" class="anchored" data-anchor-id="outrst"><span class="header-section-number">9.6.5</span> outRst</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>outRst_final_result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through each gene name</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (gene <span class="cf">in</span> TransPro_all) {</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Prepare a temporary data frame for the loop</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  correlation <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the data for the current gene</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  genedata <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(outRst[, gene])</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the list of genes</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  genelist <span class="ot">&lt;-</span> <span class="fu">colnames</span>(outRst)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># For loop to calculate correlation</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(genelist)) {</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate correlation</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    dd <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(genedata, <span class="fu">as.numeric</span>(outRst[, i]), <span class="at">method =</span> <span class="st">"spearman"</span>)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fill the temporary data frame</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">1</span>] <span class="ot">&lt;-</span> gene</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">2</span>] <span class="ot">&lt;-</span> genelist[i]</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">3</span>] <span class="ot">&lt;-</span> dd<span class="sc">$</span>estimate</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    correlation[i, <span class="dv">4</span>] <span class="ot">&lt;-</span> dd<span class="sc">$</span>p.value</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set column names for the temporary data frame</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(correlation) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gene1"</span>, <span class="st">"gene2"</span>, <span class="st">"cor"</span>, <span class="st">"p.value"</span>)</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove NA values</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>  correlation <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(correlation)</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Write to file (if needed, uncomment)</span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># write.table(correlation, file = paste0("correlation_", gene, ".csv"), sep = ",", row.names = TRUE)</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate the number of correlations with an absolute value greater than the threshold</span></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>  outRstcount <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">abs</span>(correlation<span class="sc">$</span>cor) <span class="sc">&gt;</span> N)</span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>  outRstcountup <span class="ot">&lt;-</span> <span class="fu">sum</span>(correlation<span class="sc">$</span>cor <span class="sc">&gt;</span> N)</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>  outRstcountdown <span class="ot">&lt;-</span> <span class="fu">sum</span>(correlation<span class="sc">$</span>cor <span class="sc">&lt;</span> <span class="sc">-</span>N)</span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Print results</span></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"outRstGene:"</span>, gene, </span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>              <span class="st">"outRstcount:"</span>, outRstcount, </span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>              <span class="st">"outRstcountup:"</span>, outRstcountup, </span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>              <span class="st">"outRstcountdown:"</span>, outRstcountdown))</span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add results to the final result data frame</span></span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>  outRst_final_result <span class="ot">&lt;-</span> <span class="fu">rbind</span>(outRst_final_result, <span class="fu">data.frame</span>(</span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">gene =</span> gene, </span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">outRstcount =</span> outRstcount, </span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">outRstcountup =</span> outRstcountup, </span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">outRstcountdown =</span> outRstcountdown))</span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Set column names for the final result data frame</span></span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(outRst_final_result) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gene"</span>, <span class="st">"outRstcount"</span>, <span class="st">"outRstcountup"</span>, <span class="st">"outRstcountdown"</span>)</span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a><span class="co"># View the final result</span></span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(outRst_final_result)</span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the final result to a file</span></span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a><span class="co"># write.table(outRst_final_result, file = "outRst_final_correlation.csv", sep = ",", row.names = FALSE)</span></span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate ratios</span></span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>outRst_final_result<span class="sc">$</span>outRstcountup_ratio <span class="ot">&lt;-</span> outRst_final_result<span class="sc">$</span>outRstcountup <span class="sc">/</span> outRst_final_result<span class="sc">$</span>outRstcount</span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>outRst_final_result<span class="sc">$</span>outRstcountdown_ratio <span class="ot">&lt;-</span> outRst_final_result<span class="sc">$</span>outRstcountdown <span class="sc">/</span> outRst_final_result<span class="sc">$</span>outRstcount</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="funkyheatmap" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="funkyheatmap"><span class="header-section-number">9.7</span> funkyheatmap</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the average of the last two columns</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>avg_outRstcountup_ratio <span class="ot">&lt;-</span> <span class="fu">mean</span>(outRst_final_result<span class="sc">$</span>outRstcountup_ratio, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>avg_outRstcountdown_ratio <span class="ot">&lt;-</span> <span class="fu">mean</span>(outRst_final_result<span class="sc">$</span>outRstcountdown_ratio, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the averages</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Average of outRstcountup_ratio: "</span>, avg_outRstcountup_ratio))</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Average of outRstcountdown_ratio: "</span>, avg_outRstcountdown_ratio))</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the average of the last two columns</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>avg_limmacountup_ratio <span class="ot">&lt;-</span> <span class="fu">mean</span>(limma_final_result<span class="sc">$</span>limmacountup_ratio, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>avg_limmacountdown_ratio <span class="ot">&lt;-</span> <span class="fu">mean</span>(limma_final_result<span class="sc">$</span>limmacountdown_ratio, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the averages</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Average of limmacountup_ratio: "</span>, avg_limmacountup_ratio))</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Average of limmacountdown_ratio: "</span>, avg_limmacountdown_ratio))</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the average of the last two columns</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>avg_edgeRcountup_ratio <span class="ot">&lt;-</span> <span class="fu">mean</span>(edgeR_final_result<span class="sc">$</span>edgeRcountup_ratio, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>avg_edgeRcountdown_ratio <span class="ot">&lt;-</span> <span class="fu">mean</span>(edgeR_final_result<span class="sc">$</span>edgeRcountdown_ratio, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the averages</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Average of edgeRcountup_ratio: "</span>, avg_edgeRcountup_ratio))</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Average of edgeRcountdown_ratio: "</span>, avg_edgeRcountdown_ratio))</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the average of the last two columns</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>avg_deseq2countup_ratio <span class="ot">&lt;-</span> <span class="fu">mean</span>(deseq2_final_result<span class="sc">$</span>deseq2countup_ratio, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>avg_deseq2countdown_ratio <span class="ot">&lt;-</span> <span class="fu">mean</span>(deseq2_final_result<span class="sc">$</span>deseq2countdown_ratio, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the averages</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Average of deseq2countup_ratio: "</span>, avg_deseq2countup_ratio))</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Average of deseq2countdown_ratio: "</span>, avg_deseq2countdown_ratio))</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the average of the last two columns</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>avg_TransPropycountup_ratio <span class="ot">&lt;-</span> <span class="fu">mean</span>(TransPropy_final_result<span class="sc">$</span>TransPropycountup_ratio, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>avg_TransPropycountdown_ratio <span class="ot">&lt;-</span> <span class="fu">mean</span>(TransPropy_final_result<span class="sc">$</span>TransPropycountdown_ratio, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the averages</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Average of TransPropycountup_ratio: "</span>, avg_TransPropycountup_ratio))</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Average of TransPropycountdown_ratio: "</span>, avg_TransPropycountdown_ratio))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, list all your data frames</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>data_frames <span class="ot">&lt;-</span> <span class="fu">list</span>(deseq2_final_result, edgeR_final_result, limma_final_result, outRst_final_result, TransPropy_final_result)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use reduce function from purrr package to merge them by "gene" column</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>merged_df <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">reduce</span>(data_frames, <span class="cf">function</span>(x, y) <span class="fu">merge</span>(x, y, <span class="at">by =</span> <span class="st">"gene"</span>))</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Get column names</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>columns <span class="ot">&lt;-</span> <span class="fu">colnames</span>(merged_df)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the ALL row</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>all_values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2635</span>, <span class="dv">2635</span>, <span class="dv">2635</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>all_values_repeated <span class="ot">&lt;-</span> <span class="fu">rep</span>(all_values, <span class="at">length.out =</span> <span class="fu">length</span>(columns) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>all_row <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(all_values_repeated))</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(all_row) <span class="ot">&lt;-</span> columns[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>all_row <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">gene =</span> <span class="st">"ALL"</span>, all_row)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the HALF row (half of the ALL row values)</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>half_row <span class="ot">&lt;-</span> all_row</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>half_row[,<span class="sc">-</span><span class="dv">1</span>] <span class="ot">&lt;-</span> half_row[,<span class="sc">-</span><span class="dv">1</span>] <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>half_row<span class="sc">$</span>gene <span class="ot">&lt;-</span> <span class="st">"HALF"</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the QUARTER row (quarter of the ALL row values)</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>quarter_row <span class="ot">&lt;-</span> all_row</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>quarter_row[,<span class="sc">-</span><span class="dv">1</span>] <span class="ot">&lt;-</span> quarter_row[,<span class="sc">-</span><span class="dv">1</span>] <span class="sc">/</span> <span class="dv">4</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>quarter_row<span class="sc">$</span>gene <span class="ot">&lt;-</span> <span class="st">"QUARTER"</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the ZERO row (all values are 0)</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>Zero_values_repeated <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="at">length.out =</span> <span class="fu">length</span>(columns) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>Zero_row <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(Zero_values_repeated))</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Zero_row) <span class="ot">&lt;-</span> columns[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>Zero_row <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">gene =</span> <span class="st">"ZERO"</span>, Zero_row)</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the average values for each column, ignoring the first column (gene column)</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>average_values <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(merged_df[,<span class="sc">-</span><span class="dv">1</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>average_row <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="st">"AVERAGE"</span>, <span class="fu">t</span>(average_values))</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the ALL, HALF, QUARTER, ZERO, and AVERAGE rows to the data frame</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>merged_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(merged_df, all_row, half_row, quarter_row, Zero_row, average_row)</span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the merged data frame</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(merged_df)</span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the first column from "gene" to "id"</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>merged_df <span class="ot">&lt;-</span> merged_df <span class="sc">%&gt;%</span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">id =</span> gene)</span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Format values: keep integers for values &gt;= 1, and two decimal places for values &lt; 1</span></span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>format_value <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(x <span class="sc">&gt;=</span> <span class="dv">1</span>, <span class="fu">as.integer</span>(x), <span class="fu">round</span>(x, <span class="dv">2</span>))</span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the formatting function</span></span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>df_formatted <span class="ot">&lt;-</span> merged_df <span class="sc">%&gt;%</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), format_value))</span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the formatted data frame</span></span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(df_formatted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="start-drawing" class="level2" data-number="9.8">
+<h2 data-number="9.8" class="anchored" data-anchor-id="start-drawing"><span class="header-section-number">9.8</span> Start drawing</h2>
+<section id="name-is-the-text-displayed-in-the-final-image-which-can-be-changed-freely-but-id-must-be-accurate-without-any-errors.-the-group-can-be-repeated-and-is-used-to-further-merge-id-assisting-in-the-generation-of-column_groups-in-subsequent-steps." class="level3" data-number="9.8.1">
+<h3 data-number="9.8.1" class="anchored" data-anchor-id="name-is-the-text-displayed-in-the-final-image-which-can-be-changed-freely-but-id-must-be-accurate-without-any-errors.-the-group-can-be-repeated-and-is-used-to-further-merge-id-assisting-in-the-generation-of-column_groups-in-subsequent-steps."><span class="header-section-number">9.8.1</span> <strong>name</strong> is the <strong>text</strong> displayed in the final image, which can be changed freely, but <strong>~id</strong> must be accurate without any errors. The <strong>~group</strong> can be repeated and is used to further merge <strong>~id</strong>, assisting in the generation of <strong>column_groups</strong> in subsequent steps.</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>column_info <span class="ot">&lt;-</span> <span class="fu">tribble</span>( </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>id,                       <span class="sc">~</span>group,                    <span class="sc">~</span>name,                <span class="sc">~</span>geom,              <span class="sc">~</span>palette,        <span class="sc">~</span>options,             </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"id"</span>,                      <span class="st">""</span>,                        <span class="st">""</span>,                   <span class="st">"text"</span>,             <span class="cn">NA</span>,              <span class="fu">list</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="dv">8</span>),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"deseq2count"</span>,             <span class="st">"deseq2count"</span>,             <span class="st">"Count"</span>,              <span class="st">"funkyrect"</span>,        <span class="st">"palette1"</span>,      <span class="fu">list</span>(<span class="at">legend =</span> F), </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"deseq2countup"</span>,           <span class="st">"deseq2countup"</span>,           <span class="st">"CountUp"</span>,            <span class="st">"funkyrect"</span>,        <span class="st">"palette1"</span>,      <span class="fu">list</span>(<span class="at">legend =</span> F), </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"deseq2countdown"</span>,         <span class="st">"deseq2countdown"</span>,         <span class="st">"CountDown"</span>,          <span class="st">"funkyrect"</span>,        <span class="st">"palette1"</span>,      <span class="fu">list</span>(<span class="at">legend =</span> F),  </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"deseq2countup_ratio"</span>,     <span class="st">"deseq2countup_ratio"</span>,     <span class="st">"UpRatio"</span>,            <span class="st">"bar"</span>,              <span class="st">"palette1"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>, <span class="at">legend =</span> F),  </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"deseq2countup_ratio"</span>,     <span class="st">"deseq2countup_ratio"</span>,     <span class="st">"UpRatio"</span>,            <span class="st">"text"</span>,             <span class="st">"palette1"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>),  </span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"deseq2countdown_ratio"</span>,   <span class="st">"deseq2countdown_ratio"</span>,   <span class="st">"DownRatio"</span>,          <span class="st">"bar"</span>,              <span class="st">"palette1"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>, <span class="at">legend =</span> F),  </span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"deseq2countdown_ratio"</span>,   <span class="st">"deseq2countdown_ratio"</span>,   <span class="st">"DownRatio"</span>,          <span class="st">"text"</span>,             <span class="st">"palette1"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>),  </span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"edgeRcount"</span>,              <span class="st">"edgeRcount"</span>,              <span class="st">"Count"</span>,              <span class="st">"circle"</span>,           <span class="st">"palette2"</span>,      <span class="fu">list</span>(<span class="at">legend =</span> F),   </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"edgeRcountup"</span>,            <span class="st">"edgeRcountup"</span>,            <span class="st">"CountUp"</span>,            <span class="st">"circle"</span>,           <span class="st">"palette2"</span>,      <span class="fu">list</span>(<span class="at">legend =</span> F),    </span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"edgeRcountdown"</span>,          <span class="st">"edgeRcountdown"</span>,          <span class="st">"CountDown"</span>,          <span class="st">"circle"</span>,           <span class="st">"palette2"</span>,      <span class="fu">list</span>(<span class="at">legend =</span> F),    </span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"edgeRcountup_ratio"</span>,      <span class="st">"edgeRcountup_ratio"</span>,      <span class="st">"UpRatio"</span>,            <span class="st">"bar"</span>,              <span class="st">"palette2"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>, <span class="at">legend =</span> F),     </span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"edgeRcountup_ratio"</span>,      <span class="st">"edgeRcountup_ratio"</span>,      <span class="st">"UpRatio"</span>,            <span class="st">"text"</span>,             <span class="st">"palette2"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>),     </span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"edgeRcountdown_ratio"</span>,    <span class="st">"edgeRcountdown_ratio"</span>,    <span class="st">"DownRatio"</span>,          <span class="st">"bar"</span>,              <span class="st">"palette2"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>, <span class="at">legend =</span> F),     </span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"edgeRcountdown_ratio"</span>,    <span class="st">"edgeRcountdown_ratio"</span>,    <span class="st">"DownRatio"</span>,          <span class="st">"text"</span>,             <span class="st">"palette2"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>), </span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"limmacount"</span>,              <span class="st">"limmacount"</span>,              <span class="st">"Count"</span>,              <span class="st">"funkyrect"</span>,        <span class="st">"palette3"</span>,      <span class="fu">list</span>(<span class="at">legend =</span> F), </span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"limmacountup"</span>,            <span class="st">"limmacountup"</span>,            <span class="st">"CountUp"</span>,            <span class="st">"funkyrect"</span>,        <span class="st">"palette3"</span>,      <span class="fu">list</span>(<span class="at">legend =</span> F), </span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"limmacountdown"</span>,          <span class="st">"limmacountdown"</span>,          <span class="st">"CountDown"</span>,          <span class="st">"funkyrect"</span>,        <span class="st">"palette3"</span>,      <span class="fu">list</span>(<span class="at">legend =</span> F),  </span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"limmacountup_ratio"</span>,      <span class="st">"limmacountup_ratio"</span>,      <span class="st">"UpRatio"</span>,            <span class="st">"bar"</span>,              <span class="st">"palette3"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>, <span class="at">legend =</span> F),  </span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"limmacountup_ratio"</span>,      <span class="st">"limmacountup_ratio"</span>,      <span class="st">"UpRatio"</span>,            <span class="st">"text"</span>,             <span class="st">"palette3"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>),</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">"limmacountdown_ratio"</span>,    <span class="st">"limmacountdown_ratio"</span>,    <span class="st">"DownRatio"</span>,          <span class="st">"bar"</span>,              <span class="st">"palette3"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>, <span class="at">legend =</span> F),  </span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">"limmacountdown_ratio"</span>,    <span class="st">"limmacountdown_ratio"</span>,    <span class="st">"DownRatio"</span>,          <span class="st">"text"</span>,             <span class="st">"palette3"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>),</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">"outRstcount"</span>,             <span class="st">"outRstcount"</span>,             <span class="st">"Count"</span>,              <span class="st">"circle"</span>,           <span class="st">"palette4"</span>,      <span class="fu">list</span>(<span class="at">legend =</span> F),   </span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">"outRstcountup"</span>,           <span class="st">"outRstcountup"</span>,           <span class="st">"CountUp"</span>,            <span class="st">"circle"</span>,           <span class="st">"palette4"</span>,      <span class="fu">list</span>(<span class="at">legend =</span> F),</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>  <span class="st">"outRstcountdown"</span>,         <span class="st">"outRstcountdown"</span>,         <span class="st">"CountDown"</span>,          <span class="st">"circle"</span>,           <span class="st">"palette4"</span>,      <span class="fu">list</span>(<span class="at">legend =</span> F), </span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>  <span class="st">"outRstcountup_ratio"</span>,     <span class="st">"outRstcountup_ratio"</span>,     <span class="st">"UpRatio"</span>,            <span class="st">"bar"</span>,              <span class="st">"palette4"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>, <span class="at">legend =</span> F),  </span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>  <span class="st">"outRstcountup_ratio"</span>,     <span class="st">"outRstcountup_ratio"</span>,     <span class="st">"UpRatio"</span>,            <span class="st">"text"</span>,             <span class="st">"palette4"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>),  </span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>  <span class="st">"outRstcountdown_ratio"</span>,   <span class="st">"outRstcountdown_ratio"</span>,   <span class="st">"DownRatio"</span>,          <span class="st">"bar"</span>,              <span class="st">"palette4"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>, <span class="at">legend =</span> F),  </span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>  <span class="st">"outRstcountdown_ratio"</span>,   <span class="st">"outRstcountdown_ratio"</span>,   <span class="st">"DownRatio"</span>,          <span class="st">"text"</span>,             <span class="st">"palette4"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>),  </span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TransPropycount"</span>,         <span class="st">"TransPropycount"</span>,         <span class="st">"Count"</span>,              <span class="st">"funkyrect"</span>,        <span class="st">"palette5"</span>,      <span class="fu">list</span>(<span class="at">legend =</span> F),   </span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TransPropycountup"</span>,       <span class="st">"TransPropycountup"</span>,       <span class="st">"CountUp"</span>,            <span class="st">"funkyrect"</span>,        <span class="st">"palette5"</span>,      <span class="fu">list</span>(<span class="at">legend =</span> F), </span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TransPropycountdown"</span>,     <span class="st">"TransPropycountdown"</span>,     <span class="st">"CountDown"</span>,          <span class="st">"funkyrect"</span>,        <span class="st">"palette5"</span>,      <span class="fu">list</span>(<span class="at">legend =</span> F), </span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TransPropycountup_ratio"</span>, <span class="st">"TransPropycountup_ratio"</span>, <span class="st">"UpRatio"</span>,            <span class="st">"bar"</span>,              <span class="st">"palette5"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>, <span class="at">legend =</span> F),  </span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TransPropycountup_ratio"</span>, <span class="st">"TransPropycountup_ratio"</span>, <span class="st">"UpRatio"</span>,            <span class="st">"text"</span>,             <span class="st">"palette5"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>),  </span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TransPropycountdown_ratio"</span>,<span class="st">"TransPropycountdown_ratio"</span>,<span class="st">"DownRatio"</span>,        <span class="st">"bar"</span>,              <span class="st">"palette5"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>, <span class="at">legend =</span> F), </span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TransPropycountdown_ratio"</span>,<span class="st">"TransPropycountdown_ratio"</span>,<span class="st">"DownRatio"</span>,        <span class="st">"text"</span>,             <span class="st">"palette5"</span>,      <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">3</span>) </span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="category-and-experiment-are-the-text-on-the-final-image-and-can-be-customized-freely." class="level3" data-number="9.8.2">
+<h3 data-number="9.8.2" class="anchored" data-anchor-id="category-and-experiment-are-the-text-on-the-final-image-and-can-be-customized-freely."><span class="header-section-number">9.8.2</span> <strong>~Category</strong> and <strong>~Experiment</strong> are the text on the final image and can be customized freely.</h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>column_groups <span class="ot">&lt;-</span> <span class="fu">tribble</span>( </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>Experiment,            <span class="sc">~</span>Category,   <span class="sc">~</span>group,                  <span class="sc">~</span>palette,            </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"deseq2"</span>,               <span class="st">"count"</span>,     <span class="st">"deseq2count"</span>,           <span class="st">"palette1"</span>,        </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"deseq2"</span>,               <span class="st">"count"</span>,     <span class="st">"deseq2countup"</span>,         <span class="st">"palette1"</span>,        </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"deseq2"</span>,               <span class="st">"count"</span>,     <span class="st">"deseq2countdown"</span>,       <span class="st">"palette1"</span>,        </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"deseq2"</span>,               <span class="st">"ratio"</span>,     <span class="st">"deseq2countup_ratio"</span>,   <span class="st">"palette1"</span>,        </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"deseq2"</span>,               <span class="st">"ratio"</span>,     <span class="st">"deseq2countdown_ratio"</span>, <span class="st">"palette1"</span>,        </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"edgeR"</span>,                <span class="st">"count"</span>,     <span class="st">"edgeRcount"</span>,            <span class="st">"palette2"</span>,        </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"edgeR"</span>,                <span class="st">"count"</span>,     <span class="st">"edgeRcountup"</span>,          <span class="st">"palette2"</span>,          </span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"edgeR"</span>,                <span class="st">"count"</span>,     <span class="st">"edgeRcountdown"</span>,        <span class="st">"palette2"</span>,       </span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"edgeR"</span>,                <span class="st">"ratio"</span>,     <span class="st">"edgeRcountup_ratio"</span>,    <span class="st">"palette2"</span>,          </span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"edgeR"</span>,                <span class="st">"ratio"</span>,     <span class="st">"edgeRcountdown_ratio"</span>,  <span class="st">"palette2"</span>,           </span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"limma"</span>,                <span class="st">"count"</span>,     <span class="st">"limmacount"</span>,            <span class="st">"palette3"</span>,        </span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"limma"</span>,                <span class="st">"count"</span>,     <span class="st">"limmacountup"</span>,          <span class="st">"palette3"</span>,        </span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"limma"</span>,                <span class="st">"count"</span>,     <span class="st">"limmacountdown"</span>,        <span class="st">"palette3"</span>,        </span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"limma"</span>,                <span class="st">"ratio"</span>,     <span class="st">"limmacountup_ratio"</span>,    <span class="st">"palette3"</span>,        </span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"limma"</span>,                <span class="st">"ratio"</span>,     <span class="st">"limmacountdown_ratio"</span>,  <span class="st">"palette3"</span>,        </span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"outRst"</span>,               <span class="st">"count"</span>,     <span class="st">"outRstcount"</span>,           <span class="st">"palette4"</span>,       </span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"outRst"</span>,               <span class="st">"count"</span>,     <span class="st">"outRstcountup"</span>,         <span class="st">"palette4"</span>,        </span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"outRst"</span>,               <span class="st">"count"</span>,     <span class="st">"outRstcountdown"</span>,       <span class="st">"palette4"</span>,        </span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"outRst"</span>,               <span class="st">"ratio"</span>,     <span class="st">"outRstcountup_ratio"</span>,   <span class="st">"palette4"</span>,        </span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"outRst"</span>,               <span class="st">"ratio"</span>,     <span class="st">"outRstcountdown_ratio"</span>, <span class="st">"palette4"</span>,        </span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TransPropy"</span>,           <span class="st">"count"</span>,     <span class="st">"TransPropycount"</span>,       <span class="st">"palette5"</span>,        </span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TransPropy"</span>,           <span class="st">"count"</span>,     <span class="st">"TransPropycountup"</span>,     <span class="st">"palette5"</span>,       </span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TransPropy"</span>,           <span class="st">"count"</span>,     <span class="st">"TransPropycountdown"</span>,   <span class="st">"palette5"</span>,       </span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TransPropy"</span>,           <span class="st">"ratio"</span>,     <span class="st">"TransPropycountup_ratio"</span>,<span class="st">"palette5"</span>,         </span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TransPropy"</span>,           <span class="st">"ratio"</span>,     <span class="st">"TransPropycountdown_ratio"</span>,<span class="st">"palette5"</span>,        </span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>row_info <span class="ot">&lt;-</span> <span class="fu">tribble</span>( </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>group,                <span class="sc">~</span>id,             </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"A2ML1"</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"AC159540.1"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"ACAD11"</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"ADAM33"</span>,            </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"AGAP5"</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"AKAP2"</span>,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"ALOXE3"</span>,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"ALX1"</span>,              </span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"ANKRD35"</span>,</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"AOX1"</span>,</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"AP000892.6"</span>,</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"ARL17A"</span>,</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"ARPC4-TTLL3"</span>,</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"ATP5J2-PTCD1"</span>,</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"ATRIP"</span>,</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"BATF2"</span>,</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"C15orf38-AP3S2"</span>,</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"C17orf49"</span>,</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"C6orf132"</span>,</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"CBWD3"</span>,             </span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"CD79A"</span>,</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"CFD"</span>,</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"CST6"</span>,</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"CTC-231O11.1"</span>,      </span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"CTD-2231E14.8"</span>,</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"DKK1"</span>,</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"DNASE1L2"</span>,</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"DNLZ"</span>,              </span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"EIF3C"</span>,</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"FABP5P7"</span>,</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"FCGR3A"</span>,</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"FGF22"</span>,             </span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"GABRE"</span>,</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BACKGROUND"</span>,          <span class="st">"ALL"</span>,</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BACKGROUND"</span>,          <span class="st">"HALF"</span>,</span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BACKGROUND"</span>,          <span class="st">"QUARTER"</span>,</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BACKGROUND"</span>,          <span class="st">"ZERO"</span>,                        </span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DIFMethods_AVERAGE"</span>,  <span class="st">"AVERAGE"</span>      </span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="group-is-the-text-in-the-final-image-and-can-be-named-freely." class="level3" data-number="9.8.3">
+<h3 data-number="9.8.3" class="anchored" data-anchor-id="group-is-the-text-in-the-final-image-and-can-be-named-freely."><span class="header-section-number">9.8.3</span> <strong>~Group</strong> is the text in the final image and can be named freely.</h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>row_groups <span class="ot">&lt;-</span> <span class="fu">tribble</span>( </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>group,                <span class="sc">~</span>Group,             </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GENE"</span>,                <span class="st">"GENE"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BACKGROUND"</span>,          <span class="st">"BACKGROUND"</span>,              </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DIFMethods_AVERAGE"</span>,  <span class="st">"Different Methods"</span>      </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to generate color gradients</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>generate_palette <span class="ot">&lt;-</span> <span class="cf">function</span>(base_color, n) {</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(base_color, <span class="st">"white"</span>))(n)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the defined function to generate palettes</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>palettes <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">palette1 =</span> (<span class="fu">generate_palette</span>(<span class="st">"#577d78"</span>, <span class="dv">9</span>)),</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">palette2 =</span> (<span class="fu">generate_palette</span>(<span class="st">"#bd8452"</span>, <span class="dv">9</span>)),</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">palette3 =</span> (<span class="fu">generate_palette</span>(<span class="st">"#616b2e"</span>, <span class="dv">9</span>)),</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">palette4 =</span> (<span class="fu">generate_palette</span>(<span class="st">"#bd988f"</span>, <span class="dv">9</span>)),</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">palette5 =</span> (<span class="fu">generate_palette</span>(<span class="st">"#5d6c7e"</span>, <span class="dv">9</span>))</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the funky_heatmap function to generate the plot</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="fu">funky_heatmap</span>(</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df_formatted,</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">column_info =</span> column_info,</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">column_groups =</span> column_groups,</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">row_info =</span> row_info,</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">row_groups =</span> row_groups,</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">palettes =</span> palettes,</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">position_args =</span> <span class="fu">position_arguments</span>(<span class="at">col_annot_offset =</span> <span class="fl">3.2</span>)</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="methods" class="level2" data-number="9.9">
+<h2 data-number="9.9" class="anchored" data-anchor-id="methods"><span class="header-section-number">9.9</span> Methods</h2>
+<blockquote class="blockquote">
+<ul>
+<li>Extract the intersection of genes selected by each method within the five packages (totaling 33 genes).</li>
+<li>For each intersecting gene, calculate the correlation with the remaining genes, and count the total number of genes with an absolute value greater than 0.5, as well as the number of positively and negatively correlated genes.</li>
+<li>Calculate the ratio of positively and negatively correlated genes to the total number of genes with an absolute correlation value greater than 0.5 for each gene.</li>
+<li>Compute the average of all ratios to observe the sensitivity of each method to inter-feature correlations.</li>
+</ul>
+</blockquote>
+</section>
+<section id="result" class="level2" data-number="9.10">
+<h2 data-number="9.10" class="anchored" data-anchor-id="result"><span class="header-section-number">9.10</span> Result</h2>
+<p><img src="figure/funkyheatmap.png" class="img-fluid"></p>
+<div style="text-align: center;">
+<p>Fig1</p>
+</div>
+</section>
+<section id="discussion" class="level2" data-number="9.11">
+<h2 data-number="9.11" class="anchored" data-anchor-id="discussion"><span class="header-section-number">9.11</span> Discussion</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">deseq2/edgeR</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">TransPropy</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">limma/outRst</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>The statistical results indicate that the proportion of genes with a positive correlation and a correlation value greater than 0.5 is <strong>higher</strong> than the proportion of genes with a negative correlation and a correlation value less than -0.5. There is an imbalance in the number of positively and negatively correlated features.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>The statistical results indicate that the proportion of genes with a positive correlation and a correlation value greater than 0.5 is <strong>equal</strong> to the proportion of genes with a negative correlation and a correlation value less than -0.5. The number of positively and negatively correlated features is very <strong>balanced</strong> <strong>(BEST)</strong>.</p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>The statistical results indicate that the proportion of genes with a positive correlation and a correlation value greater than 0.5 is <strong>higher</strong> than the proportion of genes with a negative correlation and a correlation value less than -0.5. There is an imbalance in the number of positively and negatively correlated features.</p>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="SSSYDYSSS/TransProPyBook" data-repo-id="R_kgDOKxwgVA" data-category="General" data-category-id="DIC_kwDOKxwgVM4CbO4f" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./AutoFeatureSelection.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">AutoFeatureSelection.py</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Percentage Stacked Line Bar Chart.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Comparison of TransPropy with Other Tool Packages Using Percentage Stacked Line Bar Chart</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
