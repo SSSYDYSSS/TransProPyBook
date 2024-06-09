@@ -270,6 +270,7 @@ leaderboard.to_csv('../test_TransProPy/data/significant_correlation_Autogluon_Ti
 >- <a href="https://towardsdatascience.com/autogluon-deep-learning-automl-5cdb4e2388ec" style="color: #43799a; font-weight: bold;">Erickson, N., Mueller, J., Zhang, H., & Kamakoti, B. (2019). AutoGluon: Deep Learning AutoML. Medium.</a>
 
 
+
 ### Documentation
 
 >- <a href="https://auto.gluon.ai/0.1.0/api/autogluon.predictor.html?highlight=num_bag_folds" style="color: #43799a; font-weight: bold;">AutoGluon Predictors -- AutoGluon Documentation 0.1.0 documentation</a>

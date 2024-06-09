@@ -946,13 +946,6 @@ ANKRD35_KEGG_HALLMARKS_ALL
 
 
 
-::: {.callout-tip}
->结果描述The data in this module is shared across different chapters. Therefore, if users want to fully reproduce the results in different chapters, please note that the analysis must start from the initial chapter of the module. It is **not possible** to analyze or render chapters individually.
-:::
-
-
-
-
 ## Discussion
 
 

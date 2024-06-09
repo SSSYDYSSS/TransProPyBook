@@ -935,6 +935,7 @@ In the Ranked List, the proportion of positively correlated genes is **greater**
 
 The proportion of positive and negative genes is **balanced**, and the proportion of activated and inhibited pathways is **also moderate**. This **avoids the polarization trend** seen with other methods. Additionally, the proportions of activated and inhibited pathways are **consistent with the trend** of positive and negative correlated genes.**（Best）**
 
+
 ## limma/outRst
 
 In the Ranked List, positively correlated genes are **more abundant** than negatively correlated ones, which is consistent with the results of deseq2 and edgeR. However, GSEA analysis shows the **opposite trend**, with **fewer** activated pathways (NES > 0) than inhibited pathways (NES < 0). This phenomenon is particularly pronounced in outRst, where the proportion of negatively correlated genes is **smaller**, **yet** the number of enriched inhibited pathways is **significantly higher**. This **imbalance** in the proportion of positive and negative pathways is **contrary** to the trend observed in gene correlation.

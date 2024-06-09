@@ -933,6 +933,7 @@ funky_heatmap(
 Fig1
 </div>
 
+
 ## Discussion
 
 ::: {.panel-tabset}
