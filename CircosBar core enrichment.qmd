@@ -632,10 +632,7 @@ The proportion of positively correlated genes is greater than that of negatively
 
 ## limma/outRst
 
-In contrast to deseq2/edgeR, the proportion of positively correlated genes is less than that of negatively correlated genes (with some even having a ratio of 1), with the ratio of positive to negative gene counts approaching 0.
-
-
-
+In contrast to deseq2/edgeR, the proportion of positively correlated core genes is less than that of negatively correlated genes (with some ratios of positive to negative gene counts approaching 0).
 
 ## TransPropy
 
