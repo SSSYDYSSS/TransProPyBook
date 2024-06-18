@@ -2161,7 +2161,6 @@ ALL Percentage Stacked Line Bar
 </div>
 
 
-
 ## Discussion
 
 ::: {.panel-tabset}

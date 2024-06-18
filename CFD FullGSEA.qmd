@@ -939,5 +939,8 @@ The proportion of positive and negative genes is **balanced**, and the proportio
 ## limma/outRst
 
 In the Ranked List, positively correlated genes are **more abundant** than negatively correlated ones, which is consistent with the results of deseq2 and edgeR. However, GSEA analysis shows the **opposite trend**, with **fewer** activated pathways (NES > 0) than inhibited pathways (NES < 0). This phenomenon is particularly pronounced in outRst, where the proportion of negatively correlated genes is **smaller**, **yet** the number of enriched inhibited pathways is **significantly higher**. This **imbalance** in the proportion of positive and negative pathways is **contrary** to the trend observed in gene correlation.
+
+Further observation and analysis reveal that the pathways enriched using the limma and RST methods often exhibit very similar rankings and numbers of genes (as indicated by the segment distribution in the middle part of each diagram). This suggests that these pathways are likely the same or highly similar, possibly representing different naming conventions or sub-pathways of a certain type, rather than distinct pathways.Strictly speaking, the primary advantage of the limma and RST methods (which aim to enrich as many pathways as possible, with this advantage originally manifested in the number of inhibited pathways in this study) appears less pronounced.
+
 :::
 

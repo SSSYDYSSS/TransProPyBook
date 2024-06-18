@@ -622,8 +622,6 @@ So, under what circumstances will the ratio disparity further amplify?
 Taking the ratio of negative to positive genes greater than 0.5 as an example, both negative and positive genes have their own core enrichment and super core enrichment genes. The ratio will only further increase if the number or repetition degree of super core enrichment genes in negative genes is greater than that in positive genes. The ability to identify more super core enrichment genes or those with higher repetition frequencies (indicating greater importance) is the ideal goal of all algorithms, and this effect is consistently significant across all five algorithms.
 
 
-
-
 ## deseq2/edgeR
 
 The proportion of positively correlated genes is greater than that of negatively correlated genes (with some even having a ratio of 1), indicating a bias in the data results.

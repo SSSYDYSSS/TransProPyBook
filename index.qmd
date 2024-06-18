@@ -47,8 +47,6 @@ To learn more about TransProPy visit <https://github.com/SSSYDYSSS/TransProPy>.
 >>* [ExtractAndSaveResults.py](#extractandsaveresults.py)
 >
 
-
-
 ## *main Function
 
 ::: {.callout-tip}

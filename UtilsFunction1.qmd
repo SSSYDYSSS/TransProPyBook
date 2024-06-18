@@ -195,7 +195,6 @@ gene map feature.
 >   - gene_to_feature_mapping is a Python dictionary type. It is used to map gene names to their corresponding feature (or ranked feature) names.
 
 
-
 ### Usage
 ```python
 gene_map_feature(gene_names, ranked_features)

@@ -297,6 +297,7 @@ leaderboard.to_csv('../test_TransProPy/data/significant_correlation_Autogluon_Se
 >
 >- <a href="https://openreview.net/forum?id=OHAIVOOl7Vl" style="color: #43799a; font-weight: bold;">Shi, X., Mueller, J., Erickson, N., Li, M., & Smola, A. (2021). Multimodal AutoML on Structured Tables with Text Fields. In AutoML@ICML 2021. </a>
 
+
 ### Articles
 
 >- <a href="https://aws.amazon.com/blogs/opensource/machine-learning-with-autogluon-an-open-source-automl-library/" style="color: #43799a; font-weight: bold;">Prasanna, S. (2020, March 31). Machine learning with AutoGluon, an open source AutoML library. AWS Open Source Blog. </a>
