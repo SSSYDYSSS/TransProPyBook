@@ -610,7 +610,6 @@ CircosBar core enrichment_percentage
 
 ::: {.panel-tabset}
 
-
 ## All
 
 The imbalance in the ratio of negative and positive genes observed in all unique groups (30 groups) will be further amplified in all notunique groups (30 groups). To understand this phenomenon, we conduct the following reasoning:

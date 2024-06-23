@@ -945,6 +945,7 @@ ALOXE3_KEGG_HALLMARKS_ALL
 ## deseq2/edgeR
 In the Ranked List, the proportion of positively correlated genes is **greater** than that of negatively correlated ones. Although the proportions of positive and negative values in edgeR are roughly equal, the proportion of genes with absolute correlation values greater than 0.5 remains higher for positive values. GSEA analysis shows a similar trend, with **significantly more** activated pathways (NES > 0) than inhibited pathways (NES < 0). Pathways enriched for inhibition are **very few (or even none)**, indicating a **significant bias** in the pathway analysis results.
 
+
 ## TransPropy
 
 The proportion of positive and negative genes is **balanced**, and the proportion of activated and inhibited pathways is **also moderate**. This **avoids the polarization trend** seen with other methods. Additionally, the proportions of activated and inhibited pathways are **consistent with the trend** of positive and negative correlated genes.**（Best）**

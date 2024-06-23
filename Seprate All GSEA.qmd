@@ -1336,7 +1336,6 @@ outRst_ALOXE3_kegg
 </div>
 
 
-
 ::: {.callout-tip}
 > For **detailed information** on all pathways for each method, please refer to this section (scripts provided down to the individual gene level, such as 16.1.1.1).
 > 

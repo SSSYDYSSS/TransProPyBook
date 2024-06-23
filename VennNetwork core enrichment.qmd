@@ -1797,7 +1797,6 @@ Calculate the number of core enrichment genes in all significant pathways under 
 
 
 
-
 ## Result
 
 The characteristic genes obtained by the five methods intersect, indicating that even though the algorithms differ, they can still select a portion of the most core enrichment genes. Additionally, TransPropy, limma (linear model), and outRst each have some unique characteristic genes. These genes effectively complement the data, and as can be seen from the analysis results in the previous chapters, TransPropy's supplementary effect is more balanced. Furthermore, the unique genes of deseq2 and edgeR (negative binomial distribution model) are relatively few (or even none). The lack of more characteristic genes to balance the results might be one of the important reasons why the pathway enrichment results were overly biased (almost all activating pathways, with very few or even no inhibiting pathways) in previous analyses.

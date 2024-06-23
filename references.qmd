@@ -19,6 +19,7 @@
 :::
 
 
+
 ::: {.callout-note}
 This manual is meticulously crafted to elaborate on the principles of the referenced functions, with an emphasis on the methods and objectives users should be cognizant of when utilizing these functions. It is designed to foster a thorough understanding and facilitate the adaptation of this Python package. References to the algorithms that are employed or adapted are presented as mentioned above. 
 

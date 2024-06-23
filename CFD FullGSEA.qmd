@@ -924,7 +924,6 @@ CFD_KEGG_HALLMARKS_ALL
 
 ## Discussion
 
-
 ::: {.panel-tabset}
 
 ## deseq2/edgeR

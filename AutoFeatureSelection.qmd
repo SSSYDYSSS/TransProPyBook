@@ -2,6 +2,15 @@
 > Run the complete analysis pipeline from data loading to training and result extraction in `TransProPy.UtilsFunction3`.
 > This function streamlines the process of data handling, feature selection, and model evaluation, providing a comprehensive approach for machine learning pipelines.
 
+
+## pseudo-code
+
+<!-- Adjust the size and center the PDF -->
+<div style="text-align: center;">
+  <embed src="figure/latex.pdf" width="100%" height="700px" type="application/pdf">
+</div>
+
+
 ## Parameters {#parameters-f}
 > - <b style="color: #43799a;">data_file: str</b>:
 >   - Path to the feature data file.

@@ -974,6 +974,7 @@ Fig1
 
 The data exhibit **a bimodal distribution** with few low-correlation genes, showing a **steep increase** on both sides. However, the proportion of Positive genes remains **higher** than that of Negative genes.
 
+
 ## TransPropy
 **Consistent** with the trends observed in DESeq2, edgeR, limma, and outRst methods, the data from the TransPropy method also exhibit **a bimodal distribution** with few low-correlation genes and a **steep increase** on both sides. However, compared to these four methods, the TransPropy method shows a **more balanced proportion** of Positive and Negative genes, with the **median distribution being most symmetrically centered** around 0 **(BEST)**.
 

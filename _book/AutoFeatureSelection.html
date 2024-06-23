@@ -305,13 +305,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#parameters-f" id="toc-parameters-f" class="nav-link active" data-scroll-target="#parameters-f"><span class="header-section-number">8.1</span> Parameters</a></li>
-  <li><a href="#please-note" id="toc-please-note" class="nav-link" data-scroll-target="#please-note"><span class="header-section-number">8.2</span> Please note</a></li>
-  <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description"><span class="header-section-number">8.3</span> Description</a></li>
-  <li><a href="#usage-multithreaded-computation-showprogress-false-njobs-1" id="toc-usage-multithreaded-computation-showprogress-false-njobs-1" class="nav-link" data-scroll-target="#usage-multithreaded-computation-showprogress-false-njobs-1"><span class="header-section-number">8.4</span> Usage (Multithreaded computation: show_progress=False, n_jobs=-1)</a>
+  <li><a href="#pseudo-code" id="toc-pseudo-code" class="nav-link active" data-scroll-target="#pseudo-code"><span class="header-section-number">8.1</span> pseudo-code</a></li>
+  <li><a href="#parameters-f" id="toc-parameters-f" class="nav-link" data-scroll-target="#parameters-f"><span class="header-section-number">8.2</span> Parameters</a></li>
+  <li><a href="#please-note" id="toc-please-note" class="nav-link" data-scroll-target="#please-note"><span class="header-section-number">8.3</span> Please note</a></li>
+  <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description"><span class="header-section-number">8.4</span> Description</a></li>
+  <li><a href="#usage-multithreaded-computation-showprogress-false-njobs-1" id="toc-usage-multithreaded-computation-showprogress-false-njobs-1" class="nav-link" data-scroll-target="#usage-multithreaded-computation-showprogress-false-njobs-1"><span class="header-section-number">8.5</span> Usage (Multithreaded computation: show_progress=False, n_jobs=-1)</a>
   <ul class="collapse">
-  <li><a href="#four_methods_degs_intersection" id="toc-four_methods_degs_intersection" class="nav-link" data-scroll-target="#four_methods_degs_intersection"><span class="header-section-number">8.4.1</span> four_methods_degs_intersection</a></li>
-  <li><a href="#four_methods_degs_union" id="toc-four_methods_degs_union" class="nav-link" data-scroll-target="#four_methods_degs_union"><span class="header-section-number">8.4.2</span> four_methods_degs_union</a></li>
+  <li><a href="#four_methods_degs_intersection" id="toc-four_methods_degs_intersection" class="nav-link" data-scroll-target="#four_methods_degs_intersection"><span class="header-section-number">8.5.1</span> four_methods_degs_intersection</a></li>
+  <li><a href="#four_methods_degs_union" id="toc-four_methods_degs_union" class="nav-link" data-scroll-target="#four_methods_degs_union"><span class="header-section-number">8.5.2</span> four_methods_degs_union</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/edit/main/AutoFeatureSelection.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/blob/main/AutoFeatureSelection.qmd" class="toc-action">View source</a></p></div></div></nav>
@@ -339,8 +340,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>Run the complete analysis pipeline from data loading to training and result extraction in <code>TransProPy.UtilsFunction3</code>. This function streamlines the process of data handling, feature selection, and model evaluation, providing a comprehensive approach for machine learning pipelines.</p>
 </blockquote>
-<section id="parameters-f" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="parameters-f"><span class="header-section-number">8.1</span> Parameters</h2>
+<section id="pseudo-code" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="pseudo-code"><span class="header-section-number">8.1</span> pseudo-code</h2>
+<!-- Adjust the size and center the PDF -->
+<div style="text-align: center;">
+<p><embed src="figure/latex.pdf" width="100%" height="700px" type="application/pdf"></p>
+</div>
+</section>
+<section id="parameters-f" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="parameters-f"><span class="header-section-number">8.2</span> Parameters</h2>
 <blockquote class="blockquote">
 <ul>
 <li><b style="color: #43799a;">data_file: str</b>:
@@ -394,8 +402,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </blockquote>
 </section>
-<section id="please-note" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="please-note"><span class="header-section-number">8.2</span> Please note</h2>
+<section id="please-note" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="please-note"><span class="header-section-number">8.3</span> Please note</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -412,8 +420,8 @@ Note
 </div>
 </div>
 </section>
-<section id="description" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="description"><span class="header-section-number">8.3</span> Description</h2>
+<section id="description" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="description"><span class="header-section-number">8.4</span> Description</h2>
 <blockquote class="blockquote">
 <p>The <code>auto_feature_selection</code> function automates the entire process of feature selection, model training, and result extraction. It includes:</p>
 <ul>
@@ -440,10 +448,10 @@ Tip
 </div>
 </div>
 </section>
-<section id="usage-multithreaded-computation-showprogress-false-njobs-1" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="usage-multithreaded-computation-showprogress-false-njobs-1"><span class="header-section-number">8.4</span> Usage (Multithreaded computation: show_progress=False, n_jobs=-1)</h2>
-<section id="four_methods_degs_intersection" class="level3" data-number="8.4.1">
-<h3 data-number="8.4.1" class="anchored" data-anchor-id="four_methods_degs_intersection"><span class="header-section-number">8.4.1</span> four_methods_degs_intersection</h3>
+<section id="usage-multithreaded-computation-showprogress-false-njobs-1" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="usage-multithreaded-computation-showprogress-false-njobs-1"><span class="header-section-number">8.5</span> Usage (Multithreaded computation: show_progress=False, n_jobs=-1)</h2>
+<section id="four_methods_degs_intersection" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="four_methods_degs_intersection"><span class="header-section-number">8.5.1</span> four_methods_degs_intersection</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> TransProPy.AutoFeatureSelection <span class="im">import</span> auto_feature_selection</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>auto_feature_selection(</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    data_file<span class="op">=</span><span class="st">'../test_TransProPy/data/four_methods_degs_intersection.csv'</span>,</span>
@@ -627,8 +635,8 @@ Index(['ABCD1', 'AC125232.1', 'AC138035.2', 'AC159540.1', 'ACAD11', 'ACOT7',
 
 [184 rows x 2 columns]</code></pre>
 </section>
-<section id="four_methods_degs_union" class="level3" data-number="8.4.2">
-<h3 data-number="8.4.2" class="anchored" data-anchor-id="four_methods_degs_union"><span class="header-section-number">8.4.2</span> four_methods_degs_union</h3>
+<section id="four_methods_degs_union" class="level3" data-number="8.5.2">
+<h3 data-number="8.5.2" class="anchored" data-anchor-id="four_methods_degs_union"><span class="header-section-number">8.5.2</span> four_methods_degs_union</h3>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> TransProPy.AutoFeatureSelection <span class="im">import</span> auto_feature_selection</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>auto_feature_selection(</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    data_file<span class="op">=</span><span class="st">'../test_TransProPy/data/four_methods_degs_union.csv'</span>,</span>

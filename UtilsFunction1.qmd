@@ -170,6 +170,7 @@ Extract gene_names data.
 >   - <b style="color: #54467d;">Please note</b>: Preprocess the input data in advance to remove samples that contain too many missing values or zeros. 
 >   - The input data matrix should have genes as rows and samples as columns.
 
+
 ### Return
 
 >- <b style="color: #43799a;">gene_names</b>: list
