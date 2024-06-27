@@ -560,25 +560,6 @@ print(p3)
 ```
 
 
-## Combine plots (count)
-```r
-# Combine plots
-p_combine <- ggdraw(p21) + 
-  draw_plot(p1, x = 0.15, y = 0.15, width = 0.7, height = 0.7) +
-  draw_plot(p3, x = -0.125, y = -0.125, width = 1.25, height = 1.25)
-
-# Display the combined plot
-print(p_combine)
-```
-
-![](figure/CircosBar core enrichment/CircosBar core enrichment_count.png)
-
-<div style="text-align: center;">
-CircosBar core enrichment_count
-</div>
-
-
-
 ## Combine plots (percentage)
 ```r
 # Combine plots

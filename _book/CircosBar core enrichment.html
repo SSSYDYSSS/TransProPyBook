@@ -310,10 +310,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#first-image" id="toc-first-image" class="nav-link" data-scroll-target="#first-image"><span class="header-section-number">18.3</span> first image</a></li>
   <li><a href="#second-image" id="toc-second-image" class="nav-link" data-scroll-target="#second-image"><span class="header-section-number">18.4</span> second image</a></li>
   <li><a href="#third-image" id="toc-third-image" class="nav-link" data-scroll-target="#third-image"><span class="header-section-number">18.5</span> third image</a></li>
-  <li><a href="#combine-plots-count" id="toc-combine-plots-count" class="nav-link" data-scroll-target="#combine-plots-count"><span class="header-section-number">18.6</span> Combine plots (count)</a></li>
-  <li><a href="#combine-plots-percentage" id="toc-combine-plots-percentage" class="nav-link" data-scroll-target="#combine-plots-percentage"><span class="header-section-number">18.7</span> Combine plots (percentage)</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">18.8</span> Methods</a></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">18.9</span> Discussion</a></li>
+  <li><a href="#combine-plots-percentage" id="toc-combine-plots-percentage" class="nav-link" data-scroll-target="#combine-plots-percentage"><span class="header-section-number">18.6</span> Combine plots (percentage)</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">18.7</span> Methods</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">18.8</span> Discussion</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/edit/main/CircosBar core enrichment.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/SSSYDYSSS/TransProPyBook/blob/main/CircosBar core enrichment.qmd" class="toc-action">View source</a></p></div></div></nav>
     </div>
@@ -860,8 +859,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the plot</span></span>
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="combine-plots-count" class="level2" data-number="18.6">
-<h2 data-number="18.6" class="anchored" data-anchor-id="combine-plots-count"><span class="header-section-number">18.6</span> Combine plots (count)</h2>
+<section id="combine-plots-percentage" class="level2" data-number="18.6">
+<h2 data-number="18.6" class="anchored" data-anchor-id="combine-plots-percentage"><span class="header-section-number">18.6</span> Combine plots (percentage)</h2>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine plots</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>p_combine <span class="ot">&lt;-</span> <span class="fu">ggdraw</span>(p21) <span class="sc">+</span> </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">draw_plot</span>(p1, <span class="at">x =</span> <span class="fl">0.15</span>, <span class="at">y =</span> <span class="fl">0.15</span>, <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">height =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
@@ -869,27 +868,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the combined plot</span></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p_combine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="figure/CircosBar core enrichment/CircosBar core enrichment_count.png" class="img-fluid"></p>
-<div style="text-align: center;">
-<p>CircosBar core enrichment_count</p>
-</div>
-</section>
-<section id="combine-plots-percentage" class="level2" data-number="18.7">
-<h2 data-number="18.7" class="anchored" data-anchor-id="combine-plots-percentage"><span class="header-section-number">18.7</span> Combine plots (percentage)</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine plots</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>p_combine <span class="ot">&lt;-</span> <span class="fu">ggdraw</span>(p21) <span class="sc">+</span> </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">draw_plot</span>(p1, <span class="at">x =</span> <span class="fl">0.15</span>, <span class="at">y =</span> <span class="fl">0.15</span>, <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">height =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">draw_plot</span>(p3, <span class="at">x =</span> <span class="sc">-</span><span class="fl">0.125</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">0.125</span>, <span class="at">width =</span> <span class="fl">1.25</span>, <span class="at">height =</span> <span class="fl">1.25</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the combined plot</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p_combine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="figure/CircosBar core enrichment/CircosBar core enrichment_percentage.png" class="img-fluid"></p>
 <div style="text-align: center;">
 <p>CircosBar core enrichment_percentage</p>
 </div>
 </section>
-<section id="methods" class="level2" data-number="18.8">
-<h2 data-number="18.8" class="anchored" data-anchor-id="methods"><span class="header-section-number">18.8</span> Methods</h2>
+<section id="methods" class="level2" data-number="18.7">
+<h2 data-number="18.7" class="anchored" data-anchor-id="methods"><span class="header-section-number">18.7</span> Methods</h2>
 <blockquote class="blockquote">
 <ul>
 <li>Finding the top three genes with the highest countdown: CFD, ANKRD35, ALOXE3</li>
@@ -897,8 +882,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </blockquote>
 </section>
-<section id="discussion" class="level2" data-number="18.9">
-<h2 data-number="18.9" class="anchored" data-anchor-id="discussion"><span class="header-section-number">18.9</span> Discussion</h2>
+<section id="discussion" class="level2" data-number="18.8">
+<h2 data-number="18.8" class="anchored" data-anchor-id="discussion"><span class="header-section-number">18.8</span> Discussion</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">All</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">deseq2/edgeR</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">limma/outRst</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">TransPropy</a></li></ul>
 <div class="tab-content">
