@@ -14,6 +14,8 @@ library(tidyr)
 library(tibble)
 library(ggplot2)
 library(ggridges)
+library(reshape2)
+library(gridExtra)
 ```
 
 ## Finding the top three genes with the highest countdown: CFD, ANKRD35, ALOXE3
@@ -45,6 +47,356 @@ top_N1_rows <- head(sorted_df, N1)
 print(top_N1_rows)
 
 ```
+
+## Bubble chart + stacked chart + bar chart + nested bar chart
+```r
+test_formatted33 <- df_formatted[1:33 ,c("id","deseq2countdown","edgeRcountdown", "limmacountdown","outRstcountdown","TransPropycountdown")]
+N1 <- 33  # Replace with your desired value
+# Calculate the difference and add it as a new column
+test_formatted33$Difference <- apply(test_formatted33[, -1], 1, function(row) row[length(row)] - max(row[1:(length(row)-1)]))
+# Sort the data frame by the Difference column in descending order
+sorted_df <- test_formatted33[order(-test_formatted33$Difference), ]
+# Select the top N rows
+top_N1_rows <- head(sorted_df, N1)
+# Display the result
+print(top_N1_rows)
+top_N1_rows1 <- t(top_N1_rows[,c("id","deseq2countdown","edgeRcountdown","TransPropycountdown", "limmacountdown","outRstcountdown")])
+colnames(top_N1_rows1) <- top_N1_rows1["id",]
+top_N1_rows1 <- as.data.frame(top_N1_rows1[-1,])
+top_N1_rows1$methods <- rownames(top_N1_rows1)
+# rearrange
+top_N1_rows1 <- top_N1_rows1[, c(ncol(top_N1_rows1), 1:(ncol(top_N1_rows1)-1))]
+print(top_N1_rows1)
+```
+
+```r
+Convert data to long format
+data_melt <- melt(top_N1_rows1, id.vars = "methods")
+data_melt$value <- as.numeric(data_melt$value)
+
+data_melt$methods <- factor(data_melt$methods, levels = unique(data_melt$methods))
+
+
+levels(data_melt$methods)
+##count
+p1 <- ggplot(data_melt, aes( x = variable,y=value,fill = methods,
+                stratum = methods, alluvium = methods))+
+  geom_stratum(width = 0.5, color='white')+
+  geom_alluvium(alpha = 0.5,
+                width = 0.5,
+                curve_type = "linear")+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.grid = element_blank())+
+  scale_fill_manual(values = c("#3273c1","#2b8f9a","#6e4ab4",
+                               "#48884d","#a8a74e"))+
+  #scale_y_continuous(expand = c(0,0),name="",
+                     #label=c("0%","25%","50%","75%","100%"))+
+  scale_x_discrete(expand = c(0,0),name="")+
+  theme(panel.background = element_blank(),
+        panel.grid = element_blank(),
+        axis.line = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text = element_text(color="black",size=10),
+        axis.ticks.length.x = unit(0.1,"cm"),
+        plot.margin = margin(10, 10, 10, 10)
+  )
+
+p1
+```
+
+![](figure/down stacked chart.png)
+
+<div style="text-align: center;">
+down stacked chart
+</div>
+
+
+```r
+##percentage
+# Calculate the total value for each variable
+total_values <- data_melt %>%
+  group_by(variable) %>%
+  summarize(total = sum(value))
+
+# Merge data frames to calculate percentages
+data_melt <- data_melt %>%
+  left_join(total_values, by = "variable") %>%
+  mutate(percentage = (value / total) * 100)
+
+ggplot(data_melt, aes(x = variable, y = percentage, fill = methods, stratum = methods, alluvium = methods)) +
+  geom_stratum(width = 0.5, color = "white") +
+  geom_alluvium(alpha = 0.5, width = 0.5, curve_type = "linear") +
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.grid = element_blank())+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.grid = element_blank())+
+  scale_fill_manual(values = c("#3273c1","#2b8f9a","#6e4ab4",
+                               "#48884d","#a8a74e"))+
+  #scale_y_continuous(expand = c(0,0),name="",
+  #label=c("0%","25%","50%","75%","100%"))+
+  scale_x_discrete(expand = c(0,0),name="")+
+  theme(panel.background = element_blank(),
+        panel.grid = element_blank(),
+        axis.line = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text = element_text(color="black",size=10),
+        axis.ticks.length.x = unit(0.1,"cm"),
+        plot.margin = margin(10, 10, 10, 10)
+  )
+
+```
+
+```r
+p2 <- ggplot(data_melt, aes(x = variable, y = methods, size = value, color = methods)) +
+  geom_point(alpha = 0.7) +
+  scale_size_continuous(range = c(1, 10)) +
+  theme_minimal() +
+  theme(
+    panel.grid = element_blank(),
+    legend.position = "none",
+    axis.line = element_line(color = "black"),
+    axis.ticks = element_line(color = "black")
+  ) +
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.grid = element_blank())+
+  scale_color_manual(values = c("#3273c1","#2b8f9a","#6e4ab4",
+                               "#48884d","#a8a74e"))+
+  #scale_y_continuous(expand = c(0,0),name="",
+  #label=c("0%","25%","50%","75%","100%"))+
+  #scale_x_discrete(expand = c(0,0),name="")+
+  theme(panel.background = element_blank(),
+        panel.grid = element_blank(),
+        axis.line = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text = element_text(color="black",size=10),
+        axis.ticks.length.x = unit(0.1,"cm"),
+        plot.margin = margin(10, 10, 10, 10)
+  )
+
+  #labs(x = "Time", y = "Cell Type", size = "Proportion (%)", color = "Cell Type")
+
+p2
+
+```
+
+![](figure/bubble1-01.png)
+
+<div style="text-align: center;">
+bubble
+</div>
+
+
+```r
+# bar chart
+data_sums <- aggregate(value ~ methods, data = data_melt, sum)
+data_sums$methods <- factor(data_sums$methods, levels = unique(data_sums$methods))
+levels(data_sums$methods)
+
+p3 <- ggplot(data_sums, aes(x = methods, y = value, fill = methods)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  theme_minimal() +
+  theme(
+    panel.grid = element_blank(),
+    legend.position = "none",
+    axis.line = element_line(color = "black"),
+    axis.ticks = element_line(color = "black")
+  ) +
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.grid = element_blank())+
+  scale_fill_manual(values = c("#3273c1","#2b8f9a","#6e4ab4",
+                                "#48884d","#a8a74e"))+
+  #scale_y_continuous(expand = c(0,0),name="",
+  #label=c("0%","25%","50%","75%","100%"))+
+  scale_x_discrete(expand = c(0,0),name="")+
+  theme(panel.background = element_blank(),
+        panel.grid = element_blank(),
+        axis.line = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text = element_text(color="black",size=10),
+        axis.ticks.length.x = unit(0.1,"cm"),
+        plot.margin = margin(10, 10, 10, 10)
+  )
+  #labs(y = "Proportion (%)", fill = "Cell Type", x = "Cell Type")
+
+p3
+```
+
+
+![](figure/bar1.png)
+
+<div style="text-align: center;">
+bar
+</div>
+
+
+```r
+library(tidyverse)
+library(ggtext)
+library(ggrepel)
+library(patchwork)
+library(systemfonts)
+library(dplyr)
+
+# Retain only the TransPropy and Difference columns along with the id column
+selected_columns <- sorted_df[, c("TransPropycountdown", "Difference")]
+
+# Get the maximum value and its corresponding column position from the first four columns of TransPropy for each row
+max_values <- apply(sorted_df[, 2:5], 1, max)  # Assuming the first four columns are columns 2 to 5
+max_index <- apply(sorted_df[, 2:5], 1, which.max)
+
+# Create a new dataframe that retains the maximum value among the first four columns, setting other values to 0
+new_data <- sorted_df[, 2:5]
+for(i in 1:nrow(new_data)) {
+  new_data[i, ] <- ifelse(1:4 == max_index[i], new_data[i, ], 0)
+}
+
+# Add the id, TransPropy, and Difference columns back to the new dataframe
+new_data <- cbind(sorted_df[, "id"], new_data, selected_columns)
+
+# Display the result
+print(new_data)
+
+# Rename the first column of the new dataframe to id
+colnames(new_data)[1] <- "id"
+
+new_data$id <- factor(new_data$id, levels = unique(new_data$id))
+new_data$color1 <- "TransProPy"  # Add a pseudo-variable
+new_data %>% 
+  ggplot(aes(id, TransPropycountdown)) +
+  geom_col(aes(fill = "TransProPy"), width = .85) +
+  scale_fill_manual(values = c("TransProPy" = "#6d4cb1"), name = "Legend Title") +
+  labs(y = "TransPropycountdown", x = "ID") +
+  theme_minimal() +  # Use a simple theme
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.grid = element_blank())
+
+# Create the color2 column
+new_data <- new_data %>% 
+  mutate(color2 = case_when(
+    deseq2countdown != 0 ~ "#3773bd",
+    edgeRcountdown != 0 ~ "#358e99",
+    limmacountdown != 0 ~ "#4b8954",
+    outRstcountdown != 0 ~ "#a8a75a",
+    TRUE ~ NA_character_
+  ))
+
+# Create the fourmethods column with non-zero elements from the four columns
+new_data <- new_data %>%
+  mutate(fourmethods = case_when(
+    deseq2countdown != 0 ~ deseq2countdown,
+    edgeRcountdown != 0 ~ edgeRcountdown,
+    limmacountdown != 0 ~ limmacountdown,
+    outRstcountdown != 0 ~ outRstcountdown,
+    TRUE ~ NA_real_
+  ))
+
+# Base bar plot
+base_plot <- new_data %>% 
+  ggplot(aes(id, TransPropycountdown)) +
+  geom_col(fill = "#6d4cb1", width = .85, alpha = 1) +  # Use fixed color, not mapped with aes
+  labs(y = "TransPropycountdown", x = "ID") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.grid = element_blank())
+
+# Overlay bar plot with text labels
+overlay_plot <- base_plot +
+  geom_col(
+    data = new_data %>% filter(!is.na(fourmethods)),
+    aes(x = id, y = fourmethods, fill = color2), 
+    width = .4, alpha = 0.9
+  ) +
+  scale_fill_identity(name = "Method", guide = "legend", labels = c("edgeR", "limma", "outRst")) +
+  guides(fill = guide_legend(title = "Method")) +
+  
+  # Add text labels to the base bar plot
+  geom_text(
+    data = new_data,
+    aes(x = id, y = TransPropycountdown, label = TransPropycountdown),
+    size = 4.3, nudge_y = 12, vjust = 0, color = "#6d4cb1", fontface = "bold"
+  ) +
+  
+  # Add text labels to the overlay bar plot
+  geom_text(
+    data = new_data %>% filter(!is.na(fourmethods)),
+    aes(x = id, y = fourmethods, label = fourmethods, color = color2),
+    size = 4.3, nudge_y = 12, vjust = 0, fontface = "bold"
+  ) +
+  scale_color_identity()
+
+# Display the overlay plot
+print(overlay_plot)
+
+```
+
+![](figure/overlay_plot1.png)
+
+<div style="text-align: center;">
+overlay_plot1
+</div>
+
+
+```r
+# Prepare data, sort by positive then negative differences
+new_data1 <- new_data %>%
+  mutate(group = ifelse(Difference >= 0, "Positive", "Negative")) %>%
+  arrange(desc(Difference)) %>%
+  mutate(id = factor(id, levels = id))
+
+# Plot line graph
+difference_line <- new_data1 %>%
+  ggplot(aes(x = id, y = Difference, group = 1)) +
+  geom_line(aes(color = group), linewidth = 1) +
+  geom_point(size = 4, aes(color = group), show.legend = FALSE) +
+  theme_bw(base_size = 20) +
+  theme(panel.grid = element_blank(),
+        axis.text.x = element_text(angle = 60, size = 15, hjust = 1, vjust = 1)) +
+  scale_color_manual(values = c("Positive" = "#6c4dac", "Negative" = "#beb8d7"))
+
+# Display line graph
+print(difference_line)
+```
+
+![](figure/difference_line.png)
+
+<div style="text-align: center;">
+difference_line
+</div>
+
+
+```r
+# Prepare data, sort by positive then negative differences
+new_data1 <- new_data %>%
+  mutate(group = ifelse(Difference >= 0, "Positive", "Negative")) %>%
+  arrange(desc(Difference)) %>%
+  mutate(id = factor(id, levels = id))
+
+# Plot bar graph
+difference_bar <- new_data1 %>%
+  ggplot(aes(x = id, y = Difference, fill = group)) +
+  geom_col() +
+  scale_fill_manual(values = c("Positive" = "#6c4dac", "Negative" = "#beb8d7"), name = "Difference Type") +
+  theme_bw(base_size = 20) +
+  theme(panel.grid = element_blank(),
+        axis.text.x = element_text(angle = 60, size = 15, hjust = 1, vjust = 1)) +
+  labs(y = "Difference", x = "ID")
+
+# Display bar graph
+print(difference_bar)
+```
+
+![](figure/difference_bar.png)
+
+<div style="text-align: center;">
+difference_bar
+</div>
+
+
 
 ## CFD
 ### TRANSPROPY
@@ -835,7 +1187,7 @@ ggplot(combined_CFD, aes(x = cor, y = methods, fill = cor_type)) +
 ![](figure/Ridge Plot for Positive and Negative Correlations of CFD Gene.png)
 
 <div style="text-align: center;">
-Fig1
+Ridge Plot for Positive and Negative Correlations of CFD Gene
 </div>
 
 
@@ -894,7 +1246,7 @@ ggplot(combined_ANKRD35, aes(x = cor, y = methods, fill = cor_type)) +
 ![](figure/Ridge Plot for Positive and Negative Correlations of ANKRD35 Gene.png)
 
 <div style="text-align: center;">
-Fig1
+Ridge Plot for Positive and Negative Correlations of ANKRD35 Gene
 </div>
 
 
@@ -953,7 +1305,7 @@ ggplot(combined_ALOXE3, aes(x = cor, y = methods, fill = cor_type)) +
 ![](figure/Ridge Plot for Positive and Negative Correlations of ALOXE3 Gene.png)
 
 <div style="text-align: center;">
-Fig1
+Ridge Plot for Positive and Negative Correlations of ALOXE3 Gene
 </div>
 
 
