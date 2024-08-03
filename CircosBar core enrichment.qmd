@@ -316,6 +316,10 @@ barcircosdata = tribble(
 ```r
 barcircosdata$Kind5 <-1
 
+# Create a factor for Gene in the order of its appearance
+barcircosdata$Gene <- factor(barcircosdata$Gene, levels = unique(barcircosdata$Gene))
+
+
 test_df2 <- barcircosdata %>%
   dplyr::mutate(Pathway = str_c(Gene, Pathway, sep = "_")) %>%
   dplyr::mutate(Methods = str_c(Pathway, Methods, sep = "_")) %>%
@@ -522,13 +526,14 @@ print(p21)
 ## third image
 ```r
 # Create df111 data frame
+methods <- rep(c("deseq2", "edgeR", "TransPropy", "limma", "outRst"), times = 6)
+# Create df111 data frame
 df111 <- data.frame(
-  methods = rep(c("TransPropy", "deseq2", "edgeR", "limma", "outRst"), times = 6),
+  methods = methods,
   ID = 1:length(methods),
   segment = rep(c(rep("hallmarks", times = 5), rep("kegg", times = 5)), times = 3),
   segmentcolors = rep(c("#f5b201", "#f5b201", "#3c7a38", "#f57918", "#f57918"), times = 6)
 )
-
 # Add start and end columns to indicate the start and end of each bar
 df111$start <- (df111$ID - 1) * 1
 df111$end <- df111$ID * 1
@@ -576,6 +581,394 @@ print(p_combine)
 <div style="text-align: center;">
 CircosBar core enrichment_percentage
 </div>
+
+
+
+
+## Combine plots (percentage)
+```r
+barcircosdata = tribble(
+  ~Gene,    ~Pathway,   ~Methods, ~type, ~Pos_Neg, ~count,
+  
+  "CFD",  "hallmarks","deseq2", "unique","positive",61,
+  "CFD",  "hallmarks","deseq2", "unique","negative",21,
+  "CFD",  "hallmarks","deseq2", "notunique","positive",79,
+  "CFD",  "hallmarks","deseq2", "notunique","negative",21,
+  "CFD",  "hallmarks","edgeR","unique","positive",43,
+  "CFD",  "hallmarks","edgeR","unique","negative",21,
+  "CFD",  "hallmarks","edgeR","notunique","positive",52,
+  "CFD",  "hallmarks","edgeR","notunique","negative",21,
+  "CFD",  "hallmarks","TransPropy","unique", "positive",45,
+  "CFD",  "hallmarks","TransPropy","unique", "negative",74,
+  "CFD",  "hallmarks","TransPropy","notunique","positive",48,
+  "CFD",  "hallmarks","TransPropy","notunique","negative",102,
+  "CFD",  "hallmarks","limma","unique","positive",84,
+  "CFD",  "hallmarks","limma","unique","negative",143,
+  "CFD",  "hallmarks","limma","notunique","positive",93,
+  "CFD",  "hallmarks","limma","notunique","negative",213,
+  "CFD",  "hallmarks","outRst","unique","positive",37,
+  "CFD",  "hallmarks","outRst","unique","negative",97,
+  "CFD",  "hallmarks","outRst","notunique","positive",38,
+  "CFD",  "hallmarks","outRst","notunique","negative",150,
+  
+  
+  "CFD",  "kegg","deseq2", "unique","positive",38,
+  "CFD",  "kegg","deseq2", "unique","negative",0,
+  "CFD",  "kegg","deseq2", "notunique","positive",83,
+  "CFD",  "kegg","deseq2", "notunique","negative",0,
+  "CFD",  "kegg","edgeR","unique","positive",28,
+  "CFD",  "kegg","edgeR","unique","negative",0,
+  "CFD",  "kegg","edgeR","notunique","positive",53,
+  "CFD",  "kegg","edgeR","notunique","negative",0,
+  "CFD",  "kegg","TransPropy","unique", "positive",51,
+  "CFD",  "kegg","TransPropy","unique", "negative",23,
+  "CFD",  "kegg","TransPropy","notunique","positive",94,
+  "CFD",  "kegg","TransPropy","notunique","negative",23,
+  "CFD",  "kegg","limma","unique","positive",31,
+  "CFD",  "kegg","limma","unique","negative",77,
+  "CFD",  "kegg","limma","notunique","positive",41,
+  "CFD",  "kegg","limma","notunique","negative",152,
+  "CFD",  "kegg","outRst","unique","positive",24,
+  "CFD",  "kegg","outRst","unique","negative",81,
+  "CFD",  "kegg","outRst","notunique","positive",31,
+  "CFD",  "kegg","outRst","notunique","negative",179,
+  
+  
+  
+  
+  "ANKRD35",  "hallmarks","deseq2", "unique","positive",62,
+  "ANKRD35",  "hallmarks","deseq2", "unique","negative",21,
+  "ANKRD35",  "hallmarks","deseq2", "notunique","positive",84,
+  "ANKRD35",  "hallmarks","deseq2", "notunique","negative",21,
+  "ANKRD35",  "hallmarks","edgeR","unique","positive",43,
+  "ANKRD35",  "hallmarks","edgeR","unique","negative",21,
+  "ANKRD35",  "hallmarks","edgeR","notunique","positive",52,
+  "ANKRD35",  "hallmarks","edgeR","notunique","negative",21,
+  "ANKRD35",  "hallmarks","TransPropy","unique", "positive",59,
+  "ANKRD35",  "hallmarks","TransPropy","unique", "negative",87,
+  "ANKRD35",  "hallmarks","TransPropy","notunique","positive",67,
+  "ANKRD35",  "hallmarks","TransPropy","notunique","negative",119,
+  "ANKRD35",  "hallmarks","limma","unique","positive",108,
+  "ANKRD35",  "hallmarks","limma","unique","negative",153,
+  "ANKRD35",  "hallmarks","limma","notunique","positive",135,
+  "ANKRD35",  "hallmarks","limma","notunique","negative",231,
+  "ANKRD35",  "hallmarks","outRst","unique","positive",56,
+  "ANKRD35",  "hallmarks","outRst","unique","negative",101,
+  "ANKRD35",  "hallmarks","outRst","notunique","positive",71,
+  "ANKRD35",  "hallmarks","outRst","notunique","negative",160,
+  
+  
+  
+  "ANKRD35",  "kegg","deseq2", "unique","positive",42,
+  "ANKRD35",  "kegg","deseq2", "unique","negative",14,
+  "ANKRD35",  "kegg","deseq2", "notunique","positive",91,
+  "ANKRD35",  "kegg","deseq2", "notunique","negative",14,
+  "ANKRD35",  "kegg","edgeR","unique","positive",29,
+  "ANKRD35",  "kegg","edgeR","unique","negative",0,
+  "ANKRD35",  "kegg","edgeR","notunique","positive",72,
+  "ANKRD35",  "kegg","edgeR","notunique","negative",0,
+  "ANKRD35",  "kegg","TransPropy","unique", "positive",53,
+  "ANKRD35",  "kegg","TransPropy","unique", "negative",42,
+  "ANKRD35",  "kegg","TransPropy","notunique","positive",97,
+  "ANKRD35",  "kegg","TransPropy","notunique","negative",63,
+  "ANKRD35",  "kegg","limma","unique","positive",40,
+  "ANKRD35",  "kegg","limma","unique","negative",105,
+  "ANKRD35",  "kegg","limma","notunique","positive",74,
+  "ANKRD35",  "kegg","limma","notunique","negative",246,
+  "ANKRD35",  "kegg","outRst","unique","positive",22,
+  "ANKRD35",  "kegg","outRst","unique","negative",81,
+  "ANKRD35",  "kegg","outRst","notunique","positive",27,
+  "ANKRD35",  "kegg","outRst","notunique","negative",192,
+  
+  
+  
+  
+  "ALOXE3",  "hallmarks","deseq2", "unique","positive",65,
+  "ALOXE3",  "hallmarks","deseq2", "unique","negative",21,
+  "ALOXE3",  "hallmarks","deseq2", "notunique","positive",87,
+  "ALOXE3",  "hallmarks","deseq2", "notunique","negative",21,
+  "ALOXE3",  "hallmarks","edgeR","unique","positive",41,
+  "ALOXE3",  "hallmarks","edgeR","unique","negative",0,
+  "ALOXE3",  "hallmarks","edgeR","notunique","positive",49,
+  "ALOXE3",  "hallmarks","edgeR","notunique","negative",0,
+  "ALOXE3",  "hallmarks","TransPropy","unique", "positive",71,
+  "ALOXE3",  "hallmarks","TransPropy","unique", "negative",104,
+  "ALOXE3",  "hallmarks","TransPropy","notunique","positive",85,
+  "ALOXE3",  "hallmarks","TransPropy","notunique","negative",141,
+  "ALOXE3",  "hallmarks","limma","unique","positive",96,
+  "ALOXE3",  "hallmarks","limma","unique","negative",139,
+  "ALOXE3",  "hallmarks","limma","notunique","positive",119,
+  "ALOXE3",  "hallmarks","limma","notunique","negative",204,
+  "ALOXE3",  "hallmarks","outRst","unique","positive",73,
+  "ALOXE3",  "hallmarks","outRst","unique","negative",101,
+  "ALOXE3",  "hallmarks","outRst","notunique","positive",91,
+  "ALOXE3",  "hallmarks","outRst","notunique","negative",161,
+  
+  
+  
+  
+  
+  "ALOXE3",  "kegg","deseq2", "unique","positive",51,
+  "ALOXE3",  "kegg","deseq2", "unique","negative",0,
+  "ALOXE3",  "kegg","deseq2", "notunique","positive",115,
+  "ALOXE3",  "kegg","deseq2", "notunique","negative",0,
+  "ALOXE3",  "kegg","edgeR","unique","positive",31,
+  "ALOXE3",  "kegg","edgeR","unique","negative",0,
+  "ALOXE3",  "kegg","edgeR","notunique","positive",77,
+  "ALOXE3",  "kegg","edgeR","notunique","negative",0,
+  "ALOXE3",  "kegg","TransPropy","unique", "positive",48,
+  "ALOXE3",  "kegg","TransPropy","unique", "negative",27,
+  "ALOXE3",  "kegg","TransPropy","notunique","positive",86,
+  "ALOXE3",  "kegg","TransPropy","notunique","negative",27,
+  "ALOXE3",  "kegg","limma","unique","positive",20,
+  "ALOXE3",  "kegg","limma","unique","negative",50,
+  "ALOXE3",  "kegg","limma","notunique","positive",28,
+  "ALOXE3",  "kegg","limma","notunique","negative",124,
+  "ALOXE3",  "kegg","outRst","unique","positive",53,
+  "ALOXE3",  "kegg","outRst","unique","negative",85,
+  "ALOXE3",  "kegg","outRst","notunique","positive",82,
+  "ALOXE3",  "kegg","outRst","notunique","negative",198
+  
+)
+```
+
+
+
+
+```r
+# Calculate percentage
+barcircosdata1 <- barcircosdata %>%
+  group_by(Gene, Pathway, Methods, type) %>%
+  mutate(type_total = sum(count)) %>%
+  mutate(percentage = count / type_total * 100) %>%
+  ungroup()
+
+# Separate positive and negative data
+positive_data <- barcircosdata1 %>%
+  filter(Pos_Neg == "positive") %>%
+  select(Gene, Pathway, Methods, type, positive_percentage = percentage)
+
+negative_data <- barcircosdata1 %>%
+  filter(Pos_Neg == "negative") %>%
+  select(Gene, Pathway, Methods, type, negative_percentage = percentage)
+
+# Merge data
+merged_data <- left_join(positive_data, negative_data, by = c("Gene", "Pathway", "Methods", "type"))
+
+# Calculate percentage_ratio
+merged_data <- merged_data %>%
+  mutate(percentage_ratio = ifelse(is.na(positive_percentage) | positive_percentage == 0, 1, positive_percentage / ifelse(is.na(negative_percentage) | negative_percentage == 0, 10, negative_percentage)))
+
+# Select required columns
+final_data <- merged_data %>%
+  select(Gene, Pathway, Methods, type, percentage_ratio)
+
+# Print the results
+print(final_data)
+
+```
+
+
+
+```r
+method_colors <- c(
+  "edgeR" = "#388d98",      
+  "deseq2" = "#3771b8",     
+  "TransPropy" = "#6b4aaa", 
+  "limma" = "#4d8556",      
+  "outRst" = "#a8a761"      
+)
+
+# Default theme settings to ensure white background
+default_theme <- theme(
+  panel.background = element_rect(fill = "white", color = NA), # White panel background
+  plot.background = element_rect(fill = "white", color = NA),  # White plot background
+  panel.grid.major = element_line(color = "grey95"),           # Grey grid lines for better visibility
+  panel.grid.minor = element_line(color = "grey95"),           # Lighter grey for minor grid lines
+  axis.text.x = element_text(angle = 45, hjust = 1)
+)
+
+# Create a plot for percentage_ratio greater than 1
+plot_greater_than_one <- ggplot(final_data %>% filter(percentage_ratio > 1), aes(x = interaction(Gene, Pathway, Methods), y = percentage_ratio, fill = Methods)) +
+  geom_bar(stat = "identity", aes(alpha = type), position = position_dodge(width = 0.6), width = 0.5) +
+  scale_fill_manual(values = method_colors) +
+  scale_alpha_manual(values = c("unique" = 0.9, "notunique" = 0.4)) +
+  labs(title = "Percentage Ratio > 1", x = "Gene - Pathway - Method", y = "Percentage Ratio") +
+  default_theme
+
+# Create a plot for percentage_ratio less than 1
+plot_less_than_one <- ggplot(final_data %>% filter(percentage_ratio < 1), aes(x = interaction(Gene, Pathway, Methods), y = percentage_ratio, fill = Methods)) +
+  geom_bar(stat = "identity", aes(alpha = type), position = position_dodge(width = 0.6), width = 0.5) +
+  scale_fill_manual(values = method_colors) +
+  scale_alpha_manual(values = c("unique" = 0.9, "notunique" = 0.4)) +
+  labs(title = "Percentage Ratio < 1", x = "Gene - Pathway - Method", y = "Percentage Ratio") +
+  default_theme
+
+# Print the plots
+print(plot_greater_than_one)
+print(plot_less_than_one)
+
+
+```
+
+![](figure/CircosBar core enrichment/greater1-01.png)
+
+<div style="text-align: center;">
+Percentage Ratio > 1
+</div>
+
+
+![](figure/CircosBar core enrichment/less1-01)
+
+<div style="text-align: center;">
+Percentage Ratio < 1
+</div>
+
+
+
+
+
+
+## 
+```r
+# Ensure percentage_ratio is numeric
+final_data$percentage_ratio <- as.numeric(final_data$percentage_ratio)
+
+# Split data based on 'type'
+unique_df <- final_data[final_data$type == "unique", ]
+notunique_df <- final_data[final_data$type == "notunique", ]
+
+# Display unique Methods values
+print("Unique Methods values for 'unique_df':")
+print(unique(unique_df$Methods))
+
+print("Unique Methods values for 'notunique_df':")
+print(unique(notunique_df$Methods))
+
+
+# Specify the order for Methods
+method_order <- c("edgeR", "deseq2", "TransPropy", "limma", "outRst")
+
+# Set factor levels for unique_df
+unique_df$Methods <- factor(unique_df$Methods, levels = method_order)
+
+# Set factor levels for notunique_df
+notunique_df$Methods <- factor(notunique_df$Methods, levels = method_order)
+
+
+
+# Create plotting function with significance stars and mean line
+create_plot <- function(data, title, color_palette) {
+  
+  # Kruskal-Wallis test
+  kruskal_res <- kruskal_test(data, percentage_ratio ~ Methods)
+  
+  # Pairwise Wilcoxon test
+  pairwise_res <- data %>%
+    pairwise_wilcox_test(
+      percentage_ratio ~ Methods, 
+      p.adjust.method = "bonferroni"
+    )
+  
+  # Calculate means for each method
+  means <- data %>%
+    group_by(Methods) %>%
+    summarise(mean = mean(percentage_ratio, na.rm = TRUE))
+  
+  # Plot
+  p <- ggplot(data, aes(x = Methods, y = percentage_ratio, fill = Methods, color = Methods)) +
+    geom_violin(alpha = 0.2, position = position_dodge(width = 0.75), size = 1) +
+    geom_boxplot(width = 0.2, alpha = 0.5, position = position_dodge(width = 0.75), notch = FALSE, size = 1) +
+    geom_point(shape = 21, size = 10, position = position_jitterdodge(dodge.width = 0), alpha = 0.5, color = "transparent") +
+    geom_line(data = means, aes(x = Methods, y = mean, group = 1), 
+              color = "#757575", linetype = 1, size = 5 , alpha = 0.5) +  # Add dashed line for means
+    #geom_point(data = means, aes(x = Methods, y = mean, fill = Methods), shape = 21, size = 6) +  # Optional: add points for means
+    scale_fill_manual(values = color_palette) +
+    scale_color_manual(values = color_palette) +
+    theme_bw() +
+    labs(title = paste(title, "(Kruskal-Wallis p-value:", formatC(kruskal_res$p, format = "e", digits = 2), ")"),
+         y = "Percentage Ratio") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  
+  # Add significance stars based on Wilcoxon test results
+  max_y <- max(data$percentage_ratio, na.rm = TRUE)
+  comparisons <- combn(unique(data$Methods), 2, simplify = FALSE)
+  y_positions <- seq(max_y + 1, by = 0.5, length.out = length(comparisons))  # Adjust spacing between significance stars
+  
+  # Add significance annotations
+  x_value <- rep(1:4, 4:1)
+  y_value <- rep(max(data$percentage_ratio), length(x_value)) + 1
+  y_value <- y_value + c(0.5*1:4, 0.5*1:3, 0.5*1:2, 0.5)
+  colors <- c("#388d98","#3771b8", "#6b4aaa","#4d8556","#a8a761" )
+  color_value <- c(colors[2:5], colors[3:5], colors[4:5], colors[5])
+  
+  for (i in 1:nrow(pairwise_res)) {
+    if (pairwise_res$p.adj.signif[i] != "ns") {
+      y_tmp <- y_value[i]
+      p <- p + annotate(geom = "text",
+                        cex = 15,
+                        label = pairwise_res$p.adj.signif[i],
+                        x = x_value[i],
+                        y = y_tmp,
+                        color = color_value[i])
+    }
+  } 
+  
+  return(p)
+}
+
+# Define color palettes
+hallmarks_colors <- c(
+  "edgeR" = "#388d98",      
+  "deseq2" = "#3771b8",     
+  "TransPropy" = "#6b4aaa", 
+  "limma" = "#4d8556",      
+  "outRst" = "#a8a761"      
+)
+
+kegg_colors <- c(
+  "edgeR" = "#388d98",      
+  "deseq2" = "#3771b8",     
+  "TransPropy" = "#6b4aaa", 
+  "limma" = "#4d8556",      
+  "outRst" = "#a8a761"      
+)
+
+# Check and adjust color palettes based on the data
+unique_methods <- unique(unique_df$Methods)
+notunique_methods <- unique(notunique_df$Methods)
+
+# Filter palettes to match unique values
+hallmarks_colors <- hallmarks_colors[names(hallmarks_colors) %in% unique_methods]
+kegg_colors <- kegg_colors[names(kegg_colors) %in% notunique_methods]
+
+# Create and display plots
+plot_unique <- create_plot(unique_df, "Unique Types", hallmarks_colors)
+plot_notunique <- create_plot(notunique_df, "Not Unique Types", kegg_colors)
+
+# Display plots
+print(plot_unique)
+print(plot_notunique)
+
+```
+
+
+
+![](figure/CircosBar core enrichment/bar_violin_line_unique.png)
+
+<div style="text-align: center;">
+bar_violin_line_unique
+</div>
+
+
+![](figure/CircosBar core enrichment/bar_violin_line_notunique.png)
+
+<div style="text-align: center;">
+bar_violin_line_notunique
+</div>
+
+
+
 
 
 

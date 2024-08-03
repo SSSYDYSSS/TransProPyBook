@@ -43,6 +43,7 @@ book:
     - ANKRD35 FullGSEA.qmd
     - ALOXE3 FullGSEA.qmd
     - GeneCount and GseaNES.qmd
+    - ALL GENE LINE BAR.qmd
     - Seprate All GSEA.qmd
     - VennNetwork core enrichment.qmd
     - CircosBar core enrichment.qmd

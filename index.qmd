@@ -118,6 +118,8 @@ To learn more about TransProPy visit <https://github.com/SSSYDYSSS/TransProPy>.
 >* [ALOXE3 FullGSEA](ALOXE3 FullGSEA.html)
 >
 >* [GeneCount and GseaNES](GeneCount and GseaNES.html)
+>
+>* [All gene line bar](All gene line bar.html)
 > 
 >* [Seprate All GSEA](Seprate All GSEA.html)
 >  
