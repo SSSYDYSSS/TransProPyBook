@@ -1192,6 +1192,8 @@ Ridge Plot for Positive and Negative Correlations of CFD Gene
 
 
 
+
+
 ## ANKRD35 Ridge Plot
 ```r
 # Define colors for ANKRD35 Gene

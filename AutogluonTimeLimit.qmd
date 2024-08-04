@@ -254,6 +254,7 @@ leaderboard.to_csv('../test_TransProPy/data/significant_correlation_Autogluon_Ti
 
 ### Scientific Publications
 
+
 >- <a href="https://arxiv.org/abs/2003.06505" style="color: #43799a; font-weight: bold;">Erickson, N., Mueller, J., Shirkov, A., Zhang, H., Larroy, P., Li, M., & Smola, A. (2020). AutoGluon-Tabular: Robust and Accurate AutoML for Structured Data. arXiv preprint arXiv:2003.06505.</a>
 >
 >- <a href="https://arxiv.org/abs/2006.14284" style="color: #43799a; font-weight: bold;">Fakoor, R., Mueller, J., Erickson, N., Chaudhari, P., & Smola, A. J. (2020). Fast, Accurate, and Simple Models for Tabular Data via Augmented Distillation. arXiv preprint arXiv:2006.14284. </a>

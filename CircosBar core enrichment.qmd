@@ -1005,10 +1005,14 @@ The proportion of positively correlated genes is greater than that of negatively
 
 In contrast to deseq2/edgeR, the proportion of positively correlated core genes is less than that of negatively correlated genes (with some ratios of positive to negative gene counts approaching 0).
 
+
+
 ## TransPropy
 
 
 The ratio of positively to negatively correlated gene counts lies between those of deseq2/edgeR and limma/outRst. As shown in the figure, TransPropy occupies the central position among the five methods, displaying a smooth transition trend, with most ratios approaching 0.5.**（Better）**
 
 :::
+
+
 
